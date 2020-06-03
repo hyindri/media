@@ -45,6 +45,13 @@ class Auth extends CI_Controller
                         'level' => $media['level'],
                         'status' => $media['status'],
                         'nama' => $media['nama'],
+                        'tipe_publikasi' => $media['tipe_publikasi'],
+                        'tipe_mediamassa' => $media['tipe_media_massa'],
+                        'pendiri' => $media['pendiri'],
+                        'nik' => $media['nik'],
+                        'npwp' => $media['npwp'],
+                        'mulai_mou' => $media['mulai_mou'],
+                        'akhir_mou' => $media['akhir_mou']
 
                     ];
                     $this->session->set_userdata($data);
@@ -141,7 +148,7 @@ class Auth extends CI_Controller
 
     public function changepassword()
     {
-        $data = $this->user->change_password();
+        $data = $this->users->change_password();
         redirect(site_url('profil'));
     }
 

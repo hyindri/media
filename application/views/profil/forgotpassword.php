@@ -1,5 +1,6 @@
 @extends('base.main_base')
 @section('content')
+@section('title','Ubah Password')
 <div class="col-lg-6">
 	<div class="card">
 		<div class="body">
@@ -14,7 +15,7 @@
 							placeholder="Masukkan Password Terbaru Anda" required autofocus>
 					</div>
 				</div>
-				<button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">Ubah Password</button>
+				<button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">Simpan</button>
 				<div class="row m-t-20 m-b--5 align-center">
 					<a href="{{site_url('profil')}}">Batal</a>
 				</div>
