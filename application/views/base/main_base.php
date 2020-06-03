@@ -28,6 +28,12 @@
      <!-- JQuery DataTable Css -->
      <link href="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
+     <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+     <!-- Bootstrap Select Css -->
+    <link href="{{APP_ASSETS}}plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="{{APP_ASSETS}}css/style.css" rel="stylesheet">
 
@@ -87,6 +93,9 @@
     <!-- ChartJs -->
     <script src="{{APP_ASSETS}}plugins/chartjs/Chart.bundle.js"></script>
 
+    <!-- Moment Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/momentjs/moment.js"></script>
+
     <!-- Flot Charts Plugin Js 
     <script src="{{APP_ASSETS}}plugins/flot-charts/jquery.flot.js"></script>
     <script src="{{APP_ASSETS}}plugins/flot-charts/jquery.flot.resize.js"></script>
@@ -106,6 +115,10 @@
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    
 
     <!-- Custom Js -->
     <script src="{{APP_ASSETS}}js/admin.js"></script>
