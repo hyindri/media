@@ -6,21 +6,21 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('users_model','user');
+        $this->load->model('users_model', 'users');
 
     }
 
     public function index()
     {
-        if($this->session->userdata('login_status') == true){
+        if ($this->session->userdata('login_status') == true) {
             redirect('dashboard');
         }
 
         $this->form_validation->set_rules('username', 'username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
-        if ($this->form_validation->run() == false) {   
-            $data['title'] = 'Sign In'; 
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Sign In';
             view('auth.signin', $data);
         } else {
             $this->_signin();
@@ -29,39 +29,40 @@ class Auth extends CI_Controller
 
     private function _signin()
     {
-        $email = $this->input->post('username');
+        $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $user = $this->db->get_where('tmst_user', ['username' => $email])->row_array();    
+        $user = $this->users->data_login($username)->row_array();
         // jika usernya ada
         if ($user) {
-                // cek password
-                if (password_verify($password, $user['password'])) {
-                    if($user['status'] == 'aktif' || $user['status'] == 'registrasi'){
-                        $media = $this->user->data_all($email)->row_array();
-                        $data = [
-                        	'login_status' => true,
-                            'id' => $media['id'],
-                            'username' => $media['username'],
-                            'level' => $media['level'],
-                            'status' => $media['status'],                            
+            // cek password
+            if (password_verify($password, $user['password'])) {
+                if ($user['status'] == 'aktif' || $user['status'] == 'registrasi') {
+                    $media = $this->users->data_all($username)->row_array();
+                    $data = [
+                        'login_status' => true,
+                        'id' => $media['id'],
+                        'username' => $media['username'],
+                        'level' => $media['level'],
+                        'status' => $media['status'],
+                        'nama' => $media['nama'],
 
-                        ];
-                        $this->session->set_userdata($data);
-                        if ($user['level'] == 'superadmin') {
-                            redirect('sadmin/dashboard', $data);
-                        } elseif ($user['level'] == 'admin') {
-                            redirect('admin/dashboard', $data);  
-                        } elseif ($user['level'] == 'user') {
-                            redirect('user/dashboard', $data);  
-                        }
-                    } else {
-                        $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Akun sedang tidak aktif! Hubungi Admin.</div>');
-                        redirect('auth');
+                    ];
+                    $this->session->set_userdata($data);
+                    if ($media['level'] == 'superadmin') {
+                        view('superadmin.dashboard.index', $data);
+                    } elseif ($media['level'] == 'admin') {
+                        view('admin.dashboard.index', $data);
+                    } elseif ($media['level'] == 'user') {
+                        view('user.dashboard.index', $data);
                     }
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Password Salah!</div>');
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Akun sedang tidak aktif! Hubungi Admin.</div>');
                     redirect('auth');
-                } 
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Password Salah!</div>');
+                redirect('auth');
+            }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Username belum terdaftar / salah!</div>');
             redirect('auth');
@@ -86,9 +87,9 @@ class Auth extends CI_Controller
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'level' => 'user',
                 'dibuat_pada' => date('Y-m-d'),
-                'status' => 'registrasi'
+                'status' => 'registrasi',
             );
-        
+
             $this->db->insert('tmst_user', $data);
             $ins_id = $this->db->insert_id();
 
@@ -101,7 +102,7 @@ class Auth extends CI_Controller
                 'tipe_publikasi' => $this->input->post('tipe_publikasi'),
                 'tipe_media_massa' => $this->input->post('tipe_media_massa'),
                 'mulai_mou' => date("Y-m-d", strtotime($this->input->post('mulai_mou'))),
-                'akhir_mou' => date("Y-m-d", strtotime($this->input->post('akhir_mou')))
+                'akhir_mou' => date("Y-m-d", strtotime($this->input->post('akhir_mou'))),
             );
             $this->db->insert('tmst_media_massa', $data_media_massa);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Pendaftaran berhasil.</div>');
@@ -138,11 +139,11 @@ class Auth extends CI_Controller
     //     }
     // }
 
-    public function changepassword(){
+    public function changepassword()
+    {
         $data = $this->user->change_password();
         redirect(site_url('profil'));
     }
-
 
     public function logout()
     {
@@ -150,7 +151,5 @@ class Auth extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">You have been logged out!</div>');
         redirect('auth');
     }
-    
-
 
 }

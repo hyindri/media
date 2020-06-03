@@ -10,7 +10,7 @@
                                 <img src="{{APP_ASSETS}}images/user-lg.jpg" alt="AdminBSB - Profile Image" />
                             </div>
                             <div class="content-area">
-                                <h3>Nama PT</h3>
+                                <h3>{{$this->session->userdata('nama')}}</h3>
                                 <p>Tipe Media Massa</p>                                
                                 <p>Tipe Publikasi</p>  
                                 <p>Status : {{$this->session->userdata('status')}}</p>                                    

@@ -1,3 +1,5 @@
+@extends('base.main_base')
+@section('content')
 <div class="container-fluid">
     <div class="block-header">
         <h2>DASHBOARD</h2>
@@ -305,3 +307,4 @@
         <!-- #END# Browser Usage -->
     </div>
 </div>
+@endsection
