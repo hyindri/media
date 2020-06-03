@@ -6,7 +6,8 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-    
+        $this->load->model('users_model','user');
+
     }
 
     public function index()
@@ -43,7 +44,7 @@ class Auth extends CI_Controller
                             'id' => $user['id'],
                             'username' => $user['username'],
                             'level' => $user['level'],
-                            'status' => $user['status']
+                            'status' => $user['status']                            
                         ];
                         $this->session->set_userdata($data);
                         if ($user['level'] == 'superadmin') {
@@ -108,34 +109,40 @@ class Auth extends CI_Controller
         }
     }
 
-    public function forgotpassword()
-    {
-        $data['title'] = 'Forgot Password';
-        $this->form_validation->set_rules('username', 'Username', 'required|trim');
+    // public function forgotpassword()
+    // {
+    //     $data['title'] = 'Forgot Password';
+    //     $this->form_validation->set_rules('username', 'Username', 'required|trim');
 
-        if ($this->form_validation->run() == false) {
-            view('auth.forgotpassword', $data);
-        } else {
-            // validasinya success
-            $username = $this->input->post('username');
-            $default = '12345';
-            $password = password_hash($default, PASSWORD_DEFAULT);
-            $user = $this->db->get_where('tmst_user', ['username' => $username])->row_array();
+    //     if ($this->form_validation->run() == false) {
+    //         view('auth.forgotpassword', $data);
+    //     } else {
+    //         // validasinya success
+    //         $username = $this->input->post('username');
+    //         $default = '12345';
+    //         $password = password_hash($default, PASSWORD_DEFAULT);
+    //         $user = $this->db->get_where('tmst_user', ['username' => $username])->row_array();
 
-            if ($user) {
-                $data = array(
-                    'username' => $email,
-                    'password' => $password
-                );
-                $this->db->where('username', $username)->update('tmst_user', $data);
-                $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Reset password berhasil.</div>');
-                redirect('auth');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Username belum terdaftar / salah!</div>');
-                view('auth.forgotpassword');
-            }
-        }
+    //         if ($user) {
+    //             $data = array(
+    //                 'username' => $email,
+    //                 'password' => $password
+    //             );
+    //             $this->db->where('username', $username)->update('tmst_user', $data);
+    //             $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Reset password berhasil.</div>');
+    //             redirect('auth');
+    //         } else {
+    //             $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Username belum terdaftar / salah!</div>');
+    //             view('auth.forgotpassword');
+    //         }
+    //     }
+    // }
+
+    public function changepassword(){
+        $data = $this->user->change_password();
+        redirect(site_url('profil'));
     }
+
 
     public function logout()
     {
@@ -143,6 +150,7 @@ class Auth extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">You have been logged out!</div>');
         redirect('auth');
     }
+    
 
 
 }

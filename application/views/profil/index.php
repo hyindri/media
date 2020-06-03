@@ -11,8 +11,9 @@
                             </div>
                             <div class="content-area">
                                 <h3>Nama PT</h3>
-                                <p>Tipe Media Massa</p>    
-                                <p>Tipe Publikasi</p>                            
+                                <p>Tipe Media Massa</p>                                
+                                <p>Tipe Publikasi</p>  
+                                <p>Status : {{$this->session->userdata('status')}}</p>                                    
                             </div>
                         </div>                       
                     </div>
@@ -30,7 +31,7 @@
                                         Username
                                     </div>
                                     <div class="content">
-                                        Username
+                                        {{$this->session->userdata('username')}}
                                     </div>
                                 </li>
                                 <li>
@@ -42,7 +43,7 @@
                                     <a href="{{site_url('profil/ubahpassword')}}">Ubah Password</a>
                                     </div>
                                     <div class="content">
-                                        Malibu, California
+                                       ••••••••••••••
                                     </div>                                    
                                 </li>                                
                                 <li>
@@ -67,6 +68,24 @@
                                     <div class="title">
                                         <i class="material-icons">credit_card</i>
                                         NPWP
+                                    </div>     
+                                    <div class="content">
+                                        Malibu, California
+                                    </div>                                    
+                                </li> 
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">calendar_today</i>
+                                        Mulai MOU
+                                    </div>     
+                                    <div class="content">
+                                        Malibu, California
+                                    </div>                                    
+                                </li> 
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">calendar_today</i>
+                                        Akhir MOU
                                     </div>     
                                     <div class="content">
                                         Malibu, California

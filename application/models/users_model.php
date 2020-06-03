@@ -4,6 +4,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Users_model extends CI_Model{
 
 
+	public $table = 'tmst_user';
+
 	function get_table() {
 		$table = "tmst_user";
 		return $table; 
@@ -13,7 +15,7 @@ class Users_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('tmst_media_massa.user_id', $id);
 		$this->db->join('users', 'tmst_user.id = tmst_media_massa.user_id');
-		$this->db->from('tmst_user'); //sekolah
+		$this->db->from('tmst_user');
 		$this->db->limit(1);
 		$query = $this->db->get();
     	return $query->row();
@@ -56,5 +58,14 @@ class Users_model extends CI_Model{
 		$this->db->where('id', $id)
 				 ->delete('tmst_user');
 	}
+
+	public function change_password(){
+        $id['id'] = $this->input->post('id');
+        $data = array(
+            'password' => password_hash($this->input->post('new_password'), PASSWORD_DEFAULT)
+		);
+		
+		return $this->db->update($this->table,$data,$id);
+    }
 
 }
