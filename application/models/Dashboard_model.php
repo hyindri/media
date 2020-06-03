@@ -5,9 +5,10 @@ class Dashboard_model extends CI_Model
 
 	function __get_chart()
 	{
-		$this->db->group_by('dibuat_tanggal');
 		$this->db->select('dibuat_tanggal');
 		$this->db->select('count(id) as berita');
+		$this->db->where('YEAR(dibuat_tanggal)', date('Y'));
+		$this->db->group_by('dibuat_tanggal');
 		return $this->db->from('tb_berita')
 			->get()
 			->result();

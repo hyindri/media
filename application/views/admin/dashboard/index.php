@@ -125,8 +125,8 @@
 					labels: [<?php echo $tanggal; ?>],
 			datasets: [{
 				label:'Data Upload Berita Harian ',
-				backgroundColor: ['rgb(255, 99, 132)', 'rgba(56, 86, 255, 0.87)', 'rgb(60, 179, 113)','rgb(175, 238, 239)'],
-				borderColor: ['rgb(255, 99, 132)'],
+				backgroundColor: 'rgba(0, 188, 212, 0.8)',
+				borderColor: ['rgb(255, 255, 255)'],
 				data: [<?php echo $berita; ?>]
 			}]
 			},
