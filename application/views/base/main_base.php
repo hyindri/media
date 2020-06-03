@@ -29,7 +29,7 @@
     <link href="{{APP_ASSETS}}css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="css/themes/all-themes.css" rel="stylesheet" />
+    <link href="{{APP_ASSETS}}css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
 <body class="theme-red">
@@ -53,8 +53,8 @@
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
-    @include(element.navbar)
-    @include(element.sidebar)
+    @include('element.navbar')
+    @include('element.sidebar')
     <section class="content">
         @yield('content')
     </section>
