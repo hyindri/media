@@ -21,6 +21,12 @@
     <!-- Animation Css -->
     <link href="{{APP_ASSETS}}plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="{{APP_ASSETS}}plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="{{APP_ASSETS}}css/style.css" rel="stylesheet">
 </head>
@@ -45,6 +51,15 @@
 
     <!-- Validation Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Autosize Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/autosize/autosize.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/momentjs/moment.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
     <!-- Custom Js -->
     <script src="{{APP_ASSETS}}js/admin.js"></script>
