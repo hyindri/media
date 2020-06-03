@@ -9,8 +9,6 @@ class Auth extends CI_Controller
     
     }
 
-
-
     public function index()
     {
         if($this->session->userdata('email') && $this->session->userdata('role') == 'Superadmin'){
@@ -28,7 +26,9 @@ class Auth extends CI_Controller
             $data['title'] = 'Sign In'; 
             view('auth.signin', $data);
         } else {
-            $this->_login();
+            // $this->_login();
         }
     }
+
+
 }
