@@ -31,20 +31,20 @@ class Auth extends CI_Controller
     {
         $email = $this->input->post('username');
         $password = $this->input->post('password');
-
-        $user = $this->db->get_where('tmst_user', ['username' => $email])->row_array();
-
+        $user = $this->db->get_where('tmst_user', ['username' => $email])->row_array();    
         // jika usernya ada
         if ($user) {
                 // cek password
                 if (password_verify($password, $user['password'])) {
                     if($user['status'] == 'aktif' || $user['status'] == 'registrasi'){
+                        $media = $this->user->data_all($email)->row_array();
                         $data = [
                         	'login_status' => true,
-                            'id' => $user['id'],
-                            'username' => $user['username'],
-                            'level' => $user['level'],
-                            'status' => $user['status']                            
+                            'id' => $media['id'],
+                            'username' => $media['username'],
+                            'level' => $media['level'],
+                            'status' => $media['status'],                            
+
                         ];
                         $this->session->set_userdata($data);
                         if ($user['level'] == 'superadmin') {

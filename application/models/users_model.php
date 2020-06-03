@@ -4,7 +4,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Users_model extends CI_Model{
 
 
-	public $table = 'tmst_user';
+	public $table = 'tmst_user';	
 
 	function get_table() {
 		$table = "tmst_user";
@@ -66,6 +66,19 @@ class Users_model extends CI_Model{
 		);
 		
 		return $this->db->update($this->table,$data,$id);
-    }
+	}
+
+	public function data_login($username){
+		$this->db->where('username',$username);
+		return $this->db->get($this->table);
+	}
+	
+	public function data_all($username){
+		$this->db->select('user.*','media.*');
+		$this->db->from('tmst_user user');
+		$this->db->join('tmst_media_massa media','media.user_id = user.id','left');
+		$this->db->where('user.username',$username);
+		return $this->db->get();
+	}
 
 }
