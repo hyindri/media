@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <title>Aplikasi</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{APP_ASSETS}}favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{APP_ASSETS}}/favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -28,8 +28,8 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Admin<b>BSB</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
+            <p><b>LOGIN</b></p>
+            <small>Aplikasi Media</small>
         </div>
         @yield('content')
     </div>
