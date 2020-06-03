@@ -3,7 +3,7 @@
 <div class="card">
     <div class="body">
         <form id="sign_up" method="POST" action="{{site_url('auth/signup')}}">
-            <div class="msg">Register a new membership</div>
+            <div class="msg">Pendaftaran Akun</div>
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="material-icons">person</i>
@@ -36,7 +36,7 @@
                     <input type="text" class="form-control" name="pendiri" placeholder="Pendiri" required autofocus>
                 </div>
             </div>
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <span class="input-group-addon">
                     <i class="material-icons">view_list</i>
                 </span>
@@ -48,7 +48,7 @@
                     <option value="bulanan">Bulanan</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="material-icons">view_list</i>
@@ -96,7 +96,7 @@
             </div>
             <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
             <div class="m-t-25 m-b--5 align-center">
-                <a href="<?= site_url('auth') ?>">You already have a membership?</a>
+                <a href="<?= site_url('auth') ?>">Kembali ke Halaman Login</a>
             </div>
         </form>
     </div>

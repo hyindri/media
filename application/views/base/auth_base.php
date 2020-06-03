@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Aplikasi</title>
+    <title>Aplikasi Media</title>
     <!-- Favicon-->
     <link rel="icon" href="{{APP_ASSETS}}/favicon.ico" type="image/x-icon">
 
@@ -34,8 +34,8 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <p><b>LOGIN</b></p>
-            <small>Aplikasi Media</small>
+            <p><b>Aplikasi Media</b></p>
+            <small>Kabupaten Bintan</small>
         </div>
         @yield('content')
     </div>
