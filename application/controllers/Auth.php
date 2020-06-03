@@ -11,12 +11,8 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        if($this->session->userdata('username') && $this->session->userdata('level') == 'superadmin'){
+        if($this->session->userdata('login_status') == true){
             redirect('sadmin/dashboard');
-        } elseif ($this->session->userdata('username') && $this->session->userdata('level') == 'admin'){
-            redirect('admin/dashboard');
-        } elseif ($this->session->userdata('username') && $this->session->userdata('level') == 'user'){
-            redirect('user/dashboard');
         }
 
         $this->form_validation->set_rules('username', 'username', 'trim|required');
@@ -43,6 +39,7 @@ class Auth extends CI_Controller
                 if (password_verify($password, $user['password'])) {
                     if($user['status'] == 'aktif' || $user['status'] == 'registrasi'){
                         $data = [
+                        	'login_status' => true,
                             'id' => $user['id'],
                             'username' => $user['username'],
                             'level' => $user['level'],
