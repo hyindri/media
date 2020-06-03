@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2020 at 06:16 AM
+-- Generation Time: Jun 03, 2020 at 06:50 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -47,7 +47,6 @@ CREATE TABLE `tb_agenda` (
 CREATE TABLE `tb_berita` (
   `id` int(11) NOT NULL,
   `media_massa_id` int(11) NOT NULL,
-  `agenda_id` int(11) NOT NULL,
   `link_berita` varchar(255) NOT NULL,
   `screenshoot` varchar(255) NOT NULL,
   `share` text NOT NULL,
@@ -80,16 +79,15 @@ CREATE TABLE `tb_log` (
 
 CREATE TABLE `tmst_media_massa` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `nik` char(16) NOT NULL,
   `npwp` char(15) NOT NULL,
   `pendiri` varchar(255) NOT NULL,
   `tipe_publikasi` enum('harian','mingguan','bulanan') NOT NULL,
   `tipe_media_massa` enum('cetak','online','cetak dan online') NOT NULL,
-  `status` enum('aktif','nonaktif') NOT NULL,
-  `mulai_mou` date DEFAULT NULL,
-  `akhir_mou` date DEFAULT NULL
+  `mulai_mou` date NOT NULL,
+  `akhir_mou` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -115,7 +113,7 @@ CREATE TABLE `tmst_user` (
   `password` varchar(255) NOT NULL,
   `level` enum('superadmin','admin','user') DEFAULT NULL,
   `dibuat_pada` datetime DEFAULT NULL,
-  `status` tinyint(2) DEFAULT NULL
+  `status` enum('aktif','registrasi','suspend') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -133,7 +131,6 @@ ALTER TABLE `tb_agenda`
 --
 ALTER TABLE `tb_berita`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pk_berita_agenda` (`agenda_id`),
   ADD KEY `pk_berita_media_massa` (`media_massa_id`);
 
 --
@@ -191,7 +188,6 @@ ALTER TABLE `tmst_user`
 -- Constraints for table `tb_berita`
 --
 ALTER TABLE `tb_berita`
-  ADD CONSTRAINT `pk_berita_agenda` FOREIGN KEY (`agenda_id`) REFERENCES `tb_agenda` (`id`),
   ADD CONSTRAINT `pk_berita_media_massa` FOREIGN KEY (`media_massa_id`) REFERENCES `tmst_media_massa` (`id`);
 
 --
