@@ -3,6 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="defaultModalLabel">FILTER</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>   
             </div>
             <form id="form-filter">
                 <div class="modal-body">
@@ -15,13 +18,6 @@
 
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" id="nik" class="form-control">
-                            <label class="form-label">NIK</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group form-float">
-                        <div class="form-line">
                             <input type="text" id="npwp" class="form-control">
                             <label class="form-label">NPWP</label>
                         </div>
@@ -29,8 +25,8 @@
 
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" id="pendiri" class="form-control">
-                            <label class="form-label">PENDIRI</label>
+                            <input type="text" id="pimpinan" class="form-control">
+                            <label class="form-label">PIMPINAN</label>
                         </div>
                     </div>
                 </div>

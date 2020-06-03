@@ -127,7 +127,7 @@ class Auth extends CI_Controller
 
             if ($user) {
                 $data = array(
-                    'username' => $email,
+                    'username' => $username,
                     'password' => $password
                 );
                 $this->db->where('username', $username)->update('tmst_user', $data);

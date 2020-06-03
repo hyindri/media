@@ -16,6 +16,7 @@
     <!-- Bootstrap Core Css -->
     <link href="{{APP_ASSETS}}plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+
     <!-- Waves Effect Css -->
     <link href="{{APP_ASSETS}}plugins/node-waves/waves.css" rel="stylesheet" />
 
@@ -24,9 +25,10 @@
 
     <!-- Morris Chart Css-->
     <link href="{{APP_ASSETS}}plugins/morrisjs/morris.css" rel="stylesheet" />
-    
-     <!-- JQuery DataTable Css -->
-     <link href="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="{{APP_ASSETS}}plugins/toastr/toastr.min.css" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- Custom Css -->
     <link href="{{APP_ASSETS}}css/style.css" rel="stylesheet">
@@ -77,12 +79,16 @@
     <!-- Waves Effect Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/node-waves/waves.js"></script>
 
+    <!-- Input Mask Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+    
     <!-- Jquery CountTo Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-countto/jquery.countTo.js"></script>
 
     <!-- Morris Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/raphael/raphael.min.js"></script>
     <script src="{{APP_ASSETS}}plugins/morrisjs/morris.js"></script>
+    <script src="{{APP_ASSETS}}plugins/toastr/toastr.min.js"></script>
 
     <!-- ChartJs -->
     <script src="{{APP_ASSETS}}plugins/chartjs/Chart.bundle.js"></script>
@@ -96,7 +102,7 @@
     -->
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-sparkline/jquery.sparkline.js"></script>
-<!-- Jquery DataTable Plugin Js -->
+    <!-- Jquery DataTable Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
@@ -114,7 +120,7 @@
 
 
     <!-- Demo Js -->
-    <!-- <script src="{{APP_ASSETS}}js/demo.js"></script> -->
+        <!-- <script src="{{APP_ASSETS}}js/demo.js"></script> -->
 
     @yield('js')
 </body>

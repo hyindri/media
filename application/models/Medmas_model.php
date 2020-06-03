@@ -14,33 +14,25 @@ class Medmas_model extends CI_Model
     var $table = 'tmst_media_massa';
     var $table_user = 'tmst_user';
     var $id = 'id';
-    var $column_order = array(null, 'tmst_media_massa.id','tmst_media_massa.user_id','tmst_media_massa.nama','tmst_media_massa.nik','tmst_media_massa.npwp','tmst_media_massa.pendiri','tmst_media_massa.tipe_publikasi','tmst_media_massa.tipe_media_massa','tmst_media_massa.mulai_mou','tmst_media_massa.akhir_mou','tmst_user.status'); //set column field database for datatable orderable
-    var $column_search = array('tmst_media_massa.id','tmst_media_massa.user_id','tmst_media_massa.nama','tmst_media_massa.nik','tmst_media_massa.npwp','tmst_media_massa.pendiri','tmst_media_massa.tipe_publikasi','tmst_media_massa.tipe_media_massa','tmst_media_massa.mulai_mou','tmst_media_massa.akhir_mou','tmst_user.status'); //set column field database for datatable searchable 
+    var $column_order = array(null, 'tmst_media_massa.id','tmst_media_massa.user_id','tmst_media_massa.nama','tmst_media_massa.perusahaan', 'tmst_media_massa.alamat', 'tmst_media_massa.npwp', 'tmst_media_massa.rekening', 'tmst_media_massa.pimpinan', 'tmst_media_massa.kabiro', 'tmst_media_massa.surat_kabiro', 'tmst_media_massa.no_telp', 'tmst_media_massa.wartawan', 'tmst_media_massa.sertifikat_uji', 'tmst_media_massa.verifikasi_pers', 'tmst_media_massa.penawaran_kerja_sama','tmst_media_massa.tipe_publikasi','tmst_media_massa.tipe_media_massa','tmst_media_massa.mulai_mou','tmst_media_massa.akhir_mou','tmst_user.status'); //set column field database for datatable orderable
+    var $column_search = array('tmst_media_massa.id','tmst_media_massa.user_id','tmst_media_massa.nama','tmst_media_massa.perusahaan', 'tmst_media_massa.alamat', 'tmst_media_massa.npwp', 'tmst_media_massa.rekening', 'tmst_media_massa.pimpinan', 'tmst_media_massa.kabiro', 'tmst_media_massa.surat_kabiro', 'tmst_media_massa.no_telp', 'tmst_media_massa.wartawan', 'tmst_media_massa.sertifikat_uji', 'tmst_media_massa.verifikasi_pers', 'tmst_media_massa.penawaran_kerja_sama','tmst_media_massa.tipe_publikasi','tmst_media_massa.tipe_media_massa','tmst_media_massa.mulai_mou','tmst_media_massa.akhir_mou','tmst_user.status'); //set column field database for datatable searchable 
     var $order = array('tmst_media_massa.id' => 'asc'); // default order 
  
     private function _get_datatables_query()
     {
          
-        // if($this->input->post('bentuk'))
-        // {
-        //     $this->db->like('bentuk', $this->input->post('bentuk'));
-        // }
-        // if($this->input->post('nomor'))
-        // {
-        //     $this->db->like('nomor', $this->input->post('nomor'));
-        // }
-        // if($this->input->post('tahun'))
-        // {
-        //     $this->db->like('tahun', $this->input->post('tahun'));
-        // }
-        // if($this->input->post('judul'))
-        // {
-        //     $this->db->like('judul', $this->input->post('judul'));
-        // }
-        // if($this->input->post('status_akhir'))
-        // {
-        //     $this->db->like('status_akhir', $this->input->post('status_akhir'));
-        // }
+        if($this->input->post('nama'))
+        {
+            $this->db->like('nama', $this->input->post('nama'));
+        }
+        if($this->input->post('npwp'))
+        {
+            $this->db->like('npwp', $this->input->post('npwp'));
+        }
+        if($this->input->post('pimpinan'))
+        {
+            $this->db->like('pimpinan', $this->input->post('pimpinan'));
+        }
  
  
         $this->db->from($this->table);

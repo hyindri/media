@@ -5,7 +5,7 @@
     <div class="block-header">
         <h2>
             Daftar Media Massa
-            <small>di Diskominfo <a href="https://datatables.net/" target="_blank">Kabupaten Bintan</a></small>
+            <small>di Diskominfo <a href="https://bintankab.go.id/" target="_blank">Kabupaten Bintan</a></small>
         </h2>
     </div>
     <!-- Basic Examples -->
@@ -35,9 +35,8 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>NIK</th>
                                     <th>NPWP</th>
-                                    <th>Pendiri</th>
+                                    <th>Pimpinan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -50,7 +49,7 @@
         </div>
     </div>
 </div>
-@include("media_massa.modal")
+@include("admin.media_massa.modal")
 @endsection
 
 @section("js")
@@ -82,16 +81,15 @@
                 "url": "{{site_url('media_massa/json')}}",
                 "type": "POST",
                 "data": function(data) {
-                    data.bentuk = $('#nama').val();
-                    data.nomor = $('#nik').val();
-                    data.tahun = $('#npwp').val();
-                    data.judul = $('#pendiri').val();
+                    data.nama = $('#nama').val();
+                    data.npwp = $('#npwp').val();
+                    data.pimpinan = $('#pimpinan').val();
                 }
             },
 
           
             "columnDefs": [{
-                "targets": [0,5],
+                "targets": [0,4],
                 "orderable": false,
             }, ],
 
