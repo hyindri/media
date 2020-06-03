@@ -37,7 +37,7 @@
                                     <th>Nama</th>
                                     <th>NPWP</th>
                                     <th>Pimpinan</th>
-                                    <th>Aksi</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
