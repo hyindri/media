@@ -2,7 +2,7 @@
 @section('content')
 <div class="card">
     <div class="body">
-        <form id="sign_in" method="POST">
+        <form id="sign_in" method="POST" action="{{site_url('auth')}}">
             <div class="msg">Sign in to start your session</div>
             <div class="input-group">
                 <span class="input-group-addon">
@@ -22,8 +22,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-8 p-t-5">
-                    <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                    <label for="rememberme">Remember Me</label>
+                    <!-- <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                    <label for="rememberme">Remember Me</label> -->
                 </div>
                 <div class="col-xs-4">
                     <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
@@ -31,10 +31,10 @@
             </div>
             <div class="row m-t-15 m-b--20">
                 <div class="col-xs-6">
-                    <a href="sign-up.html">Register Now!</a>
+                    <a href="<?= site_url('auth/signup') ?>">Register Now!</a>
                 </div>
                 <div class="col-xs-6 align-right">
-                    <a href="forgot-password.html">Forgot Password?</a>
+                    <a href="<?= site_url('auth/forgotpassword') ?>" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i> Forgot password?</a>
                 </div>
             </div>
         </form>
