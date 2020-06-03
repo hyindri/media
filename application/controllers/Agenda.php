@@ -66,7 +66,7 @@ class Agenda extends CI_Controller
             return $this->db->insert('');
         } else {
             return $this->agenda->simpan($data);
-         json_encode($data);
+         echo json_encode($data);
         }
     }
 
