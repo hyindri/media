@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+    <title>Media Test</title>
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -24,12 +24,15 @@
 
     <!-- Morris Chart Css-->
     <link href="{{APP_ASSETS}}plugins/morrisjs/morris.css" rel="stylesheet" />
+    
+     <!-- JQuery DataTable Css -->
+     <link href="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- Custom Css -->
     <link href="{{APP_ASSETS}}css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="css/themes/all-themes.css" rel="stylesheet" />
+    <link href="{{APP_ASSETS}}css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
 <body class="theme-red">
@@ -53,8 +56,8 @@
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
-    @include(element.navbar)
-    @include(element.sidebar)
+    @include('element.navbar')
+    @include('element.sidebar')
     <section class="content">
         @yield('content')
     </section>
@@ -84,22 +87,34 @@
     <!-- ChartJs -->
     <script src="{{APP_ASSETS}}plugins/chartjs/Chart.bundle.js"></script>
 
-    <!-- Flot Charts Plugin Js -->
+    <!-- Flot Charts Plugin Js 
     <script src="{{APP_ASSETS}}plugins/flot-charts/jquery.flot.js"></script>
     <script src="{{APP_ASSETS}}plugins/flot-charts/jquery.flot.resize.js"></script>
     <script src="{{APP_ASSETS}}plugins/flot-charts/jquery.flot.pie.js"></script>
     <script src="{{APP_ASSETS}}plugins/flot-charts/jquery.flot.categories.js"></script>
     <script src="{{APP_ASSETS}}plugins/flot-charts/jquery.flot.time.js"></script>
-
+    -->
     <!-- Sparkline Chart Plugin Js -->
-    <script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-sparkline/jquery.sparkline.js"></script>
+<!-- Jquery DataTable Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
     <!-- Custom Js -->
     <script src="{{APP_ASSETS}}js/admin.js"></script>
-    <script src="{{APP_ASSETS}}js/pages/index.js"></script>
+    <!-- <script src="{{APP_ASSETS}}js/pages/index.js"></script> -->
+    <!-- <script src="{{APP_ASSETS}}js/pages/tables/jquery-datatable.js"></script> -->
+
 
     <!-- Demo Js -->
-    <script src="{{APP_ASSETS}}js/demo.js"></script>
+    <!-- <script src="{{APP_ASSETS}}js/demo.js"></script> -->
 
     @yield('js')
 </body>
