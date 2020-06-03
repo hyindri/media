@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <title>Aplikasi</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{APP_ASSETS}}favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{APP_ASSETS}}/favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -21,6 +21,12 @@
     <!-- Animation Css -->
     <link href="{{APP_ASSETS}}plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="{{APP_ASSETS}}plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="{{APP_ASSETS}}css/style.css" rel="stylesheet">
 </head>
@@ -28,8 +34,8 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Admin<b>BSB</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
+            <p><b>LOGIN</b></p>
+            <small>Aplikasi Media</small>
         </div>
         @yield('content')
     </div>
@@ -45,6 +51,15 @@
 
     <!-- Validation Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Autosize Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/autosize/autosize.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/momentjs/moment.js"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
     <!-- Custom Js -->
     <script src="{{APP_ASSETS}}js/admin.js"></script>
