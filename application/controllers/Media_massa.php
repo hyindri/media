@@ -12,7 +12,7 @@ class Media_massa extends CI_Controller
 
     public function index()
     {
-        return view('media_massa.index');
+        return view('admin.media_massa.index');
     }
 
     public function json()
