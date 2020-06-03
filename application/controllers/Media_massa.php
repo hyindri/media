@@ -12,7 +12,7 @@ class Media_massa extends CI_Controller
 
     public function index()
     {
-        return view('media_massa.index');
+        return view('admin.media_massa.index');
     }
 
     public function json()
@@ -25,9 +25,8 @@ class Media_massa extends CI_Controller
             $row = array();
             $row[] = $no;
             $row[] = $q->nama;
-            $row[] = $q->nik;
             $row[] = $q->npwp;
-            $row[] = $q->pendiri;
+            $row[] = $q->pimpinan;
             $row[] = '<a href="' . site_url() . 'upload/profil/' . $q->id . '" class="btn btn-xs btn-primary"> <i class="fa fa-eye"></i> Lihat Data </a>';
             $data[] = $row;
         }

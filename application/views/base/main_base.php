@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Media Test</title>
+    <title>Aplikasi Media</title>
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -16,6 +16,7 @@
     <!-- Bootstrap Core Css -->
     <link href="{{APP_ASSETS}}plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+
     <!-- Waves Effect Css -->
     <link href="{{APP_ASSETS}}plugins/node-waves/waves.css" rel="stylesheet" />
 
@@ -24,9 +25,10 @@
 
     <!-- Morris Chart Css-->
     <link href="{{APP_ASSETS}}plugins/morrisjs/morris.css" rel="stylesheet" />
-    
-     <!-- JQuery DataTable Css -->
-     <link href="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="{{APP_ASSETS}}plugins/toastr/toastr.min.css" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
      <!-- Bootstrap Material Datetime Picker Css -->
     <link href="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
@@ -83,12 +85,16 @@
     <!-- Waves Effect Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/node-waves/waves.js"></script>
 
+    <!-- Input Mask Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+    
     <!-- Jquery CountTo Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-countto/jquery.countTo.js"></script>
 
     <!-- Morris Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/raphael/raphael.min.js"></script>
     <script src="{{APP_ASSETS}}plugins/morrisjs/morris.js"></script>
+    <script src="{{APP_ASSETS}}plugins/toastr/toastr.min.js"></script>
 
     <!-- ChartJs -->
     <script src="{{APP_ASSETS}}plugins/chartjs/Chart.bundle.js"></script>
@@ -105,7 +111,7 @@
     -->
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-sparkline/jquery.sparkline.js"></script>
-<!-- Jquery DataTable Plugin Js -->
+    <!-- Jquery DataTable Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
@@ -127,7 +133,7 @@
 
 
     <!-- Demo Js -->
-    <!-- <script src="{{APP_ASSETS}}js/demo.js"></script> -->
+        <!-- <script src="{{APP_ASSETS}}js/demo.js"></script> -->
 
     @yield('js')
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2020 at 06:50 AM
+-- Generation Time: Jun 03, 2020 at 11:33 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -81,9 +81,18 @@ CREATE TABLE `tmst_media_massa` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `nik` char(16) NOT NULL,
+  `perusahaan` varchar(255) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
   `npwp` char(15) NOT NULL,
-  `pendiri` varchar(255) NOT NULL,
+  `rekening` varchar(100) DEFAULT NULL,
+  `pemimpin` varchar(255) NOT NULL,
+  `kabiro` varchar(255) DEFAULT NULL,
+  `surat_kabiro` text DEFAULT NULL,
+  `no_telp` varchar(13) DEFAULT NULL,
+  `wartawan` varchar(255) DEFAULT NULL,
+  `sertifikat_uji` text DEFAULT NULL,
+  `verifikasi_pers` text DEFAULT NULL,
+  `penawaran_kerja_sama` text DEFAULT NULL,
   `tipe_publikasi` enum('harian','mingguan','bulanan') NOT NULL,
   `tipe_media_massa` enum('cetak','online','cetak dan online') NOT NULL,
   `mulai_mou` date NOT NULL,
@@ -130,8 +139,7 @@ ALTER TABLE `tb_agenda`
 -- Indexes for table `tb_berita`
 --
 ALTER TABLE `tb_berita`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `pk_berita_media_massa` (`media_massa_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_log`
@@ -163,6 +171,12 @@ ALTER TABLE `tmst_user`
 --
 
 --
+-- AUTO_INCREMENT for table `tb_agenda`
+--
+ALTER TABLE `tb_agenda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_berita`
 --
 ALTER TABLE `tb_berita`
@@ -175,6 +189,18 @@ ALTER TABLE `tb_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tmst_media_massa`
+--
+ALTER TABLE `tmst_media_massa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tmst_setting`
+--
+ALTER TABLE `tmst_setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tmst_user`
 --
 ALTER TABLE `tmst_user`
@@ -183,12 +209,6 @@ ALTER TABLE `tmst_user`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `tb_berita`
---
-ALTER TABLE `tb_berita`
-  ADD CONSTRAINT `pk_berita_media_massa` FOREIGN KEY (`media_massa_id`) REFERENCES `tmst_media_massa` (`id`);
 
 --
 -- Constraints for table `tmst_media_massa`

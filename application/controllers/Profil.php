@@ -13,7 +13,7 @@ class Profil extends CI_Controller
     }
     
     public function index(){
-        // $data = $this->medmas->get_profile();
+        $data = $this->medmas->get_profile();
         view('profil.index');
     }
 

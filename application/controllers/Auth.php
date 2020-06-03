@@ -12,7 +12,7 @@ class Auth extends CI_Controller
     public function index()
     {
         if($this->session->userdata('login_status') == true){
-            redirect('sadmin/dashboard');
+            redirect('dashboard');
         }
 
         $this->form_validation->set_rules('username', 'username', 'trim|required');
@@ -124,7 +124,7 @@ class Auth extends CI_Controller
 
             if ($user) {
                 $data = array(
-                    'username' => $email,
+                    'username' => $username,
                     'password' => $password
                 );
                 $this->db->where('username', $username)->update('tmst_user', $data);
