@@ -21,7 +21,7 @@ class Slice {
 	 *
 	 *  @var   string
 	 */
-	public $slice_ext		= '.slice.php';
+	public $slice_ext		= '.php';
 
 	/**
 	 *  The amount of time to keep the file in cache
