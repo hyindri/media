@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2020 at 06:38 AM
+-- Generation Time: Jun 03, 2020 at 06:50 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -79,16 +79,15 @@ CREATE TABLE `tb_log` (
 
 CREATE TABLE `tmst_media_massa` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `nik` char(16) NOT NULL,
   `npwp` char(15) NOT NULL,
   `pendiri` varchar(255) NOT NULL,
   `tipe_publikasi` enum('harian','mingguan','bulanan') NOT NULL,
   `tipe_media_massa` enum('cetak','online','cetak dan online') NOT NULL,
-  `status` enum('aktif','nonaktif') NOT NULL,
-  `mulai_mou` date DEFAULT NULL,
-  `akhir_mou` date DEFAULT NULL
+  `mulai_mou` date NOT NULL,
+  `akhir_mou` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -114,7 +113,7 @@ CREATE TABLE `tmst_user` (
   `password` varchar(255) NOT NULL,
   `level` enum('superadmin','admin','user') DEFAULT NULL,
   `dibuat_pada` datetime DEFAULT NULL,
-  `status` tinyint(2) DEFAULT NULL
+  `status` enum('aktif','registrasi','suspend') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
