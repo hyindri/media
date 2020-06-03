@@ -1,9 +1,9 @@
 @extends('base.auth_base')
 @section('content')
 <div class="card">
-    <div class="body">
+    <div class="body sign">
         <form id="sign_in" method="POST" action="{{site_url('auth')}}">
-            <div class="msg">Sign in to start your session</div>
+            <div class="msg">Login</div>
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="material-icons">person</i>
@@ -21,20 +21,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-8 p-t-5">
-                    <!-- <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                    <label for="rememberme">Remember Me</label> -->
-                </div>
-                <div class="col-xs-4">
-                    <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                <div class="col-xs-12 p-t-5">
+                    <button class="btn btn-block bg-pink waves-effect" type="submit">LOGIN</button>
                 </div>
             </div>
             <div class="row m-t-15 m-b--20">
                 <div class="col-xs-6">
-                    <a href="<?= site_url('auth/signup') ?>">Register Now!</a>
-                </div>
-                <div class="col-xs-6 align-right">
-                    <a href="<?= site_url('auth/forgotpassword') ?>" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i> Forgot password?</a>
+                    <a href="<?= site_url('auth/signup') ?>">Daftar Akun Baru</a>
                 </div>
             </div>
         </form>
