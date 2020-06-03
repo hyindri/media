@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2020 at 06:16 AM
+-- Generation Time: Jun 03, 2020 at 06:38 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -47,7 +47,6 @@ CREATE TABLE `tb_agenda` (
 CREATE TABLE `tb_berita` (
   `id` int(11) NOT NULL,
   `media_massa_id` int(11) NOT NULL,
-  `agenda_id` int(11) NOT NULL,
   `link_berita` varchar(255) NOT NULL,
   `screenshoot` varchar(255) NOT NULL,
   `share` text NOT NULL,
@@ -133,7 +132,6 @@ ALTER TABLE `tb_agenda`
 --
 ALTER TABLE `tb_berita`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pk_berita_agenda` (`agenda_id`),
   ADD KEY `pk_berita_media_massa` (`media_massa_id`);
 
 --
@@ -191,7 +189,6 @@ ALTER TABLE `tmst_user`
 -- Constraints for table `tb_berita`
 --
 ALTER TABLE `tb_berita`
-  ADD CONSTRAINT `pk_berita_agenda` FOREIGN KEY (`agenda_id`) REFERENCES `tb_agenda` (`id`),
   ADD CONSTRAINT `pk_berita_media_massa` FOREIGN KEY (`media_massa_id`) REFERENCES `tmst_media_massa` (`id`);
 
 --
