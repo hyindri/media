@@ -7,7 +7,7 @@
                 <img src="{{APP_ASSETS}}images/person.svg" width="48" height="48" alt="User" />
             </div>
             <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$this->session->userdata('nama')}}</div>
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$this->session->userdata('username')}}</div>
                 <div class="email">{{$this->session->userdata('status')}}</div>
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -41,13 +41,22 @@
                         <i class="material-icons">event</i>
                         <span>Agenda</span>
                     </a>
-                </li>          
+                </li>         
+                @if($this->session->userdata('level') == 'user') 
                 <li>
                     <a href="{{site_url('profil')}}">
                         <i class="material-icons">person</i>
                         <span>Profil</span>
                     </a>
+                </li>                
+                @elseif($this->session->userdata('level') == 'admin')
+                <li>
+                    <a href="{{site_url('profil')}}">
+                        <i class="material-icons">group</i>
+                        <span>Manajemen Akun</span>
+                    </a>
                 </li>
+                @endif
                 <li>
                     <a href="{{site_url('auth/logout')}}">
                     <i class="material-icons">exit_to_app</i>
