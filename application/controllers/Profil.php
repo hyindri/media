@@ -27,6 +27,16 @@ class Profil extends CI_Controller
             'npwp' => $this->session->userdata('npwp'),
             'mulai_mou' => date('d/m/Y', strtotime($this->session->userdata('mulai_mou'))),
             'akhir_mou' => date('d/m/Y', strtotime($this->session->userdata('akhir_mou'))),
+            'perusahaan' => $this->session->userdata('perusahaan'),
+            'alamat_per' => $this->session->userdata('alamat_per'),
+            'rekening' => $this->session->userdata('rekening'),
+            'kabiro' => $this->session->userdata('kabiro'),
+            'surat_kabiro' => $this->session->userdata('surat_kabiro'),
+            'telp' => $this->session->userdata('telp'),
+            'wartawan' => $this->session->userdata('wartawan'),
+            'sertifikat' => $this->session->userdata('sertifikat'),
+            'verifikasi' => $this->session->userdata('verifikasi'),
+            'penawaran_kerjasama' => $this->session->userdata('penawaran_kerjasama')
             
         );      
         view('profil.index',$data);
@@ -40,11 +50,21 @@ class Profil extends CI_Controller
             'tipe_mediamassa' => $row->tipe_media_massa,
             'tipe_publikasi' => $row->tipe_publikasi,
             'status' => $this->session->userdata('status'),
-            'pemimpin' => $row->pemimpin,
+            'pemimpin' => $row->pimpinan,
             'nik' => $row->nik,
             'npwp' => $row->npwp,
             'mulai_mou' => date('d/m/Y', strtotime($row->mulai_mou)),
-            'akhir_mou' => date('d/m/Y',strtotime($row->akhir_mou))
+            'akhir_mou' => date('d/m/Y',strtotime($row->akhir_mou)),
+            'perusahaan' => $row->perusahaan,
+            'alamat_per' => $media->alamat,
+            'rekening' => $media->rekening,
+            'kabiro' => $media->kabiro,
+            'surat_kabiro' => $media->surat_kabiro,
+            'telp' => $media->no_telp,
+            'wartawan' => $media->wartawan,
+            'sertifikat' => $media->sertifikat_uji,
+            'verifikasi' => $media->verifikasi_pers,
+            'penawaran_kerjasama' => $media->penawaran_kerja_sama
         );
         view('profil.index',$data);
     }
