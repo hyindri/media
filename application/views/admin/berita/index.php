@@ -18,23 +18,12 @@
             <div class="card">
                 <div class="header">
                     <h2>{{$title}}</h2>
-                    <div class="icon-button-demo align-right m-b--25">
+                    <!-- <div class="icon-button-demo align-right m-b--25">
                         <a data-toggle="modal" data-target="#modal-tambah">
                             <button type="button" class="btn btn-primary waves-effect waves-light-blue">
                                 <i class="material-icons">control_point</i>
                             </button></a>
-                    </div>
-                    <!-- <ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a data-toggle="modal" data-target="#modal-tambah">Tambah</a></li>
-
-                            </ul>
-                        </li>
-                    </ul> -->
+                    </div> -->
                     <div class="body">
                         <div class="table-responsive">
                             <table id="table" class="table table-bordered table-striped table-hover" width="100%">
