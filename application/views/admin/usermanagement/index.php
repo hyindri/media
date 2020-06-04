@@ -1,11 +1,11 @@
 @extends("base.main_base")
 @section("content")
+@section('title','Manajemen Akun')
 
 <div class="container-fluid">
     <div class="block-header">
         <h2>
-            Management Akun
-            <small>di Diskominfo <a href="https://datatables.net/" target="_blank">Kabupaten Bintan</a></small>
+            Management Akun            
         </h2>
     </div>
     <!-- Basic Examples -->

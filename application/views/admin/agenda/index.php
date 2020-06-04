@@ -5,8 +5,7 @@
 <div class="container-fluid">
     <div class="block-header">
         <h2>
-            Daftar Agenda
-            <small>di Diskominfo <a href="https://datatables.net/" target="_blank">Kabupaten Bintan</a></small>
+            Daftar Agenda            
         </h2>
     </div>
     <!-- Basic Examples -->

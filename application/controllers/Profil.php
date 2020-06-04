@@ -22,11 +22,20 @@ class Profil extends CI_Controller
             'tipe_mediamassa' => $this->session->userdata('tipe_mediamassa'),
             'tipe_publikasi' => $this->session->userdata('tipe_publikasi'),
             'status' => $this->session->userdata('status'),
-            'pemimpin' => $this->session->userdata('pemimpin'),
-            'nik' => $this->session->userdata('nik'),
+            'pemimpin' => $this->session->userdata('pemimpin'),            
             'npwp' => $this->session->userdata('npwp'),
             'mulai_mou' => date('d/m/Y', strtotime($this->session->userdata('mulai_mou'))),
             'akhir_mou' => date('d/m/Y', strtotime($this->session->userdata('akhir_mou'))),
+            'perusahaan' => $this->session->userdata('perusahaan'),
+            'alamat_per' => $this->session->userdata('alamat_per'),
+            'rekening' => $this->session->userdata('rekening'),
+            'kabiro' => $this->session->userdata('kabiro'),
+            'surat_kabiro' => $this->session->userdata('surat_kabiro'),
+            'telp' => $this->session->userdata('telp'),
+            'wartawan' => $this->session->userdata('wartawan'),
+            'sertifikat' => $this->session->userdata('sertifikat'),
+            'verifikasi' => $this->session->userdata('verifikasi'),
+            'penawaran_kerjasama' => $this->session->userdata('penawaran_kerjasama')
             
         );      
         view('profil.index',$data);
@@ -40,11 +49,20 @@ class Profil extends CI_Controller
             'tipe_mediamassa' => $row->tipe_media_massa,
             'tipe_publikasi' => $row->tipe_publikasi,
             'status' => $this->session->userdata('status'),
-            'pemimpin' => $row->pemimpin,
-            'nik' => $row->nik,
+            'pemimpin' => $row->pimpinan,            
             'npwp' => $row->npwp,
             'mulai_mou' => date('d/m/Y', strtotime($row->mulai_mou)),
-            'akhir_mou' => date('d/m/Y',strtotime($row->akhir_mou))
+            'akhir_mou' => date('d/m/Y',strtotime($row->akhir_mou)),
+            'perusahaan' => $row->perusahaan,
+            'alamat_per' => $row->alamat,
+            'rekening' => $row->rekening,
+            'kabiro' => $row->kabiro,
+            'surat_kabiro' => $row->surat_kabiro,
+            'telp' => $row->no_telp,
+            'wartawan' => $row->wartawan,
+            'sertifikat' => $row->sertifikat_uji,
+            'verifikasi' => $row->verifikasi_pers,
+            'penawaran_kerjasama' => $row->penawaran_kerja_sama
         );
         view('profil.index',$data);
     }
