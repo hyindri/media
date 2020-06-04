@@ -3,7 +3,9 @@
 <div class="card">
     <div class="body sign">
         <form id="sign_in" method="POST" action="{{site_url('auth')}}">
-            <div class="msg">Login</div>
+            <div class="msg">Login</div>         
+              
+            {{$this->session->flashdata('msg')}}
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="material-icons">person</i>

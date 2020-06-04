@@ -1,5 +1,6 @@
 @extends('base.main_base')
 @section('content')
+@section('title','Profil')
 <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-xs-12 col-sm-3 col-lg-3">
@@ -10,9 +11,10 @@
                                 <img src="{{APP_ASSETS}}images/user-lg.jpg" alt="AdminBSB - Profile Image" />
                             </div>
                             <div class="content-area">
-                                <h3>Nama PT</h3>
-                                <p>Tipe Media Massa</p>    
-                                <p>Tipe Publikasi</p>                            
+                                <h3>{{$this->session->userdata('nama')}}</h3>
+                                <p>Tipe Media Massa : {{$this->session->userdata('tipe_mediamassa')}}</p>                                
+                                <p>Tipe Publikasi : {{$this->session->userdata('tipe_publikasi')}}</p>  
+                                <p>Status : {{$this->session->userdata('status')}}</p>                                    
                             </div>
                         </div>                       
                     </div>
@@ -30,7 +32,7 @@
                                         Username
                                     </div>
                                     <div class="content">
-                                        Username
+                                        {{$this->session->userdata('username')}}
                                     </div>
                                 </li>
                                 <li>
@@ -42,7 +44,7 @@
                                     <a href="{{site_url('profil/ubahpassword')}}">Ubah Password</a>
                                     </div>
                                     <div class="content">
-                                        Malibu, California
+                                       ••••••••••••••
                                     </div>                                    
                                 </li>                                
                                 <li>
@@ -51,7 +53,7 @@
                                         Pemilik
                                     </div>     
                                     <div class="content">
-                                        Malibu, California
+                                        {{$this->session->userdata('pendiri')}}
                                     </div>                                    
                                 </li>     
                                 <li>
@@ -60,7 +62,7 @@
                                         NIK Pemilik
                                     </div>     
                                     <div class="content">
-                                        Malibu, California
+                                        {{$this->session->userdata('nik')}}
                                     </div>                                    
                                 </li>     
                                 <li>
@@ -69,7 +71,25 @@
                                         NPWP
                                     </div>     
                                     <div class="content">
-                                        Malibu, California
+                                        {{$this->session->userdata('npwp')}}
+                                    </div>                                    
+                                </li> 
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">calendar_today</i>
+                                        Mulai MOU
+                                    </div>     
+                                    <div class="content">
+                                        {{$this->session->userdata('mulai_mou')}}
+                                    </div>                                    
+                                </li> 
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">calendar_today</i>
+                                        Akhir MOU
+                                    </div>     
+                                    <div class="content">
+                                        {{$this->session->userdata('akhir_mou')}}
                                     </div>                                    
                                 </li> 
                             </ul>

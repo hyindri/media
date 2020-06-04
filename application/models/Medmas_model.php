@@ -17,6 +17,7 @@ class Medmas_model extends CI_Model
     var $column_order = array(null, 'tmst_media_massa.id','tmst_media_massa.user_id','tmst_media_massa.nama','tmst_media_massa.perusahaan', 'tmst_media_massa.alamat', 'tmst_media_massa.npwp', 'tmst_media_massa.rekening', 'tmst_media_massa.pimpinan', 'tmst_media_massa.kabiro', 'tmst_media_massa.surat_kabiro', 'tmst_media_massa.no_telp', 'tmst_media_massa.wartawan', 'tmst_media_massa.sertifikat_uji', 'tmst_media_massa.verifikasi_pers', 'tmst_media_massa.penawaran_kerja_sama','tmst_media_massa.tipe_publikasi','tmst_media_massa.tipe_media_massa','tmst_media_massa.mulai_mou','tmst_media_massa.akhir_mou','tmst_user.status'); //set column field database for datatable orderable
     var $column_search = array('tmst_media_massa.id','tmst_media_massa.user_id','tmst_media_massa.nama','tmst_media_massa.perusahaan', 'tmst_media_massa.alamat', 'tmst_media_massa.npwp', 'tmst_media_massa.rekening', 'tmst_media_massa.pimpinan', 'tmst_media_massa.kabiro', 'tmst_media_massa.surat_kabiro', 'tmst_media_massa.no_telp', 'tmst_media_massa.wartawan', 'tmst_media_massa.sertifikat_uji', 'tmst_media_massa.verifikasi_pers', 'tmst_media_massa.penawaran_kerja_sama','tmst_media_massa.tipe_publikasi','tmst_media_massa.tipe_media_massa','tmst_media_massa.mulai_mou','tmst_media_massa.akhir_mou','tmst_user.status'); //set column field database for datatable searchable 
     var $order = array('tmst_media_massa.id' => 'asc'); // default order 
+
  
     private function _get_datatables_query()
     {

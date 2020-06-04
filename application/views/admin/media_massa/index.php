@@ -1,5 +1,7 @@
 @extends("base.main_base")
 @section("content")
+@section("title", "Media Massa")
+
 
 <div class="container-fluid">
     <div class="block-header">
