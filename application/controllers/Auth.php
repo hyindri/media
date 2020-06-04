@@ -122,62 +122,11 @@ class Auth extends CI_Controller
         }
     }
 
-    // public function forgotpassword()
-    // {
-    //     $data['title'] = 'Forgot Password';
-    //     $this->form_validation->set_rules('username', 'Username', 'required|trim');
 
-    //     if ($this->form_validation->run() == false) {
-    //         view('auth.forgotpassword', $data);
-    //     } else {
-    //         // validasinya success
-    //         $username = $this->input->post('username');
-    //         $default = '12345';
-    //         $password = password_hash($default, PASSWORD_DEFAULT);
-    //         $user = $this->db->get_where('tmst_user', ['username' => $username])->row_array();
+    public function changepassword(){
+        $data = $this->users->change_password();
+        redirect(site_url('profil'));
 
-    //         if ($user) {
-    //             $data = array(
-    //                 'username' => $email,
-    //                 'password' => $password
-    //             );
-    //             $this->db->where('username', $username)->update('tmst_user', $data);
-    //             $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Reset password berhasil.</div>');
-    //             redirect('auth');
-    //         } else {
-    //             $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Username belum terdaftar / salah!</div>');
-    //             view('auth.forgotpassword');
-    //         }
-    //     }
-    // }
-
-    public function changepassword()
-    {
-        $data['title'] = 'Forgot Password';
-        $this->form_validation->set_rules('username', 'Username', 'required|trim');
-
-        if ($this->form_validation->run() == false) {
-            view('auth.forgotpassword', $data);
-        } else {
-            // validasinya success
-            $username = $this->input->post('username');
-            $default = '12345';
-            $password = password_hash($default, PASSWORD_DEFAULT);
-            $user = $this->db->get_where('tmst_user', ['username' => $username])->row_array();
-
-            if ($user) {
-                $data = array(
-                    'username' => $username,
-                    'password' => $password
-                );
-                $this->db->where('username', $username)->update('tmst_user', $data);
-                $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Reset password berhasil.</div>');
-                redirect('auth');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Username belum terdaftar / salah!</div>');
-                view('auth.forgotpassword');
-            }
-        }
     }
 
     public function logout()
