@@ -75,6 +75,7 @@ class Agenda extends CI_Controller
         //output to json format
         echo json_encode($output);
     }
+    
 
     public function tambah()
     {

@@ -3,11 +3,10 @@
 @section('title','Manajemen Akun')
 
 <div class="container-fluid">
-    <!-- Breadcrumb  -->
-    <div class="block-header">
+<div class="block-header">
         <ol class="breadcrumb">
             <li>HOME</li>
-            <li class="active">MANAJEMEN AKUN</li>
+            <li class="active">MANAGEMENT AKUN</li>
         </ol>
     </div>
     <!-- end breadcrumb -->

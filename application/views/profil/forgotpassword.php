@@ -27,9 +27,6 @@
 								<button class="btn bg-green col-white waves-effect waves-light-blue" type="submit">SIMPAN</button>
 								<button class="btn bg-red col-white waves-effect waves-light-blue" type="button">BATAL</button>
 							</div>
-							<!-- <div class="row m-t-20 m-b--5 align-center">
-								<a href="{{site_url('profil/ubahpassword')}}">Batal</a>
-							</div> -->
 						</form>
 					</div>
 				</div>
@@ -37,8 +34,4 @@
 		</div>
 	</div>
 </div>
-
-
-
-
 @endsection
