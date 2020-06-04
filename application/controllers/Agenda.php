@@ -128,6 +128,9 @@ class Agenda extends CI_Controller
 
     private function _do_upload()
     {
+        if (!file_exists('upload/agenda')) {
+            mkdir('upload/agenda/', 0777, true);
+        }
         $config['upload_path']          = 'upload/agenda/';
         $config['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config['max_size']             = 2000; //set max size allowed in Kilobyte
