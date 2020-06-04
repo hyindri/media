@@ -80,17 +80,8 @@
                     "type": "POST"
                 },
 
-<<<<<<< HEAD
-          
-            "columnDefs": [{
-                "targets": [0,4,7],
-                "orderable": false,
-            }, ],
-=======
->>>>>>> 00bb803a06a50ddc035d3b4f48652dbd649c1f32
-
                 "columnDefs": [{
-                    "targets": [0, 4, 5, 6],
+                    "targets": [0, 4, 5, 7],
                     "orderable": false,
                 }, ],
 
