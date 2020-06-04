@@ -12,8 +12,8 @@ class Agenda_model extends CI_Model
     }
 
     var $table = 'tb_agenda';
-    var $column_order = array(null, 'id','judul','tanggal','status','file','tmst_media_massa.pendiri','dibuat_oleh','dibuat_pada'); //set column field database for datatable orderable
-    var $column_search = array('id','judul','tanggal','status','file','tmst_media_massa.pendiri','dibuat_oleh','dibuat_pada'); //set column field database for datatable searchable 
+    var $column_order = array(null, 'id','judul','tanggal','status','file','dibuat_oleh','dibuat_pada'); //set column field database for datatable orderable
+    var $column_search = array('id','judul','tanggal','status','file','dibuat_oleh','dibuat_pada'); //set column field database for datatable searchable 
     var $order = array('tb_agenda.id' => 'asc'); // default order 
  
     private function _get_datatables_query()

@@ -11,7 +11,7 @@
         </ol>
     </div>
     <!-- end breadcrumb -->
-
+    <!-- Basic Examples -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -80,9 +80,8 @@
                     "type": "POST"
                 },
 
-
                 "columnDefs": [{
-                    "targets": [0, 4, 5, 6],
+                    "targets": [0, 4, 5, 7],
                     "orderable": false,
                 }, ],
 

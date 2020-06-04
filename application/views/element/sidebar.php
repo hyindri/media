@@ -66,6 +66,19 @@
 						<span>Ubah Password</span>
 					</a>
 				</li>
+				@elseif($this->session->userdata('level') == 'superadmin')
+				<li class="@if($this->uri->segment(1) == 'usermanagement') active @endif">
+					<a href="{{site_url('usermanagement')}}">
+						<i class="material-icons">group</i>
+						<span>Daftar Media</span>
+					</a>
+				</li>
+				<li class="@if($this->uri->segment(2) == 'ubahpassword') active @endif">
+					<a href="{{site_url('profil/ubahpassword')}}">
+						<i class="material-icons">vpn_key</i>
+						<span>Ubah Password</span>
+					</a>
+				</li>
 				@endif
 				<li>
 					<a href="{{site_url('auth/logout')}}">

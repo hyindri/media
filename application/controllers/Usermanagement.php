@@ -16,7 +16,7 @@ class Usermanagement extends CI_Controller
         if($this->session->userdata('level') == 'admin'){
             return view('admin.usermanagement.index');
         } elseif($this->session->userdata('level') == 'superadmin'){
-            return view('superadmin.usermanagement.index');
+            return view('superadmin.media.index');
         }
     }
 
@@ -37,6 +37,34 @@ class Usermanagement extends CI_Controller
             $row[] = $q->akhir_mou;
             $row[] = '<div class="btn-group"><button type="button" name="ubah" data-id="' . $q->user_id . '" data-username="' . $q->username . '" data-dibuat_pada="' . $q->dibuat_pada . '" data-status="' . $q->status . '" data-mulai_mou="' . $q->mulai_mou . '" data-akhir_mou="' . $q->akhir_mou . '" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i></button>
             <div class="btn-group">';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->users->count_all(),
+            "recordsFiltered" => $this->users->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
+    public function fetch_data()
+    {
+        $list = $this->users->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $q) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $q->username;
+            $row[] = $q->dibuat_pada;
+            $row[] = $q->status;
+            $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->id . '" target="_blank">' . $q->nama . '</a>';
+            $row[] = $q->mulai_mou;
+            $row[] = $q->akhir_mou;
             $data[] = $row;
         }
 
