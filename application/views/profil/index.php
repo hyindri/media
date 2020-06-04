@@ -25,6 +25,7 @@
                             <h2>Profil Media</h2>
                         </div>
                         <div class="body">
+                        {{$this->session->flashdata('notif')}}
                             <ul>
                                 @if($this->session->userdata('level') == 'user')
                                 <li>
