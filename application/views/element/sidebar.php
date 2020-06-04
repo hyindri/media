@@ -14,8 +14,9 @@
 					<i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="true">keyboard_arrow_down</i>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="{{site_url('profil')}}"><i class="material-icons">person</i>Profile</a></li>
-						<li role="separator" class="divider"></li>
+						@if($this->session->userdata('level') == 'user')
+							<li><a href="{{site_url('profil')}}"><i class="material-icons">person</i>Profile</a></li>		<li role="separator" class="divider"></li>				
+						@endif						
 						<li><a href="{{site_url('auth/logout')}}"><i class="material-icons">exit_to_app</i>Logout</a>
 						</li>
 					</ul>

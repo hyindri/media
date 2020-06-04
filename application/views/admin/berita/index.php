@@ -5,8 +5,7 @@
 <div class="container-fluid">
     <div class="block-header">
         <h2>
-            Daftar {{$title}}
-            <small>di Diskominfo <a href="https://datatables.net/" target="_blank">Kabupaten Bintan</a></small>
+            Daftar {{$title}}            
         </h2>
     </div>
     <!-- Basic Examples -->

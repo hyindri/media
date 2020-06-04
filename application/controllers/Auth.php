@@ -49,11 +49,20 @@ class Auth extends CI_Controller
                             'nama' => $media['nama'],
                             'tipe_publikasi' => $media['tipe_publikasi'],
                             'tipe_mediamassa' => $media['tipe_media_massa'],
-                            'pemimpin' => $media['pemimpin'],
-                            'nik' => $media['nik'],
+                            'pemimpin' => $media['pimpinan'],                            
                             'npwp' => $media['npwp'],
                             'mulai_mou' => $media['mulai_mou'],
-                            'akhir_mou' => $media['akhir_mou']
+                            'akhir_mou' => $media['akhir_mou'],
+                            'perusahaan' => $media['perusahaan'],
+                            'alamat_per' => $media['alamat'],
+                            'rekening' => $media['rekening'],
+                            'kabiro' => $media['kabiro'],
+                            'surat_kabiro' => $media['surat_kabiro'],
+                            'telp' => $media['no_telp'],
+                            'wartawan' => $media['wartawan'],
+                            'sertifikat' => $media['sertifikat_uji'],
+                            'verifikasi' => $media['verifikasi_pers'],
+                            'penawaran_kerjasama' => $media['penawaran_kerja_sama']                            
 
                         ];
                     } else {
@@ -106,8 +115,8 @@ class Auth extends CI_Controller
             $mediamassa = implode(',',$this->input->post('tipe_media_massa'));
             $data_media_massa = array(
                 'user_id' => $ins_id,
-                'nama' => $this->input->post('nama'),
-                'perusahaan' => $this->input->post('perusahaan'),
+                'nama' => $this->input->post('nama'),                
+                'npwp' => $this->input->post('npwp'),
                 'pemimpin' => $this->input->post('pemimpin'),
                 'no_telp' => $this->input->post('no_telp'),
                 'tipe_publikasi' => $this->input->post('tipe_publikasi'),
