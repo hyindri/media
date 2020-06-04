@@ -52,22 +52,103 @@
                                 @endif
                                 <li>
                                     <div class="title">
+                                        <i class="material-icons">domain</i>
+                                        Nama Perusahaan
+                                    </div>     
+                                    <div class="content">
+                                        {{$perusahaan}}
+                                    </div>                                    
+                                </li>            
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">location_on</i>
+                                        Alamat
+                                    </div>     
+                                    <div class="content">
+                                        {{$alamat_per}}
+                                    </div>                                    
+                                </li>            
+                                <li>
+                                    <div class="title">
                                         <i class="material-icons">person</i>
-                                        Pemilik
+                                        Pimpinan
                                     </div>     
                                     <div class="content">
                                         {{$pemimpin}}
                                     </div>                                    
-                                </li>     
+                                </li>                                     
                                 <li>
                                     <div class="title">
-                                        <i class="material-icons">credit_card</i>
-                                        NIK Pemilik
+                                        <i class="material-icons">account_balance_wallet</i>
+                                        Nomor Rekening
                                     </div>     
                                     <div class="content">
-                                        {{$nik}}
+                                        {{$rekening}}
                                     </div>                                    
-                                </li>     
+                                </li>       
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">person</i>
+                                        Kabiro
+                                    </div>     
+                                    <div class="content">
+                                        {{$kabiro}}
+                                    </div>                                    
+                                </li>            
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">email</i>
+                                        Surat Kabiro
+                                    </div>     
+                                    <div class="content">
+                                        {{$surat_kabiro}}
+                                    </div>                                    
+                                </li>                   
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">call</i>
+                                        Nomor Telepon
+                                    </div>     
+                                    <div class="content">
+                                        {{$telp}}
+                                    </div>                                    
+                                </li>         
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">camera_alt</i>
+                                        Wartawan
+                                    </div>     
+                                    <div class="content">
+                                        {{$wartawan}}
+                                    </div>                                    
+                                </li>               
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">description</i>
+                                        Sertifikat Uji
+                                    </div>     
+                                    <div class="content">
+                                        {{$sertifikat}}
+                                    </div>                                    
+                                </li>                 
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">verified_user</i>
+                                        Verifikasi Pers
+                                    </div>     
+                                    <div class="content">
+                                        {{$verifikasi}}
+                                    </div>                                    
+                                </li>                 
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">business_center</i>
+                                        Penawaran Kerja Sama
+                                    </div>     
+                                    <div class="content">
+                                        {{$penawaran_kerjasama}}
+                                    </div>                                    
+                                </li>                                                                   
                                 <li>
                                     <div class="title">
                                         <i class="material-icons">credit_card</i>

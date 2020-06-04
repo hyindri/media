@@ -49,8 +49,7 @@ class Auth extends CI_Controller
                             'nama' => $media['nama'],
                             'tipe_publikasi' => $media['tipe_publikasi'],
                             'tipe_mediamassa' => $media['tipe_media_massa'],
-                            'pemimpin' => $media['pimpinan'],
-                            'nik' => $media['nik'],
+                            'pemimpin' => $media['pimpinan'],                            
                             'npwp' => $media['npwp'],
                             'mulai_mou' => $media['mulai_mou'],
                             'akhir_mou' => $media['akhir_mou'],
@@ -118,8 +117,7 @@ class Auth extends CI_Controller
 
             $data_media_massa = array(
                 'user_id' => $ins_id,
-                'nama' => $this->input->post('nama'),
-                'nik' => $this->input->post('nik'),
+                'nama' => $this->input->post('nama'),                
                 'npwp' => $this->input->post('npwp'),
                 'pemimpin' => $this->input->post('pemimpin'),
                 'tipe_publikasi' => $this->input->post('tipe_publikasi'),
