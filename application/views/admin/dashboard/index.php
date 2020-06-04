@@ -72,18 +72,32 @@
 					</div>
 				</div>
 				<div class="body">
-					<canvas id="bar_chart" height="150"></canvas>
-					<?php
-					//Inisialisasi nilai variabel awal
-					$tanggal = "";
-					$berita = null;
-					foreach ($hasil as $item) {
-						$tgl = $item->dibuat_tanggal;
-						$tanggal .= "'$tgl'" . ", ";
-						$jum = $item->berita;
-						$berita .= "$jum" . ", ";
-					}
-					?>
+					<canvas id="grafik_harian" height="100"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row clearfix">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="card">
+				<div class="header">
+					<div class="row clearfix">
+						<div class="col-xs-9 col-sm-9">
+							<h2>GRAFIK BERITA MEDIA</h2>
+						</div>
+						<div class="col-xs-3 col-sm-3">
+							<select class="form-control" id="tipe_grafik" name="tipe_grafik">
+								<option value="">-- PILIH TIPE GRAFIK --</option>
+								<option value="1">Harian</option>
+								<option value="2">Bulanan</option>
+								<option value="3">Tahunan</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="body">
+					<canvas id="grafik_media" height="100"></canvas>
 				</div>
 			</div>
 		</div>
@@ -106,31 +120,121 @@
 		});
 
 
-		var ctx = document.getElementById('bar_chart').getContext('2d');
-		var chart = new Chart(ctx, {
-			// The type of chart we want to create
-			type: 'bar',
-			// The data for our dataset
-			data: {
-				labels: [<?php echo $tanggal; ?>],
-				datasets: [{
-					label: 'Data Upload Berita Harian ',
-					backgroundColor: 'rgba(0, 188, 212, 0.8)',
-					borderColor: ['rgb(255, 255, 255)'],
-					data: [<?php echo $berita; ?>]
-				}]
-			},
-			// Configuration options go here
-			options: {
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-					}]
+		ajax_harian();
+		ajax_media();
+		
+		function ajax_harian() {
+
+			$.ajax({
+				type : "POST",
+				url : "{{site_url('Dashboard/get_chart_harian')}}",
+				success : function (data) {
+					var obj = jQuery.parseJSON(data);
+					grafik_harian(obj);
 				}
+			});
+		}
+
+		function ajax_media(type='') {
+
+			$.ajax({
+				type : "POST",
+				url : "{{site_url('Dashboard/get_chart_media')}}",
+				data : {type:type},
+				success : function (data) {
+					var obj = jQuery.parseJSON(data);
+					grafik_media(obj);
+				}
+			});
+		}
+		
+		function grafik_harian(obj) {
+
+			let labels = [];
+			let dataset = [];
+
+			$.each(obj, function (key, value) {
+				labels=[];
+				$.each(value, function (kunci, data) {
+					labels.push(data.dibuat_tanggal);
+					dataset.push(data.berita);
+				});
+			})
+
+
+			let ctx = document.getElementById('grafik_harian').getContext('2d');
+			let chart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: labels
+							,
+					datasets: [{
+						label: 'Data Upload Berita Harian ',
+						backgroundColor: 'rgba(0, 188, 212, 0.8)',
+						borderColor: ['rgb(255, 255, 255)'],
+						data: dataset
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			})
+		}
+
+		var chart
+		function grafik_media(obj) {
+			let labels = [];
+			let dataset = [];
+
+			$.each(obj, function (key, value) {
+				labels=[];
+				$.each(value, function (kunci, data) {
+					labels.push(data.nama);
+					dataset.push(data.berita);
+				});
+			})
+
+			let ctx = document.getElementById('grafik_media').getContext('2d');
+			chart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: labels,
+					datasets: [{
+						label: 'Data Upload Berita Harian ',
+						backgroundColor: 'rgba(0, 188, 212, 0.8)',
+						borderColor: ['rgb(255, 255, 255)'],
+						data: dataset
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+		}
+
+		$('#tipe_grafik').change(function () {
+			if ($(this).val()!='')
+			{
+				chart.destroy();
+				ajax_media($(this).val());
+			}else{
+				ajax_media();
 			}
 		});
+
+
 
 	});
 </script>
