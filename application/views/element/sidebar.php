@@ -51,7 +51,7 @@
                 </li>                
                 @elseif($this->session->userdata('level') == 'admin')
                 <li>
-                    <a href="{{site_url('profil')}}">
+                    <a href="{{site_url('#')}}">
                         <i class="material-icons">group</i>
                         <span>Manajemen Akun</span>
                     </a>
