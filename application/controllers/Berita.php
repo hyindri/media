@@ -27,7 +27,7 @@ class Berita extends CI_Controller
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = '<a href="' . site_url() . 'profil/berita/' . $q->media_massa_id . '" target="_blank">' . $q->nama . '</a>';
+            $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama . '</a>';
             $row[] = '<a href="' . $q->link_berita . '" target="_blank">Link</a>';
             if($q->status_berita == 'oke'){
                 $row[] = '<span class="badge bg-green">Valid</span>';

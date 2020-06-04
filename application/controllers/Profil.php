@@ -12,8 +12,21 @@ class Profil extends CI_Controller
         $this->load->model('Medmas_model','medmas');
     }
     
-    public function index(){        
-        view('profil.index');
+    public function index()
+    {  
+        $data = array (
+            'nama' => $this->session->userdata('nama'),
+        );      
+        view('profil.index',$data);
+    }
+
+    public function detail($id)
+    {
+        $row = $this->medmas->get_by_id($id);
+        $data = array (
+            'nama' => $row->nama
+        );
+        view('profil.index',$data);
     }
 
     public function ubahpassword(){
