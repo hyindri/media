@@ -23,4 +23,23 @@
 		</div>
 	</div>
 </div>
+@section('js')
+<script>
+$(document).ready(function(){
+	$('forgot_password').submit('click',function(){
+		$.ajax({
+			type: 'POST',
+			url: "{{site_url('auth/changepassword')}}",
+			data: new FormData(this),
+			processData: false,
+			contentType: false,
+			cache: false,
+			async: false,
+			success: function(data){
+				
+			}
+		})
+	});
+})
+</script>
 @endsection
