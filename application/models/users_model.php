@@ -89,6 +89,16 @@ class Users_model extends CI_Model
         return $query->result();
     }
 
+    public function export()
+    {
+        $this->db->select('tmst_media_massa.nama, tmst_media_massa.perusahaan, tmst_media_massa.pemimpin, tmst_media_massa.kabiro, tmst_media_massa.tipe_publikasi, tmst_media_massa.tipe_media_massa, tmst_media_massa.mulai_mou, tmst_media_massa.akhir_mou');
+        $this->db->where('tmst_user.level','user');
+        $this->db->join('tmst_media_massa', 'tmst_media_massa.user_id = tmst_user.id');
+        $this->db->from('tmst_user');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function getdetailmedia($id)
     {
         $this->db->select('*');
