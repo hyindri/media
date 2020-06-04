@@ -65,14 +65,8 @@ class Auth extends CI_Controller
 
                         ];
                     }
-                    $this->session->set_userdata($data);
-                    if ($user['level'] == 'superadmin') {
-                        view('superadmin.dashboard.index', $data);
-                    } elseif ($user['level'] == 'admin') {
-                        view('admin.dashboard.index', $data);
-                    } elseif ($media['level'] == 'user') {
-                        view('user.dashboard.index', $data);
-                    }
+                    $this->session->set_userdata($data);            
+                    redirect('dashboard');            
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Akun sedang tidak aktif! Hubungi Admin.</div>');
                     redirect('auth');

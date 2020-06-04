@@ -8,13 +8,13 @@
             </div>
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$this->session->userdata('nama')}}</div>
-                <div class="email">john.doe@example.com</div>
+                <div class="email">{{$this->session->userdata('status')}}</div>
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
                         <li><a href="{{site_url('profil')}}"><i class="material-icons">person</i>Profile</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{site_url('auth/logout')}}"><i class="material-icons">input</i>Logout</a></li>
+                        <li><a href="{{site_url('auth/logout')}}"><i class="material-icons">exit_to_app</i>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <!-- Menu -->
         <div class="menu">
             <ul class="list">
-                <li class="header">MAIN NAVIGATION</li>     
+                <li class="header">MENU</li>     
                 <li>
                     <a href="{{site_url('dashboard')}}">
                         <i class="material-icons">home</i>
@@ -31,8 +31,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{site_url('dashboard')}}">
-                        <i class="material-icons">home</i>
+                    <a href="{{site_url('berita')}}">
+                        <i class="material-icons">article</i>
+                        <span>Berita</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{site_url('agenda')}}">
+                        <i class="material-icons">event</i>
                         <span>Agenda</span>
                     </a>
                 </li>          
@@ -44,7 +50,7 @@
                 </li>
                 <li>
                     <a href="{{site_url('auth/logout')}}">
-                    <i class="material-icons">input</i>
+                    <i class="material-icons">exit_to_app</i>
                     <span>Logout</span>                    
                     </a>
                 </li>
