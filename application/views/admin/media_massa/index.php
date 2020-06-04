@@ -6,8 +6,7 @@
 <div class="container-fluid">
     <div class="block-header">
         <h2>
-            Daftar Media Massa
-            <small>di Diskominfo <a href="https://bintankab.go.id/" target="_blank">Kabupaten Bintan</a></small>
+            Daftar Media Massa            
         </h2>
     </div>
     <!-- Basic Examples -->
