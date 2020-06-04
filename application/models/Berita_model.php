@@ -16,7 +16,7 @@ class Berita_model extends CI_Model
     var $id = 'id';
     var $column_order = array(null, 'tb_berita.id', 'tb_berita.media_massa_id', 'tmst_media_massa.nama', 'tb_berita.link_berita', 'tb_berita.screenshoot', 'tb_berita.share', 'tb_berita.jumlah_view', 'tb_berita.status_berita', 'tb_berita.keterangan', 'tb_berita.dibuat_oleh', 'tb_berita.dibuat_tanggal', 'tb_berita.dibuat_pukul');
     var $column_search = array('tb_berita.id', 'tb_berita.media_massa_id', 'tmst_media_massa.nama', 'tb_berita.link_berita', 'tb_berita.screenshoot', 'tb_berita.share', 'tb_berita.jumlah_view', 'tb_berita.status_berita', 'tb_berita.keterangan', 'tb_berita.dibuat_oleh', 'tb_berita.dibuat_tanggal', 'tb_berita.dibuat_pukul');
-    var $order = array('tb_berita.id' => 'asc');
+    var $order = array('tb_berita.id' => 'desc');
 
     private function _get_datatables_query()
     {
@@ -26,13 +26,15 @@ class Berita_model extends CI_Model
         if ($this->input->post('nama')) {
             $this->db->like('nama', $this->input->post('nama'));
         }
-        if ($this->input->post('npwp')) {
-            $this->db->like('npwp', $this->input->post('npwp'));
+        if ($this->input->post('dibuat_tanggal')) {
+            $this->db->like('dibuat_tanggal', $this->input->post('dibuat_tanggal'));
         }
-        if ($this->input->post('pimpinan')) {
-            $this->db->like('pimpinan', $this->input->post('pimpinan'));
+        if ($this->input->post('status_berita')) {
+            $this->db->like('status_berita', $this->input->post('status_berita'));
         }
-        
+        if ($this->session->userdata('level') == 'user'  && $this->session->userdata('status') == 'aktif' ) {
+            $this->db->where('tmst_media_massa.id', $this->session->userdata('id_media'));
+        }
         $this->db->from($this->table);
         $this->db->join($this->table_media_massa, 'tb_berita.media_massa_id = tmst_media_massa.id', 'left');
 
@@ -87,20 +89,44 @@ class Berita_model extends CI_Model
         return $this->db->count_all_results();
     }
 
+    function get_by_id($id)
+    {
+        $this->db->where('id',$id);
+        return $this->db->get($this->table);
+    }
+
     // get data by id
     function get_by_id_joined($id)
     {
         $this->db->select('tb_berita.id, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
-                            tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul');
+                            tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul, tb_berita.diperiksa_oleh, tb_berita.diperiksa_pada');
         $this->db->join($this->table_media_massa, 'tb_berita.media_massa_id = tmst_media_massa.id');
         $this->db->where('tb_berita.id', $id);
         return $this->db->get($this->table);
     }
 
+    function __get_media_massa()
+    {
+        $this->db->group_by('nama');
+        return $this->db->get($this->table_media_massa)->result();
+    }
+
+    function simpan($data)
+    {
+        $this->db->insert($this->table, $data);
+    }
 
     function ubah($id, $data)
     {
         $this->db->where('id', $id);
         $this->db->update($this->table, $data);
     }
+
+    function hapus($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete($this->table);
+    }
+
+
 }

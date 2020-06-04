@@ -41,7 +41,8 @@ class Auth extends CI_Controller
                         $media = $this->users->data_all($username)->row_array();
                         $data = [
                             'login_status' => true,
-                            'id' => $media['id'],
+                            'id_media' => $media['id_media'],
+                            'id_user' => $media['id_user'],
                             'username' => $media['username'],
                             'level' => $media['level'],
                             'status' => $media['status'],

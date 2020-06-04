@@ -23,8 +23,8 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-menu pull-right">
-                                <li><a data-toggle="modal" data-target="#modal-tambah">Tambah</a></li>
-
+                                <li><a data-toggle="modal" data-target="#modal-filter">Filter</a></li>
+                                <li><a id="btn-reset">Reset</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -35,6 +35,7 @@
                             <thead>
                                 <tr>
                                     <th style="width:10px;">No</th>
+                                    <th>Tanggal</th>
                                     <th>Nama Media</th>
                                     <th>Link Berita</th>
                                     <th>Status</th>
@@ -80,19 +81,34 @@
 
             "ajax": {
                 "url": "{{site_url('berita/json')}}",
-                "type": "POST"
+                "type": "POST",
+                "data": function(data) {
+                    data.nama = $('#filter_nama').val();
+                    data.dibuat_tanggal = $('#filter_tanggal').val();
+                    data.status_berita = $('#filter_status_berita').val();
+                }
             },
 
 
             "columnDefs": [{
-                "targets": [0, 4],
-                "orderable": false,
-            },
-            {
-                "targets": [3,4],
-                "class": "text-center",
-            },],
+                    "targets": [0, 5],
+                    "orderable": false,
+                },
+                {
+                    "targets": [4, 5],
+                    "class": "text-center",
+                },
+            ],
 
+        });
+
+        $('#btn-filter').click(function() { 
+            $('#modal-filter').modal('hide');
+            table.ajax.reload(); 
+        });
+        $('#btn-reset').click(function() { 
+            $('#form-filter')[0].reset();
+            table.ajax.reload(); 
         });
 
         $('#tambah-agenda').submit('click', function() {
@@ -151,7 +167,7 @@
                         $('#verif_status').prop('checked', true);
                     } else {
                         $('#keterangan').prop("disabled", false);
-                        $("#keterangan").prop('required',true);
+                        $("#keterangan").prop('required', true);
                         $('#simpan_btn').prop("disabled", false);
                         $('#verif_status').prop('checked', false);
                     }
@@ -189,7 +205,7 @@
                         table.ajax.reload();
                     } else {
                         $('#keterangan').prop("disabled", false);
-                        $("#keterangan").prop('required',true);
+                        $("#keterangan").prop('required', true);
                         $('#simpan_btn').prop("disabled", false);
                         toastr.error('Status berita tidak diverifikasi!');
                         table.ajax.reload();
@@ -223,6 +239,9 @@
             return false;
         });
 
+        $('.datepicker').bootstrapMaterialDatePicker({
+            time: false
+        });
     });
 </script>
 @endsection
