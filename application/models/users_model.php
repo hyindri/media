@@ -160,7 +160,7 @@ class Users_model extends CI_Model
 
     public function data_all($username)
     {
-        $this->db->select('media.*,user.*');
+        $this->db->select('media.*,user.*, media.id as id_media, user.id as id_user');
         $this->db->from('tmst_user user');
         $this->db->join('tmst_media_massa media', 'media.user_id = user.id');
         $this->db->where('user.username', $username);

@@ -17,17 +17,23 @@ class Dashboard extends CI_Controller
 
 	function index()
 	{
-		$data['hasil']=$this->dashboard->__get_chart();
-		$data['medmas']=$this->dashboard->__get_medmas();
-		$data['berita_hariini']=$this->dashboard->__get_berita_hari();
-		$data['berita_mingguini']=$this->dashboard->__get_berita_minggu();
-		$data['berita_bulanini']=$this->dashboard->__get_berita_bulan();
+
 		if($this->session->userdata('username') && $this->session->userdata('level') == 'superadmin'){
 			view('superadmin.dashboard.index');
 		} elseif ($this->session->userdata('username') && $this->session->userdata('level') == 'admin'){
+			$id='';
+			$data['hasil']=$this->dashboard->__get_chart($id);
+			$data['medmas']=$this->dashboard->__get_medmas();
+			$data['berita_hariini']=$this->dashboard->__get_berita_hari();
+			$data['berita_mingguini']=$this->dashboard->__get_berita_minggu($id);
+			$data['berita_bulanini']=$this->dashboard->__get_berita_bulan($id);
 			view('admin.dashboard.index', $data);
 		} elseif ($this->session->userdata('username') && $this->session->userdata('level') == 'user'){
-			view('user.dashboard.index');
+			$data['hasil']=$this->dashboard->__get_chart($this->session->userdata('id_media'));
+			$data['status_berita']=$this->dashboard->__get_statusBerita();
+			$data['berita_mingguini']=$this->dashboard->__get_berita_minggu($this->session->userdata('id_media'));
+			$data['berita_bulanini']=$this->dashboard->__get_berita_bulan($this->session->userdata('id_media'));
+			view('user.dashboard.index', $data);
 		}
 	}
 }

@@ -41,14 +41,15 @@ class Auth extends CI_Controller
                         $media = $this->users->data_all($username)->row_array();
                         $data = [
                             'login_status' => true,
-                            'id' => $media['id'],
+                            'id_media' => $media['id_media'],
+                            'id_user' => $media['id_user'],
                             'username' => $media['username'],
                             'level' => $media['level'],
                             'status' => $media['status'],
                             'nama' => $media['nama'],
                             'tipe_publikasi' => $media['tipe_publikasi'],
                             'tipe_mediamassa' => $media['tipe_media_massa'],
-                            'pendiri' => $media['pendiri'],
+                            'pemimpin' => $media['pemimpin'],
                             'nik' => $media['nik'],
                             'npwp' => $media['npwp'],
                             'mulai_mou' => $media['mulai_mou'],
@@ -122,8 +123,13 @@ class Auth extends CI_Controller
 
 
     public function changepassword(){
-        $data = $this->users->change_password();
+        $data = $this->users->change_password();        
+        $this->session->set_flashdata('notif','<div class="alert bg-green alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Password Berhasil Diubah
+        </div>');
         redirect(site_url('profil'));
+        
 
     }
 
