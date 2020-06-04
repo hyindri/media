@@ -94,7 +94,7 @@
                     <input type="password" class="form-control" name="password"  placeholder="Password" required autofocus>
                 </div>
             </div>
-            <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
+            <button class="btn btn-block btn-lg bg-indigo waves-effect waves-light-blue" type="submit">SIGN UP</button>
             <div class="m-t-25 m-b--5 align-center">
                 <a href="<?= site_url('auth') ?>">Kembali ke Halaman Login</a>
             </div>

@@ -3,15 +3,18 @@
 @section('title','Berita')
 
 <div class="container-fluid">
+    <!-- Breadcrumb  -->
     <div class="block-header">
-        <h2>
-            Daftar {{$title}}
-            <small>di Diskominfo <a href="https://datatables.net/" target="_blank">Kabupaten Bintan</a></small>
-        </h2>
+        <ol class="breadcrumb">
+            <li>HOME</li>
+            <li class="active">DAFTAR BERITA</li>
+        </ol>
     </div>
-    <!-- Basic Examples -->
+    <!-- end breadcrumb -->
+
+    <!-- Table -->
     <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 ">
             <div class="card">
                 <div class="header">
                     <h2>
@@ -31,7 +34,7 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table id="table" class="table table-bordered table-striped table-hover" width="100%">
+                        <table id="table" class="table table-bordered table-striped table-hover display nowrap" width="100%">
                             <thead>
                                 <tr>
                                     <th style="width:10px;">No</th>
@@ -39,7 +42,7 @@
                                     <th>Nama Media</th>
                                     <th>Link Berita</th>
                                     <th>Status</th>
-                                    <th></th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,140 +52,113 @@
                 </div>
             </div>
         </div>
+        <!-- End table  -->
     </div>
-</div>
-@include("admin.berita.modal")
-@endsection
+    @include("admin.berita.modal")
+    @endsection
 
-@section("js")
-<script type="text/javascript">
-    var table;
-    $(document).ready(function() {
-        table = $('#table').DataTable({
-            "language": {
-                "lengthMenu": "Tampilkan _MENU_ data per halaman",
-                "infoEmpty": "Data dimana kamu",
-                "zeroRecords": "Data tidak ada",
-                "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
-                "infoFiltered": "(difilter dari _MAX_ total data)",
-                "paginate": {
-                    "first": "Pertama",
-                    "last": "Terakhir",
-                    "next": "Selanjutnya",
-                    "previous": "Sebelumnya"
+    @section("js")
+    <script type="text/javascript">
+        var table;
+        $(document).ready(function() {
+            table = $('#table').DataTable({
+                "language": {
+                    "lengthMenu": "Tampilkan _MENU_ data per halaman",
+                    "infoEmpty": "Data dimana kamu",
+                    "zeroRecords": "Data tidak ada",
+                    "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+                    "infoFiltered": "(difilter dari _MAX_ total data)",
+                    "paginate": {
+                        "first": "Pertama",
+                        "last": "Terakhir",
+                        "next": "Selanjutnya",
+                        "previous": "Sebelumnya"
+                    },
                 },
-            },
-            "processing": true,
-            "serverSide": true,
-            "searching": false,
-            "info": true,
-            "ordering": true,
-            "order": [],
+                "processing": true,
+                "responsive": true,
+                "serverSide": true,
+                "searching": false,
+                "info": true,
+                "ordering": true,
+                "order": [],
 
-            "ajax": {
-                "url": "{{site_url('berita/json')}}",
-                "type": "POST",
-                "data": function(data) {
-                    data.nama = $('#filter_nama').val();
-                    data.dibuat_tanggal = $('#filter_tanggal').val();
-                    data.status_berita = $('#filter_status_berita').val();
-                }
-            },
-
-
-            "columnDefs": [{
-                    "targets": [0, 5],
-                    "orderable": false,
-                },
-                {
-                    "targets": [4, 5],
-                    "class": "text-center",
-                },
-            ],
-
-        });
-
-        $('#btn-filter').click(function() { 
-            $('#modal-filter').modal('hide');
-            table.ajax.reload(); 
-        });
-        $('#btn-reset').click(function() { 
-            $('#form-filter')[0].reset();
-            table.ajax.reload(); 
-        });
-
-        $('#tambah-agenda').submit('click', function() {
-            $.ajax({
-                type: "POST",
-                url: "{{base_url('agenda/tambah')}}",
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                cache: false,
-                async: false,
-                success: function(data) {
-                    $('#judul').val("");
-                    $('#tanggal').val("");
-                    $('#status').val("");
-                    $('#file').val("");
-                    $('#modal-tambah').modal('hide');
-                    $('#tambah-agenda')[0].reset();
-                    toastr.success('Agenda berhasil ditambahkan!');
-                    table.ajax.reload();
-                },
-                error: function(data) {
-                    toastr.warning('Agenda sudah pernah ditambahkan!');
-                    $('#tambah-agenda')[0].reset();
-                    table.ajax.reload();
-                }
-            });
-            return false;
-        });
-
-        $('#table').on('click', '.verif', function() {
-            $('#modal-lihat').modal('show');
-
-            $("#id_berita").val($(this).data('id'));
-            let id_berita = $('#id_berita').val();
-
-            $.ajax({
-                type: "POST",
-                url: "{{base_url('Berita/fetch_data')}}",
-                data: {
-                    id_berita: id_berita,
-                },
-                dataType: "JSON",
-                success: function(data) {
-                    $('#nama').html(data.nama);
-                    $('#share').html(data.share);
-                    $('#jumlah_view').html(data.jumlah_view);
-                    $('#dibuat_tanggal').html(data.dibuat_tanggal);
-                    $('#dibuat_pukul').html(data.dibuat_pukul);
-                    $('#keterangan').val(data.keterangan);
-                    $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                    $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-                    if (data.status_berita == 'oke') {
-                        $('#keterangan').prop("disabled", true);
-                        $('#simpan_btn').prop("disabled", true);
-                        $('#verif_status').prop('checked', true);
-                    } else {
-                        $('#keterangan').prop("disabled", false);
-                        $("#keterangan").prop('required', true);
-                        $('#simpan_btn').prop("disabled", false);
-                        $('#verif_status').prop('checked', false);
+                "ajax": {
+                    "url": "{{site_url('berita/json')}}",
+                    "type": "POST",
+                    "data": function(data) {
+                        data.nama = $('#filter_nama').val();
+                        data.dibuat_tanggal = $('#filter_tanggal').val();
+                        data.status_berita = $('#filter_status_berita').val();
                     }
+                },
 
+
+                "columnDefs": [{
+                        "targets": [0, 5],
+                        "orderable": false,
+                    },
+                    {
+                        "targets": [4, 5],
+                        "class": "text-center",
+                    },
+                ],
+            });
+
+            $('#btn-filter').click(function() {
+                $('#modal-filter').modal('hide');
+                table.ajax.reload();
+            });
+            $('#btn-reset').click(function() {
+                $('#form-filter')[0].reset();
+                table.ajax.reload();
+            });
+
+            $('#table').on('click', '.verif', function() {
+                $('#modal-lihat').modal('show');
+
+                $("#id_berita").val($(this).data('id'));
+                let id_berita = $('#id_berita').val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{base_url('Berita/fetch_data')}}",
+                    data: {
+                        id_berita: id_berita,
+                    },
+                    dataType: "JSON",
+                    success: function(data) {
+                        $('#nama').html(data.nama);
+                        $('#share').html(data.share);
+                        $('#jumlah_view').html(data.jumlah_view);
+                        $('#dibuat_tanggal').html(data.dibuat_tanggal);
+                        $('#dibuat_pukul').html(data.dibuat_pukul);
+                        $('#keterangan').val(data.keterangan);
+                        $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
+                        $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                        if (data.status_berita == 'oke') {
+                            $('#keterangan').prop("disabled", true);
+                            $('#simpan_btn').prop("disabled", true);
+                            $('#verif_status').prop('checked', true); 
+                            $('#verif_status').val('oke'); 
+                        } else if(data.status_berita == 'belum') {
+                            $('#keterangan').prop("disabled", false);
+                            $("#keterangan").prop('required', true);
+                            $('#simpan_btn').prop("disabled", false);
+                            $('#verif_status').prop('checked', false);
+                            $('#verif_status').val('belum'); 
+                        }
+                    },
+                });
+            });
+
+            $("#verif_status").change(function() {
+                if ($(this).is(":checked")) {
+                    $(this).val("oke");
+                } else {
+                    $(this).val("belum");;
                 }
             });
-        });
-
-        $("#verif_status").change(function() {
-            if ($(this).is(":checked")) {
-                $(this).val("oke");
-            } else {
-                $(this).val("belum");;
-            }
-        });
 
 
         $('#verif_status').on('change', function() {
@@ -203,45 +179,43 @@
                         $('#simpan_btn').prop("disabled", true);
                         toastr.success('Status berita berhasil diverifikasi!');
                         table.ajax.reload();
-                    } else {
+                    } else if(verif_status == 'belum') {
                         $('#keterangan').prop("disabled", false);
                         $("#keterangan").prop('required', true);
                         $('#simpan_btn').prop("disabled", false);
                         toastr.error('Status berita tidak diverifikasi!');
                         table.ajax.reload();
-
-
                     }
                 },
                 error: function(data) {
                     toastr.warning('Status berita gagal diverifikasi!');
                 }
             });
-            return false;
-        });
 
-        $('#form-verif').submit('click', function() {
-            $.ajax({
-                type: "POST",
-                url: "{{base_url('berita/belum_verif')}}",
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                cache: false,
-                async: false,
-                success: function(data) {
-                    toastr.success('Keterangan Berhasil ditambahkan');
-                },
-                error: function(data) {
-                    toastr.warning('Keterangan Berhasil gagal ditambahkan!');
-                }
+            $('#form-verif').submit('click', function() {
+                $.ajax({
+                    type: "POST",
+                    url: "{{base_url('berita/belum_verif')}}",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        toastr.success('Keterangan Berhasil ditambahkan');
+                    },
+                    error: function(data) {
+                        toastr.warning('Keterangan Berhasil gagal ditambahkan!');
+                    }
+                });
+                return false;
             });
-            return false;
-        });
 
-        $('.datepicker').bootstrapMaterialDatePicker({
-            time: false
+            $('.datepicker').bootstrapMaterialDatePicker({
+                time: false
+            });
         });
     });
-</script>
-@endsection
+
+    </script>
+    @endsection

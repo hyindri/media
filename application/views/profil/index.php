@@ -12,9 +12,9 @@
                             </div>
                             <div class="content-area">
                                 <h3>{{$nama}}</h3>
-                                <p>Tipe Media Massa : {{$this->session->userdata('tipe_mediamassa')}}</p>                                
-                                <p>Tipe Publikasi : {{$this->session->userdata('tipe_publikasi')}}</p>  
-                                <p>Status : {{$this->session->userdata('status')}}</p>                                    
+                                <p>Tipe Media Massa : {{$tipe_mediamassa}}</p>                                
+                                <p>Tipe Publikasi: {{$tipe_publikasi}}</p>  
+                                <p>Status : {{$status}}</p>                                    
                             </div>
                         </div>                       
                     </div>
@@ -25,16 +25,18 @@
                             <h2>Profil Media</h2>
                         </div>
                         <div class="body">
+                        {{$this->session->flashdata('notif')}}
                             <ul>
+                                @if($this->session->userdata('level') == 'user')
                                 <li>
                                     <div class="title">
                                         <i class="material-icons">person</i>
                                         Username
                                     </div>
                                     <div class="content">
-                                        {{$this->session->userdata('username')}}
+                                        {{$username}}
                                     </div>
-                                </li>
+                                </li>                                
                                 <li>
                                     <div class="title">
                                         <i class="material-icons">vpn_key</i>
@@ -47,31 +49,113 @@
                                        ••••••••••••••
                                     </div>                                    
                                 </li>                                
+                                @endif
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">domain</i>
+                                        Nama Perusahaan
+                                    </div>     
+                                    <div class="content">
+                                        {{$perusahaan}}
+                                    </div>                                    
+                                </li>            
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">location_on</i>
+                                        Alamat
+                                    </div>     
+                                    <div class="content">
+                                        {{$alamat_per}}
+                                    </div>                                    
+                                </li>            
                                 <li>
                                     <div class="title">
                                         <i class="material-icons">person</i>
-                                        Pemilik
+                                        Pimpinan
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('pendiri')}}
+                                        {{$pimpinan}}
                                     </div>                                    
-                                </li>     
+                                </li>                                     
                                 <li>
                                     <div class="title">
-                                        <i class="material-icons">credit_card</i>
-                                        NIK Pemilik
+                                        <i class="material-icons">account_balance_wallet</i>
+                                        Nomor Rekening
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('nik')}}
+                                        {{$rekening}}
                                     </div>                                    
-                                </li>     
+                                </li>       
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">person</i>
+                                        Kabiro
+                                    </div>     
+                                    <div class="content">
+                                        {{$kabiro}}
+                                    </div>                                    
+                                </li>            
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">email</i>
+                                        Surat Kabiro
+                                    </div>     
+                                    <div class="content">
+                                        {{$surat_kabiro}}
+                                    </div>                                    
+                                </li>                   
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">call</i>
+                                        Nomor Telepon
+                                    </div>     
+                                    <div class="content">
+                                        {{$telp}}
+                                    </div>                                    
+                                </li>         
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">camera_alt</i>
+                                        Wartawan
+                                    </div>     
+                                    <div class="content">
+                                        {{$wartawan}}
+                                    </div>                                    
+                                </li>               
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">description</i>
+                                        Sertifikat Uji
+                                    </div>     
+                                    <div class="content">
+                                        {{$sertifikat}}
+                                    </div>                                    
+                                </li>                 
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">verified_user</i>
+                                        Verifikasi Pers
+                                    </div>     
+                                    <div class="content">
+                                        {{$verifikasi}}
+                                    </div>                                    
+                                </li>                 
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">business_center</i>
+                                        Penawaran Kerja Sama
+                                    </div>     
+                                    <div class="content">
+                                        {{$penawaran_kerjasama}}
+                                    </div>                                    
+                                </li>                                                                   
                                 <li>
                                     <div class="title">
                                         <i class="material-icons">credit_card</i>
                                         NPWP
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('npwp')}}
+                                        {{$npwp}}
                                     </div>                                    
                                 </li> 
                                 <li>
@@ -80,7 +164,7 @@
                                         Mulai MOU
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('mulai_mou')}}
+                                        {{$mulai_mou}}
                                     </div>                                    
                                 </li> 
                                 <li>
@@ -89,7 +173,7 @@
                                         Akhir MOU
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('akhir_mou')}}
+                                        {{$akhir_mou}}
                                     </div>                                    
                                 </li> 
                             </ul>

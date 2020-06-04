@@ -49,11 +49,20 @@ class Auth extends CI_Controller
                             'nama' => $media['nama'],
                             'tipe_publikasi' => $media['tipe_publikasi'],
                             'tipe_mediamassa' => $media['tipe_media_massa'],
-                            'pendiri' => $media['pendiri'],
-                            'nik' => $media['nik'],
+                            'pimpinan' => $media['pimpinan'],                            
                             'npwp' => $media['npwp'],
                             'mulai_mou' => $media['mulai_mou'],
-                            'akhir_mou' => $media['akhir_mou']
+                            'akhir_mou' => $media['akhir_mou'],
+                            'perusahaan' => $media['perusahaan'],
+                            'alamat_per' => $media['alamat'],
+                            'rekening' => $media['rekening'],
+                            'kabiro' => $media['kabiro'],
+                            'surat_kabiro' => $media['surat_kabiro'],
+                            'telp' => $media['no_telp'],
+                            'wartawan' => $media['wartawan'],
+                            'sertifikat' => $media['sertifikat_uji'],
+                            'verifikasi' => $media['verifikasi_pers'],
+                            'penawaran_kerjasama' => $media['penawaran_kerja_sama']                            
 
                         ];
                     } else {
@@ -85,8 +94,6 @@ class Auth extends CI_Controller
     public function signup()
     {
         $data['title'] = 'Sign Up';
-        $this->form_validation->set_rules('npwp', 'NPWP', 'required|trim|is_unique[tmst_media_massa.npwp]', [
-            'is_unique' => 'This username has already registered!']);
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[tmst_user.username]', [
             'is_unique' => 'This username has already registered!']);
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -105,17 +112,15 @@ class Auth extends CI_Controller
 
             $this->db->insert('tmst_user', $data);
             $ins_id = $this->db->insert_id();
-
+            $mediamassa = implode(',',$this->input->post('tipe_media_massa'));
             $data_media_massa = array(
                 'user_id' => $ins_id,
-                'nama' => $this->input->post('nama'),
-                'nik' => $this->input->post('nik'),
+                'nama' => $this->input->post('nama'),                
                 'npwp' => $this->input->post('npwp'),
-                'pendiri' => $this->input->post('pendiri'),
+                'pimpinan' => $this->input->post('pimpinan'),
+                'no_telp' => $this->input->post('no_telp'),
                 'tipe_publikasi' => $this->input->post('tipe_publikasi'),
-                'tipe_media_massa' => $this->input->post('tipe_media_massa'),
-                'mulai_mou' => date("Y-m-d", strtotime($this->input->post('mulai_mou'))),
-                'akhir_mou' => date("Y-m-d", strtotime($this->input->post('akhir_mou'))),
+                'tipe_media_massa' => $mediamassa,
             );
             $this->db->insert('tmst_media_massa', $data_media_massa);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Pendaftaran berhasil.</div>');
@@ -125,8 +130,13 @@ class Auth extends CI_Controller
 
 
     public function changepassword(){
-        $data = $this->users->change_password();
+        $data = $this->users->change_password();        
+        $this->session->set_flashdata('notif','<div class="alert bg-green alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Password Berhasil Diubah
+        </div>');
         redirect(site_url('profil'));
+        
 
     }
 
