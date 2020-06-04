@@ -22,7 +22,7 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-menu pull-right">
-                                <li><a data-toggle="modal" data-target="#modal-tambah">Tambah</a></li>
+                                <li><a data-toggle="modal" data-target="#modal-tambah">Export</a></li>
                
                             </ul>
                         </li>
