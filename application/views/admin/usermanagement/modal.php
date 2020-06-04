@@ -1,7 +1,7 @@
 <div class="modal fade" id="modal-ubah" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-indigo">
                 <h4 class="modal-title" id="defaultModalLabel">Ubah User</h4>
             </div>
             {{form_open('',['id' => 'ubah-user','role'=>'form'])}}
@@ -30,8 +30,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+                    <button type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
                 </div>
             {{form_close()}}
         </div>

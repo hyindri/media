@@ -67,7 +67,7 @@
 				<div class="header">
 					<div class="row clearfix">
 						<div class="col-xs-12 col-sm-6">
-							<h2>BERITA</h2>
+							<h2>Laporan Berita</h2>
 						</div>
 					</div>
 				</div>
