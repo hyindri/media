@@ -74,7 +74,7 @@
                                         Pimpinan
                                     </div>     
                                     <div class="content">
-                                        {{$pemimpin}}
+                                        {{$pimpinan}}
                                     </div>                                    
                                 </li>                                     
                                 <li>

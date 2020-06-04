@@ -41,7 +41,7 @@ table, th, td { border: 1px solid black; }
                     <th style="padding:3;height:30;">No</th>
                     <th style="padding:3;">Nama</th>
                     <th style="padding:3;">Perusahaan</th>
-                    <th style="padding:3;">Pemimpin</th>
+                    <th style="padding:3;">Pimpinan</th>
                     <th style="padding:3;">Kabiro</th>
                     <th style="padding:3;">Tipe Publikasi</th>
                     <th style="padding:3;">Jenis Media Massa</th>
@@ -56,7 +56,7 @@ table, th, td { border: 1px solid black; }
                     <td style="text-align:center;padding:3;"><?= $no++; ?></td>
                     <td style="padding:3;word-wrap: break-word;"><?= $media->nama ?></td>
                     <td style="padding:3;word-wrap: break-word;"><?= $media->perusahaan ?></td>
-                    <td style="padding:3;word-wrap: break-word;"><?= $media->pemimpin ?></td>
+                    <td style="padding:3;word-wrap: break-word;"><?= $media->pimpinan ?></td>
                     <td style="padding:3;word-wrap: break-word;"><?= $media->kabiro ?></td>
                     <td style="padding:3;text-align:center;"><?= ucfirst($media->tipe_publikasi) ?></td>
                     <td style="padding:3;text-align:center;"><?= ucwords(remo($media->tipe_media_massa)) ?></td>
