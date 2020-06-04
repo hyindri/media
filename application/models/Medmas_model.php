@@ -143,6 +143,13 @@ class Medmas_model extends CI_Model
         $this->db->update($this->table, $data);
     }
 
+    // update data
+    function ubah($id, $data)
+    {
+        $this->db->where('user_id', $id);
+        $this->db->update($this->table, $data);
+    }
+
     // delete data
     function delete($id)
     {
