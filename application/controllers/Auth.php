@@ -37,27 +37,38 @@ class Auth extends CI_Controller
             // cek password
             if (password_verify($password, $user['password'])) {
                 if ($user['status'] == 'aktif' || $user['status'] == 'registrasi') {
-                    $media = $this->users->data_all($username)->row_array();
-                    $data = [
-                        'login_status' => true,
-                        'id' => $media['id'],
-                        'username' => $media['username'],
-                        'level' => $media['level'],
-                        'status' => $media['status'],
-                        'nama' => $media['nama'],
-                        'tipe_publikasi' => $media['tipe_publikasi'],
-                        'tipe_mediamassa' => $media['tipe_media_massa'],
-                        'pendiri' => $media['pendiri'],
-                        'nik' => $media['nik'],
-                        'npwp' => $media['npwp'],
-                        'mulai_mou' => $media['mulai_mou'],
-                        'akhir_mou' => $media['akhir_mou']
+                    if($user['level'] == 'user'){
+                        $media = $this->users->data_all($username)->row_array();
+                        $data = [
+                            'login_status' => true,
+                            'id' => $media['id'],
+                            'username' => $media['username'],
+                            'level' => $media['level'],
+                            'status' => $media['status'],
+                            'nama' => $media['nama'],
+                            'tipe_publikasi' => $media['tipe_publikasi'],
+                            'tipe_mediamassa' => $media['tipe_media_massa'],
+                            'pendiri' => $media['pendiri'],
+                            'nik' => $media['nik'],
+                            'npwp' => $media['npwp'],
+                            'mulai_mou' => $media['mulai_mou'],
+                            'akhir_mou' => $media['akhir_mou']
 
-                    ];
+                        ];
+                    } else {
+                        $data = [
+                            'login_status' => true,
+                            'id' => $user['id'],
+                            'username' => $user['username'],
+                            'level' => $user['level'],
+                            'status' => $user['status']
+
+                        ];
+                    }
                     $this->session->set_userdata($data);
-                    if ($media['level'] == 'superadmin') {
+                    if ($user['level'] == 'superadmin') {
                         view('superadmin.dashboard.index', $data);
-                    } elseif ($media['level'] == 'admin') {
+                    } elseif ($user['level'] == 'admin') {
                         view('admin.dashboard.index', $data);
                     } elseif ($media['level'] == 'user') {
                         view('user.dashboard.index', $data);
