@@ -8,6 +8,7 @@ class Usermanagement extends CI_Controller
         parent::__construct();
         $this->load->model('users_model', 'users');
         $this->load->model('medmas_model', 'medmas');
+        $this->load->library('pdf');
     }
 
     public function index()
@@ -62,5 +63,18 @@ class Usermanagement extends CI_Controller
         $data = $this->users->update($id, $data_user);
         $data = $this->medmas->ubah($id, $data_media);
         json_encode($data);
+    }
+
+    function export()
+    {
+        
+        $data['mediamassa'] = $this->users->export();
+        $this->load->view('admin/usermanagement/export', $data);
+        
+        $html = $this->output->get_output();
+		$this->pdf->set_paper('folio', 'landscape');
+		$this->pdf->load_Html($html);
+		$this->pdf->render();
+		$this->pdf->stream("Daftar Media Massa.pdf", array("Attachment"=>0));
     }
 }
