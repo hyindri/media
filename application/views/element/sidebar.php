@@ -29,7 +29,13 @@
                         <i class="material-icons">home</i>
                         <span>Dashboard</span>
                     </a>
-                </li>           
+                </li>
+                <li>
+                    <a href="{{site_url('dashboard')}}">
+                        <i class="material-icons">home</i>
+                        <span>Agenda</span>
+                    </a>
+                </li>          
                 <li>
                     <a href="{{site_url('profil')}}">
                         <i class="material-icons">person</i>
