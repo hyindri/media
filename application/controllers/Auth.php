@@ -84,8 +84,6 @@ class Auth extends CI_Controller
     public function signup()
     {
         $data['title'] = 'Sign Up';
-        $this->form_validation->set_rules('npwp', 'NPWP', 'required|trim|is_unique[tmst_media_massa.npwp]', [
-            'is_unique' => 'This username has already registered!']);
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[tmst_user.username]', [
             'is_unique' => 'This username has already registered!']);
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -104,15 +102,15 @@ class Auth extends CI_Controller
 
             $this->db->insert('tmst_user', $data);
             $ins_id = $this->db->insert_id();
-
+            $mediamassa = implode(',',$this->input->post('tipe_media_massa'));
             $data_media_massa = array(
                 'user_id' => $ins_id,
                 'nama' => $this->input->post('nama'),
-                'nik' => $this->input->post('nik'),
-                'npwp' => $this->input->post('npwp'),
-                'pendiri' => $this->input->post('pendiri'),
+                'perusahaan' => $this->input->post('perusahaan'),
+                'pemimpin' => $this->input->post('pemimpin'),
+                'no_telp' => $this->input->post('no_telp'),
                 'tipe_publikasi' => $this->input->post('tipe_publikasi'),
-                'tipe_media_massa' => $this->input->post('tipe_media_massa'),
+                'tipe_media_massa' => $mediamassa,
                 'mulai_mou' => date("Y-m-d", strtotime($this->input->post('mulai_mou'))),
                 'akhir_mou' => date("Y-m-d", strtotime($this->input->post('akhir_mou'))),
             );
