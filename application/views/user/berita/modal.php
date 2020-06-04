@@ -68,8 +68,9 @@
                 <div class="form-group">
                     <div class="form-line">
                         <input type="file" name="file" id="ubah_file" class="form-control">
-                        <span id="file_lama"></span>
-                        <input type="hidden" name="old_file" class="form-control">
+                        File lama
+                        <span id="file_lama_view"></span>
+                        <input type="hidden" name="old_file" id="file_lama" class="form-control">
                     </div>
                 </div>
             </div>

@@ -163,8 +163,8 @@
                     $('#ubah_link_berita').val(data.link_berita);
                     $('#ubah_share').val(data.share);
                     $('#ubah_jumlah_view').val(data.jumlah_view);
-                    $('#ubah_file').val(data.screenshoot);
-                    $('#file_lama').html(data.screenshoot);
+                    $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                    $('#file_lama').val(data.screenshoot);
                 }
             });
         });
