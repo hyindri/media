@@ -12,9 +12,9 @@
                             </div>
                             <div class="content-area">
                                 <h3>{{$nama}}</h3>
-                                <p>Tipe Media Massa : {{$this->session->userdata('tipe_mediamassa')}}</p>                                
-                                <p>Tipe Publikasi : {{$this->session->userdata('tipe_publikasi')}}</p>  
-                                <p>Status : {{$this->session->userdata('status')}}</p>                                    
+                                <p>Tipe Media Massa : {{$tipe_mediamassa}}</p>                                
+                                <p>Tipe Publikasi: {{$tipe_publikasi}}</p>  
+                                <p>Status : {{$status}}</p>                                    
                             </div>
                         </div>                       
                     </div>
@@ -26,15 +26,16 @@
                         </div>
                         <div class="body">
                             <ul>
+                                @if($this->session->userdata('level') == 'user')
                                 <li>
                                     <div class="title">
                                         <i class="material-icons">person</i>
                                         Username
                                     </div>
                                     <div class="content">
-                                        {{$this->session->userdata('username')}}
+                                        {{$username}}
                                     </div>
-                                </li>
+                                </li>                                
                                 <li>
                                     <div class="title">
                                         <i class="material-icons">vpn_key</i>
@@ -47,13 +48,14 @@
                                        ••••••••••••••
                                     </div>                                    
                                 </li>                                
+                                @endif
                                 <li>
                                     <div class="title">
                                         <i class="material-icons">person</i>
                                         Pemilik
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('pendiri')}}
+                                        {{$pemimpin}}
                                     </div>                                    
                                 </li>     
                                 <li>
@@ -62,7 +64,7 @@
                                         NIK Pemilik
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('nik')}}
+                                        {{$nik}}
                                     </div>                                    
                                 </li>     
                                 <li>
@@ -71,7 +73,7 @@
                                         NPWP
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('npwp')}}
+                                        {{$npwp}}
                                     </div>                                    
                                 </li> 
                                 <li>
@@ -80,7 +82,7 @@
                                         Mulai MOU
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('mulai_mou')}}
+                                        {{$mulai_mou}}
                                     </div>                                    
                                 </li> 
                                 <li>
@@ -89,7 +91,7 @@
                                         Akhir MOU
                                     </div>     
                                     <div class="content">
-                                        {{$this->session->userdata('akhir_mou')}}
+                                        {{$akhir_mou}}
                                     </div>                                    
                                 </li> 
                             </ul>
