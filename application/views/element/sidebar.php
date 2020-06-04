@@ -34,6 +34,13 @@
 						<span>Dashboard</span>
 					</a>
 				</li>
+				@if($this->session->userdata('level') == 'user')
+				<li class="@if($this->uri->segment(1) == 'profil') active @endif">
+					<a href="{{site_url('profil')}}">
+						<i class="material-icons">person</i>
+						<span>Profil</span>
+					</a>
+				</li>
 				<li class="@if($this->uri->segment(1) == 'berita') active @endif">
 					<a href="{{site_url('berita')}}">
 						<i class="material-icons">article</i>
@@ -44,13 +51,6 @@
 					<a href="{{site_url('agenda')}}">
 						<i class="material-icons">event</i>
 						<span>Agenda</span>
-					</a>
-				</li>
-				@if($this->session->userdata('level') == 'user')
-				<li class="@if($this->uri->segment(1) == 'profil') active @endif">
-					<a href="{{site_url('profil')}}">
-						<i class="material-icons">person</i>
-						<span>Profil</span>
 					</a>
 				</li>
 				@elseif($this->session->userdata('level') == 'admin')
