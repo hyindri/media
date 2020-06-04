@@ -20,7 +20,8 @@ class Dashboard extends CI_Controller
 
 		if($this->session->userdata('username') && $this->session->userdata('level') == 'superadmin'){
 			$id='';
-			$data['hasil']=$this->dashboard->__get_chart($id);
+			//$data['hasil']=$this->dashboard->__get_chart_harian($id);
+			//$data['media']=$this->dashboard->__get_chart_media();
 			$data['medmas']=$this->dashboard->__get_medmas();
 			$data['berita_hariini']=$this->dashboard->__get_berita_hari();
 			$data['berita_mingguini']=$this->dashboard->__get_berita_minggu($id);
