@@ -52,7 +52,7 @@
         </div>
     </div>
 </div>
-@include("agenda.modal")
+@include("admin.agenda.modal")
 @endsection
 
 @section("js")

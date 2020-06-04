@@ -11,7 +11,13 @@ class Agenda extends CI_Controller
 
     public function index()
     {
-        return view('agenda.index');
+        if($this->session->userdata('level') == 'user'){
+            return view('agenda.index');
+        } elseif($this->session->userdata('level') == 'admin'){
+            return view('admin.agenda.index');
+        } elseif($this->session->userdata('level') == 'superadmin'){
+            return view('superadmin.agenda.index');
+        }
     }
 
     public function json()
@@ -31,6 +37,32 @@ class Agenda extends CI_Controller
             $row[] = $q->dibuat_pada;
             $row[] = '<div class="btn-group"><button type="button" name="ubah" data-id="' . $q->id . '" data-judul="' . $q->judul . '" data-tanggal="' . $q->tanggal . '" data-status="' . $q->status . '" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i></button>
             <div class="btn-group">';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->agenda->count_all(),
+            "recordsFiltered" => $this->agenda->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
+    public function fetch_data()
+    { 
+        $list = $this->agenda->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $la) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $la->judul;
+            $row[] = $la->tanggal;
+            $row[] = $la->status;
+            $row[] = '<a href="' . site_url() . 'upload/agenda/' . $la->file . '" target="_blank">Download</a>';
             $data[] = $row;
         }
 
