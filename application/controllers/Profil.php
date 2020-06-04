@@ -10,6 +10,7 @@ class Profil extends CI_Controller
 			redirect(site_url(''));
         }
         $this->load->model('Medmas_model','medmas');
+        $this->load->model('Users_model','users');
     }
     
     public function index()
@@ -69,6 +70,26 @@ class Profil extends CI_Controller
 
     public function ubahpassword(){
         view('profil.forgotpassword');
+    }
+
+    public function ubah($id = null)
+    {
+       if(!isset($id)) redirect('profil');
+       
+       $data['data_profil'] = $this->users->getById($id);
+
+       if (!$data['data_profil']) show_404();
+       view('profil.edit',$data);
+    }
+
+    public function updatedata()
+    {
+        $this->users->updateProfil();
+        $this->session->set_flashdata('notif','<div class="alert bg-green alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Data Profil Berhasil Diubah
+        </div>');
+        redirect('profil');
     }
 
 }

@@ -142,7 +142,32 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        $this->session->sess_destroy();
+        $sesi_selesai = array(
+            'login_status' => 'login_status',
+            'id_media' => 'id_media',
+            'id_user' =>'id_user',
+            'username' => 'username',
+            'level' => 'level',
+            'status' => 'status',
+            'nama' => 'nama',
+            'tipe_publikasi' => 'tipe_publikasi',
+            'tipe_mediamassa' => 'tipe_mediamassa',
+            'pemimpin' => 'pemimpin',                            
+            'npwp' => 'npwp',
+            'mulai_mou' => 'mulai_mou',
+            'akhir_mou' => 'akhir_mou',
+            'perusahaan' => 'perusahaan',
+            'alamat_per' => 'alamat_per',
+            'rekening' => 'rekening',
+            'kabiro' => 'kabiro',
+            'surat_kabiro' => 'surat_kabiro',
+            'telp' => 'telp',
+            'wartawan' => 'wartawan',
+            'sertifikat' => 'sertifikat',
+            'verifikasi' => 'verifikasi',
+            'penawaran_kerjasama' =>'penawaran_kerjasama' 
+        );
+        $this->session->unset_userdata($sesi_selesai);
         $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">You have been logged out!</div>');
         redirect('auth');
     }

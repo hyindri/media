@@ -7,6 +7,7 @@ class Users_model extends CI_Model
 {
 
     public $table = 'tmst_user';
+    public $table_media = 'tmst_media_massa';
 
     var $column_order = array(null, 'tmst_user.id','username','level','dibuat_pada','status','pemimpin','tipe_publikasi','tipe_media_massa','dibuat_oleh','dibuat_pada'); //set column field database for datatable orderable
     var $column_search = array('tmst_user.id','username','level','dibuat_pada','status','pemimpin','tipe_publikasi','tipe_media_massa','dibuat_oleh','dibuat_pada'); //set column field database for datatable searchable 
@@ -165,6 +166,30 @@ class Users_model extends CI_Model
         $this->db->join('tmst_media_massa media', 'media.user_id = user.id');
         $this->db->where('user.username', $username);
         return $this->db->get();
+    }
+
+    public function getById($id){
+        return $this->db->get_where($this->table_media,['user_id' => $id])->row();
+    }
+
+    public function updateProfil()
+    {
+        $id['id'] = $this->input->post('id_media');
+        $data = array(
+            'nama' => $this->input->post('nama_media'),
+            'perusahaan' => $this->input->post('nama_perusahaan'),
+            'alamat' => $this->input->post('alamat_kantor'),
+            'pimpinan' => $this->input->post('pimpinan'),
+            'kabiro' => $this->input->post('kabiro'),
+            'surat_kabiro' => $this->input->post('surat_kabiro'),
+            'no_telp' => $this->input->post('no_telp'),
+            'wartawan' => $this->input->post('wartawan'),
+            'sertifikat_uji' => $this->input->post('sertifikat_uji'),
+            'verifikasi_pers' => $this->input->post('verifikasi_pers'),
+            'penawaran_kerja_sama' => $this->input->post('penawaran_kerjasama'),
+            'tipe_media_massa' => $this->input->post('tipe_media_massa'),
+        );
+        $this->db->update($this->table_media,$data,$id);
     }
 
 }

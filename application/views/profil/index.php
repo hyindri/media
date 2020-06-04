@@ -22,10 +22,13 @@
                 <div class="col-xs-12 col-sm-9 col-lg-9">                
                 <div class="card card-about-me">
                         <div class="header">
-                            <h2>Profil Media</h2>
+                        @if($this->session->userdata('level') == 'user')
+                        <a href="<?php echo site_url('profil/ubah/'.$this->session->userdata('id_user'));?>" class="pull-right">Ubah Informasi Profil</a>
+                        @endif
+                            <h2>Profil Media</h2>                            
                         </div>
                         <div class="body">
-                        {{$this->session->flashdata('notif')}}
+                        {{$this->session->flashdata('notif')}}                        
                             <ul>
                                 @if($this->session->userdata('level') == 'user')
                                 <li>
