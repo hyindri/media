@@ -3,11 +3,14 @@
 @section('title','Agenda')
 
 <div class="container-fluid">
+    <!-- Breadcrumb  -->
     <div class="block-header">
-        <h2>
-            Daftar Agenda            
-        </h2>
+        <ol class="breadcrumb">
+            <li>HOME</li>
+            <li class="active">DAFTAR AGENDA</li>
+        </ol>
     </div>
+    <!-- end breadcrumb -->
     <!-- Basic Examples -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -87,7 +90,7 @@
 
           
             "columnDefs": [{
-                "targets": [0,4,5,6],
+                "targets": [0,4,7],
                 "orderable": false,
             }, ],
 

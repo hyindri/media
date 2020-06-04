@@ -1,33 +1,23 @@
 @extends("base.main_base")
 @section("content")
-@section('title','Manajemen Akun')
-
+@section('title','Agenda')
 <div class="container-fluid">
-<div class="block-header">
+    <!-- Breadcrumb  -->
+    <div class="block-header">
         <ol class="breadcrumb">
             <li>HOME</li>
-            <li class="active">MANAGEMENT AKUN</li>
+            <li class="active">DAFTAR MEDIA</li>
         </ol>
     </div>
+    <!-- end breadcrumb -->
     <!-- Basic Examples -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
                     <h2>
-                        Akun
+                        Media
                     </h2>
-                    <ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a onClick = "window.open('<?php echo base_url('usermanagement/export')?>');">Export</a></li>
-               
-                            </ul>
-                        </li>
-                    </ul>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
@@ -41,7 +31,6 @@
                                     <th>Media</th>
                                     <th>Mulai MOU</th>
                                     <th>Akhir MOU</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,7 +42,6 @@
         </div>
     </div>
 </div>
-@include("admin.usermanagement.modal")
 @endsection
 
 @section("js")
@@ -82,7 +70,7 @@
             "order": [], 
           
             "ajax": {
-                "url": "{{site_url('usermanagement/json')}}",
+                "url": "{{site_url('usermanagement/fetch_data')}}",
                 "type": "POST"
             },
 
@@ -93,39 +81,6 @@
             }, ],
 
         });
-
-        $('#table').on('click', '.ubah', function() {
-            $('#modal-ubah').modal('show');
-            $("#edit_id").val($(this).data('id'));
-            $("#edit_status").val($(this).data('status'));
-            $("#edit_mulai_mou").val($(this).data('mulai_mou'));
-            $("#edit_akhir_mou").val($(this).data('akhir_mou'));
-        });
-
-        $('#ubah-user').submit('click', function() {
-            $.ajax({
-                type: "POST",
-                url: "{{base_url('usermanagement/ubah')}}",
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                cache: false,
-                async: false,
-                success: function(data) {
-                    $('#modal-ubah').modal('hide');
-                    // $('#ubah-agenda')[0].reset();
-                    toastr.success('User berhasil diubah!');
-                    table.ajax.reload();
-                },
-                error: function(data) {
-                    $('#modal-ubah').modal('hide');
-                    toastr.warning('Gagal mengubah user!');
-                    table.ajax.reload();
-                }
-            });
-            return false;
-        });
-
     });
 </script>
 <script>
