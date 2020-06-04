@@ -46,6 +46,9 @@
     <!-- Bootstrap Core Js -->
     <script src="{{APP_ASSETS}}plugins/bootstrap/js/bootstrap.js"></script>
 
+    <!-- Select Plugin Js -->
+    <script src="{{APP_ASSETS}}plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
     <!-- Waves Effect Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/node-waves/waves.js"></script>
 
