@@ -212,6 +212,17 @@
                 <div class="modal-body">
                     <div class="form-group form-float">
                         <div class="form-line">
+                            <select id="filter_nama" class="form-control show-tick">
+                            <option value=""> - </option>
+                                @foreach($media as $row)
+                                <option value="{{$row->nama}}">{{$row->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-float">
+                        <div class="form-line">
                             <input type="text" id="filter_tanggal" class="form-control datepicker" placeholder="Tanggal">
                         </div>
                     </div>
@@ -219,6 +230,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_status_berita" class="form-control">
+                                <option value=""> - </option>
                                 <option value="oke">Valid</option>
                                 <option value="belum">Belum Valid</option>
                             </select>
