@@ -21,8 +21,32 @@
                             <span id="nama"></span>
                         </div>
                     </div>
+					<!-- Judul Berita  -->
+					<div class="row p-modal">
+						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+							<span>Judul Berita</span>
+						</div>
+						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+							<span>:</span>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
+							<span id="judul_berita"></span>
+						</div>
+					</div>
+					<!-- Narasi Berita  -->
+					<div class="row p-modal">
+						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+							<span>Narasi Berita</span>
+						</div>
+						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+							<span>:</span>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
+							<span id="narasi_berita"></span>
+						</div>
+					</div>
                     <!-- Link Berita  -->
-                    <div class="row p-modal">
+                    <div class="row p-modal link">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Link Berita</span>
                         </div>
@@ -34,7 +58,7 @@
                         </div>
                     </div>
                     <!-- Share  -->
-                    <div class="row p-modal">
+                    <div class="row p-modal share">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Share</span>
                         </div>
@@ -46,7 +70,7 @@
                         </div>
                     </div>
                     <!-- Jumlah View  -->
-                    <div class="row p-modal">
+                    <div class="row p-modal view">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Jumlah View</span>
                         </div>
@@ -59,7 +83,7 @@
                     </div>
                     <!-- Tanggal di Buat  -->
                     <div class="row p-modal">
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Tanggal</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -68,18 +92,9 @@
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                             <span id="dibuat_tanggal"></span>
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
-                            <span>Pukul</span>
-                        </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                            <span>:</span>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                            <span id="dibuat_pukul"></span>
-                        </div>
                     </div>
                     <!-- Screenshoot -->
-                    <div class="row p-modal">
+                    <div class="row p-modal screenshot">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Screenshoot</span>
                         </div>
@@ -105,7 +120,7 @@
                     <!-- Screenshoot -->
                     <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Status Berita</span>
+                            <span>Status Draft Berita</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>

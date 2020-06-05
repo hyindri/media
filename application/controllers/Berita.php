@@ -61,11 +61,13 @@ class Berita extends CI_Controller
                 $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal));
                 $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama . '</a>';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>'.$q->judul_berita.'</a>';
-                if ($q->status_berita == 'oke') {
+                if ($q->status_berita == 'valid') {
                     $row[] = '<span class="badge bg-green">Valid</span>';
-                } else {
-                    $row[] = '<span class="badge bg-red">Belum Valid</span>';
-                }
+                } else if ($q->status_berita == 'oke') {
+                    $row[] = '<span class="badge bg-blue">Draft Valid</span>';
+                }else{
+					$row[] = '<span class="badge bg-red">Draft Belum Valid</span>';
+				}
                 $row[] = '<div class="btn-group"><button title="Lihat" type="button" data-id="' . $q->id_berita . '" class="verif btn btn-primary btn-xs"><i class="material-icons">visibility</i> </button></div>';
             } else if ($this->session->userdata('level') == 'user'  && $this->session->userdata('status') == 'aktif') {
                 $no++;
@@ -73,20 +75,32 @@ class Berita extends CI_Controller
                 $row[] = $no;
                 $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal)).' ('.date('H:i:s', strtotime($q->dibuat_pukul)).')';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>'.$q->judul_berita.'</a>';
-                $row[] = '<a href="'.site_url().'/upload/berita/' . $q->screenshoot . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="'.site_url().'upload/berita/'. $q->screenshoot .'" width="200px" height="200px"></a>';
-                $row[] = $q->share;
-                $row[] = number_format($q->jumlah_view, 0,'.',',');
 
-                if ($q->status_berita == 'oke') {
-                    $row[] = '<span class="badge bg-green">Valid</span>';
+                if ($q->status_berita == 'valid') {
+					$row[] = '<a href="'.site_url().'/upload/berita/' . $q->screenshoot . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="'.site_url().'upload/berita/'. $q->screenshoot .'" width="200px" height="200px"></a>';
+					$row[] = '<span class="badge bg-green">Valid</span>';
                     $row[] = '<button title="lihat" type="button" data-id="' . $q->id_berita . '" class="lihat btn btn-primary btn-xs"><i class="material-icons">visibility</i> </button>';
-                } else {
-                    $row[] = '<span class="badge bg-red">Belum Valid</span>';
+                } elseif ($q->status_berita == 'oke') {
+                	if ($q->screenshoot=='')
+					{
+						$row[] = '<span class="badge bg-deep-purple">Silahkan upload data</span>';
+
+					}else{
+						$row[] = '<a href="'.site_url().'/upload/berita/' . $q->screenshoot . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="'.site_url().'upload/berita/'. $q->screenshoot .'" width="200px" height="200px"></a>';
+					}
+					$row[] = '<span class="badge bg-blue">Draft Valid</span>';
                     $row[] = '<div class="btn-group">
                     <button title="lihat" type="button" data-id="' . $q->id_berita . '" class="lihat btn btn-info btn-xs"><i class="material-icons">visibility</i> </button>
-                    <button title="Ubah" type="button" data-id="' . $q->id_berita . '" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i> </button>
+                    <button title="Upload" type="button" data-id="' . $q->id_berita . '" class="upload btn btn-warning btn-xs"><i class="material-icons">cloud_upload</i> </button>
                     <button title="Hapus" type="button" data-id="' . $q->id_berita . '" class="hapus btn btn-danger btn-xs"><i class="material-icons">delete</i> </button></div>';
-                }
+                }else{
+					$row[] = '-';
+					$row[] = '<span class="badge bg-red">Draft Belum Valid</span>';
+					$row[] = '<div class="btn-group">
+                    <button title="lihat" type="button" data-id="' . $q->id_berita . '" class="lihat btn btn-info btn-xs"><i class="material-icons">visibility</i> </button>
+                    <button title="Ubah" type="button" data-id="' . $q->id_berita . '" data-status="' . $q->status_berita . '" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i> </button>
+                    <button title="Hapus" type="button" data-id="' . $q->id_berita . '" class="hapus btn btn-danger btn-xs"><i class="material-icons">delete</i> </button></div>';
+				}
             }
             $data[] = $row;
         }
@@ -105,8 +119,11 @@ class Berita extends CI_Controller
     {
         $id = $this->input->post('id_berita');
         $data = $this->berita->get_by_id_joined($id)->result();
+		$output = array();
         foreach ($data as $row) {
             $output['nama'] = $row->nama;
+            $output['judul_berita'] = $row->judul_berita;
+            $output['narasi_berita'] = $row->narasi_berita;
             $output['link_berita'] = $row->link_berita;
             $output['screenshoot'] = $row->screenshoot;
             $output['share'] = $row->share;
@@ -152,16 +169,11 @@ class Berita extends CI_Controller
     {
         if (!empty($_FILES['file']['name'])) {
             $data = array(
-                'id' => uniqid(),
-                'media_massa_id' => $this->session->userdata('id_media'),
                 'link_berita' => $this->input->post('link_berita'),
                 'share' => $this->input->post('share'),
                 'jumlah_view' => $this->input->post('jumlah_view'),
                 'status_berita' => 'belum',
-                'keterangan' => '',
-                'dibuat_oleh' => $this->session->userdata('username'),
-                'dibuat_tanggal' => date('Y-m-d'),
-                'dibuat_pukul' => date('h:i:s'),
+                'keterangan' => ''
 
             );
         }
@@ -171,16 +183,35 @@ class Berita extends CI_Controller
         echo json_encode($data);
     }
 
+    public function draft()
+	{
+		if (!empty($this->input->post('narasi_berita')))
+		{
+			$data = array(
+				'id' => uniqid(),
+				'media_massa_id' => $this->session->userdata('id_media'),
+				'judul_berita' => $this->input->post('judul_berita'),
+				'narasi_berita' => $this->input->post('narasi_berita'),
+				'dibuat_oleh' => $this->session->userdata('username'),
+				'dibuat_tanggal' => date('Y-m-d'),
+				'dibuat_pukul' => date('h:i:s')
+			);
+
+			return $this->berita->simpan_draft($data);
+			echo json_encode($data);
+		}
+	}
+
     public function ubah()
     {
         $id = $this->input->post('edit_id_berita');
         $cek = $this->berita->get_by_id($id)->row();
-        if($cek->status_berita == 'belum'){
+        if($cek->status_berita == 'oke'){
         $data = array(
             'link_berita' => $this->input->post('ubah_link_berita'),
             'share' => $this->input->post('ubah_share'),
             'jumlah_view' => $this->input->post('ubah_jumlah_view'),
-            'status_berita' => 'belum',
+            'status_berita' => 'valid',
             'dibuat_oleh' => $this->session->userdata('username'),
             'dibuat_tanggal' => date('Y-m-d'),
             'dibuat_pukul' => date('h:i:s'),
@@ -203,11 +234,28 @@ class Berita extends CI_Controller
         json_encode($data);
     }
 
+    function ubah_draft()
+	{
+		$id = $this->input->post('edit_id_berita2');
+
+		$data = array(
+			'judul_berita' => $this->input->post('ubah_judul'),
+			'narasi_berita' => $this->input->post('ubah_narasi'),
+			'dibuat_oleh' => $this->session->userdata('username'),
+			'dibuat_tanggal' => date('Y-m-d'),
+			'dibuat_pukul' => date('h:i:s'),
+		);
+
+			$data = $this->berita->ubah_draft($id, $data);
+
+		json_encode($data);
+	}
+
     public function hapus()
     {
         $id = $this->input->post('hapus_id_berita');
         $cek = $this->berita->get_by_id($id)->row();
-        if($cek->status_berita == 'belum'){
+        if($cek->status_berita != 'valid'){
             $this->berita->hapus($id);
          }else{
              $this->db->insert('');
