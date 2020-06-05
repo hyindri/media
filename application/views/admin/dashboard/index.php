@@ -74,6 +74,17 @@
 				<div class="body">
 					<canvas id="grafik_harian" height="100"></canvas>
 				</div>
+				<div class=" body text-center">
+					<a style="text-center" id="down"
+							download="ChartImage.jpg" 
+							href=""
+							class="btn btn-primary"
+							title="Grafik">
+
+							<!-- Download Icon -->
+					Download Grafik
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -98,6 +109,17 @@
 				</div>
 				<div class="body">
 					<canvas id="grafik_media" height="100"></canvas>
+				</div>
+				<div class=" body text-center">
+					<a style="text-center" id="download"
+							download="ChartImage.jpg" 
+							href=""
+							class="btn btn-primary"
+							title="Grafik">
+
+							<!-- Download Icon -->
+					Download Grafik
+					</a>
 				</div>
 			</div>
 		</div>
@@ -234,6 +256,24 @@
 			}
 		});
 
+
+		document.getElementById("download").addEventListener('click', function(){
+			/*Get image of canvas element*/
+			var url_base64jp = document.getElementById("grafik_media").toDataURL("image/jpg");
+			/*get download button (tag: <a></a>) */
+			var a =  document.getElementById("download");
+			/*insert chart image url to download button (tag: <a></a>) */
+			a.href = url_base64jp;
+		});
+
+		document.getElementById("down").addEventListener('click', function(){
+			/*Get image of canvas element*/
+			var url_base64jp = document.getElementById("grafik_harian").toDataURL("image/jpg");
+			/*get download button (tag: <a></a>) */
+			var a =  document.getElementById("down");
+			/*insert chart image url to download button (tag: <a></a>) */
+			a.href = url_base64jp;
+		});
 
 
 	});

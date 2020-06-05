@@ -35,24 +35,33 @@
 					</a>
 				</li>
 				@if($this->session->userdata('level') == 'user')
-				<li class="@if($this->uri->segment(1) == 'profil') active @endif">
-					<a href="{{site_url('profil')}}">
-						<i class="material-icons">person</i>
-						<span>Profil</span>
-					</a>
-				</li>
-				<li class="@if($this->uri->segment(1) == 'berita') active @endif">
-					<a href="{{site_url('berita')}}">
-						<i class="material-icons">article</i>
-						<span>Berita</span>
-					</a>
-				</li>
-				<li class="@if($this->uri->segment(1) == 'agenda') active @endif">
-					<a href="{{site_url('agenda')}}">
-						<i class="material-icons">event</i>
-						<span>Agenda</span>
-					</a>
-				</li>
+					@if($this->session->userdata('status') == 'aktif')
+						<li class="@if($this->uri->segment(1) == 'profil') active @endif">
+							<a href="{{site_url('profil')}}">
+								<i class="material-icons">person</i>
+								<span>Profil</span>
+							</a>
+						</li>
+						<li class="@if($this->uri->segment(1) == 'berita') active @endif">
+							<a href="{{site_url('berita')}}">
+								<i class="material-icons">article</i>
+								<span>Berita</span>
+							</a>
+						</li>
+						<li class="@if($this->uri->segment(1) == 'agenda') active @endif">
+							<a href="{{site_url('agenda')}}">
+								<i class="material-icons">event</i>
+								<span>Agenda</span>
+							</a>
+						</li>
+					@elseif($this->session->userdata('status') == 'registrasi')
+					<li class="@if($this->uri->segment(1) == 'profil') active @endif">
+						<a href="{{site_url('profil')}}">
+							<i class="material-icons">person</i>
+							<span>Profil</span>
+						</a>
+					</li>
+					@endif
 				@elseif($this->session->userdata('level') == 'admin')
 				<li class="@if($this->uri->segment(1) == 'berita') active @endif">
 					<a href="{{site_url('berita')}}">
@@ -79,6 +88,18 @@
 					</a>
 				</li>
 				@elseif($this->session->userdata('level') == 'superadmin')
+				<li class="@if($this->uri->segment(1) == 'berita') active @endif">
+					<a href="{{site_url('berita')}}">
+						<i class="material-icons">article</i>
+						<span>Berita</span>
+					</a>
+				</li>
+				<li class="@if($this->uri->segment(1) == 'agenda') active @endif">
+					<a href="{{site_url('agenda')}}">
+						<i class="material-icons">event</i>
+						<span>Agenda</span>
+					</a>
+				</li>
 				<li class="@if($this->uri->segment(1) == 'usermanagement') active @endif">
 					<a href="{{site_url('usermanagement')}}">
 						<i class="material-icons">group</i>
