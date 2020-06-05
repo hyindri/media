@@ -107,6 +107,7 @@ class Berita_model extends CI_Model
 
     function __get_media_massa()
     {
+        $this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
         $this->db->group_by('nama');
         return $this->db->get($this->table_media_massa)->result();
     }
