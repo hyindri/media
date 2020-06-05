@@ -74,13 +74,12 @@
 				<div class="body">
 					<canvas id="grafik_harian" height="100"></canvas>
 				</div>
-				<div class=" body text-center">
-					<a style="text-center" id="down"
+				<div class="body text-center">
+					<a id="down"
 							download="ChartImage.jpg" 
 							href=""
 							class="btn btn-primary"
 							title="Grafik">
-
 							<!-- Download Icon -->
 					Download Grafik
 					</a>
@@ -110,8 +109,8 @@
 				<div class="body">
 					<canvas id="grafik_media" height="100"></canvas>
 				</div>
-				<div class=" body text-center">
-					<a style="text-center" id="download"
+				<div class="body text-center">
+					<a id="download"
 							download="ChartImage.jpg" 
 							href=""
 							class="btn btn-primary"

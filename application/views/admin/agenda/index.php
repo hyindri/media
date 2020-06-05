@@ -25,7 +25,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table id="table" class="table table-bordered table-striped table-hover">
+                            <table id="table" class="table table-bordered table-striped table-hover display nowrap">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -70,6 +70,7 @@
                 },
                 "processing": true,
                 "serverSide": true,
+                "responsive": true,
                 "searching": false,
                 "info": true,
                 "ordering": true,

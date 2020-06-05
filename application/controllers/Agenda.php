@@ -12,7 +12,7 @@ class Agenda extends CI_Controller
     public function index()
     {
         if($this->session->userdata('level') == 'user'){
-            return view('agenda.index');
+            return view('user.agenda.index');
         } elseif($this->session->userdata('level') == 'admin'){
             return view('admin.agenda.index');
         } elseif($this->session->userdata('level') == 'superadmin'){
@@ -106,6 +106,7 @@ class Agenda extends CI_Controller
     public function ubah()
     {
         $id = $this->input->post('edit_id');
+        $laporan = $this->agenda->get_by_id($id);
         $data = array(
             'judul' => $this->input->post('edit_judul'),
             'tanggal' => date("Y-m-d", strtotime($this->input->post('edit_tanggal'))),
@@ -116,7 +117,7 @@ class Agenda extends CI_Controller
         {
             $upload = $this->_do_upload();
             //delete file
-                unlink('upload/'.$laporan->file);
+                unlink('upload/agenda/'.$laporan->file);
         
             $data['file'] = $upload;
             $data = $this->agenda->ubah($id, $data);
@@ -134,7 +135,7 @@ class Agenda extends CI_Controller
         }
         $config['upload_path']          = 'upload/agenda/';
         $config['allowed_types']        = 'jpg|jpeg|png|pdf';
-        $config['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config['max_size']             = 8000; //set max size allowed in Kilobyte
         $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
  
         $this->load->library('upload', $config);

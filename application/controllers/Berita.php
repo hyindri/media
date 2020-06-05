@@ -14,6 +14,7 @@ class Berita extends CI_Controller
         if ($this->session->userdata('level') == 'superadmin') {
             $data = array(
                 'title' => 'Berita',
+                'media' => $this->berita->__get_media_massa()
             );
             $data['id_berita'] = ['id' => 'id_berita', 'name' => 'id_berita', 'type' => 'hidden'];
             return view('superadmin.berita.index', $data);

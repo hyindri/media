@@ -48,7 +48,8 @@ class Dashboard extends CI_Controller
 	function get_chart_harian()
 	{
 		if($this->session->userdata('username') && $this->session->userdata('level') == 'superadmin'){
-
+			$id='';
+			echo $this->dashboard->get_harian($id);
 		}elseif ($this->session->userdata('username') && $this->session->userdata('level') == 'admin'){
 			$id='';
 			echo $this->dashboard->get_harian($id);

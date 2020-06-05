@@ -2,14 +2,11 @@
 @section("content")
 @section('title','Agenda')
 <div class="container-fluid">
-    <!-- Breadcrumb  -->
     <div class="block-header">
-        <ol class="breadcrumb">
-            <li>HOME</li>
-            <li class="active">DAFTAR AGENDA</li>
-        </ol>
+        <h2>
+            Daftar Agenda            
+        </h2>
     </div>
-    <!-- end breadcrumb -->
     <!-- Basic Examples -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -61,9 +58,9 @@
                 },
             },
             "processing": true,
-            "serverSide": true,
-            "responsive": true, 
+            "serverSide": true, 
             "searching": false,
+            "responsive": true,
             "info": true,
             "ordering": true,
             "order": [], 
