@@ -20,7 +20,7 @@ class Berita_model extends CI_Model
 
     private function _get_datatables_query()
     {
-        $this->db->select('tb_berita.id as id_berita, tb_berita.media_massa_id, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
+        $this->db->select('tb_berita.id as id_berita, judul_berita, narasi_berita,tb_berita.media_massa_id, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
         tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul');
         
         if ($this->input->post('nama')) {

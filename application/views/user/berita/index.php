@@ -18,17 +18,20 @@
                         {{$title}}
                     </h2>
                     <ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
+                        <li>
+                            <a data-toggle="modal" data-target="#modal-tambah" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">note_add</i>
                             </a>
-                            <ul class="dropdown-menu pull-right">
-                            <li><a data-toggle="modal" data-target="#modal-filter">Filter</a></li>
-                                <li><a id="btn-reset">Reset</a></li>
-                                <li><a data-toggle="modal" data-target="#modal-tambah">Tambah</a></li>
-
-                            </ul>
                         </li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a data-toggle="modal" data-target="#modal-filter">Filter</a></li>
+								<li><a id="btn-reset">Reset</a></li>
+							</ul>
+						</li>
                     </ul>
                 </div>
                 <div class="body">
@@ -38,7 +41,7 @@
                                 <tr>
                                     <th style="width:10px;">No</th>
                                     <th>Tanggal</th>
-                                    <th>Link Berita</th>
+                                    <th>Judul Berita</th>
                                     <th>Screenshoot</th>
                                     <th>Dibagikan</th>
                                     <th>Jumlah View</th>

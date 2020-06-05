@@ -47,7 +47,7 @@ class Berita extends CI_Controller
                 $row[] = $no;
                 $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal));
                 $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama . '</a>';
-                $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>Link</a>';
+                $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>'.$q->judul_berita.'</a>';
                 if ($q->status_berita == 'oke') {
                     $row[] = '<span class="badge bg-green">Valid</span>';
                 } else {
@@ -60,7 +60,7 @@ class Berita extends CI_Controller
                 $row[] = $no;
                 $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal));
                 $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama . '</a>';
-                $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>Link</a>';
+                $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>'.$q->judul_berita.'</a>';
                 if ($q->status_berita == 'oke') {
                     $row[] = '<span class="badge bg-green">Valid</span>';
                 } else {
@@ -72,7 +72,7 @@ class Berita extends CI_Controller
                 $row = array();
                 $row[] = $no;
                 $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal)).' ('.date('H:i:s', strtotime($q->dibuat_pukul)).')';
-                $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>Link</a>';
+                $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>'.$q->judul_berita.'</a>';
                 $row[] = '<a href="'.site_url().'/upload/berita/' . $q->screenshoot . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="'.site_url().'upload/berita/'. $q->screenshoot .'" width="200px" height="200px"></a>';
                 $row[] = $q->share;
                 $row[] = number_format($q->jumlah_view, 0,'.',',');
