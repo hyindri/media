@@ -35,6 +35,13 @@
 						<span>Dashboard</span>
 					</a>
 				</li>
+				@if($this->session->userdata('level') == 'user')
+				<li class="@if($this->uri->segment(1) == 'profil') active @endif">
+					<a href="{{site_url('profil')}}">
+						<i class="material-icons">person</i>
+						<span>Profil</span>
+					</a>
+				</li>
 				<li class="@if($this->uri->segment(1) == 'berita') active @endif">
 					<a href="{{site_url('berita')}}">
 						<i class="material-icons">article</i>
@@ -47,18 +54,36 @@
 						<span>Agenda</span>
 					</a>
 				</li>
-				@if($this->session->userdata('level') == 'user')
-				<li class="@if($this->uri->segment(1) == 'profil') active @endif">
-					<a href="{{site_url('profil')}}">
-						<i class="material-icons">person</i>
-						<span>Profil</span>
+				@elseif($this->session->userdata('level') == 'admin')
+				<li class="@if($this->uri->segment(1) == 'berita') active @endif">
+					<a href="{{site_url('berita')}}">
+						<i class="material-icons">article</i>
+						<span>Berita</span>
 					</a>
 				</li>
-				@elseif($this->session->userdata('level') == 'admin')
+				<li class="@if($this->uri->segment(1) == 'agenda') active @endif">
+					<a href="{{site_url('agenda')}}">
+						<i class="material-icons">event</i>
+						<span>Agenda</span>
+					</a>
+				</li>
 				<li class="@if($this->uri->segment(1) == 'usermanagement') active @endif">
 					<a href="{{site_url('usermanagement')}}">
 						<i class="material-icons">group</i>
 						<span>Manajemen Akun</span>
+					</a>
+				</li>
+				<li class="@if($this->uri->segment(2) == 'ubahpassword') active @endif">
+					<a href="{{site_url('profil/ubahpassword')}}">
+						<i class="material-icons">vpn_key</i>
+						<span>Ubah Password</span>
+					</a>
+				</li>
+				@elseif($this->session->userdata('level') == 'superadmin')
+				<li class="@if($this->uri->segment(1) == 'usermanagement') active @endif">
+					<a href="{{site_url('usermanagement')}}">
+						<i class="material-icons">group</i>
+						<span>Daftar Media</span>
 					</a>
 				</li>
 				<li class="@if($this->uri->segment(2) == 'ubahpassword') active @endif">

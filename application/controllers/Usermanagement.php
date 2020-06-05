@@ -8,6 +8,7 @@ class Usermanagement extends CI_Controller
         parent::__construct();
         $this->load->model('users_model', 'users');
         $this->load->model('medmas_model', 'medmas');
+        $this->load->library('pdf');
     }
 
     public function index()
@@ -15,7 +16,7 @@ class Usermanagement extends CI_Controller
         if($this->session->userdata('level') == 'admin'){
             return view('admin.usermanagement.index');
         } elseif($this->session->userdata('level') == 'superadmin'){
-            return view('superadmin.usermanagement.index');
+            return view('superadmin.media.index');
         }
     }
 
@@ -49,6 +50,34 @@ class Usermanagement extends CI_Controller
         echo json_encode($output);
     }
 
+    public function fetch_data()
+    {
+        $list = $this->users->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $q) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $q->username;
+            $row[] = $q->dibuat_pada;
+            $row[] = $q->status;
+            $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->id . '" target="_blank">' . $q->nama . '</a>';
+            $row[] = $q->mulai_mou;
+            $row[] = $q->akhir_mou;
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->users->count_all(),
+            "recordsFiltered" => $this->users->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
     public function ubah()
     {
         $id = $this->input->post('edit_id');
@@ -62,5 +91,18 @@ class Usermanagement extends CI_Controller
         $data = $this->users->update($id, $data_user);
         $data = $this->medmas->ubah($id, $data_media);
         json_encode($data);
+    }
+
+    function export()
+    {
+        
+        $data['mediamassa'] = $this->users->export();
+        $this->load->view('admin/usermanagement/export', $data);
+        
+        $html = $this->output->get_output();
+		$this->pdf->set_paper('folio', 'landscape');
+		$this->pdf->load_Html($html);
+		$this->pdf->render();
+		$this->pdf->stream("Daftar Media Massa.pdf", array("Attachment"=>0));
     }
 }

@@ -3,15 +3,19 @@
 @section("title", "Dashboard")
 
 <div class="container-fluid">
+	<!-- Breadcrumb  -->
 	<div class="block-header">
-		<h2>DASHBOARD</h2>
+		<ol class="breadcrumb">
+			<li>HOME</li>
+			<li class="active">DASHBOARD</li>
+		</ol>
 	</div>
+	<!-- end breadcrumb -->
 
-	<!-- Widgets -->
-
+	<!-- widget -->
 	<div class="row clearfix">
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-			<div class="info-box bg-pink hover-expand-effect">
+			<div class="info-box bg-deep-purple hover-zoom-effect">
 				<div class="icon">
 					<i class="material-icons">airplay</i>
 				</div>
@@ -22,7 +26,7 @@
 			</div>
 		</div>
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-			<div class="info-box bg-cyan hover-expand-effect">
+			<div class="info-box bg-indigo hover-zoom-effect">
 				<div class="icon">
 					<i class="material-icons">fiber_new</i>
 				</div>
@@ -33,7 +37,7 @@
 			</div>
 		</div>
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-			<div class="info-box bg-light-green hover-expand-effect">
+			<div class="info-box bg-blue hover-zoom-effect">
 				<div class="icon">
 					<i class="material-icons">trending_up</i>
 				</div>
@@ -44,9 +48,9 @@
 			</div>
 		</div>
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-			<div class="info-box bg-orange hover-expand-effect">
+			<div class="info-box bg-light-blue hover-zoom-effect">
 				<div class="icon">
-					<i class="material-icons">trending_up</i>
+					<i class="material-icons">assessment</i>
 				</div>
 				<div class="content">
 					<div class="text">BERITA BULAN INI</div>
@@ -55,95 +59,183 @@
 			</div>
 		</div>
 	</div>
-	<!-- #END# Widgets -->
-	<!-- CPU Usage -->
+	<!-- End Widget -->
+	<!-- Chart -->
 	<div class="row clearfix">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="card">
 				<div class="header">
 					<div class="row clearfix">
 						<div class="col-xs-12 col-sm-6">
-							<h2>BERITA</h2>
+							<h2>Laporan Berita</h2>
 						</div>
 					</div>
-					<ul class="header-dropdown m-r--5">
-						<li class="dropdown">
-							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<i class="material-icons">more_vert</i>
-							</a>
-							<ul class="dropdown-menu pull-right">
-								<li><a href="javascript:void(0);">Action</a></li>
-								<li><a href="javascript:void(0);">Another action</a></li>
-								<li><a href="javascript:void(0);">Something else here</a></li>
-							</ul>
-						</li>
-					</ul>
 				</div>
 				<div class="body">
-					<canvas id="bar_chart" height="150"></canvas>
-					<?php
-					//Inisialisasi nilai variabel awal
-					$tanggal= "";
-					$berita=null;
-					foreach ($hasil as $item)
-					{
-						$tgl=$item->dibuat_tanggal;
-						$tanggal .= "'$tgl'". ", ";
-						$jum=$item->berita;
-						$berita .= "$jum". ", ";
-					}
-					?>
+					<canvas id="grafik_harian" height="100"></canvas>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- #END# CPU Usage -->
+
+	<div class="row clearfix">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="card">
+				<div class="header">
+					<div class="row clearfix">
+						<div class="col-xs-9 col-sm-9">
+							<h2>GRAFIK BERITA MEDIA</h2>
+						</div>
+						<div class="col-xs-3 col-sm-3">
+							<select class="form-control" id="tipe_grafik" name="tipe_grafik">
+								<option value="">-- PILIH TIPE GRAFIK --</option>
+								<option value="1">Harian</option>
+								<option value="2">Bulanan</option>
+								<option value="3">Tahunan</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="body">
+					<canvas id="grafik_media" height="100"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Chart  -->
 </div>
 
 @endsection
 
 @section("js")
 <script>
-
-	$(document).ready(function () {
+	$(document).ready(function() {
 		$('.count-to').countTo();
 
 		//Sales count to
 		$('.sales-count-to').countTo({
-			formatter: function (value, options) {
+			formatter: function(value, options) {
 				return '$' + value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, ' ').replace('.', ',');
 			}
 		});
 
 
-		var ctx = document.getElementById('bar_chart').getContext('2d');
-		var chart = new Chart(ctx, {
-			// The type of chart we want to create
-			type: 'bar',
-			// The data for our dataset
-			data: {
-				labels: [<?php echo $tanggal; ?>],
-				datasets: [{
-					label:'Data Upload Berita Harian ',
-					backgroundColor: 'rgba(0, 188, 212, 0.8)',
-					borderColor: ['rgb(255, 255, 255)'],
-					data: [<?php echo $berita; ?>]
-				}]
-			},
-			// Configuration options go here
-			options: {
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero:true
-						}
-					}]
+		ajax_harian();
+		ajax_media();
+		
+		function ajax_harian() {
+
+			$.ajax({
+				type : "POST",
+				url : "{{site_url('Dashboard/get_chart_harian')}}",
+				success : function (data) {
+					var obj = jQuery.parseJSON(data);
+					grafik_harian(obj);
 				}
+			});
+		}
+
+		function ajax_media(type='') {
+
+			$.ajax({
+				type : "POST",
+				url : "{{site_url('Dashboard/get_chart_media')}}",
+				data : {type:type},
+				success : function (data) {
+					var obj = jQuery.parseJSON(data);
+					grafik_media(obj);
+				}
+			});
+		}
+		
+		function grafik_harian(obj) {
+
+			let labels = [];
+			let dataset = [];
+
+			$.each(obj, function (key, value) {
+				labels=[];
+				$.each(value, function (kunci, data) {
+					labels.push(data.dibuat_tanggal);
+					dataset.push(data.berita);
+				});
+			})
+
+
+			let ctx = document.getElementById('grafik_harian').getContext('2d');
+			let chart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: labels
+							,
+					datasets: [{
+						label: 'Data Upload Berita Harian ',
+						backgroundColor: 'rgba(0, 188, 212, 0.8)',
+						borderColor: ['rgb(255, 255, 255)'],
+						data: dataset
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			})
+		}
+
+		var chart
+		function grafik_media(obj) {
+			let labels = [];
+			let dataset = [];
+
+			$.each(obj, function (key, value) {
+				labels=[];
+				$.each(value, function (kunci, data) {
+					labels.push(data.nama);
+					dataset.push(data.berita);
+				});
+			})
+
+			let ctx = document.getElementById('grafik_media').getContext('2d');
+			chart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: labels,
+					datasets: [{
+						label: 'Data Upload Berita Harian ',
+						backgroundColor: 'rgba(0, 188, 212, 0.8)',
+						borderColor: ['rgb(255, 255, 255)'],
+						data: dataset
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+		}
+
+		$('#tipe_grafik').change(function () {
+			if ($(this).val()!='')
+			{
+				chart.destroy();
+				ajax_media($(this).val());
+			}else{
+				ajax_media();
 			}
 		});
 
+
+
 	});
-
-
 </script>
 @endsection

@@ -102,19 +102,7 @@
 					</ul>
 				</div>
 				<div class="body">
-					<canvas id="bar_chart" height="150"></canvas>
-					<?php
-					//Inisialisasi nilai variabel awal
-					$tanggal= "";
-					$berita=null;
-					foreach ($hasil as $item)
-					{
-						$tgl=$item->dibuat_tanggal;
-						$tanggal .= "'$tgl'". ", ";
-						$jum=$item->berita;
-						$berita .= "$jum". ", ";
-					}
-					?>
+					<canvas id="grafik_harian" height="150"></canvas>
 				</div>
 			</div>
 		</div>
@@ -138,32 +126,61 @@
 			}
 		});
 
+		ajax_harian();
 
-		var ctx = document.getElementById('bar_chart').getContext('2d');
-		var chart = new Chart(ctx, {
-			// The type of chart we want to create
-			type: 'bar',
-			// The data for our dataset
-			data: {
-				labels: [<?php echo $tanggal; ?>],
-				datasets: [{
-					label:'Data Upload Berita Harian ',
-					backgroundColor: 'rgba(0, 188, 212, 0.8)',
-					borderColor: ['rgb(255, 255, 255)'],
-					data: [<?php echo $berita; ?>]
-				}]
-			},
-			// Configuration options go here
-			options: {
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero:true
-						}
-					}]
+		function ajax_harian() {
+
+			$.ajax({
+				type : "POST",
+				url : "{{site_url('Dashboard/get_chart_harian')}}",
+				success : function (data) {
+					var obj = jQuery.parseJSON(data);
+					grafik_harian(obj);
 				}
-			}
-		});
+			});
+		}
+
+		function grafik_harian(obj) {
+
+			let labelse = [];
+			let dataset = [];
+
+			$.each(obj, function (key, value) {
+				labelse=[];
+				$.each(value, function (kunci, data) {
+					labelse.push(data.dibuat_tanggal);
+					dataset.push(data.berita);
+				});
+			})
+
+
+			let ctx = document.getElementById('grafik_harian').getContext('2d');
+			let chart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: labelse
+					,
+					datasets: [{
+						label: 'Data Upload Berita Harian ',
+						backgroundColor: 'rgba(0, 188, 212, 0.8)',
+						borderColor: ['rgb(255, 255, 255)'],
+						data: dataset
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			})
+		}
+
+
+
 	});
 
 

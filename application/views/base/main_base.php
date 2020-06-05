@@ -28,12 +28,14 @@
     <link href="{{APP_ASSETS}}plugins/toastr/toastr.min.css" rel="stylesheet" />
 
     <!-- JQuery DataTable Css -->
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css" rel="stylesheet">
     <link href="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
-     <!-- Bootstrap Material Datetime Picker Css -->
+    <!-- Bootstrap Material Datetime Picker Css -->
     <link href="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
 
-     <!-- Bootstrap Select Css -->
+    <!-- Bootstrap Select Css -->
     <link href="{{APP_ASSETS}}plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
     <!-- Custom Css -->
@@ -43,12 +45,12 @@
     <link href="{{APP_ASSETS}}css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
-<body class="theme-red">
+<body class="theme-indigo">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
             <div class="preloader">
-                <div class="spinner-layer pl-red">
+                <div class="spinner-layer pl-blue">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
                     </div>
@@ -57,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <p>Please wait...</p>
+            <p>Mohon tunggu sebentar...</p>
         </div>
     </div>
     <!-- #END# Page Loader -->
@@ -87,7 +89,7 @@
 
     <!-- Input Mask Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
-    
+
     <!-- Jquery CountTo Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-countto/jquery.countTo.js"></script>
 
@@ -113,6 +115,8 @@
     <script src="{{APP_ASSETS}}plugins/jquery-sparkline/jquery.sparkline.js"></script>
     <!-- Jquery DataTable Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
@@ -124,7 +128,7 @@
 
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-    
+
 
     <!-- Custom Js -->
     <script src="{{APP_ASSETS}}js/admin.js"></script>
@@ -133,7 +137,7 @@
 
 
     <!-- Demo Js -->
-        <!-- <script src="{{APP_ASSETS}}js/demo.js"></script> -->
+    <!-- <script src="{{APP_ASSETS}}js/demo.js"></script> -->
 
     @yield('js')
 </body>

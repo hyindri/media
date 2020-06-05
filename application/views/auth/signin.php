@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 p-t-5">
-                    <button class="btn btn-block bg-pink waves-effect" type="submit">LOGIN</button>
+                    <button class="btn btn-block bg-indigo waves-effect waves-light-blue" type="submit">LOGIN</button>
                 </div>
             </div>
             <div class="row m-t-15 m-b--20">
