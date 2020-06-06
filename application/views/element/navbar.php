@@ -55,7 +55,7 @@
                                 <!-- <li>
                                     <a href="javascript:void(0);">
                                         <div class="icon-circle bg-cyan">
-                                            <i class="material-icons">add_shopping_cart</i>
+                                            <i class="material-icons">grade</i>
                                         </div>
                                         <div class="menu-info">
                                             <h4>4 sales made</h4>

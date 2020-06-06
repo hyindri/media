@@ -190,7 +190,7 @@
 					labels: labels
 							,
 					datasets: [{
-						label: 'Data Upload Berita Harian ',
+						label: 'Data Laporan Berita Harian ',
 						backgroundColor: 'rgba(0, 188, 212, 0.8)',
 						borderColor: ['rgb(255, 255, 255)'],
 						data: dataset
@@ -227,7 +227,7 @@
 				data: {
 					labels: labels,
 					datasets: [{
-						label: 'Data Upload Berita Harian ',
+						label: 'Data Laporan Berita Harian ',
 						backgroundColor: 'rgba(0, 188, 212, 0.8)',
 						borderColor: ['rgb(255, 255, 255)'],
 						data: dataset
