@@ -20,32 +20,39 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <!-- Call Search -->
-                <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                <!-- <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> -->
                 <!-- #END# Call Search -->
                 <!-- Notifications -->
                 <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                    @if($jumlah_notif > 0)
+                    <a href="javascript:void(0);" class="ubah_notif dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">notifications</i>
-                        <span class="label-count">7</span>
+                        <span class="hilang_notif label-count">{{$jumlah_notif}}</span>
                     </a>
+                    @else
+                    <a href="javascript:void(0);" class="ubah_notif dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons">notifications</i>
+                    </a>
+                    @endif
                     <ul class="dropdown-menu">
-                        <li class="header">NOTIFICATIONS</li>
+                        <li class="header">NOTIFIKASI</li>
                         <li class="body">
                             <ul class="menu">
                                 <li>
-                                    <a href="javascript:void(0);">
-                                        <div class="icon-circle bg-light-green">
-                                            <i class="material-icons">person_add</i>
-                                        </div>
+                                    @foreach ($notif->result() as $a)
+                                    <a href="{{site_url().$a->link}}">
                                         <div class="menu-info">
-                                            <h4>12 new members joined</h4>
+                                            <h4>{{$a->judul}}</h4>
+                                            <p>{{$a->pesan}}</p>
                                             <p>
-                                                <i class="material-icons">access_time</i> 14 mins ago
+                                                <i class="material-icons">access_time</i> {{tanggal($a->dibuat_tanggal)}} / {{date('h:i:s',strtotime($a->dibuat_pukul))}}
                                             </p>
                                         </div>
                                     </a>
+                                    @endforeach
                                 </li>
-                                <li>
+    
+                                <!-- <li>
                                     <a href="javascript:void(0);">
                                         <div class="icon-circle bg-cyan">
                                             <i class="material-icons">add_shopping_cart</i>
@@ -60,9 +67,7 @@
                                 </li>
                                 <li>
                                     <a href="javascript:void(0);">
-                                        <div class="icon-circle bg-red">
-                                            <i class="material-icons">delete_forever</i>
-                                        </div>
+                                        <div class="icon-circle bg-red"><i class="material-icons">delete_forever</i></div>
                                         <div class="menu-info">
                                             <h4><b>Nancy Doe</b> deleted account</h4>
                                             <p>
@@ -127,12 +132,14 @@
                         </li>
                         <li class="footer">
                             <a href="javascript:void(0);">View All Notifications</a>
+                        </li> -->
+                            </ul>
+
+
                         </li>
-                    </ul>
-                </li>
-                <!-- #END# Notifications -->
-                <!-- Tasks -->
-                <li class="dropdown">
+                        <!-- #END# Notifications -->
+                        <!-- Tasks -->
+                        <!-- <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">flag</i>
                         <span class="label-count">9</span>
@@ -207,9 +214,9 @@
                             <a href="javascript:void(0);">View All Tasks</a>
                         </li>
                     </ul>
-                </li>
-                <!-- #END# Tasks -->                
-            </ul>
+                </li> -->
+                        <!-- #END# Tasks -->
+                    </ul>
         </div>
     </div>
 </nav>

@@ -7,16 +7,29 @@ class Agenda extends CI_Controller
     {
         parent::__construct();
         $this->load->model('agenda_model', 'agenda');
+        $this->load->model('notifikasi_model', 'notifikasi');
     }
 
     public function index()
     {
         if($this->session->userdata('level') == 'user'){
-            return view('user.agenda.index');
+            $data =  array(
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
+            );
+            return view('user.agenda.index', $data);
         } elseif($this->session->userdata('level') == 'admin'){
-            return view('admin.agenda.index');
+            $data =  array(
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')) 
+            );
+            return view('admin.agenda.index', $data);
         } elseif($this->session->userdata('level') == 'superadmin'){
-            return view('superadmin.agenda.index');
+            $data =  array(
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')) 
+            );
+            return view('superadmin.agenda.index',$data);
         }
     }
 

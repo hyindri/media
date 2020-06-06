@@ -134,7 +134,17 @@
     <script src="{{APP_ASSETS}}js/admin.js"></script>
     <!-- <script src="{{APP_ASSETS}}js/pages/index.js"></script> -->
     <!-- <script src="{{APP_ASSETS}}js/pages/tables/jquery-datatable.js"></script> -->
-
+    <script>
+        $('.ubah_notif').on('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "{{base_url('dashboard/set_status_notif')}}",
+                success: function(data) {
+                    $('.hilang_notif').hide()
+                }
+            });
+        });
+    </script>
 
     <!-- Demo Js -->
     <!-- <script src="{{APP_ASSETS}}js/demo.js"></script> -->

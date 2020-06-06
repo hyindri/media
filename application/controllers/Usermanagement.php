@@ -8,15 +8,24 @@ class Usermanagement extends CI_Controller
         parent::__construct();
         $this->load->model('users_model', 'users');
         $this->load->model('medmas_model', 'medmas');
+        $this->load->model('notifikasi_model', 'notifikasi');
         $this->load->library('pdf');
     }
 
     public function index()
     {
         if($this->session->userdata('level') == 'admin'){
-            return view('admin.usermanagement.index');
+            $data =  array(
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))  
+            );
+            return view('admin.usermanagement.index',$data);
         } elseif($this->session->userdata('level') == 'superadmin'){
-            return view('superadmin.media.index');
+            $data =  array(
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))  
+            );
+            return view('superadmin.media.index',$data);
         }
     }
 
