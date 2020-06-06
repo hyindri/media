@@ -34,13 +34,13 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table id="table" class="table table-bordered table-striped table-hover display wrap" width="100%">
+                        <table id="table" class="table table-bordered table-striped table-hover display nowrap" width="100%">
                             <thead>
                                 <tr>
                                     <th style="width:10px;">No</th>
                                     <th>Tanggal</th>
                                     <th>Nama Media</th>
-                                    <th>Judul Berita</th>
+                                    <th>Link Berita</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -54,7 +54,7 @@
         </div>
         <!-- End table  -->
     </div>
-    @include("admin.berita.modal")
+    @include("superadmin.berita.modal")
     @endsection
 
     @section("js")
@@ -128,36 +128,17 @@
                         $('#nama').html(data.nama);
                         $('#share').html(data.share);
                         $('#jumlah_view').html(data.jumlah_view);
-                        $('#judul_berita').html(data.judul_berita);
-                        $('#narasi_berita').html(data.narasi_berita);
-                        $('#dibuat_tanggal').html(data.dibuat_tanggal + ' : ' + data.dibuat_pukul);
+                        $('#dibuat_tanggal').html(data.dibuat_tanggal);
+                        $('#dibuat_pukul').html(data.dibuat_pukul);
                         $('#keterangan').val(data.keterangan);
                         $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                         $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-                        if (data.status_berita == 'valid') {
-                            $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                            $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                        if (data.status_berita == 'oke') {
                             $('#keterangan').prop("disabled", true);
                             $('#simpan_btn').prop("disabled", true);
                             $('#verif_status').prop('checked', true);
                             $('#verif_status').val('oke');
-                        } else if (data.status_berita == 'oke') {
-                            $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                            $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-                            $('#keterangan').prop("disabled", true);
-                            $('#simpan_btn').prop("disabled", true);
-                            $('#verif_status').prop('checked', true);
-                            $('#verif_status').val('oke');
-                            $('.link').show();
-                            $('.share').show();
-                            $('.view').show();
-                            $('.screenshot').show();
-                        } else {
-                            $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                            $('.link').hide();
-                            $('.share').hide();
-                            $('.view').hide();
-                            $('.screenshot').hide();
+                        } else if (data.status_berita == 'belum') {
                             $('#keterangan').prop("disabled", false);
                             $("#keterangan").prop('required', true);
                             $('#simpan_btn').prop("disabled", false);
@@ -172,7 +153,7 @@
                 if ($(this).is(":checked")) {
                     $(this).val("oke");
                 } else {
-                    $(this).val("belum");
+                    $(this).val("belum");;
                 }
             });
 
@@ -193,51 +174,43 @@
                             $('#keterangan').val('');
                             $('#keterangan').prop("disabled", true);
                             $('#simpan_btn').prop("disabled", true);
-                            $('#modal-lihat').modal('hide');
                             toastr.success('Status berita berhasil diverifikasi!');
                             table.ajax.reload();
                         } else if (verif_status == 'belum') {
                             $('#keterangan').prop("disabled", false);
                             $("#keterangan").prop('required', true);
                             $('#simpan_btn').prop("disabled", false);
-                            $('.link').hide();
-                            $('.share').hide();
-                            $('.view').hide();
-                            $('.screenshot').hide();
-                            $("#keterangan").focus();
-                            toastr.error('Status berita tidak diverifikasi! Mohon isi keterangan..');
+                            toastr.error('Status berita tidak diverifikasi!');
                             table.ajax.reload();
                         }
-
                     },
                     error: function(data) {
                         toastr.warning('Status berita gagal diverifikasi!');
                     }
                 });
-            });
 
-
-            $('#form-verif').submit('click', function() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{base_url('berita/belum_verif')}}",
-                    data: new FormData(this),
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    async: false,
-                    success: function(data) {
-                        toastr.success('Keterangan Berhasil ditambahkan');
-                    },
-                    error: function(data) {
-                        toastr.warning('Keterangan Berhasil gagal ditambahkan!');
-                    }
+                $('#form-verif').submit('click', function() {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{base_url('berita/belum_verif')}}",
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        async: false,
+                        success: function(data) {
+                            toastr.success('Keterangan Berhasil ditambahkan');
+                        },
+                        error: function(data) {
+                            toastr.warning('Keterangan Berhasil gagal ditambahkan!');
+                        }
+                    });
+                    return false;
                 });
-                return false;
-            });
 
-            $('.datepicker').bootstrapMaterialDatePicker({
-                time: false
+                $('.datepicker').bootstrapMaterialDatePicker({
+                    time: false
+                });
             });
         });
     </script>

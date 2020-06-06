@@ -5,9 +5,9 @@
                 <h4 class="modal-title">Detail {{$title}}</h4>
             </div>
             {{form_open('',['id'=>'form-verif','role'=>'form'])}}
-            <div class="modal-body">
             {{form_input($id_berita)}}
 
+            <div class="modal-body">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 w-break">
                     <!-- Nama Media  -->
                     <div class="row p-modal">
@@ -21,32 +21,8 @@
                             <span id="nama"></span>
                         </div>
                     </div>
-					<!-- Judul Berita  -->
-					<div class="row p-modal">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-							<span>Judul Berita</span>
-						</div>
-						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-							<span>:</span>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-							<span id="judul_berita"></span>
-						</div>
-					</div>
-					<!-- Narasi Berita  -->
-					<div class="row p-modal">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-							<span>Narasi Berita</span>
-						</div>
-						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-							<span>:</span>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-							<span id="narasi_berita"></span>
-						</div>
-					</div>
                     <!-- Link Berita  -->
-                    <div class="row p-modal link">
+                    <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Link Berita</span>
                         </div>
@@ -58,7 +34,7 @@
                         </div>
                     </div>
                     <!-- Share  -->
-                    <div class="row p-modal share">
+                    <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Share</span>
                         </div>
@@ -70,7 +46,7 @@
                         </div>
                     </div>
                     <!-- Jumlah View  -->
-                    <div class="row p-modal view">
+                    <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Jumlah View</span>
                         </div>
@@ -83,7 +59,7 @@
                     </div>
                     <!-- Tanggal di Buat  -->
                     <div class="row p-modal">
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
                             <span>Tanggal</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -92,9 +68,18 @@
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                             <span id="dibuat_tanggal"></span>
                         </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
+                            <span>Pukul</span>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <span>:</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                            <span id="dibuat_pukul"></span>
+                        </div>
                     </div>
                     <!-- Screenshoot -->
-                    <div class="row p-modal screenshot">
+                    <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Screenshoot</span>
                         </div>
@@ -108,7 +93,7 @@
                     <!-- Keterangan belum di verifikasi -->
                     <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Keterangan</span>
+                            <span>Keterangan belum Diverifikasi</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
@@ -120,7 +105,7 @@
                     <!-- Screenshoot -->
                     <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Status Draft Berita</span>
+                            <span>Status Berita</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
@@ -128,7 +113,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
                             <div class="demo-switch">
                                 <div class="switch">
-                                    <label><span class="text-danger">BELUM</span><input id="verif_status" name="verif_status" type="checkbox"><span class="lever switch-col-green"></span> <span class="text-success">OK</span></label>
+                                    <label><span class="text-danger">BELUM</span></label>
                                 </div>
                             </div>
                         </div>
@@ -136,8 +121,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
-                <button id="simpan_btn" type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
+                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">Tutup</button>
             </div>
             {{form_close()}}
         </div>

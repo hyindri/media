@@ -20,7 +20,7 @@ class Berita_model extends CI_Model
 
     private function _get_datatables_query()
     {
-        $this->db->select('tb_berita.id as id_berita, tb_berita.media_massa_id, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
+        $this->db->select('tb_berita.id as id_berita, judul_berita, narasi_berita,tb_berita.media_massa_id, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
         tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul');
         
         if ($this->input->post('nama')) {
@@ -98,7 +98,7 @@ class Berita_model extends CI_Model
     // get data by id
     function get_by_id_joined($id)
     {
-        $this->db->select('tb_berita.id, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
+        $this->db->select('tb_berita.id, judul_berita, narasi_berita, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
                             tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul, tb_berita.diperiksa_oleh, tb_berita.diperiksa_pada');
         $this->db->join($this->table_media_massa, 'tb_berita.media_massa_id = tmst_media_massa.id');
         $this->db->where('tb_berita.id', $id);
@@ -107,6 +107,7 @@ class Berita_model extends CI_Model
 
     function __get_media_massa()
     {
+        $this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
         $this->db->group_by('nama');
         return $this->db->get($this->table_media_massa)->result();
     }
@@ -116,11 +117,22 @@ class Berita_model extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
+	function simpan_draft($data)
+	{
+		$this->db->insert($this->table, $data);
+	}
+
     function ubah($id, $data)
     {
         $this->db->where('id', $id);
         $this->db->update($this->table, $data);
     }
+
+	function ubah_draft($id, $data)
+	{
+		$this->db->where('id', $id);
+		$this->db->update($this->table, $data);
+	}
 
     function hapus($id)
     {

@@ -1,3 +1,35 @@
+<div class="modal fade" id="modal-draft" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">Tambah Draft</h4>
+			</div>
+			{{form_open('',['id'=>'form-draft','role'=>'form'])}}
+			<div class="modal-body">
+				<div class="form-group">
+					<div class="form-line">
+						<textarea id="judul_berita" name="judul_berita" class="form-control" placeholder="Judul berita" required></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="form-line">
+						<textarea id="narasi_berita" name="narasi_berita" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
+					</div>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
+				<button id="simpan_btn" type="submit" class="btn btn-link waves-effect">SIMPAN</button>
+			</div>
+			{{form_close()}}
+		</div>
+	</div>
+</div>
+
+
+
 <div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -83,6 +115,42 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="modal-ubah-draft" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">Ubah Draft</h4>
+			</div>
+			{{form_open('',['id'=>'form-ubah-draft','role'=>'form'])}}
+			<div class="modal-body">
+				<div class="form-group">
+					<div class="form-line">
+						<input type="hidden" name="edit_id_berita2" id="edit_id_berita2" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-line">
+						<textarea id="ubah_judul" name="ubah_judul" class="form-control" placeholder="Judul berita" required></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="form-line">
+						<textarea id="ubah_narasi" name="ubah_narasi" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
+					</div>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
+				<button id="ubah_btn" type="submit" class="btn btn-link waves-effect">SIMPAN</button>
+			</div>
+			{{form_close()}}
+		</div>
+	</div>
+</div>
+
 <div class="modal fade" id="modal-hapus" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-col-red">
@@ -119,21 +187,35 @@
                             <p id="lihat_nama"></p>
                         </td>
                     </tr>
-                    <tr>
+					<tr>
+						<td style="width: 20%">Judul Berita</td>
+						<td style="width: 10px;">:</td>
+						<td colspan="6">
+							<div id="lihat_judul_berita"></div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 20%">Narasi Berita</td>
+						<td style="width: 10px;">:</td>
+						<td colspan="6">
+							<div id="lihat_narasi_berita"></div>
+						</td>
+					</tr>
+                    <tr id="link">
                         <td style="width: 20%">Link Berita</td>
                         <td style="width: 10px;">:</td>
                         <td colspan="6">
                             <div id="lihat_link_berita"></div>
                         </td>
                     </tr>
-                    <tr>
+					<tr id="sharing">
                         <td style="width: 20%">Share</td>
                         <td style="width: 10px;">:</td>
                         <td colspan="6">
                             <p id="lihat_share"></p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="view">
                         <td style="width: 20%">Jumlah View</td>
                         <td style="width: 10px;">:</td>
                         <td colspan="6">
@@ -141,7 +223,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr id="screenshot">
                         <td style="width: 20%">Screenshoot</td>
                         <td style="width: 10px;">:</td>
                         <td colspan="6">
