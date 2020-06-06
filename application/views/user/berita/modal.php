@@ -21,7 +21,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
-				<button id="simpan_btn" type="submit" class="btn btn-link waves-effect">SIMPAN</button>
+				<button type="submit" class="btn btn-link waves-effect">SIMPAN</button>
 			</div>
 			{{form_close()}}
 		</div>
@@ -144,7 +144,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
-				<button id="ubah_btn" type="submit" class="btn btn-link waves-effect">SIMPAN</button>
+				<button type="submit" class="btn btn-link waves-effect">SIMPAN</button>
 			</div>
 			{{form_close()}}
 		</div>
@@ -293,16 +293,6 @@
             </div>
             <form id="form-filter">
                 <div class="modal-body">
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <select id="filter_nama" class="form-control show-tick">
-                            <option value=""> - </option>
-                                @foreach($media as $row)
-                                <option value="{{$row->nama}}">{{$row->nama}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
 
                     <div class="form-group form-float">
                         <div class="form-line">
@@ -313,8 +303,9 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_status_berita" class="form-control">
-                                <option value=""> - </option>
-                                <option value="oke">Valid</option>
+                            <option value=""> - Pilih - </option>
+                                <option value="valid">Valid</option>
+                                <option value="oke">Draft Valid</option>
                                 <option value="belum">Belum Valid</option>
                             </select>
                         </div>

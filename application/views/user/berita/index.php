@@ -211,11 +211,6 @@
             $("#hapus_id_berita").val($(this).data('id'));
         });
 
-        $('#table').on('click', '.upload', function() {
-            $('#modal-ubah').modal('show');
-            $("#edit_id_berita").val($(this).data('id'));
-        });
-
         $('#form-tambah').submit('click', function() {
             $.ajax({
                 type: "POST",

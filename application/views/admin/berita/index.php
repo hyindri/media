@@ -137,15 +137,13 @@
                         if (data.status_berita == 'valid') {
                             $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                             $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-                            $('#keterangan').prop("disabled", true);
-                            $('#simpan_btn').prop("disabled", true);
+                            $("#keterangan").prop('disabled',true);
                             $('#verif_status').prop('checked', true);
                             $('#verif_status').val('oke');
                         } else if (data.status_berita == 'oke') {
                             $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                             $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-                            $('#keterangan').prop("disabled", true);
-                            $('#simpan_btn').prop("disabled", true);
+                            $("#keterangan").prop('disabled',true);
                             $('#verif_status').prop('checked', true);
                             $('#verif_status').val('oke');
                             $('.link').show();
@@ -158,9 +156,7 @@
                             $('.share').hide();
                             $('.view').hide();
                             $('.screenshot').hide();
-                            $('#keterangan').prop("disabled", false);
-                            $("#keterangan").prop('required', true);
-                            $('#simpan_btn').prop("disabled", false);
+                            $("#keterangan").prop('disabled',false);
                             $('#verif_status').prop('checked', false);
                             $('#verif_status').val('belum');
                         }
@@ -171,66 +167,47 @@
             $("#verif_status").change(function() {
                 if ($(this).is(":checked")) {
                     $(this).val("oke");
+                    $("#keterangan").prop('disabled',true);
+                    $("#keterangan").val('');
+
                 } else {
                     $(this).val("belum");
+                    $("#keterangan").prop('disabled',false);
+                    $("#keterangan").focus();
+                    toastr.error('Mohon isi keterangan..');
+
                 }
-            });
-
-
-            $('#verif_status').on('change', function() {
-                let id_berita = $('#id_berita').val();
-                let verif_status = $('#verif_status').val();
-
-                $.ajax({
-                    type: "POST",
-                    url: "{{base_url('berita/verif')}}",
-                    data: {
-                        id_berita: id_berita,
-                        verif_status: verif_status
-                    },
-                    success: function(data) {
-                        if (verif_status == 'oke') {
-                            $('#keterangan').val('');
-                            $('#keterangan').prop("disabled", true);
-                            $('#simpan_btn').prop("disabled", true);
-                            $('#modal-lihat').modal('hide');
-                            toastr.success('Status berita berhasil diverifikasi!');
-                            table.ajax.reload();
-                        } else if (verif_status == 'belum') {
-                            $('#keterangan').prop("disabled", false);
-                            $("#keterangan").prop('required', true);
-                            $('#simpan_btn').prop("disabled", false);
-                            $('.link').hide();
-                            $('.share').hide();
-                            $('.view').hide();
-                            $('.screenshot').hide();
-                            $("#keterangan").focus();
-                            toastr.error('Status berita tidak diverifikasi! Mohon isi keterangan..');
-                            table.ajax.reload();
-                        }
-
-                    },
-                    error: function(data) {
-                        toastr.warning('Status berita gagal diverifikasi!');
-                    }
-                });
             });
 
 
             $('#form-verif').submit('click', function() {
                 $.ajax({
                     type: "POST",
-                    url: "{{base_url('berita/belum_verif')}}",
+                    url: "{{base_url('berita/verif')}}",
                     data: new FormData(this),
                     processData: false,
                     contentType: false,
                     cache: false,
                     async: false,
                     success: function(data) {
-                        toastr.success('Keterangan Berhasil ditambahkan');
+                        if ($("#verif_status").val() == 'oke') {
+                            $('#keterangan').val('');
+                            $('#keterangan').prop("disabled", true);
+                            $('#modal-lihat').modal('hide');
+                            toastr.success('Draft berita berhasil diverifikasi!');
+                            table.ajax.reload();
+                        } else if ($("#verif_status").val() == 'belum') {
+                            $('.link').hide();
+                            $('.share').hide();
+                            $('.view').hide();
+                            $('.screenshot').hide();
+                            $('#modal-lihat').modal('hide');
+                            toastr.error('Draft berita tidak diverifikasi!');
+                            table.ajax.reload();
+                        }
                     },
                     error: function(data) {
-                        toastr.warning('Keterangan Berhasil gagal ditambahkan!');
+                        toastr.warning('Status berita gagal diverifikasi!');
                     }
                 });
                 return false;

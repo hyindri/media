@@ -136,7 +136,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">TUTUP</button>
                 <button id="simpan_btn" type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
             </div>
             {{form_close()}}
@@ -175,8 +175,9 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_status_berita" class="form-control">
-                                <option value=""> - </option>
-                                <option value="oke">Valid</option>
+                            <option value=""> - Pilih - </option>
+                                <option value="valid">Valid</option>
+                                <option value="oke">Draft Valid</option>
                                 <option value="belum">Belum Valid</option>
                             </select>
                         </div>
