@@ -10128,6 +10128,7 @@ fieldset[disabled] .form-control {
 
 .dropdown-menu ul.menu {
     padding-left: 0;
+    list-style-type: none !important;
 }
 
 .dropdown-menu ul.menu.tasks h4 {
@@ -10165,6 +10166,7 @@ fieldset[disabled] .form-control {
 
 .dropdown-menu ul.menu li {
     border-bottom: 1px solid #eee;
+    list-style-type: none !important;
 }
 
 .dropdown-menu ul.menu li:last-child {
@@ -11281,4 +11283,8 @@ html.ie11 .bs-searchbox .form-control {
 .p-modal {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.h-ul {
+    list-style-type: none !important;
 }
