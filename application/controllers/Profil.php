@@ -15,31 +15,7 @@ class Profil extends CI_Controller
     
     public function index()
     {  
-        $data = array (
-            'username' => $this->session->userdata('username'),
-            'level' => $this->session->userdata('level'),
-            'status' => $this->session->userdata('status'),
-            'nama' => $this->session->userdata('nama'),
-            'tipe_mediamassa' => $this->session->userdata('tipe_mediamassa'),
-            'tipe_publikasi' => $this->session->userdata('tipe_publikasi'),
-            'status' => $this->session->userdata('status'),
-            'pimpinan' => $this->session->userdata('pimpinan'),            
-            'npwp' => $this->session->userdata('npwp'),
-            'mulai_mou' => date('d/m/Y', strtotime($this->session->userdata('mulai_mou'))),
-            'akhir_mou' => date('d/m/Y', strtotime($this->session->userdata('akhir_mou'))),
-            'perusahaan' => $this->session->userdata('perusahaan'),
-            'alamat_per' => $this->session->userdata('alamat_per'),
-            'rekening' => $this->session->userdata('rekening'),
-            'kabiro' => $this->session->userdata('kabiro'),
-            'surat_kabiro' => $this->session->userdata('surat_kabiro'),
-            'telp' => $this->session->userdata('telp'),
-            'wartawan' => $this->session->userdata('wartawan'),
-            'sertifikat' => $this->session->userdata('sertifikat'),
-            'verifikasi' => $this->session->userdata('verifikasi'),
-            'penawaran_kerjasama' => $this->session->userdata('penawaran_kerjasama')
-            
-        );      
-        view('profil.index',$data);
+        redirect('dashboard');
     }
 
     public function detail($id)

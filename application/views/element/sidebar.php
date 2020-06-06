@@ -15,7 +15,7 @@
 						aria-expanded="true">keyboard_arrow_down</i>
 					<ul class="dropdown-menu pull-right">
 						@if($this->session->userdata('level') == 'user')
-							<li><a href="<?php echo site_url('profil/'.$this->session->userdata('id_media'));?>"><i class="material-icons">person</i>Profile</a></li>		
+							<li><a href="<?php echo site_url('dashboard/userprofile/'.$this->session->userdata('id_media'));?>"><i class="material-icons">person</i>Profile</a></li>		
 							<li role="separator" class="divider"></li>				
 						@endif						
 						<li><a href="{{site_url('auth/logout')}}"><i class="material-icons">exit_to_app</i>Logout</a>

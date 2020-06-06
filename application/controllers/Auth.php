@@ -42,7 +42,7 @@ class Auth extends CI_Controller
                         $data = [
                             'login_status' => true,
                             'id_media' => $media['id_media'],
-                            'id_user' => $media['id_user'],
+                            'id_user' => $media['id'],
                             'username' => $media['username'],
                             'level' => $media['level'],
                             'status' => $media['status'],
@@ -68,7 +68,7 @@ class Auth extends CI_Controller
                     } else {
                         $data = [
                             'login_status' => true,
-                            'id' => $user['id'],
+                            'id_user' => $user['id'],
                             'username' => $user['username'],
                             'level' => $user['level'],
                             'status' => $user['status']
