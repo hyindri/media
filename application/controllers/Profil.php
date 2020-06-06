@@ -127,7 +127,17 @@ class Profil extends CI_Controller
     public function ubah($id = null)
     {
        if(!isset($id)) redirect('profil');
-       
+       if($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin'){
+           $data = array(
+               'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
+               'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))
+           );
+       }else{
+           $data = array(
+               'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+               'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
+           );
+       }
        $data['data_profil'] = $this->users->getById($id);
 
        if (!$data['data_profil']) show_404();
