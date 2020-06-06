@@ -273,7 +273,7 @@ class Berita extends CI_Controller
         if ($cek->status_berita == 'oke') {
             $data = array(
                 'link_berita' => $this->input->post('ubah_link_berita'),
-                'share' => $this->input->post('ubah_share'),
+                'share' => implode(", ", $this->input->post('check')),
                 'jumlah_view' => $this->input->post('ubah_jumlah_view'),
                 'status_berita' => 'valid',
                 'dibuat_oleh' => $this->session->userdata('username'),

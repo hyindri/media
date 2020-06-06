@@ -27,7 +27,7 @@ class Notifikasi_model extends CI_Model
     {   
         $this->db->where('user_penerima', $id);
         $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table, 20, 0);
+        return $this->db->get($this->table, 5, 0);
     }
 
     // get data by id

@@ -196,12 +196,32 @@
                 dataType: "JSON",
                 success: function(data) {
                     $('#ubah_link_berita').val(data.link_berita);
-                    $('#ubah_share').val(data.share);
                     $('#ubah_jumlah_view').val(data.jumlah_view);
                     $('#ubah_judul').val(data.judul_berita);
                     $('#ubah_narasi').val(data.narasi_berita);
                     $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
                     $('#file_lama').val(data.screenshoot);
+                    $('#check_fb').val('Facebook').prop('checked',false);
+                    $('#check_twitter').val('Twitter').prop('checked',false);
+                    $('#check_wa').val('Whatsapp').prop('checked',false);
+                    $('#check_line').val('Line').prop('checked',false);
+                    var result = data.share.split(", ");
+                    for (var i = 0; i < result.length; i++) {
+                        if(result[i] == "Facebook"){
+                            $('#check_fb').prop('checked',true);
+                        }
+                        if(result[i] == "Twitter"){
+                            $('#check_twitter').prop('checked',true);
+                        }
+                        if(result[i] == "Whatsapp"){
+                            $('#check_wa').prop('checked',true);
+                        }
+                        if(result[i] == "Line"){
+                            $('#check_line').prop('checked',true);
+                        }
+                    }
+
+
                 }
             });
         });
