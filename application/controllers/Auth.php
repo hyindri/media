@@ -82,7 +82,7 @@ class Auth extends CI_Controller
                     redirect('auth');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Password Salah!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Password Salah! Mohon periksa kembali password anda</div>');
                 redirect('auth');
             }
         } else {
@@ -130,16 +130,35 @@ class Auth extends CI_Controller
 
 
     public function changepassword(){
-//        $data = $this->users->change_password();
-//        $this->session->set_flashdata('notif','<div class="alert bg-green alert-dismissible" role="alert">
-//        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-//        Password Berhasil Diubah
-//        </div>');
-//        redirect(site_url('profil'));
 
 		if ($this->users->change_password()==true)
 		{
-			$this->session->sess_destroy();
+			$sesi_selesai = array(
+                'login_status' => 'login_status',
+                'id_media' => 'id_media',
+                'id_user' =>'id_user',
+                'username' => 'username',
+                'level' => 'level',
+                'status' => 'status',
+                'nama' => 'nama',
+                'tipe_publikasi' => 'tipe_publikasi',
+                'tipe_mediamassa' => 'tipe_mediamassa',
+                'pimpinan' => 'pimpinan',                            
+                'npwp' => 'npwp',
+                'mulai_mou' => 'mulai_mou',
+                'akhir_mou' => 'akhir_mou',
+                'perusahaan' => 'perusahaan',
+                'alamat_per' => 'alamat_per',
+                'rekening' => 'rekening',
+                'kabiro' => 'kabiro',
+                'surat_kabiro' => 'surat_kabiro',
+                'telp' => 'telp',
+                'wartawan' => 'wartawan',
+                'sertifikat' => 'sertifikat',
+                'verifikasi' => 'verifikasi',
+                'penawaran_kerjasama' =>'penawaran_kerjasama' 
+            );
+            $this->session->unset_userdata($sesi_selesai);    
 			$this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Password telah diganti, silahkan login ulang!</div>');
 			redirect('auth');
 		}
@@ -160,7 +179,7 @@ class Auth extends CI_Controller
             'nama' => 'nama',
             'tipe_publikasi' => 'tipe_publikasi',
             'tipe_mediamassa' => 'tipe_mediamassa',
-            'pemimpin' => 'pemimpin',                            
+            'pimpinan' => 'pimpinan',                            
             'npwp' => 'npwp',
             'mulai_mou' => 'mulai_mou',
             'akhir_mou' => 'akhir_mou',
@@ -176,7 +195,7 @@ class Auth extends CI_Controller
             'penawaran_kerjasama' =>'penawaran_kerjasama' 
         );
         $this->session->unset_userdata($sesi_selesai);
-        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">You have been logged out!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Anda Telah Logout, Terima Kasih :)</div>');
         redirect('auth');
     }
 

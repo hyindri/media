@@ -15,7 +15,32 @@ class Profil extends CI_Controller
     
     public function index()
     {  
-        redirect('dashboard');
+        $data = array (
+            'username' => $this->session->userdata('username'),
+            'level' => $this->session->userdata('level'),
+            'status' => $this->session->userdata('status'),
+            'nama' => $this->session->userdata('nama'),
+            'tipe_mediamassa' => $this->session->userdata('tipe_mediamassa'),
+            'tipe_publikasi' => $this->session->userdata('tipe_publikasi'),
+            'status' => $this->session->userdata('status'),
+            'pimpinan' => $this->session->userdata('pimpinan'),
+            'nik' => $this->session->userdata('nik'),
+            'npwp' => $this->session->userdata('npwp'),
+            'mulai_mou' => date('d/m/Y', strtotime($this->session->userdata('mulai_mou'))),
+            'akhir_mou' => date('d/m/Y', strtotime($this->session->userdata('akhir_mou'))),
+            'perusahaan' => $this->session->userdata('perusahaan'),
+            'alamat_per' => $this->session->userdata('alamat_per'),
+            'rekening' => $this->session->userdata('rekening'),
+            'kabiro' => $this->session->userdata('kabiro'),
+            'surat_kabiro' => $this->session->userdata('surat_kabiro'),
+            'telp' => $this->session->userdata('telp'),
+            'wartawan' => $this->session->userdata('wartawan'),
+            'sertifikat' => $this->session->userdata('sertifikat'),
+            'verifikasi' => $this->session->userdata('verifikasi'),
+            'penawaran_kerjasama' => $this->session->userdata('penawaran_kerjasama')
+            
+        );      
+        view('profil.index',$data);
     }
 
     public function detail($id)
@@ -60,12 +85,39 @@ class Profil extends CI_Controller
 
     public function updatedata()
     {
-        $this->users->updateProfil();
-        $this->session->set_flashdata('notif','<div class="alert bg-green alert-dismissible" role="alert">
+        $this->medmas->updateProfil();    
+        $sesi_selesai = array(
+            'login_status' => 'login_status',
+            'id_media' => 'id_media',
+            'id_user' =>'id_user',
+            'username' => 'username',
+            'level' => 'level',
+            'status' => 'status',
+            'nama' => 'nama',
+            'tipe_publikasi' => 'tipe_publikasi',
+            'tipe_mediamassa' => 'tipe_mediamassa',
+            'pimpinan' => 'pimpinan',                            
+            'npwp' => 'npwp',
+            'mulai_mou' => 'mulai_mou',
+            'akhir_mou' => 'akhir_mou',
+            'perusahaan' => 'perusahaan',
+            'alamat_per' => 'alamat_per',
+            'rekening' => 'rekening',
+            'kabiro' => 'kabiro',
+            'surat_kabiro' => 'surat_kabiro',
+            'telp' => 'telp',
+            'wartawan' => 'wartawan',
+            'sertifikat' => 'sertifikat',
+            'verifikasi' => 'verifikasi',
+            'penawaran_kerjasama' =>'penawaran_kerjasama' 
+        );
+        $this->session->unset_userdata($sesi_selesai);                        
+        $this->session->set_flashdata('message','<div class="alert bg-green alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Data Profil Berhasil Diubah
-        </div>');
-        redirect('profil');
+        Data Profil Berhasil Diubah. Mohon Login Kembali.
+        </div>');        
+        redirect('auth');		
+              
     }
 
 }
