@@ -24,8 +24,8 @@
 								</div>
 							</div>
 							<div class="form-group align-right">
-								<button class="btn bg-green col-white waves-effect waves-light-blue" type="submit">SIMPAN</button>
 								<button class="btn bg-red col-white waves-effect waves-light-blue" type="button">BATAL</button>
+								<button class="btn bg-green col-white waves-effect waves-light-blue" type="submit">SIMPAN</button>
 							</div>
 						</form>
 					</div>

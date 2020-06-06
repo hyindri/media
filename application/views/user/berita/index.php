@@ -3,13 +3,16 @@
 @section('title','Berita')
 
 <div class="container-fluid">
+    <!-- Breadcrumb  -->
     <div class="block-header">
-        <h2>
-            Daftar {{$title}}
-            <small>di Diskominfo <a href="https://datatables.net/" target="_blank">Kabupaten Bintan</a></small>
-        </h2>
+        <ol class="breadcrumb">
+            <li>HOME</li>
+            <li class="active">DAFTAR LAPORAN BERITA</li>
+        </ol>
     </div>
-    <!-- Basic Examples -->
+    <!-- end breadcrumb -->
+
+    <!-- Table -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -19,19 +22,25 @@
                     </h2>
                     <ul class="header-dropdown m-r--5">
                         <li>
-                            <a data-toggle="modal" data-target="#modal-draft" role="button" aria-haspopup="true" aria-expanded="false">
+                            <div class="icon-button-demo align-right m-b--25">
+                                <a data-toggle="modal" data-target="#modal-draft">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light-blue">
+                                        <i class="col-white material-icons">control_point</i>
+                                    </button></a>
+                            </div>
+                            <!-- <a data-toggle="modal" data-target="#modal-draft" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons">note_add</i>
-                            </a>
+                            </a> -->
                         </li>
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<i class="material-icons">more_vert</i>
-							</a>
-							<ul class="dropdown-menu pull-right">
-								<li><a data-toggle="modal" data-target="#modal-filter">Filter</a></li>
-								<li><a id="btn-reset">Reset</a></li>
-							</ul>
-						</li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a data-toggle="modal" data-target="#modal-filter">Filter</a></li>
+                                <li><a id="btn-reset">Reset</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <div class="body">
@@ -104,13 +113,13 @@
 
         });
 
-        $('#btn-filter').click(function() { 
+        $('#btn-filter').click(function() {
             $('#modal-filter').modal('hide');
-            table.ajax.reload(); 
+            table.ajax.reload();
         });
-        $('#btn-reset').click(function() { 
+        $('#btn-reset').click(function() {
             $('#form-filter')[0].reset();
-            table.ajax.reload(); 
+            table.ajax.reload();
         });
 
         $('#table').on('click', '.lihat', function() {
@@ -138,47 +147,45 @@
                     $('#lihat_pada').html(data.diperiksa_pada);
                     $('#lihat_keterangan').html(data.keterangan);
                     if (data.status_berita == 'valid') {
-						$('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-						$('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-						$('#lihat_keterangan').html("-");
+                        $('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                        $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
+                        $('#lihat_keterangan').html("-");
                         $('#lihat_status_berita').html('<span class="badge bg-green">Valid</span>');
-                    }else if (data.status_berita == 'oke'){
-						$('#lihat_status_berita').html('<span class="badge bg-blue">Draft Disetujui</span>');
-						if (data.screenshoot=='')
-						{
-							$('#lihat_screenshoot').html('<span class="badge bg-red">Anda belum upload screenshot</span>');
-						}else{
-							$('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-						}
-						if (data.link_berita=='')
-						{
-							$('#lihat_link_berita').html('<span class="badge bg-red">Anda belum upload link</span>');
-						}else{
-							$('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
+                    } else if (data.status_berita == 'oke') {
+                        $('#lihat_status_berita').html('<span class="badge bg-blue">Draft Disetujui</span>');
+                        if (data.screenshoot == '') {
+                            $('#lihat_screenshoot').html('<span class="badge bg-red">Anda belum upload screenshot</span>');
+                        } else {
+                            $('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                        }
+                        if (data.link_berita == '') {
+                            $('#lihat_link_berita').html('<span class="badge bg-red">Anda belum upload link</span>');
+                        } else {
+                            $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
 
-						}
-                    }else{
-						$('#lihat_status_berita').html('<span class="badge bg-red">Draft Belum Valid</span>');
-						$('#link').hide();
-						$('#sharing').hide();
-						$('#view').hide();
-						$('#screenshot').hide();
-					}
+                        }
+                    } else {
+                        $('#lihat_status_berita').html('<span class="badge bg-red">Draft Belum Valid</span>');
+                        $('#link').hide();
+                        $('#sharing').hide();
+                        $('#view').hide();
+                        $('#screenshot').hide();
+                    }
                 }
             });
         });
 
         $('#table').on('click', '.ubah', function() {
-			var id_berita;
-        	if ($(this).data('status')=='belum'){
-				$('#modal-ubah-draft').modal('show');
-				$("#edit_id_berita2").val($(this).data('id'));
-				id_berita = $('#edit_id_berita2').val();
-			}else{
-				$('#modal-ubah').modal('show');
-				$("#edit_id_berita").val($(this).data('id'));
-				id_berita = $('#edit_id_berita').val();
-			}
+            var id_berita;
+            if ($(this).data('status') == 'belum') {
+                $('#modal-ubah-draft').modal('show');
+                $("#edit_id_berita2").val($(this).data('id'));
+                id_berita = $('#edit_id_berita2').val();
+            } else {
+                $('#modal-ubah').modal('show');
+                $("#edit_id_berita").val($(this).data('id'));
+                id_berita = $('#edit_id_berita').val();
+            }
 
             $.ajax({
                 type: "POST",
@@ -204,10 +211,10 @@
             $("#hapus_id_berita").val($(this).data('id'));
         });
 
-		$('#table').on('click', '.upload', function() {
-			$('#modal-ubah').modal('show');
-			$("#edit_id_berita").val($(this).data('id'));
-		});
+        $('#table').on('click', '.upload', function() {
+            $('#modal-ubah').modal('show');
+            $("#edit_id_berita").val($(this).data('id'));
+        });
 
         $('#form-tambah').submit('click', function() {
             $.ajax({
@@ -236,29 +243,29 @@
         });
 
 
-		$('#form-draft').submit('click', function() {
-			$.ajax({
-				type: "POST",
-				url: "{{base_url('berita/draft')}}",
-				data: new FormData(this),
-				processData: false,
-				contentType: false,
-				cache: false,
-				async: false,
-				success: function(data) {
-					$('#judul_berita').val("");
-					$('#narasi_berita').val("");
-					$('#modal-draft').modal('hide');
-					toastr.success('Draft berita berhasil ditambahkan!');
-					table.ajax.reload();
-				},
-				error: function(data) {
-					toastr.warning('Draft berita gagal ditambahkan!');
-					table.ajax.reload();
-				}
-			});
-			return false;
-		});
+        $('#form-draft').submit('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "{{base_url('berita/draft')}}",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+                success: function(data) {
+                    $('#judul_berita').val("");
+                    $('#narasi_berita').val("");
+                    $('#modal-draft').modal('hide');
+                    toastr.success('Draft berita berhasil ditambahkan!');
+                    table.ajax.reload();
+                },
+                error: function(data) {
+                    toastr.warning('Draft berita gagal ditambahkan!');
+                    table.ajax.reload();
+                }
+            });
+            return false;
+        });
 
 
         $('#form-ubah').submit('click', function() {
@@ -283,27 +290,27 @@
             return false;
         });
 
-		$('#form-ubah-draft').submit('click', function() {
-			$.ajax({
-				type: "POST",
-				url: "{{base_url('berita/ubah_draft')}}",
-				data: new FormData(this),
-				processData: false,
-				contentType: false,
-				cache: false,
-				async: false,
-				success: function(data) {
-					$('#modal-ubah-draft').modal('hide');
-					toastr.success('Draft berita berhasil diubah!');
-					table.ajax.reload();
-				},
-				error: function(data) {
-					toastr.warning('Draft berita gagal diubah!');
-					table.ajax.reload();
-				}
-			});
-			return false;
-		});
+        $('#form-ubah-draft').submit('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "{{base_url('berita/ubah_draft')}}",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+                success: function(data) {
+                    $('#modal-ubah-draft').modal('hide');
+                    toastr.success('Draft berita berhasil diubah!');
+                    table.ajax.reload();
+                },
+                error: function(data) {
+                    toastr.warning('Draft berita gagal diubah!');
+                    table.ajax.reload();
+                }
+            });
+            return false;
+        });
 
         $('#form-hapus').submit('click', function() {
             $.ajax({
