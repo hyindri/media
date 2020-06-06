@@ -17,7 +17,7 @@
 					<h2>Ubah Password</h2>
 					<div class="body">
 						<form id="forgot_password" method="POST" action="{{site_url('auth/changepassword')}}">
-							<input type="hidden" name="id" value="{{$this->session->userdata('id')}}">
+							<input type="hidden" name="id" value="{{$this->session->userdata('id_user')}}">
 							<div class="input-group">
 								<div class="form-line">
 									<input type="password" class="form-control" name="new_password" placeholder="Masukkan Password Terbaru Anda" required autofocus>

@@ -130,12 +130,20 @@ class Auth extends CI_Controller
 
 
     public function changepassword(){
-        $data = $this->users->change_password();        
-        $this->session->set_flashdata('notif','<div class="alert bg-green alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Password Berhasil Diubah
-        </div>');
-        redirect(site_url('profil'));
+//        $data = $this->users->change_password();
+//        $this->session->set_flashdata('notif','<div class="alert bg-green alert-dismissible" role="alert">
+//        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+//        Password Berhasil Diubah
+//        </div>');
+//        redirect(site_url('profil'));
+
+		if ($this->users->change_password()==true)
+		{
+			$this->session->sess_destroy();
+			$this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Password telah diganti, silahkan login ulang!</div>');
+			redirect('auth');
+		}
+
         
 
     }

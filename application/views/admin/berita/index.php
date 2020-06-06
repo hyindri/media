@@ -34,7 +34,7 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table id="table" class="table table-bordered table-striped table-hover display nowrap" width="100%">
+                        <table id="table" class="table table-bordered table-striped table-hover display wrap" width="100%">
                             <thead>
                                 <tr>
                                     <th style="width:10px;">No</th>
