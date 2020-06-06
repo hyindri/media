@@ -34,7 +34,7 @@
                         <i class="material-icons">notifications</i>
                     </a>
                     @endif
-                    <ul class="dropdown-menu">
+                    <ul class="h-ul dropdown-menu">
                         <li class="header">NOTIFIKASI</li>
                         <li class="body">
                             <ul class="menu">
