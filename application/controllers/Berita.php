@@ -48,11 +48,13 @@ class Berita extends CI_Controller
                 $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal));
                 $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama . '</a>';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>'.$q->judul_berita.'</a>';
-                if ($q->status_berita == 'oke') {
+                if ($q->status_berita == 'valid') {
                     $row[] = '<span class="badge bg-green">Valid</span>';
-                } else {
-                    $row[] = '<span class="badge bg-red">Belum Valid</span>';
-                }
+                } else if ($q->status_berita == 'oke') {
+                    $row[] = '<span class="badge bg-blue">Draft Valid</span>';
+                }else{
+					$row[] = '<span class="badge bg-red">Draft Belum Valid</span>';
+				}
                 $row[] = '<div class="btn-group"><button title="Lihat" type="button" data-id="' . $q->id_berita . '" class="verif btn btn-primary btn-xs"><i class="material-icons">visibility</i> </button></div>';
             } else if ($this->session->userdata('level') == 'admin') {
                 $no++;
@@ -156,10 +158,10 @@ class Berita extends CI_Controller
     {
         $id = $this->input->post('id_berita');
         $data = array(
-            'status_berita' => 'belum',
+            'keterangan' => $this->input->post('keterangan'),
+            'status_berita' => $this->input->post('verif_status'),
             'diperiksa_oleh' => $this->session->userdata('username'),
             'diperiksa_pada' => date('Y-m-d h:i:s'),
-            'keterangan' => $this->input->post('keterangan')
         );
         $result = $this->berita->ubah($id, $data);
         echo json_encode($result);

@@ -170,7 +170,7 @@
 
         $('#table').on('click', '.ubah', function() {
 			var id_berita;
-        	if ($(this).data('status')=='menunggu'){
+        	if ($(this).data('status')=='belum'){
 				$('#modal-ubah-draft').modal('show');
 				$("#edit_id_berita2").val($(this).data('id'));
 				id_berita = $('#edit_id_berita2').val();
