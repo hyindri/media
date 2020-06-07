@@ -128,6 +128,14 @@ class Dashboard_model extends CI_Model
 			->num_rows();
 	}
 
+	function __get_statusAkun()
+	{
+		$this->db->select('id, username, status');
+		$this->db->where('id', $this->session->userdata('id_user'));
+		$this->db->where('status', 'registrasi');
+		return $this->db->get('tmst_user');
+	}
+
 
 
 }

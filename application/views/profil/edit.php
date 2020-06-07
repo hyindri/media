@@ -2,11 +2,16 @@
 @section('content')
 @section('title','Ubah Informasi Profil')
 <div class="container-fluid">
+	<!-- Breadcrumb  -->
 	<div class="block-header">
-		<h2>Form Ubah Informasi Profil</h2>
+		<ol class="breadcrumb">
+			<li>HOME</li>
+			<li>PROFIL</li>
+			<li class="active">INFORMASI PROFIL</li>
+		</ol>
 	</div>
-
-	<!-- Vertical Layout -->
+	<!-- end breadcrumb -->
+	<!-- form -->
 	<div class="row clearfix">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="card">
@@ -21,8 +26,7 @@
 						<label for=" ">Nama Media</label>
 						<div class="form-group">
 							<div class="form-line">
-								<input type="text" id="nama_media" class="form-control"
-									placeholder="Masukkan Nama Media" name="nama_media" value="{{$data_profil->nama}}">
+								<input type="text" id="nama_media" class="form-control" placeholder="Masukkan Nama Media" name="nama_media" value="{{$data_profil->nama}}">
 							</div>
 						</div>
 						<label for=" ">Nama Perusahaan</label>

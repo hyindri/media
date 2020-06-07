@@ -2,12 +2,15 @@
 @section("content")
 @section('title','Agenda')
 <div class="container-fluid">
+    <!-- Breadcrumb  -->
     <div class="block-header">
-        <h2>
-            Daftar Agenda            
-        </h2>
+        <ol class="breadcrumb">
+            <li>HOME</li>
+            <li class="active">AGENDA</li>
+        </ol>
     </div>
-    <!-- Basic Examples -->
+    <!-- end breadcrumb -->
+    <!-- Table -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -63,14 +66,14 @@
             "responsive": true,
             "info": true,
             "ordering": true,
-            "order": [], 
-          
+            "order": [],
+
             "ajax": {
                 "url": "{{site_url('agenda/json')}}",
                 "type": "POST"
             },
 
-          
+
             "columnDefs": [{
                 "targets": [0,3,4],
                 "orderable": false,
@@ -81,8 +84,8 @@
     });
 </script>
 <script>
-$('.datepicker').bootstrapMaterialDatePicker({
-    time: false
-});
+    $('.datepicker').bootstrapMaterialDatePicker({
+        time: false
+    });
 </script>
 @endsection

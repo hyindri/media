@@ -7,6 +7,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('users_model', 'users');
+        $this->load->model('notifikasi_model', 'notifikasi');
 
     }
 
@@ -101,6 +102,8 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
             view('auth.signup', $data);
         } else {
+
+            
             // validasinya success
             $data = array(
                 'username' => $this->input->post('username'),
@@ -126,6 +129,22 @@ class Auth extends CI_Controller
                 'akhir_mou' => $this->input->post('akhir_mou'),
             );
             $this->db->insert('tmst_media_massa', $data_media_massa);
+
+            $this->db->where('level', 'admin');
+            $query = $this->db->get('tmst_user');
+            foreach ($query->result() as $baris) {
+                $notif = array(
+                    'user_pengirim' => $ins_id,
+                    'user_penerima' => $baris->id,
+                    'judul' => 'Ada user baru',
+                    'pesan' => ' Terdapat user baru dengan username ' . $this->input->post('username') .' dari media massa bernama '. $this->input->post('nama'),
+                    'link' => $this->uri->segment(1),
+                    'dibaca' => '1',
+                    'dibuat_tanggal' => date('y-m-d'),
+                    'dibuat_pukul' => date('h:i:s')
+                );
+                $this->notifikasi->simpan($notif);
+            }
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Pendaftaran berhasil.</div>');
             redirect('auth');
         }
