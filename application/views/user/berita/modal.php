@@ -84,7 +84,14 @@
 
                 <div class="form-group">
                     <div class="form-line">
-                        <input name="ubah_share" id="ubah_share" class="form-control" placeholder="Dibagikan ke platform apa saja.." required>
+                    <input type="checkbox" name="check[]" id="check_fb" class="filled-in chk-col-indigo">
+                    <label for="check_fb">Facebook</label>
+                    <input type="checkbox" name="check[]" id="check_twitter" class="filled-in chk-col-light-blue">
+                    <label for="check_twitter">Twitter</label>
+                    <input type="checkbox" name="check[]" id="check_wa" class="filled-in chk-col-teal">
+                    <label for="check_wa">Whatsapp</label>
+                    <input type="checkbox" name="check[]" id="check_line" class="filled-in chk-col-light-green">
+                    <label for="check_line">Line</label>
                     </div>
                 </div>
                 <div class="form-group">

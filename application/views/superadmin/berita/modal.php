@@ -93,13 +93,13 @@
                     <!-- Keterangan belum di verifikasi -->
                     <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Keterangan belum Diverifikasi</span>
+                            <span>Keterangan</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <textarea id="keterangan" name="keterangan" rows="5" class="form-control"></textarea>
+                            <span id="keterangan"></span>
                         </div>
                     </div>
                     <!-- Screenshoot -->
@@ -142,7 +142,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_nama" class="form-control show-tick">
-                            <option value=""> - </option>
+                                <option value=""> - </option>
                                 @foreach($media as $row)
                                 <option value="{{$row->nama}}">{{$row->nama}}</option>
                                 @endforeach

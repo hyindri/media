@@ -27,8 +27,8 @@ class Dashboard extends CI_Controller
 			$data['berita_hariini'] = $this->dashboard->__get_berita_hari();
 			$data['berita_mingguini'] = $this->dashboard->__get_berita_minggu($id);
 			$data['berita_bulanini'] = $this->dashboard->__get_berita_bulan($id);
-			$data['notif'] = $this->notifikasi->get_by_id($this->session->userdata('id'));
-			$data['jumlah_notif']  = $this->notifikasi->get_by_jumlah($this->session->userdata('id'));
+			$data['notif'] = $this->notifikasi->get_by_id($this->session->userdata('id_user'));
+			$data['jumlah_notif']  = $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'));
 			view('superadmin.dashboard.index', $data);
 		} elseif ($this->session->userdata('username') && $this->session->userdata('level') == 'admin') {
 			$id = '';
@@ -38,8 +38,8 @@ class Dashboard extends CI_Controller
 			$data['berita_hariini'] = $this->dashboard->__get_berita_hari();
 			$data['berita_mingguini'] = $this->dashboard->__get_berita_minggu($id);
 			$data['berita_bulanini'] = $this->dashboard->__get_berita_bulan($id);
-			$data['notif'] = $this->notifikasi->get_by_id($this->session->userdata('id'));
-			$data['jumlah_notif']  = $this->notifikasi->get_by_jumlah($this->session->userdata('id'));
+			$data['notif'] = $this->notifikasi->get_by_id($this->session->userdata('id_user'));
+			$data['jumlah_notif']  = $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'));
 			view('admin.dashboard.index', $data);
 		} elseif ($this->session->userdata('username') && $this->session->userdata('level') == 'user') {
 			$data['hasil'] = $this->dashboard->__get_chart_harian($this->session->userdata('id_media'));
@@ -104,7 +104,7 @@ class Dashboard extends CI_Controller
 	function set_status_notif()
 	{
         if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin' ) {
-			$id = $this->session->userdata('id');
+			$id = $this->session->userdata('id_user');
 		}else{
 			$id = $this->session->userdata('id_user');
 		}

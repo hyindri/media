@@ -21,14 +21,14 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-bordered table-striped table-hover display nowrap">
+                    <table id="datatable" class="table table-bordered table-striped table-hover display nowrap" width='100%'>
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                <th style="width:10px;">No</th>
+                                    <th class="text-center">Tanggal</th>
                                     <th>Judul</th>
-                                    <th>Tanggal</th>
-                                    <th>Status</th>
-                                    <th>File</th>
+                                    <th class="text-center">File</th>
+                                    <th class="text-center">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,22 +61,23 @@
                 },
             },
             "processing": true,
-            "serverSide": true,
-            "searching": false,
+            "serverSide": true, 
+            "searching": true,
             "responsive": true,
             "info": true,
             "ordering": true,
             "order": [],
 
             "ajax": {
-                "url": "{{site_url('agenda/fetch_data')}}",
+                "url": "{{site_url('agenda/json')}}",
                 "type": "POST"
             },
 
 
             "columnDefs": [{
-                "targets": [0, 4],
+                "targets": [0,3,4],
                 "orderable": false,
+                "class": "text-center"
             }, ],
 
         });

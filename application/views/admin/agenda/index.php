@@ -25,17 +25,15 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table id="table" class="table table-bordered table-striped table-hover display nowrap">
+                            <table id="table" class="table table-bordered table-striped table-hover display nowrap" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th style="width: 10px;">No</th>
+                                        <th class="text-center">Tanggal</th>
                                         <th>Judul</th>
-                                        <th>Tanggal</th>
-                                        <th>Status</th>
-                                        <th>File</th>
-                                        <th>Dibuat oleh</th>
-                                        <th>Dibuat pada</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center">File</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,7 +69,7 @@
                 "processing": true,
                 "serverSide": true,
                 "responsive": true,
-                "searching": false,
+                "searching": true,
                 "info": true,
                 "ordering": true,
                 "order": [],
@@ -82,8 +80,9 @@
                 },
 
                 "columnDefs": [{
-                    "targets": [0, 4, 5, 7],
+                    "targets": [0,3,4,5],
                     "orderable": false,
+                    "class": "text-center"
                 }, ],
 
             });
@@ -122,6 +121,8 @@
                 $("#edit_judul").val($(this).data('judul'));
                 $("#edit_tanggal").val($(this).data('tanggal'));
                 $("#edit_status").val($(this).data('status'));
+                var file_lama = $(this).data('file');
+                $('#file_lama').html('<a href="{{site_url()}}upload/agenda/' + file_lama + '"  class="thumbnail"> <embed class="img-responsive" src="{{site_url()}}upload/agenda/' +  file_lama + '" width="600" height="300"></a>');
             });
 
             $('#ubah-agenda').submit('click', function() {

@@ -16,8 +16,8 @@ class Berita extends CI_Controller
             $data = array(
                 'title' => 'Berita',
                 'media' => $this->berita->__get_media_massa(),
-                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
             $data['id_berita'] = ['id' => 'id_berita', 'name' => 'id_berita', 'type' => 'hidden'];
             return view('superadmin.berita.index', $data);
@@ -25,8 +25,8 @@ class Berita extends CI_Controller
             $data = array(
                 'title' => 'Berita',
                 'media' => $this->berita->__get_media_massa(),
-                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
             $data['id_berita'] = ['id' => 'id_berita', 'name' => 'id_berita', 'type' => 'hidden'];
             return view('admin.berita.index', $data);
@@ -172,7 +172,7 @@ class Berita extends CI_Controller
             $query = $this->db->get('tmst_media_massa');
             foreach ($query->result() as $baris) {
                 $notif = array(
-                    'user_pengirim' => $this->session->userdata('id'),
+                    'user_pengirim' => $this->session->userdata('id_user'),
                     'user_penerima' => $baris->user_id,
                     'judul' => $this->session->userdata('username') . ' Memverifikasi draft',
                     'pesan' => $this->session->userdata('username') . ' memverifikasi draft anda yang berjudul ' . $cek->judul_berita,
@@ -188,7 +188,7 @@ class Berita extends CI_Controller
             $query = $this->db->get('tmst_media_massa');
             foreach ($query->result() as $baris) {
                 $notif = array(
-                    'user_pengirim' => $this->session->userdata('id'),
+                    'user_pengirim' => $this->session->userdata('id_user'),
                     'user_penerima' => $baris->user_id,
                     'judul' => $this->session->userdata('username') . ' Membatalkan draft',
                     'pesan' => $this->session->userdata('username') . ' ada draft berita yang harus diperbaiki yang berjudul ' . $cek->judul_berita,
@@ -273,7 +273,7 @@ class Berita extends CI_Controller
         if ($cek->status_berita == 'oke') {
             $data = array(
                 'link_berita' => $this->input->post('ubah_link_berita'),
-                'share' => $this->input->post('ubah_share'),
+                'share' => implode(", ", $this->input->post('check')),
                 'jumlah_view' => $this->input->post('ubah_jumlah_view'),
                 'status_berita' => 'valid',
                 'dibuat_oleh' => $this->session->userdata('username'),
