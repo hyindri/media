@@ -6,7 +6,7 @@
             </div>
             {{form_open('',['id'=>'form-verif','role'=>'form'])}}
             <div class="modal-body">
-            {{form_input($id_berita)}}
+                {{form_input($id_berita)}}
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 w-break">
                     <!-- Nama Media  -->
@@ -21,30 +21,30 @@
                             <span id="nama"></span>
                         </div>
                     </div>
-					<!-- Judul Berita  -->
-					<div class="row p-modal">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-							<span>Judul Berita</span>
-						</div>
-						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-							<span>:</span>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-							<span id="judul_berita"></span>
-						</div>
-					</div>
-					<!-- Narasi Berita  -->
-					<div class="row p-modal">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-							<span>Narasi Berita</span>
-						</div>
-						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-							<span>:</span>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-							<span id="narasi_berita"></span>
-						</div>
-					</div>
+                    <!-- Judul Berita  -->
+                    <div class="row p-modal">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+                            <span>Judul Berita</span>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <span>:</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
+                            <span id="judul_berita"></span>
+                        </div>
+                    </div>
+                    <!-- Narasi Berita  -->
+                    <div class="row p-modal">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+                            <span>Narasi Berita</span>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <span>:</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
+                            <span id="narasi_berita"></span>
+                        </div>
+                    </div>
                     <!-- Link Berita  -->
                     <div class="row p-modal link">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
@@ -147,18 +147,15 @@
 <div class="modal fade" id="modal-filter" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">FILTER</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header bg-indigo">
+                <h4 class="modal-title">FILTER</h4>
             </div>
             <form id="form-filter">
                 <div class="modal-body">
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_nama" class="form-control show-tick">
-                            <option value=""> - </option>
+                                <option value=""> - </option>
                                 @foreach($media as $row)
                                 <option value="{{$row->nama}}">{{$row->nama}}</option>
                                 @endforeach
@@ -175,7 +172,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_status_berita" class="form-control">
-                            <option value=""> - Pilih - </option>
+                                <option value=""> - Pilih - </option>
                                 <option value="valid">Valid</option>
                                 <option value="oke">Draft Valid</option>
                                 <option value="belum">Belum Valid</option>
@@ -184,7 +181,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="btn-filter" type="button" class="btn btn-link waves-effect waves-blue">CARI</button>
+                    <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">TUTUP</button>
+                    <button id="btn-filter" type="button" class="btn bg-green  col-white waves-effect waves-blue">CARI</button>
                 </div>
             </form>
         </div>

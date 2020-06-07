@@ -11285,6 +11285,11 @@ html.ie11 .bs-searchbox .form-control {
     padding-bottom: 10px;
 }
 
+.m-modal {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .h-ul {
     list-style-type: none !important;
 }
