@@ -74,6 +74,12 @@
                         <input type="file" name="file" class="form-control">
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="form-line">
+                        <p>File lama</p>
+                        <span id="file_lama"></span>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn bg-red col-white" data-dismiss="modal">BATAL</button>

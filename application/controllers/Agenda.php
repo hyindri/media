@@ -42,13 +42,15 @@ class Agenda extends CI_Controller
             $no++;
             $row = array();
             $row[] = $no;
+            $row[] = '<p class="text-center">'.$q->tanggal.'</p>';
             $row[] = $q->judul;
-            $row[] = $q->tanggal;
-            $row[] = $q->status;
-            $row[] = '<a href="' . site_url() . 'upload/agenda/' . $q->file . '" target="_blank">Download</a>';
-            $row[] = $q->dibuat_oleh;
-            $row[] = $q->dibuat_pada;
-            $row[] = '<div class="btn-group"><button type="button" name="ubah" data-id="' . $q->id . '" data-judul="' . $q->judul . '" data-tanggal="' . $q->tanggal . '" data-status="' . $q->status . '" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i></button>
+            $row[] = '<a class="text-center" href="' . site_url() . 'upload/agenda/' . $q->file . '" target="_blank">Download</a>';
+            if($q->status == 'aktif'){
+                $row[] = '<p class="col-teal text-center">Aktif</p>';
+            }else{
+                $row[] = '<p class="font-line-through col-red text-center">Aktif</p>';
+            }
+            $row[] = '<div class="btn-group"><button type="button" name="ubah" data-id="' . $q->id . '" data-judul="' . $q->judul . '" data-tanggal="' . $q->tanggal . '" data-status="' . $q->status . '" data-file="'.$q->file.'" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i></button>
             <div class="btn-group">';
             $data[] = $row;
         }
@@ -63,31 +65,31 @@ class Agenda extends CI_Controller
         echo json_encode($output);
     }
 
-    public function fetch_data()
-    { 
-        $list = $this->agenda->get_datatables();
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $la) {
-            $no++;
-            $row = array();
-            $row[] = $no;
-            $row[] = $la->judul;
-            $row[] = $la->tanggal;
-            $row[] = $la->status;
-            $row[] = '<a href="' . site_url() . 'upload/agenda/' . $la->file . '" target="_blank">Download</a>';
-            $data[] = $row;
-        }
+    // public function fetch_data()
+    // { 
+    //     $list = $this->agenda->get_datatables();
+    //     $data = array();
+    //     $no = $_POST['start'];
+    //     foreach ($list as $la) {
+    //         $no++;
+    //         $row = array();
+    //         $row[] = $no;
+    //         $row[] = $la->judul;
+    //         $row[] = $la->tanggal;
+    //         $row[] = $la->status;
+    //         $row[] = '<a href="' . site_url() . 'upload/agenda/' . $la->file . '" target="_blank">Download</a>';
+    //         $data[] = $row;
+    //     }
 
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->agenda->count_all(),
-            "recordsFiltered" => $this->agenda->count_filtered(),
-            "data" => $data,
-        );
-        //output to json format
-        echo json_encode($output);
-    }
+    //     $output = array(
+    //         "draw" => $_POST['draw'],
+    //         "recordsTotal" => $this->agenda->count_all(),
+    //         "recordsFiltered" => $this->agenda->count_filtered(),
+    //         "data" => $data,
+    //     );
+    //     //output to json format
+    //     echo json_encode($output);
+    // }
     
 
     public function tambah()
@@ -105,6 +107,22 @@ class Agenda extends CI_Controller
 
         $upload = $this->_do_upload();
         $data['file'] = $upload;
+
+        $this->db->where('level', 'user');
+        $query = $this->db->get('tmst_user');
+        foreach ($query->result() as $baris) {
+            $notif = array(
+                'user_pengirim' => $this->session->userdata('id_user'),
+                'user_penerima' => $baris->id,
+                'judul' => $this->session->userdata('username') . ' Menambahkan Agenda',
+                'pesan' => $this->session->userdata('username') . ' menambahkan agenda berjudul ' . $this->input->post('judul'),
+                'link' => $this->uri->segment(1),
+                'dibaca' => '1',
+                'dibuat_tanggal' => date('y-m-d'),
+                'dibuat_pukul' => date('h:i:s')
+            );
+            $this->notifikasi->simpan($notif);
+        }
 
         $this->db->where('judul', $data['judul']);
         $q = $this->db->get('tb_agenda');
@@ -125,6 +143,23 @@ class Agenda extends CI_Controller
             'tanggal' => date("Y-m-d", strtotime($this->input->post('edit_tanggal'))),
             'status' => $this->input->post('edit_status'),
         );
+
+        
+        $this->db->where('level', 'user');
+        $query = $this->db->get('tmst_user');
+        foreach ($query->result() as $baris) {
+            $notif = array(
+                'user_pengirim' => $this->session->userdata('id_user'),
+                'user_penerima' => $baris->id,
+                'judul' => $this->session->userdata('username') . ' Merubah Agenda',
+                'pesan' => ' Ada perubahan pada agenda yang berjudul ' . $this->input->post('edit_judul'),
+                'link' => $this->uri->segment(1),
+                'dibaca' => '1',
+                'dibuat_tanggal' => date('y-m-d'),
+                'dibuat_pukul' => date('h:i:s')
+            );
+            $this->notifikasi->simpan($notif);
+        }
         
         if(!empty($_FILES['file']['name']))
         {

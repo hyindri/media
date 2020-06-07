@@ -16,14 +16,14 @@ class Usermanagement extends CI_Controller
     {
         if($this->session->userdata('level') == 'admin'){
             $data =  array(
-                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))  
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))  
             );
             return view('admin.usermanagement.index',$data);
         } elseif($this->session->userdata('level') == 'superadmin'){
             $data =  array(
-                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))  
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))  
             );
             return view('superadmin.media.index',$data);
         }

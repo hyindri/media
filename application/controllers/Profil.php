@@ -18,8 +18,8 @@ class Profil extends CI_Controller
     {
         if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin') {
             $data = array(
-                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
             view('profil.index', $data);
         } else {
@@ -76,8 +76,8 @@ class Profil extends CI_Controller
                 'sertifikat' => $row->sertifikat_uji,
                 'verifikasi' => $row->verifikasi_pers,
                 'penawaran_kerjasama' => $row->penawaran_kerja_sama,
-                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
             view('profil.index', $data);
         } else {
@@ -112,8 +112,8 @@ class Profil extends CI_Controller
     {
         if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin') {
             $data =  array(
-                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
         } else {
             $data =  array(
@@ -129,8 +129,8 @@ class Profil extends CI_Controller
        if(!isset($id)) redirect('profil');
        if($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin'){
            $data = array(
-               'notif' => $this->notifikasi->get_by_id($this->session->userdata('id')),
-               'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id'))
+               'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+               'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
            );
        }else{
            $data = array(
