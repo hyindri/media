@@ -8,6 +8,7 @@ class Auth extends CI_Controller
         parent::__construct();
         $this->load->model('users_model', 'users');
         $this->load->model('notifikasi_model', 'notifikasi');
+        $this->load->model('Log_model','aktivitas');
 
     }
 
@@ -75,8 +76,9 @@ class Auth extends CI_Controller
                             'status' => $user['status']
 
                         ];
-                    }
+                    }                    
                     $this->session->set_userdata($data);            
+                    $this->aktivitas->log_login();
                     redirect('dashboard');            
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Akun sedang tidak aktif! Hubungi Admin.</div>');
@@ -155,6 +157,7 @@ class Auth extends CI_Controller
 
 		if ($this->users->change_password()==true)
 		{
+            $this->aktivitas->log_changepassword();
 			$sesi_selesai = array(
                 'login_status' => 'login_status',
                 'id_media' => 'id_media',
@@ -181,7 +184,7 @@ class Auth extends CI_Controller
                 'penawaran_kerjasama' =>'penawaran_kerjasama' 
             );
             $this->session->unset_userdata($sesi_selesai);    
-			$this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Password telah diganti, silahkan login ulang!</div>');
+			$this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Password berhasil diubah, silahkan login ulang!</div>');
 			redirect('auth');
 		}
 
@@ -216,6 +219,7 @@ class Auth extends CI_Controller
             'verifikasi' => 'verifikasi',
             'penawaran_kerjasama' =>'penawaran_kerjasama' 
         );
+        $this->aktivitas->log_logout();
         $this->session->unset_userdata($sesi_selesai);
         $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Anda Telah Logout, Terima Kasih :)</div>');
         redirect('auth');

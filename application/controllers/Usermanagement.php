@@ -6,9 +6,14 @@ class Usermanagement extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if ($this->session->userdata('login_status') != TRUE) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger"><strong>Oops!</strong> Mohon Login Dahulu </div>');
+            redirect(site_url(''));
+        }   
         $this->load->model('users_model', 'users');
         $this->load->model('medmas_model', 'medmas');
         $this->load->model('notifikasi_model', 'notifikasi');
+        $this->load->model('log_model','aktivitas');
         $this->load->library('pdf');
     }
 
@@ -99,6 +104,7 @@ class Usermanagement extends CI_Controller
         );
         $data = $this->users->update($id, $data_user);
         $data = $this->medmas->ubah($id, $data_media);
+        $this->aktivitas->log_ubahakun();
         json_encode($data);
     }
 
