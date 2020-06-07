@@ -22,17 +22,24 @@ class Berita_model extends CI_Model
     {
         $this->db->select('tb_berita.id as id_berita, judul_berita, narasi_berita,tb_berita.media_massa_id, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
         tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul');
-        
+
         if ($this->input->post('nama')) {
             $this->db->like('nama', $this->input->post('nama'));
         }
-        if ($this->input->post('dibuat_tanggal')) {
-            $this->db->like('dibuat_tanggal', $this->input->post('dibuat_tanggal'));
+        if ($this->input->post('awal') && $this->input->post('akhir')) {
+            $this->db->where('dibuat_tanggal >=', $this->input->post('awal'));
+            $this->db->where('dibuat_tanggal <=', $this->input->post('akhir'));
+        }
+        if ($this->input->post('bulan')) {
+            $this->db->like('MONTH(dibuat_tanggal)', $this->input->post('bulan'));
+        }
+        if ($this->input->post('tahun')) {
+            $this->db->like('YEAR(dibuat_tanggal)', $this->input->post('tahun'));
         }
         if ($this->input->post('status_berita')) {
             $this->db->like('status_berita', $this->input->post('status_berita'));
         }
-        if ($this->session->userdata('level') == 'user'  && $this->session->userdata('status') == 'aktif' ) {
+        if ($this->session->userdata('level') == 'user'  && $this->session->userdata('status') == 'aktif') {
             $this->db->where('tmst_media_massa.id', $this->session->userdata('id_media'));
         }
         $this->db->from($this->table);
@@ -91,7 +98,7 @@ class Berita_model extends CI_Model
 
     function get_by_id($id)
     {
-        $this->db->where('id',$id);
+        $this->db->where('id', $id);
         return $this->db->get($this->table);
     }
 
@@ -117,10 +124,10 @@ class Berita_model extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
-	function simpan_draft($data)
-	{
-		$this->db->insert($this->table, $data);
-	}
+    function simpan_draft($data)
+    {
+        $this->db->insert($this->table, $data);
+    }
 
     function ubah($id, $data)
     {
@@ -128,11 +135,11 @@ class Berita_model extends CI_Model
         $this->db->update($this->table, $data);
     }
 
-	function ubah_draft($id, $data)
-	{
-		$this->db->where('id', $id);
-		$this->db->update($this->table, $data);
-	}
+    function ubah_draft($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update($this->table, $data);
+    }
 
     function hapus($id)
     {
@@ -140,5 +147,27 @@ class Berita_model extends CI_Model
         $this->db->delete($this->table);
     }
 
-
+    public function export($nama = NULL, $bulan = NULL,  $tahun = NULL, $status = NULL, $tanggal_awal = NULL, $tanggal_akhir = NULL)
+    {
+        $this->db->select('tb_berita.id, judul_berita, narasi_berita, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.screenshoot, 
+        tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul, tb_berita.diperiksa_oleh, tb_berita.diperiksa_pada');
+        $this->db->join($this->table_media_massa, 'tb_berita.media_massa_id = tmst_media_massa.id');
+        if ($nama) {
+            $this->db->like('tmst_media_massa.nama', $nama);
+        }
+        if ($tanggal_awal && $tanggal_akhir) {
+            $this->db->where('tb_berita.dibuat_tanggal >=', $tanggal_awal);
+            $this->db->where('tb_berita.dibuat_tanggal <=', $tanggal_akhir);
+        }
+        if ($bulan) {
+            $this->db->like('MONTH(tb_berita.dibuat_tanggal)', $bulan);
+        }
+        if ($tahun) {
+            $this->db->like('YEAR(tb_berita.dibuat_tanggal)', $tahun);
+        }
+        if ($status) {
+            $this->db->like('tb_berita.status_berita', $status);
+        }
+        return $this->db->get($this->table)->result();
+    }
 }

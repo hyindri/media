@@ -352,10 +352,42 @@
 
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" id="filter_tanggal" class="form-control datepicker" placeholder="Tanggal">
+                            <div class="col-md-6">
+                                <input type="text" id="filter_tanggal_awal" class="form-control datepicker" placeholder="Tanggal Mulai">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="filter_tanggal_akhir" class="form-control datepicker" placeholder="Tanggal Akhir">
+                            </div>
                         </div>
                     </div>
-
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <select id="filter_bulan" class="form-control">
+                                <option value=""> - Pilih Bulan - </option>
+                                <option value="1">Januari</option>
+                                <option value="2">Februari</option>
+                                <option value="3">Maret</option>
+                                <option value="4">April</option>
+                                <option value="5">Mei</option>
+                                <option value="6">Juni</option>
+                                <option value="7">Juli</option>
+                                <option value="8">Agustus</option>
+                                <option value="9">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <select id="filter_tahun" class="form-control">
+                                <option value=""> - Pilih Tahun - </option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_status_berita" class="form-control">
@@ -372,6 +404,72 @@
                     <button id="btn-filter" type="button" class="btn bg-green col-white waves-effect waves-blue">CARI</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-export" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-indigo">
+                <h4 class="modal-title">Export</h4>
+            </div>
+            {{form_open('berita/export', ['id'=>'form-export'])}}
+            <div class="modal-body">
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <select id="export_bulan" name="export_bulan" class="form-control">
+                            <option value=""> - Pilih Bulan - </option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <select id="export_tahun" name="export_tahun" class="form-control">
+                            <option value=""> - Pilih Tahun - </option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <select id="export_status" name="export_status" class="form-control">
+                            <option value=""> - Pilih Status Berita - </option>
+                            <option value="valid">Valid</option>
+                            <option value="oke">Draft Valid</option>
+                            <option value="belum">Belum Valid</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <div class="col-md-6">
+                            <input type="text" id="export_tanggal_awal" name="export_tanggal_awal" class="form-control datepicker" placeholder="Tanggal Mulai">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="export_tanggal_akhir" name="export_tanggal_akhir" class="form-control datepicker" placeholder="Tanggal Akhir">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+                <button type="submit" class="btn bg-green  col-white waves-effect waves-blue">EXPORT</button>
+            </div>
+            {{form_close()}}
         </div>
     </div>
 </div>

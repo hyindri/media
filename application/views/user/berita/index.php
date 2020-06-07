@@ -23,11 +23,16 @@
                     <ul class="header-dropdown m-r--5">
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                                <a data-toggle="modal" data-target="#modal-draft">
+                                <a title="Tambah" data-toggle="modal" data-target="#modal-draft">
                                     <button type="button" class="btn btn-primary waves-effect waves-light-blue">
                                         <i class="col-white material-icons">control_point</i>
                                     </button></a>
+                                <a title="Export" data-toggle="modal" data-target="#modal-export">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light-blue">
+                                        <i class="col-white material-icons">import_export</i>
+                                    </button></a>
                             </div>
+
                             <!-- <a data-toggle="modal" data-target="#modal-draft" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons">note_add</i>
                             </a> -->
@@ -98,7 +103,10 @@
                 "url": "{{site_url('berita/json')}}",
                 "type": "POST",
                 "data": function(data) {
-                    data.dibuat_tanggal = $('#filter_tanggal').val();
+                    data.awal = $('#filter_tanggal_awal').val();
+                    data.akhir = $('#filter_tanggal_akhir').val();
+                    data.bulan = $('#filter_bulan').val();
+                    data.tahun = $('#filter_tahun').val();
                     data.status_berita = $('#filter_status_berita').val();
                 }
             },
@@ -203,23 +211,23 @@
                     $('#ubah_narasi').val(data.narasi_berita);
                     $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
                     $('#file_lama').val(data.screenshoot);
-                    $('#check_fb').val('Facebook').prop('checked',false);
-                    $('#check_twitter').val('Twitter').prop('checked',false);
-                    $('#check_wa').val('Whatsapp').prop('checked',false);
-                    $('#check_line').val('Line').prop('checked',false);
+                    $('#check_fb').val('Facebook').prop('checked', false);
+                    $('#check_twitter').val('Twitter').prop('checked', false);
+                    $('#check_wa').val('Whatsapp').prop('checked', false);
+                    $('#check_line').val('Line').prop('checked', false);
                     var result = data.share.split(", ");
                     for (var i = 0; i < result.length; i++) {
-                        if(result[i] == "Facebook"){
-                            $('#check_fb').prop('checked',true);
+                        if (result[i] == "Facebook") {
+                            $('#check_fb').prop('checked', true);
                         }
-                        if(result[i] == "Twitter"){
-                            $('#check_twitter').prop('checked',true);
+                        if (result[i] == "Twitter") {
+                            $('#check_twitter').prop('checked', true);
                         }
-                        if(result[i] == "Whatsapp"){
-                            $('#check_wa').prop('checked',true);
+                        if (result[i] == "Whatsapp") {
+                            $('#check_wa').prop('checked', true);
                         }
-                        if(result[i] == "Line"){
-                            $('#check_line').prop('checked',true);
+                        if (result[i] == "Line") {
+                            $('#check_line').prop('checked', true);
                         }
                     }
 

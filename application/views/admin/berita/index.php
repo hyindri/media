@@ -21,6 +21,14 @@
                         {{$title}}
                     </h2>
                     <ul class="header-dropdown m-r--5">
+                        <li>
+                            <div class="icon-button-demo align-right m-b--25">
+                            <a data-toggle="modal" data-target="#modal-export">
+                                <button type="button" class="btn btn-primary waves-effect waves-light-blue">
+                                    <i class="col-white material-icons">import_export</i><span>Export</span>
+                                </button></a>
+                            </div>
+                        </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons">more_vert</i>
@@ -88,7 +96,10 @@
                     "type": "POST",
                     "data": function(data) {
                         data.nama = $('#filter_nama').val();
-                        data.dibuat_tanggal = $('#filter_tanggal').val();
+                        data.awal = $('#filter_tanggal_awal').val();
+                        data.akhir = $('#filter_tanggal_akhir').val();
+                        data.bulan = $('#filter_bulan').val();
+                        data.tahun = $('#filter_tahun').val();
                         data.status_berita = $('#filter_status_berita').val();
                     }
                 },
@@ -137,13 +148,13 @@
                         if (data.status_berita == 'valid') {
                             $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                             $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-                            $("#keterangan").prop('disabled',true);
+                            $("#keterangan").prop('disabled', true);
                             $('#verif_status').prop('checked', true);
                             $('#verif_status').val('oke');
                         } else if (data.status_berita == 'oke') {
                             $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                             $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-                            $("#keterangan").prop('disabled',true);
+                            $("#keterangan").prop('disabled', true);
                             $('#verif_status').prop('checked', true);
                             $('#verif_status').val('oke');
                             $('.link').show();
@@ -156,7 +167,7 @@
                             $('.share').hide();
                             $('.view').hide();
                             $('.screenshot').hide();
-                            $("#keterangan").prop('disabled',false);
+                            $("#keterangan").prop('disabled', false);
                             $('#verif_status').prop('checked', false);
                             $('#verif_status').val('belum');
                         }
@@ -167,12 +178,12 @@
             $("#verif_status").change(function() {
                 if ($(this).is(":checked")) {
                     $(this).val("oke");
-                    $("#keterangan").prop('disabled',true);
+                    $("#keterangan").prop('disabled', true);
                     $("#keterangan").val('');
 
                 } else {
                     $(this).val("belum");
-                    $("#keterangan").prop('disabled',false);
+                    $("#keterangan").prop('disabled', false);
                     $("#keterangan").focus();
                     toastr.error('Mohon isi keterangan..');
 
