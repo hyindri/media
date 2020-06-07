@@ -10797,7 +10797,7 @@ fieldset[disabled] .form-control {
 /* Profile Page ================================ */
 
 .profile-card .profile-header {
-    background-color: #ad1455;
+    background-color: #3F51B5;
     padding: 42px 0;
 }
 
@@ -10807,7 +10807,7 @@ fieldset[disabled] .form-control {
 }
 
 .profile-card .profile-body .image-area img {
-    border: 2px solid #ad1455;
+    border: 2px solid #3F51B5;
     padding: 2px;
     margin: 2px;
     -webkit-border-radius: 50%;
@@ -10828,7 +10828,7 @@ fieldset[disabled] .form-control {
 
 .profile-card .profile-body .content-area p:last-child {
     font-weight: 600;
-    color: #ad1455;
+    color: #3F51B5;
     margin-top: 5px;
 }
 

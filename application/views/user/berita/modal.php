@@ -1,8 +1,8 @@
 <div class="modal fade" id="modal-draft" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="defaultModalLabel">Tambah Draft</h4>
+			<div class="modal-header bg-indigo">
+				<h4 class="modal-title">Tambah Draft Berita</h4>
 			</div>
 			{{form_open('',['id'=>'form-draft','role'=>'form'])}}
 			<div class="modal-body">
@@ -11,7 +11,6 @@
 						<textarea id="judul_berita" name="judul_berita" class="form-control" placeholder="Judul berita" required></textarea>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<div class="form-line">
 						<textarea id="narasi_berita" name="narasi_berita" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
@@ -20,21 +19,19 @@
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
-				<button type="submit" class="btn btn-link waves-effect">SIMPAN</button>
+				<button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+				<button type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
 			</div>
 			{{form_close()}}
 		</div>
 	</div>
 </div>
 
-
-
 <div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">Tambah {{$title}}</h4>
+                <h4 class="modal-title">Tambah {{$title}}</h4>
             </div>
             {{form_open('',['id'=>'form-tambah','role'=>'form', 'enctype'=>'multipart/form-data'])}}
             <div class="modal-body">
@@ -59,12 +56,10 @@
                         <input type="file" name="file" id="file" class="form-control">
                     </div>
                 </div>
-
-
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
-                <button id="simpan_btn" type="submit" class="btn btn-link waves-effect">SIMPAN</button>
+                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+                <button id="simpan_btn" type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
             </div>
             {{form_close()}}
         </div>
@@ -74,8 +69,8 @@
 <div class="modal fade" id="modal-ubah" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">Ubah {{$title}}</h4>
+            <div class="modal-header bg-indigo">
+                <h4 class="modal-title">Ubah {{$title}}</h4>
             </div>
             {{form_open('',['id'=>'form-ubah','role'=>'form', 'enctype'=>'multipart/form-data'])}}
             <div class="modal-body">
@@ -114,20 +109,19 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
-                <button id="ubah_btn" type="submit" class="btn btn-link waves-effect">SIMPAN</button>
+                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+                <button id="ubah_btn" type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
             </div>
             {{form_close()}}
         </div>
     </div>
 </div>
 
-
 <div class="modal fade" id="modal-ubah-draft" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="defaultModalLabel">Ubah Draft</h4>
+			<div class="modal-header bg-indigo">
+				<h4 class="modal-title">Ubah Draft</h4>
 			</div>
 			{{form_open('',['id'=>'form-ubah-draft','role'=>'form'])}}
 			<div class="modal-body">
@@ -147,11 +141,10 @@
 						<textarea id="ubah_narasi" name="ubah_narasi" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
 					</div>
 				</div>
-
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
-				<button type="submit" class="btn btn-link waves-effect">SIMPAN</button>
+				<button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+				<button type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
 			</div>
 			{{form_close()}}
 		</div>
@@ -162,7 +155,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-col-red">
             <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">Hapus {{$title}}</h4>
+                <h4 class="modal-title">Hapus {{$title}}</h4>
             </div>
             {{form_open('',['id'=>'form-hapus','role'=>'form'])}}
             <div class="modal-body">
@@ -182,7 +175,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">Lihat {{$title}}</h4>
+                <h4 class="modal-title">Lihat {{$title}}</h4>
             </div>
             <div class="modal-body">
                 <input type="hidden" name="lihat_id_berita" id="lihat_id_berita" class="form-control" required>
@@ -293,7 +286,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">FILTER</h4>
+                <h4 class="modal-title">FILTER</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
