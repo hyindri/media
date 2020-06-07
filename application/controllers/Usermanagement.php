@@ -28,6 +28,7 @@ class Usermanagement extends CI_Controller
             return view('admin.usermanagement.index',$data);
         } elseif($this->session->userdata('level') == 'superadmin'){
             $data =  array(
+                'media' => $this->users->getalluser(),
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))  
             );

@@ -3,7 +3,7 @@
 @section('title','Manajemen Akun')
 
 <div class="container-fluid">
-<div class="block-header">
+    <div class="block-header">
         <ol class="breadcrumb">
             <li>HOME</li>
             <li class="active">MANAGEMENT AKUN</li>
@@ -53,100 +53,92 @@
             </div>
         </div>
     </div>
-    @include("admin.usermanagement.modal")
-    @endsection
-
-    @section("js")
-    <script type="text/javascript">
-        var table;
-        $(document).ready(function() {
-            table = $('#table').DataTable({
-                "language": {
-                    "lengthMenu": "Tampilkan _MENU_ data per halaman",
-                    "infoEmpty": "Data dimana kamu",
-                    "zeroRecords": "Data tidak ada",
-                    "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
-                    "infoFiltered": "(difilter dari _MAX_ total data)",
-                    "paginate": {
-                        "first": "Pertama",
-                        "last": "Terakhir",
-                        "next": "Selanjutnya",
-                        "previous": "Sebelumnya"
-                    },
+</div>
+@include("admin.usermanagement.modal")
+@endsection
+@section("js")
+<script type="text/javascript">
+    var table;
+    $(document).ready(function() {
+        table = $('#table').DataTable({
+            "language": {
+                "lengthMenu": "Tampilkan _MENU_ data per halaman",
+                "infoEmpty": "Data dimana kamu",
+                "zeroRecords": "Data tidak ada",
+                "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+                "infoFiltered": "(difilter dari _MAX_ total data)",
+                "paginate": {
+                    "first": "Pertama",
+                    "last": "Terakhir",
+                    "next": "Selanjutnya",
+                    "previous": "Sebelumnya"
                 },
-                "processing": true,
-                "serverSide": true,
-                "responsive": true,
-                "searching": false,
-                "info": true,
-                "ordering": true,
-                "order": [],
-
-                "ajax": {
-                    "url": "{{site_url('usermanagement/json')}}",
-                    "type": "POST",
-                    "data": function(data) {
-                        data.nama = $('#filter_nama').val();
-                        data.status = $('#filter_status').val();
-                        data.tipe_publikasi = $('#filter_tipe_publikasi').val();
-                        data.tipe_media_massa = $('#filter_tipe_media_massa').val();
-                    }
+            },
+            "processing": true,
+            "serverSide": true,
+            "responsive": true,
+            "searching": false,
+            "info": true,
+            "ordering": true,
+            "order": [],
+            "ajax": {
+                "url": "{{site_url('usermanagement/json')}}",
+                "type": "POST",
+                "data": function(data) {
+                    data.nama = $('#filter_nama').val();
+                    data.status = $('#filter_status').val();
+                    data.tipe_publikasi = $('#filter_tipe_publikasi').val();
+                    data.tipe_media_massa = $('#filter_tipe_media_massa').val();
+                }
+            },
+            "columnDefs": [{
+                "targets": [0, 4, 5, 6],
+                "orderable": false,
+            }, ],
+        });
+        $('#btn-filter').click(function() {
+            $('#modal-filter').modal('hide');
+            table.ajax.reload();
+        });
+        $('#btn-reset').click(function() {
+            $('#form-filter')[0].reset();
+            table.ajax.reload();
+        });
+        $('#table').on('click', '.ubah', function() {
+            $('#modal-ubah').modal('show');
+            $("#edit_id").val($(this).data('id'));
+            $("#edit_status").val($(this).data('status'));
+            $("#edit_mulai_mou").val($(this).data('mulai_mou'));
+            $("#edit_akhir_mou").val($(this).data('akhir_mou'));
+        });
+        $('#ubah-user').submit('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "{{base_url('usermanagement/ubah')}}",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+                success: function(data) {
+                    $('#modal-ubah').modal('hide');
+                    // $('#ubah-agenda')[0].reset();
+                    toastr.success('User berhasil diubah!');
+                    table.ajax.reload();
                 },
-
-
-                "columnDefs": [{
-                    "targets": [0, 4, 5, 6],
-                    "orderable": false,
-                }, ],
-
+                error: function(data) {
+                    $('#modal-ubah').modal('hide');
+                    toastr.warning('Gagal mengubah user!');
+                    table.ajax.reload();
+                }
             });
-
-            $('#btn-filter').click(function() {
-                $('#modal-filter').modal('hide');
-                table.ajax.reload();
-            });
-            $('#btn-reset').click(function() {
-                $('#form-filter')[0].reset();
-                table.ajax.reload();
-            });
-
-            $('#table').on('click', '.ubah', function() {
-                $('#modal-ubah').modal('show');
-                $("#edit_id").val($(this).data('id'));
-                $("#edit_status").val($(this).data('status'));
-                $("#edit_mulai_mou").val($(this).data('mulai_mou'));
-                $("#edit_akhir_mou").val($(this).data('akhir_mou'));
-            });
-
-            $('#ubah-user').submit('click', function() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{base_url('usermanagement/ubah')}}",
-                    data: new FormData(this),
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    async: false,
-                    success: function(data) {
-                        $('#modal-ubah').modal('hide');
-                        // $('#ubah-agenda')[0].reset();
-                        toastr.success('User berhasil diubah!');
-                        table.ajax.reload();
-                    },
-                    error: function(data) {
-                        $('#modal-ubah').modal('hide');
-                        toastr.warning('Gagal mengubah user!');
-                        table.ajax.reload();
-                    }
-                });
-                return false;
-            });
-
+            return false;
         });
-    </script>
-    <script>
-        $('.datepicker').bootstrapMaterialDatePicker({
-            time: false
-        });
-    </script>
-    @endsection
+    });
+</script>
+<script>
+    $('.datepicker').bootstrapMaterialDatePicker({
+        time: false
+    });
+</script>
+@endsection
