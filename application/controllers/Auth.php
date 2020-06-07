@@ -115,12 +115,15 @@ class Auth extends CI_Controller
             $mediamassa = implode(',',$this->input->post('tipe_media_massa'));
             $data_media_massa = array(
                 'user_id' => $ins_id,
-                'nama' => $this->input->post('nama'),                
+                'nama' => $this->input->post('nama'),
+                'perusahaan' => $this->input->post('perusahaan'),              
                 'npwp' => $this->input->post('npwp'),
                 'pimpinan' => $this->input->post('pimpinan'),
                 'no_telp' => $this->input->post('no_telp'),
                 'tipe_publikasi' => $this->input->post('tipe_publikasi'),
                 'tipe_media_massa' => $mediamassa,
+                'mulai_mou' => $this->input->post('mulai_mou'),
+                'akhir_mou' => $this->input->post('akhir_mou'),
             );
             $this->db->insert('tmst_media_massa', $data_media_massa);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Pendaftaran berhasil.</div>');
