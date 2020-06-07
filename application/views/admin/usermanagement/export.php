@@ -18,7 +18,7 @@ table, th, td { border: 1px solid black; }
         <table style="border-collapse:collapse;border:none;width:100%;margin:0;padding:0;">
             <tr>
                 <td rowspan="4" style="text-align:right;border:none;width:25%;"><img src="assets/images/bintan.png" width=100px;></td>
-                <td style="text-align:center;font-size:20px;border:none;font-weight:bold;width:50%;">PEMERINTAH KABUPATEN BINTAN</td>
+                <td style="text-align:center;font-size:22px;border:none;font-weight:bold;width:50%;">PEMERINTAH KABUPATEN BINTAN</td>
                 <td rowspan="4" style="text-align:left;border:none;width:25%;"><img src="assets/images/kominfo.png" width=100px;></td>
             </tr>
             <tr>
@@ -40,13 +40,11 @@ table, th, td { border: 1px solid black; }
                 <tr>
                     <th style="padding:3;height:30;">No</th>
                     <th style="padding:3;">Nama</th>
-                    <th style="padding:3;">Perusahaan</th>
-                    <th style="padding:3;">Pimpinan</th>
-                    <th style="padding:3;">Kabiro</th>
+                    <th style="padding:3;">Alamat</th>
+                    <th style="padding:3;">No. Telp</th>
+                    <th style="padding:3;">Status MOU</th>
                     <th style="padding:3;">Tipe Publikasi</th>
-                    <th style="padding:3;">Jenis Media Massa</th>
-                    <th style="padding:3;">Mulai MOU</th>
-                    <th style="padding:3;">Akhir MOU</th>
+                    <th style="padding:3;">Tipe Media Massa</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,14 +53,12 @@ table, th, td { border: 1px solid black; }
                 <tr>
                     <td style="text-align:center;padding:3;"><?= $no++; ?></td>
                     <td style="padding:3;word-wrap: break-word;"><?= $media->nama ?></td>
-                    <td style="padding:3;word-wrap: break-word;"><?= $media->perusahaan ?></td>
-                    <td style="padding:3;word-wrap: break-word;"><?= $media->pimpinan ?></td>
-                    <td style="padding:3;word-wrap: break-word;"><?= $media->kabiro ?></td>
+                    <td style="padding:3;word-wrap: break-word;"><?= $media->alamat ?></td>
+                    <td style="padding:3;text-align:center;"><?= $media->no_telp ?></td>
+                    <td style="padding:3;text-align:center;"><?= ucfirst($media->status) ?></td>
+                    <!-- <td style="padding:3;text-align:center;"><?= tgl_indo($media->mulai_mou) ?> - <?= tgl_indo($media->akhir_mou) ?></td> -->
                     <td style="padding:3;text-align:center;"><?= ucfirst($media->tipe_publikasi) ?></td>
                     <td style="padding:3;text-align:center;"><?= ucwords(remo($media->tipe_media_massa)) ?></td>
-                    
-                    <td style="padding:3;text-align:center;"><?= tgl_indo($media->mulai_mou) ?></td>
-                    <td style="padding:3;text-align:center;"><?= tgl_indo($media->akhir_mou) ?></td>
                 </tr>
             <?php } ?>
             </tbody>

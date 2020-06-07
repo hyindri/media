@@ -17,6 +17,13 @@
                 <div class="header">
                     <h2>Akun</h2>
                     <div class="icon-button-demo align-right m-b--25">
+                        <a data-toggle="modal" data-target="#modal-filter">
+                            <button type="button" class="btn btn-primary waves-effect waves-light-blue">
+                                <i class="material-icons">filter_list</i><span>Filter</span>
+                            </button></a>
+                        <a id="btn-reset"><button type="button" class="btn btn-primary waves-effect waves-light-blue">
+                                <i class="material-icons">clear</i><span>Reset</span>
+                            </button></a>
                         <a onClick="window.open('<?php echo base_url('usermanagement/export') ?>');">
                             <button type="button" class="btn btn-primary waves-effect waves-light-blue">
                                 <i class="material-icons">import_export</i><span>Export</span>
@@ -77,7 +84,13 @@
 
                 "ajax": {
                     "url": "{{site_url('usermanagement/json')}}",
-                    "type": "POST"
+                    "type": "POST",
+                    "data": function(data) {
+                        data.nama = $('#filter_nama').val();
+                        data.status = $('#filter_status').val();
+                        data.tipe_publikasi = $('#filter_tipe_publikasi').val();
+                        data.tipe_media_massa = $('#filter_tipe_media_massa').val();
+                    }
                 },
 
 
@@ -86,6 +99,15 @@
                     "orderable": false,
                 }, ],
 
+            });
+
+            $('#btn-filter').click(function() {
+                $('#modal-filter').modal('hide');
+                table.ajax.reload();
+            });
+            $('#btn-reset').click(function() {
+                $('#form-filter')[0].reset();
+                table.ajax.reload();
             });
 
             $('#table').on('click', '.ubah', function() {

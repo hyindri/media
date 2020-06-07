@@ -16,6 +16,19 @@ class Users_model extends CI_Model
     private function _get_datatables_query()
     {
         $this->db->where('tmst_user.level','user');
+
+        if ($this->input->post('nama')) {
+            $this->db->like('nama', $this->input->post('nama'));
+        }
+        if ($this->input->post('status')) {
+            $this->db->like('status', $this->input->post('status'));
+        }
+        if ($this->input->post('tipe_publikasi')) {
+            $this->db->like('tipe_publikasi', $this->input->post('tipe_publikasi'));
+        }
+        if ($this->input->post('tipe_media_massa')) {
+            $this->db->like('tipe_media_massa', $this->input->post('tipe_media_massa'));
+        }
         $this->db->join('tmst_media_massa', 'tmst_media_massa.user_id = tmst_user.id', 'left');
         $this->db->from('tmst_user');
      
@@ -83,7 +96,7 @@ class Users_model extends CI_Model
     public function getalluser()
     {
         $this->db->select('*');
-        $this->db->where('tmst_user.level = user');
+        $this->db->where('tmst_user.level','user');
         $this->db->join('tmst_media_massa', 'tmst_user.id = tmst_media_massa.user_id');
         $this->db->from('tmst_user');
         $query = $this->db->get();
@@ -92,7 +105,8 @@ class Users_model extends CI_Model
 
     public function export()
     {
-        $this->db->select('tmst_media_massa.nama, tmst_media_massa.perusahaan, tmst_media_massa.pimpinan, tmst_media_massa.kabiro, tmst_media_massa.tipe_publikasi, tmst_media_massa.tipe_media_massa, tmst_media_massa.mulai_mou, tmst_media_massa.akhir_mou');
+        // $this->db->select('tmst_media_massa.nama, tmst_media_massa.perusahaan, tmst_media_massa.pimpinan, tmst_media_massa.kabiro, tmst_media_massa.tipe_publikasi, tmst_media_massa.tipe_media_massa, tmst_media_massa.mulai_mou, tmst_media_massa.akhir_mou');
+        $this->db->select('*');
         $this->db->where('tmst_user.level','user');
         $this->db->join('tmst_media_massa', 'tmst_media_massa.user_id = tmst_user.id');
         $this->db->from('tmst_user');
