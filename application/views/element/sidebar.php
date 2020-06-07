@@ -82,6 +82,12 @@
 						<span>Manajemen Akun</span>
 					</a>
 				</li>
+				<li class="@if($this->uri->segment(1) == 'logaktivitas') active @endif">
+					<a href="{{site_url('logaktivitas')}}">
+						<i class="material-icons">list</i>
+						<span>Log Aktivitas Akun</span>
+					</a>
+				</li>
 				<li class="@if($this->uri->segment(2) == 'ubahpassword') active @endif">
 					<a href="{{site_url('profil/ubahpassword')}}">
 						<i class="material-icons">vpn_key</i>

@@ -8,6 +8,7 @@ class Agenda extends CI_Controller
         parent::__construct();
         $this->load->model('agenda_model', 'agenda');
         $this->load->model('notifikasi_model', 'notifikasi');
+        $this->load->model('log_model','aktivitas');
     }
 
     public function index()
@@ -129,6 +130,7 @@ class Agenda extends CI_Controller
         if ($q->num_rows() > 0) {
             return $this->db->insert('');
         } else {
+            $this->aktivitas->log_tambahagenda();
             return $this->agenda->simpan($data);
          echo json_encode($data);
         }
@@ -167,9 +169,10 @@ class Agenda extends CI_Controller
             //delete file
                 unlink('upload/agenda/'.$laporan->file);
         
-            $data['file'] = $upload;
+            $data['file'] = $upload;            
             $data = $this->agenda->ubah($id, $data);
         } else {
+            $this->aktivitas->log_ubahagenda();
             $data = $this->agenda->ubah($id, $data);
         }
      json_encode($data);

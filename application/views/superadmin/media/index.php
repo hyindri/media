@@ -18,6 +18,15 @@
                     <h2>
                         Media
                     </h2>
+                    <div class="icon-button-demo align-right m-b--25">
+                        <a data-toggle="modal" data-target="#modal-filter">
+                            <button type="button" class="btn btn-primary waves-effect waves-light-blue">
+                                <i class="material-icons">filter_list</i><span>Filter</span>
+                            </button></a>
+                        <a id="btn-reset"><button type="button" class="btn btn-primary waves-effect waves-light-blue">
+                                <i class="material-icons">clear</i><span>Reset</span>
+                            </button></a>
+                    </div>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
@@ -43,7 +52,7 @@
     </div>
 </div>
 @endsection
-
+@include("superadmin.media.modal")
 @section("js")
 <script type="text/javascript">
     var table;
@@ -72,7 +81,13 @@
           
             "ajax": {
                 "url": "{{site_url('usermanagement/fetch_data')}}",
-                "type": "POST"
+                "type": "POST",
+                "data": function(data) {
+                    data.nama = $('#filter_nama').val();
+                    data.status = $('#filter_status').val();
+                    data.tipe_publikasi = $('#filter_tipe_publikasi').val();
+                    data.tipe_media_massa = $('#filter_tipe_media_massa').val();
+                }
             },
 
           
@@ -81,6 +96,14 @@
                 "orderable": false,
             }, ],
 
+        });
+        $('#btn-filter').click(function() {
+            $('#modal-filter').modal('hide');
+            table.ajax.reload();
+        });
+        $('#btn-reset').click(function() {
+            $('#form-filter')[0].reset();
+            table.ajax.reload();
         });
     });
 </script>
