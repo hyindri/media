@@ -6,8 +6,13 @@ class Berita extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if ($this->session->userdata('login_status') != TRUE) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger"><strong>Oops!</strong> Mohon Login Dahulu </div>');
+            redirect(site_url(''));
+        }   
         $this->load->model('berita_model', 'berita');
         $this->load->model('notifikasi_model', 'notifikasi');
+        $this->load->model('log_model','aktivitas');
     }
 
     public function index()
@@ -200,6 +205,7 @@ class Berita extends CI_Controller
                 $this->notifikasi->simpan($notif);
             }
         }
+        $this->aktivitas->log_verifdraft();
         $result = $this->berita->ubah($id, $data);
         echo json_encode($result);
     }
@@ -261,6 +267,7 @@ class Berita extends CI_Controller
                 );
                 $this->notifikasi->simpan($notif);
             }
+            $this->aktivitas->log_tambahdraft();
             return $this->berita->simpan_draft($data);
             echo json_encode($data);
         }
@@ -286,9 +293,11 @@ class Berita extends CI_Controller
                 unlink('upload/berita/' . $cek->screenshoot);
 
                 $data['screenshoot'] = $upload;
+                $this->aktivitas->log_ubahberita();
                 $data = $this->berita->ubah($id, $data);
             } else {
                 $data['screenshoot'] = $this->input->post('old_file');
+                $this->aktivitas->log_ubahberita();
                 $data = $this->berita->ubah($id, $data);
             }
 
@@ -308,6 +317,7 @@ class Berita extends CI_Controller
                 $this->notifikasi->simpan($notif);
             }
         } else {
+            $this->aktivitas->log_ubahdraft();
             $data = $this->db->insert('');
         }
 
@@ -324,6 +334,7 @@ class Berita extends CI_Controller
             'dibuat_tanggal' => date('Y-m-d'),
             'dibuat_pukul' => date('h:i:s'),
         );
+        $this->aktivitas->log_ubahdraft();
         $data = $this->berita->ubah_draft($id, $data);
 
         $this->db->where('level', 'admin');
@@ -365,6 +376,7 @@ class Berita extends CI_Controller
                 );
                 $this->notifikasi->simpan($notif);
             }
+            $this->aktivitas->log_hapusberita();
             $this->berita->hapus($id);
         } else {
             $this->db->insert('');

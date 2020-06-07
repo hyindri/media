@@ -12,6 +12,7 @@ class Profil extends CI_Controller
         $this->load->model('Users_model','users');
         $this->load->model('Medmas_model', 'medmas');
         $this->load->model('notifikasi_model', 'notifikasi');
+        $this->load->model('log_model','aktivitas');
     }
 
     public function index()
@@ -149,6 +150,7 @@ class Profil extends CI_Controller
     public function updatedata()
     {
         $this->medmas->updateProfil();    
+        $this->aktivitas->log_ubahprofil();
         $sesi_selesai = array(
             'login_status' => 'login_status',
             'id_media' => 'id_media',
