@@ -31,9 +31,9 @@
             <div class="card card-about-me">
                 <div class="header">
                     @if($this->session->userdata('level') == 'user')
-                    <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="pull-right">Ubah Informasi Profil</a>
+                    <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="pull-right btn bg-indigo col-white">Ubah Informasi Profil</a>
                     @endif
-                    <h2>Profil Media</h2>
+                    <h2>Informasi Profil Media</h2>
                 </div>
                 <div class="body">
                     {{$this->session->flashdata('notif')}}
@@ -53,8 +53,8 @@
                                 <i class="material-icons">vpn_key</i>
                                 Password
                             </div>
-                            <div class="pull-right">
-                                <a href="{{site_url('profil/ubahpassword')}}">Ubah Password</a>
+                            <div class="pull-right btn bg-indigo">
+                                <a class="col-white deco-off"href="{{site_url('profil/ubahpassword')}}">Ubah Password</a>
                             </div>
                             <div class="content">
                                 ••••••••••••••

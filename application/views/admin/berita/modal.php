@@ -181,7 +181,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">TUTUP</button>
+                    <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
                     <button id="btn-filter" type="button" class="btn bg-green  col-white waves-effect waves-blue">CARI</button>
                 </div>
             </form>

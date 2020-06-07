@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-indigo">
-                <h4 class="modal-title" id="defaultModalLabel">Ubah User</h4>
+                <h4 class="modal-title">Ubah Akun</h4>
             </div>
             {{form_open('',['id' => 'ubah-user','role'=>'form'])}}
                 <div class="modal-body">

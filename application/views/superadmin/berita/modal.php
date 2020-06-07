@@ -59,7 +59,7 @@
                     </div>
                     <!-- Tanggal di Buat  -->
                     <div class="row p-modal">
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Tanggal</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -74,7 +74,7 @@
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2">
                             <span id="dibuat_pukul"></span>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             <span id="keterangan"></span>
                         </div>
                     </div>
-                    <!-- Screenshoot -->
+                    <!-- Status Berita -->
                     <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Status Berita</span>
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn bg-indigo col-white waves-effect" data-dismiss="modal">TUTUP</button>
             </div>
             {{form_close()}}
         </div>
@@ -131,11 +131,8 @@
 <div class="modal fade" id="modal-filter" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">FILTER</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header bg-indigo">
+                <h4 class="modal-title">FILTER</h4>
             </div>
             <form id="form-filter">
                 <div class="modal-body">
@@ -167,7 +164,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="btn-filter" type="button" class="btn btn-link waves-effect waves-blue">CARI</button>
+                    <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+                    <button id="btn-filter" type="button" class="btn btn-green col-white waves-effect waves-blue">CARI</button>
                 </div>
             </form>
         </div>

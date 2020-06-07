@@ -11293,3 +11293,7 @@ html.ie11 .bs-searchbox .form-control {
 .h-ul {
     list-style-type: none !important;
 }
+
+.deco-off {
+    text-decoration: none !important;
+}
