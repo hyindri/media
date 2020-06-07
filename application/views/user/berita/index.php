@@ -48,12 +48,12 @@
                         <table id="table" class="table table-bordered table-striped table-hover display wrap" width="100%">
                             <thead>
                                 <tr>
-                                    <th width="5%">#</th>
-                                    <th width="10%">Tanggal</th>
+                                    <th width="5%">No</th>
+                                    <th class="text-center" width="10%">Tanggal</th>
                                     <th>Judul Berita</th>
                                     <th width="20%">Screenshoot</th>
-                                    <th width="10%">Status</th>
-                                    <th width="15%">Aksi</th>
+                                    <th class="text-center" width="10%">Status</th>
+                                    <th class="text-center" width="15%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,8 +105,10 @@
 
 
             "columnDefs": [{
-                    "targets": [0, 5],
+                    "targets": [0, 4, 5],
                     "orderable": false,
+                    "class": "text-center"
+
                 },
 
             ],

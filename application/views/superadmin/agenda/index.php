@@ -77,6 +77,7 @@
             "columnDefs": [{
                 "targets": [0, 3, 4],
                 "orderable": false,
+                "class": "text-center"
             }, ],
 
         });
