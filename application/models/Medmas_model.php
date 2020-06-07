@@ -172,7 +172,7 @@ class Medmas_model extends CI_Model
             'sertifikat_uji' => $this->input->post('sertifikat_uji'),
             'verifikasi_pers' => $this->input->post('verifikasi_pers'),
             'penawaran_kerja_sama' => $this->input->post('penawaran_kerjasama'),
-            'tipe_media_massa' => $this->input->post('tipe_media_massa'),
+            'tipe_media_massa' => implode(", ",$this->input->post('tipe_media_massa')),
         );
         $this->db->update($this->table,$data,$id);
     }
