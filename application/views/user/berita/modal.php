@@ -6,15 +6,17 @@
             </div>
             {{form_open('',['id'=>'form-draft','role'=>'form'])}}
             <div class="modal-body">
-                <div class="form-group">
+                <div class="form-group form-float">
                     <div class="form-line">
-                        <textarea id="judul_berita" name="judul_berita" class="form-control" placeholder="Judul berita" required></textarea>
+                        <textarea id="judul_berita" name="judul_berita" class="form-control" required></textarea>
+						<label class="form-label">Judul berita</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-float">
                     <div class="form-line">
-                        <textarea id="narasi_berita" name="narasi_berita" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
-                    </div>
+                        <textarea id="narasi_berita" name="narasi_berita" class="form-control" rows="17" required></textarea>
+						<label class="form-label">Narasi berita</label>
+					</div>
                 </div>
 
             </div>
@@ -35,22 +37,25 @@
             </div>
             {{form_open('',['id'=>'form-tambah','role'=>'form', 'enctype'=>'multipart/form-data'])}}
             <div class="modal-body">
-                <div class="form-group">
+                <div class="form-group form-float">
                     <div class="form-line">
-                        <input type="text" name="link_berita" id="link_berita" class="form-control" placeholder="Link Berita" required>
+                        <input type="text" name="link_berita" id="link_berita" class="form-control" required>
+						<label class="form-label">Link Berita</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-float">
                     <div class="form-line">
-                        <input name="share" id="share" class="form-control" placeholder="Dibagikan ke platform apa saja.." required>
+                        <input name="share" id="share" class="form-control" required>
+						<label class="form-label">Dibagikan ke platform apa saja..</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-float">
                     <div class="form-line">
-                        <input name="jumlah_view" id="jumlah_view" class="form-control" placeholder="Jumlah orang yang melihat berita anda.." required>
-                    </div>
+                        <input name="jumlah_view" id="jumlah_view" class="form-control" required>
+						<label class="form-label">Jumlah orang yang melihat berita anda..</label>
+					</div>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-float">
                     <div class="form-line">
                         <input type="file" name="file" id="file" class="form-control">
                     </div>
@@ -73,13 +78,14 @@
             </div>
             {{form_open('',['id'=>'form-ubah','role'=>'form', 'enctype'=>'multipart/form-data'])}}
             <div class="modal-body">
-
+				<input type="hidden" name="edit_id_berita" id="edit_id_berita" class="form-control" required>
+				<label for="ubah_link_berita">Link Berita</label>
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="hidden" name="edit_id_berita" id="edit_id_berita" class="form-control" required>
                         <input type="text" name="ubah_link_berita" id="ubah_link_berita" class="form-control" placeholder="Link Berita" required>
-                    </div>
+					</div>
                 </div>
+				<label>Share di-</label>
                 <div class="form-group">
                     <div class="form-line">
                         <input type="checkbox" name="check[]" id="check_fb" class="filled-in chk-col-indigo">
@@ -92,11 +98,13 @@
                         <label for="check_line">Line</label>
                     </div>
                 </div>
+				<label>Jumlah View</label>
                 <div class="form-group">
                     <div class="form-line">
                         <input name="ubah_jumlah_view" id="ubah_jumlah_view" class="form-control" placeholder="Jumlah orang yang melihat berita anda.." required>
                     </div>
                 </div>
+				<label>File Screenshot</label>
                 <div class="form-group">
                     <div class="form-line">
                         <input type="file" name="file" id="ubah_file" class="form-control">
@@ -123,17 +131,14 @@
             </div>
             {{form_open('',['id'=>'form-ubah-draft','role'=>'form'])}}
             <div class="modal-body">
-                <div class="form-group">
-                    <div class="form-line">
-                        <input type="hidden" name="edit_id_berita2" id="edit_id_berita2" class="form-control" required>
-                    </div>
-                </div>
+				<input type="hidden" name="edit_id_berita2" id="edit_id_berita2" class="form-control" required>
+				<label>Judul Berita</label>
                 <div class="form-group">
                     <div class="form-line">
                         <textarea id="ubah_judul" name="ubah_judul" class="form-control" placeholder="Judul berita" required></textarea>
                     </div>
                 </div>
-
+				<label>Narasi Berita</label>
                 <div class="form-group">
                     <div class="form-line">
                         <textarea id="ubah_narasi" name="ubah_narasi" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
