@@ -30,7 +30,7 @@
                         </li>
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                                <button type="button" class="btn bg-blue btn-block btn-xs waves-effect" title="Export" data-toggle="modal" data-target="#modal-export">
+                                <button type="button" class="btn bg-blue btn-block btn-xs waves-effect" title="Export PDF" data-toggle="modal" data-target="#modal-export">
                                     <i class="col-white material-icons">picture_as_pdf</i> 
                                 </button>
                             </div>
@@ -47,7 +47,7 @@
                         </li>
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                                <button title="Reset" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
+                                <button title="Refresh" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
                                     <i class="col-white material-icons">replay</i>
                                 </button>
                             </div>
