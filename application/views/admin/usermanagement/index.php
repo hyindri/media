@@ -18,12 +18,12 @@
                     <h2>Akun</h2>
                     <div class="icon-button-demo align-right m-b--25">
                         <a data-toggle="modal" data-target="#modal-filter">
-                            <button type="button" class="btn btn-primary waves-effect waves-light-blue">
+                            <button type="button" title="Filter" class="btn btn-primary waves-effect waves-light-blue">
                                 <i class="material-icons">filter_list</i><span>Filter</span>
                             </button></a>
                         <a id="export">
-                            <button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                <i class="material-icons">import_export</i><span>Export</span>
+                            <button type="button" title="Export PDF" class="btn btn-primary waves-effect waves-light-blue">
+                                <i class="material-icons">picture_as_pdf</i><span>Export</span>
                             </button>
                         </a>
                             <a id="btn-reset"><button type="button" title="Refresh" class="btn btn-primary waves-effect waves-light-blue">
