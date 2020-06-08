@@ -16,38 +16,50 @@
             <div class="card">
                 <div class="header">
                     <h2>Akun</h2>
-                    <div class="icon-button-demo align-right m-b--25">
-                        <a data-toggle="modal" data-target="#modal-filter">
-                            <button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                <i class="material-icons">filter_list</i><span>Filter</span>
-                            </button></a>
-                        <a id="btn-reset"><button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                <i class="material-icons">clear</i><span>Reset</span>
-                            </button></a>
-                        <a onClick="window.open('<?php echo base_url('usermanagement/export') ?>');">
-                            <button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                <i class="material-icons">import_export</i><span>Export</span>
-                            </button></a>
-                    </div>
-                    <div class="body">
-                        <div class="table-responsive">
-                            <table id="table" class="table table-bordered table-striped table-hover display nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Username</th>
-                                        <th>Dibuat pada</th>
-                                        <th>Status</th>
-                                        <th>Media</th>
-                                        <th>Mulai MOU</th>
-                                        <th>Akhir MOU</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
+                    <ul class="header-dropdown m-r--5">
+                        <li>
+                            <div class="icon-button-demo align-right m-b--25">
+                                <a onClick="window.open('<?php echo base_url('usermanagement/export') ?>');">
+                                    <button title="Ekspor" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
+                                        <i class="col-white material-icons">picture_as_pdf</i>
+                                    </button></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-button-demo align-right m-b--25">
+                                <button title="Filter" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue" data-toggle="modal" data-target="#modal-filter">
+                                    <i class="col-white material-icons">filter_list</i>
+                                </button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-button-demo align-right m-b--25">
+                                <button title="Reset" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
+                                    <i class="col-white material-icons">replay</i>
+                                </button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table id="table" class="table table-bordered table-striped table-hover display nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Username</th>
+                                    <th>Dibuat pada</th>
+                                    <th>Status</th>
+                                    <th>Media</th>
+                                    <th>Mulai MOU</th>
+                                    <th>Akhir MOU</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

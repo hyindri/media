@@ -136,30 +136,62 @@
             </div>
             <form id="form-filter">
                 <div class="modal-body">
-                    <div class="form-group form-float">
+                <div class="form-group form-float">
                         <div class="form-line">
-                            <select id="filter_nama" class="form-control show-tick">
-                                <option value=""> - </option>
+                            <select id="filter_nama" name="filter_nama" class="form-control show-tick">
+                                <option value=""> - Pilih Nama Media - </option>
                                 @foreach($media as $row)
                                 <option value="{{$row->nama}}">{{$row->nama}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" id="filter_tanggal" class="form-control datepicker" placeholder="Tanggal">
+                            <select id="filter_bulan" class="form-control">
+                            <option value=""> - Pilih Bulan - </option>
+                                <option value="1">Januari</option>
+                                <option value="2">Februari</option>
+                                <option value="3">Maret</option>
+                                <option value="4">April</option>
+                                <option value="5">Mei</option>
+                                <option value="6">Juni</option>
+                                <option value="7">Juli</option>
+                                <option value="8">Agustus</option>
+                                <option value="9">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
                         </div>
                     </div>
-
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <select id="filter_tahun" class="form-control">
+                                <option value=""> - Pilih Tahun - </option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_status_berita" class="form-control">
-                                <option value=""> - </option>
-                                <option value="oke">Valid</option>
+                                <option value=""> - Pilih Status Berita - </option>
+                                <option value="valid">Valid</option>
+                                <option value="oke">Draft Valid</option>
                                 <option value="belum">Belum Valid</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <div class="col-md-6">
+                                <input type="text" id="filter_tanggal_awal" class="form-control datepicker" placeholder="Tanggal Mulai">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="filter_tanggal_akhir" class="form-control datepicker" placeholder="Tanggal Akhir">
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -23,20 +23,24 @@
                     <ul class="header-dropdown m-r--5">
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                            <a data-toggle="modal" data-target="#modal-export">
-                                <button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                    <i class="col-white material-icons">import_export</i><span>Export</span>
-                                </button></a>
+                                <button title="Export PDF" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue"  data-toggle="modal" data-target="#modal-export">
+                                    <i class="col-white material-icons">picture_as_pdf</i>
+                                </button>
                             </div>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a data-toggle="modal" data-target="#modal-filter">Filter</a></li>
-                                <li><a id="btn-reset">Reset</a></li>
-                            </ul>
+                        <li>
+                            <div class="icon-button-demo align-right m-b--25">
+                                <button title="Filter" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue" data-toggle="modal" data-target="#modal-filter">
+                                    <i class="col-white material-icons">filter_list</i>
+                                </button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-button-demo align-right m-b--25">
+                                <button title="Reset" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
+                                    <i class="col-white material-icons">replay</i>
+                                </button>
+                            </div>
                         </li>
                     </ul>
                 </div>
