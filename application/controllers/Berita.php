@@ -94,7 +94,9 @@ class Berita extends CI_Controller
                 if ($q->status_berita == 'valid') {
                     $row[] = '<a href="' . site_url() . '/upload/berita/' . $q->screenshoot . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="' . site_url() . 'upload/berita/' . $q->screenshoot . '" width="200px" height="200px"></a>';
                     $row[] = '<span class="badge bg-green">Valid</span>';
-                    $row[] = '<button title="lihat" type="button" data-id="' . $q->id_berita . '" class="lihat btn btn-primary btn-xs"><i class="material-icons">visibility</i> </button>';
+                    $row[] = '<button title="lihat" type="button" data-id="' . $q->id_berita . '" class="lihat btn btn-primary btn-xs"><i class="material-icons">visibility</i> </button>
+                    <button title="Ubah" type="button" data-id="' . $q->id_berita . '" data-status="' . $q->status_berita . '" class="ubah btn btn-info btn-xs"><i class="material-icons">edit</i> </button>';
+
                 } elseif ($q->status_berita == 'oke') {
                     if ($q->screenshoot == '') {
                         $row[] = '<span class="badge bg-deep-purple">Silahkan upload data</span>';
@@ -278,7 +280,7 @@ class Berita extends CI_Controller
     {
         $id = $this->input->post('edit_id_berita');
         $cek = $this->berita->get_by_id($id)->row();
-        if ($cek->status_berita == 'oke') {
+        if ($cek->status_berita == 'valid') {
             $data = array(
                 'link_berita' => $this->input->post('ubah_link_berita'),
                 'share' => implode(", ", $this->input->post('check')),
