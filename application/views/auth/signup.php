@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <div class="form-line">
-                    <select class="form-control" name="tipe_media_massa[]" id="tipe_media_massa" required multiple>
+                    <select class="form-control" name="tipe_media_massa" id="tipe_media_massa" required>
                     <option value="cetak">Cetak</option>
                     <option value="online">Online</option>
                     <option value="radio">Radio</option>

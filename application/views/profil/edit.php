@@ -161,11 +161,12 @@
 						<label for=" ">Tipe Media Massa</label>
 						<div class="form-group">
 							<div class="form-line">
-								<select class="form-control show-tick" multiple="multiple" name="tipe_media_massa[]">
+								<select class="form-control show-tick" name="tipe_media_massa">
 
 									<option value="cetak" @php if(in_array("cetak", $tipe_selected)) echo "selected" @endphp> Cetak</option>
 									<option value="online" @php if(in_array("online", $tipe_selected)) echo "selected" @endphp>Online</option>
 									<option value="radio" @php if(in_array("radio", $tipe_selected)) echo "selected" @endphp>Radio</option>
+									<option value="tv" @php if(in_array("tv", $tipe_selected)) echo "selected" @endphp>TV</option>
 
 								</select>
 							</div>

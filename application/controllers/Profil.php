@@ -164,7 +164,7 @@ class Profil extends CI_Controller
             'sertifikat_uji' => $this->input->post('sertifikat_uji'),
             'verifikasi_pers' => $this->input->post('verifikasi_pers'),
             'penawaran_kerja_sama' => $this->input->post('penawaran_kerjasama'),
-            'tipe_media_massa' => implode(", ",$this->input->post('tipe_media_massa')),
+            'tipe_media_massa' => $this->input->post('tipe_media_massa'),
         );
             
             if(!empty($_FILES['file_npwp']['name'])){
