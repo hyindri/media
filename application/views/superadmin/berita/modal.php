@@ -78,16 +78,16 @@
                             <span id="dibuat_pukul"></span>
                         </div>
                     </div>
-                    <!-- Screenshoot -->
+                    <!-- file -->
                     <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Screenshoot</span>
+                            <span>File</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-                            <span id="screenshoot"></span>
+                            <span id="file"></span>
                         </div>
                     </div>
                     <!-- Keterangan belum di verifikasi -->

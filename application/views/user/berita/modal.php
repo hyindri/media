@@ -73,14 +73,15 @@
             </div>
             {{form_open('',['id'=>'form-ubah','role'=>'form', 'enctype'=>'multipart/form-data'])}}
             <div class="modal-body">
-
                 <div class="form-group">
+                <label for="ubah_link_berita">Link Berita</label>
                     <div class="form-line">
                         <input type="hidden" name="edit_id_berita" id="edit_id_berita" class="form-control" required>
                         <input type="text" name="ubah_link_berita" id="ubah_link_berita" class="form-control" placeholder="Link Berita" required>
                     </div>
                 </div>
                 <div class="form-group">
+                <label for="">Dibagikan</label>
                     <div class="form-line">
                         <input type="checkbox" name="check[]" id="check_fb" class="filled-in chk-col-indigo">
                         <label for="check_fb">Facebook</label>
@@ -93,11 +94,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                <label for="ubah_jumlah_view">Jumlah View</label>
+
                     <div class="form-line">
                         <input name="ubah_jumlah_view" id="ubah_jumlah_view" class="form-control" placeholder="Jumlah orang yang melihat berita anda.." required>
                     </div>
                 </div>
                 <div class="form-group">
+                <label for="ubah_file">Screenshot</label>
                     <div class="form-line">
                         <input type="file" name="file" id="ubah_file" class="form-control">
                         File lama
@@ -250,10 +254,10 @@
                             <span id="lihat_share"></span>
                         </div>
                     </div>
-                    <!-- Screenshoot  -->
-                    <div class="row p-modal screenshoot">
+                    <!-- File  -->
+                    <div class="row p-modal file">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Screenshoot</span>
+                            <span>File</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
