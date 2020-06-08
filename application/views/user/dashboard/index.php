@@ -37,14 +37,14 @@
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				@if($status_berita > 1)
+				@if($status_berita == '1')
 				<div class="info-box bg-blue hover-zoom-effect">
 					@else
 					<div class="info-box bg-red hover-zoom-effect">
 						@endif
 						<div class="icon">
 
-							@if($status_berita > 1)
+							@if($status_berita == '1')
 							<i class="material-icons">verified_user</i>
 							@else
 							<i class="material-icons">error</i>
@@ -52,7 +52,7 @@
 						</div>
 						<div class="content">
 							<div class="text">BERITA HARI INI</div>
-							@if($status_berita > 1)
+							@if($status_berita == '1')
 							<div>SUDAH LAPOR</div>
 							@else
 							<div>BELUM LAPOR</div>

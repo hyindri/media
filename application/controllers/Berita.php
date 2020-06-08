@@ -13,6 +13,7 @@ class Berita extends CI_Controller
         $this->load->model('berita_model', 'berita');
         $this->load->model('notifikasi_model', 'notifikasi');
         $this->load->model('log_model','aktivitas');
+        $this->load->library('pdf');
     }
 
     public function index()
@@ -196,7 +197,7 @@ class Berita extends CI_Controller
                     'user_pengirim' => $this->session->userdata('id_user'),
                     'user_penerima' => $baris->user_id,
                     'judul' => $this->session->userdata('username') . ' Membatalkan draft',
-                    'pesan' => $this->session->userdata('username') . ' ada draft berita yang harus diperbaiki yang berjudul ' . $cek->judul_berita,
+                    'pesan' =>  'Ada draft berita yang harus diperbaiki yang berjudul ' . $cek->judul_berita,
                     'link' => $this->uri->segment(1),
                     'dibaca' => '1',
                     'dibuat_tanggal' => date('y-m-d'),
@@ -401,5 +402,34 @@ class Berita extends CI_Controller
             exit();
         }
         return $this->upload->data('file_name');
+    }
+
+
+    public function export()
+    {
+        if ($this->session->userdata('level') == 'user'  && $this->session->userdata('status') == 'aktif') {
+            $nama = $this->session->userdata('nama');
+            $bulan = $this->input->post('export_bulan');
+            $tahun = $this->input->post('export_tahun');
+            $status = $this->input->post('export_status');
+            $tanggal_awal = $this->input->post('export_tanggal_awal');
+            $tanggal_akhir = $this->input->post('export_tanggal_akhir');
+            $data['berita'] = $this->berita->export($nama, $bulan, $tahun, $status, $tanggal_awal, $tanggal_akhir);
+            $this->load->view('user/berita/export', $data);
+        } else {
+            $nama = $this->input->post('export_nama');
+            $bulan = $this->input->post('export_bulan');
+            $tahun = $this->input->post('export_tahun');
+            $status = $this->input->post('export_status');
+            $tanggal_awal = $this->input->post('export_tanggal_awal');
+            $tanggal_akhir = $this->input->post('export_tanggal_akhir');
+            $data['berita'] = $this->berita->export($nama, $bulan, $tahun, $status, $tanggal_awal, $tanggal_akhir);
+            $this->load->view('admin/berita/export', $data);
+        }
+        $html = $this->output->get_output();
+        $this->pdf->set_paper('folio', 'landscape');
+        $this->pdf->load_Html($html);
+        $this->pdf->render();
+        $this->pdf->stream("Daftar Berita.pdf", array("Attachment" => 0));
     }
 }

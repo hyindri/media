@@ -17,12 +17,16 @@
             <div class="card">
                 <div class="header">
                     <h2>Agenda</h2>
+                    <ul class="header-dropdown m-r--5">
+                        <li>
                     <div class="icon-button-demo align-right m-b--25">
-                        <a data-toggle="modal" data-target="#modal-tambah">
-                            <button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                <i class="material-icons">control_point</i>
-                            </button></a>
+                        <button title="Tambah" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue" data-toggle="modal" data-target="#modal-tambah">
+                            <i class="material-icons">control_point</i>
+                        </button>
                     </div>
+                        </li>
+                    </ul>
+                </div>
                     <div class="body">
                         <div class="table-responsive">
                             <table id="table" class="table table-bordered table-striped table-hover display nowrap" width="100%">
@@ -44,7 +48,6 @@
                 </div>
             </div>
         </div>
-    </div>
     @include("admin.agenda.modal")
     @endsection
 
@@ -80,7 +83,7 @@
                 },
 
                 "columnDefs": [{
-                    "targets": [0,3,4,5],
+                    "targets": [0, 3, 4, 5],
                     "orderable": false,
                     "class": "text-center"
                 }, ],
@@ -122,7 +125,7 @@
                 $("#edit_tanggal").val($(this).data('tanggal'));
                 $("#edit_status").val($(this).data('status'));
                 var file_lama = $(this).data('file');
-                $('#file_lama').html('<a href="{{site_url()}}upload/agenda/' + file_lama + '"  class="thumbnail"> <embed class="img-responsive" src="{{site_url()}}upload/agenda/' +  file_lama + '" width="600" height="300"></a>');
+                $('#file_lama').html('<a href="{{site_url()}}upload/agenda/' + file_lama + '"  class="thumbnail"> <embed class="img-responsive" src="{{site_url()}}upload/agenda/' + file_lama + '" width="600" height="300"></a>');
             });
 
             $('#ubah-agenda').submit('click', function() {

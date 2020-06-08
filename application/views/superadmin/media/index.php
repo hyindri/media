@@ -18,15 +18,22 @@
                     <h2>
                         Media
                     </h2>
-                    <div class="icon-button-demo align-right m-b--25">
-                        <a data-toggle="modal" data-target="#modal-filter">
-                            <button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                <i class="material-icons">filter_list</i><span>Filter</span>
-                            </button></a>
-                        <a id="btn-reset"><button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                <i class="material-icons">clear</i><span>Reset</span>
-                            </button></a>
-                    </div>
+                    <ul class="header-dropdown m-r--5">
+                        <li>
+                            <div class="icon-button-demo align-right m-b--25">
+                                <button title="Filter" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue" data-toggle="modal" data-target="#modal-filter">
+                                    <i class="col-white material-icons">filter_list</i>
+                                </button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-button-demo align-right m-b--25">
+                                <button title="Reset" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
+                                    <i class="col-white material-icons">replay</i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
@@ -51,8 +58,8 @@
         </div>
     </div>
 </div>
-@endsection
 @include("superadmin.media.modal")
+@endsection
 @section("js")
 <script type="text/javascript">
     var table;
@@ -72,13 +79,13 @@
                 },
             },
             "processing": true,
-            "serverSide": true, 
+            "serverSide": true,
             "searching": false,
             "responsive": true,
             "info": true,
             "ordering": true,
-            "order": [], 
-          
+            "order": [],
+
             "ajax": {
                 "url": "{{site_url('usermanagement/fetch_data')}}",
                 "type": "POST",
@@ -90,9 +97,9 @@
                 }
             },
 
-          
+
             "columnDefs": [{
-                "targets": [0,4,5,6],
+                "targets": [0, 4, 5, 6],
                 "orderable": false,
             }, ],
 
@@ -108,8 +115,8 @@
     });
 </script>
 <script>
-$('.datepicker').bootstrapMaterialDatePicker({
-    time: false
-});
+    $('.datepicker').bootstrapMaterialDatePicker({
+        time: false
+    });
 </script>
 @endsection
