@@ -111,9 +111,9 @@ class Usermanagement extends CI_Controller
         json_encode($data);
     }
 
-    function export()
+    function export($nama = "", $status = "", $publikasi = "", $tipemedia = "")
     {
-        $data['mediamassa'] = $this->users->export();
+        $data['mediamassa'] = $this->users->export($nama, $status, $publikasi, $tipemedia);
         $this->load->view('admin/usermanagement/export', $data);
         
         $html = $this->output->get_output();

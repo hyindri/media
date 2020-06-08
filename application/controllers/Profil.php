@@ -144,6 +144,7 @@ class Profil extends CI_Controller
        $select_tipe = $data_select_tipe;                              
        if (!$data['data_profil']) show_404(); 
        $data['tipe_selected']  = $select_tipe;
+       //dd($data);
        view('profil.edit',$data);
     }
 

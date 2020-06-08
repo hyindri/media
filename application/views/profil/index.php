@@ -16,7 +16,7 @@
                 <div class="profile-header">&nbsp;</div>
                 <div class="profile-body">
                     <div class="image-area">
-                        <img src="{{APP_ASSETS}}images/user-lg.jpg" alt="Gambar Profil" />
+                        <img src="{{APP_ASSETS}}images/person.svg" alt="Gambar Profil" width="50%"/>
                     </div>
                     <div class="content-area">
                         <h3>{{$nama}}</h3>

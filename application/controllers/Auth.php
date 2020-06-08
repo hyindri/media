@@ -119,6 +119,7 @@ class Auth extends CI_Controller
             $ins_id = $this->db->insert_id();
             $mediamassa = implode(',',$this->input->post('tipe_media_massa'));
             $data_media_massa = array(
+                'id' => uniqid(),
                 'user_id' => $ins_id,
                 'nama' => $this->input->post('nama'),
                 'perusahaan' => $this->input->post('perusahaan'),              
