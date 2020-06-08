@@ -19,35 +19,35 @@
                     <h2>Agenda</h2>
                     <ul class="header-dropdown m-r--5">
                         <li>
-                    <div class="icon-button-demo align-right m-b--25">
-                        <button title="Tambah" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue" data-toggle="modal" data-target="#modal-tambah">
-                            <i class="material-icons">control_point</i>
-                        </button>
-                    </div>
+                            <div class="icon-button-demo align-right m-b--25">
+                                <button title="Tambah" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue" data-toggle="modal" data-target="#modal-tambah">
+                                    <i class="material-icons">control_point</i>
+                                </button>
+                            </div>
                         </li>
                     </ul>
                 </div>
-                    <div class="body">
-                        <div class="table-responsive">
-                            <table id="table" class="table table-bordered table-striped table-hover display nowrap" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px;">No</th>
-                                        <th class="text-center">Tanggal</th>
-                                        <th>Judul</th>
-                                        <th class="text-center">File</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table id="table" class="table table-bordered table-striped table-hover display nowrap" width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px;">No</th>
+                                    <th class="text-center">Tanggal</th>
+                                    <th>Judul</th>
+                                    <th class="text-center">File</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     @include("admin.agenda.modal")
     @endsection
 
