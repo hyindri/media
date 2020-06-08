@@ -30,7 +30,7 @@
                         </li>
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                                <button type="button" class="btn bg-blue btn-block btn-xs waves-effect" title="Export" data-toggle="modal" data-target="#modal-export">
+                                <button type="button" class="btn bg-blue btn-block btn-xs waves-effect" title="Export PDF" data-toggle="modal" data-target="#modal-export">
                                     <i class="col-white material-icons">picture_as_pdf</i> 
                                 </button>
                             </div>
@@ -47,7 +47,7 @@
                         </li>
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                                <button title="Reset" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
+                                <button title="Refresh" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
                                     <i class="col-white material-icons">replay</i>
                                 </button>
                             </div>
@@ -62,7 +62,7 @@
                                     <th width="5%">No</th>
                                     <th class="text-center" width="10%">Tanggal</th>
                                     <th>Judul Berita</th>
-                                    <th width="20%">Screenshoot</th>
+                                    <th width="20%">File</th>
                                     <th class="text-center" width="10%">Status</th>
                                     <th class="text-center" width="15%">Aksi</th>
                                 </tr>
@@ -163,16 +163,16 @@
                     $('#lihat_pada').html(data.diperiksa_pada);
                     $('#lihat_keterangan').html(data.keterangan);
                     if (data.status_berita == 'valid') {
-                        $('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                        $('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
                         $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                         $('#lihat_keterangan').html("-");
                         $('#lihat_status_berita').html('<span class="badge bg-green">Valid</span>');
                     } else if (data.status_berita == 'oke') {
                         $('#lihat_status_berita').html('<span class="badge bg-blue">Draft Disetujui</span>');
-                        if (data.screenshoot == '') {
+                        if (data.file == '') {
                             $('#lihat_screenshoot').html('<span class="badge bg-red">Anda belum upload screenshot</span>');
                         } else {
-                            $('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                            $('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
                         }
                         if (data.link_berita == '') {
                             $('#lihat_link_berita').html('<span class="badge bg-red">Anda belum upload link</span>');
@@ -215,8 +215,8 @@
                     $('#ubah_jumlah_view').val(data.jumlah_view);
                     $('#ubah_judul').val(data.judul_berita);
                     $('#ubah_narasi').val(data.narasi_berita);
-                    $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
-                    $('#file_lama').val(data.screenshoot);
+                    $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
+                    $('#file_lama').val(data.file);
                     $('#check_fb').val('Facebook').prop('checked', false);
                     $('#check_twitter').val('Twitter').prop('checked', false);
                     $('#check_wa').val('Whatsapp').prop('checked', false);

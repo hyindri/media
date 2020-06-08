@@ -37,7 +37,7 @@
                         </li>
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                                <button title="Reset" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
+                                <button title="Refresh" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
                                     <i class="col-white material-icons">replay</i>
                                 </button>
                             </div>
@@ -148,16 +148,20 @@
                         $('#dibuat_tanggal').html(data.dibuat_tanggal + ' : ' + data.dibuat_pukul);
                         $('#keterangan').val(data.keterangan);
                         $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                        $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                        $('#file').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
                         if (data.status_berita == 'valid') {
                             $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                            $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                            $('#file').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
                             $("#keterangan").prop('disabled', true);
                             $('#verif_status').prop('checked', true);
                             $('#verif_status').val('oke');
+                            $('.link').show();
+                            $('.share').show();
+                            $('.view').show();
+                            $('.screenshot').show();
                         } else if (data.status_berita == 'oke') {
                             $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                            $('#screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.screenshoot + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.screenshoot + '" width="200px" height="200px"></a>');
+                            $('#file').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
                             $("#keterangan").prop('disabled', true);
                             $('#verif_status').prop('checked', true);
                             $('#verif_status').val('oke');

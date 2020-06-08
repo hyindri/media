@@ -43,7 +43,7 @@
                                     <a href="{{site_url().$a->link}}">
                                         <div class="menu-info">
                                             <h4>{{$a->judul}}</h4>
-                                            <p>{{$a->pesan}}</p>
+                                            <p style="color:black;">{{$a->pesan}}</p>
                                             <p>
                                                 <i class="material-icons">access_time</i> {{tanggal($a->dibuat_tanggal)}} / {{date('h:i:s',strtotime($a->dibuat_pukul))}}
                                             </p>

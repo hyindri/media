@@ -21,13 +21,15 @@
                             <button type="button" class="btn btn-primary waves-effect waves-light-blue">
                                 <i class="material-icons">filter_list</i><span>Filter</span>
                             </button></a>
-                        <a id="btn-reset"><button type="button" class="btn btn-primary waves-effect waves-light-blue">
-                                <i class="material-icons">clear</i><span>Reset</span>
-                            </button></a>
                         <a id="export">
                             <button type="button" class="btn btn-primary waves-effect waves-light-blue">
                                 <i class="material-icons">import_export</i><span>Export</span>
-                            </button></a>
+                            </button>
+                        </a>
+                            <a id="btn-reset"><button type="button" title="Refresh" class="btn btn-primary waves-effect waves-light-blue">
+                                <i class="material-icons">replay</i><span>Refresh</span>
+                            </button>
+                        </a>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
