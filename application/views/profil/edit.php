@@ -115,13 +115,15 @@
 									value="{{$data_profil->penawaran_kerja_sama}}">
 							</div>
 						</div>
+
 						<label for=" ">Tipe Media Massa</label>
 						<div class="form-group">
 							<div class="form-line">
-								<select class="form-control show-tick" multiple="multiple" name="tipe_media_massa[]">			
-									<option value="cetak">Cetak</option>
-									<option value="online">Online</option>
-									<option value="radio">Radio</option>									
+								<select class="form-control show-tick" multiple="multiple" name="tipe_media_massa[]">
+
+									<option value="cetak" @php if(in_array("cetak", $tipe_selected)) echo "selected" @endphp> Cetak</option>
+									<option value="online" @php if(in_array("online", $tipe_selected)) echo "selected" @endphp>Online</option>
+									<option value="radio" @php if(in_array("radio", $tipe_selected)) echo "selected" @endphp>Radio</option>
 									
 								</select>
 							</div>
