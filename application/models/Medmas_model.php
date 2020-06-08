@@ -157,24 +157,10 @@ class Medmas_model extends CI_Model
         $this->db->delete($this->table);
     }
 
-    public function updateProfil()
+    public function updateProfil($id, $data)
     {
-        $id['id'] = $this->input->post('id_media');
-        $data = array(
-            'nama' => $this->input->post('nama_media'),
-            'perusahaan' => $this->input->post('nama_perusahaan'),
-            'alamat' => $this->input->post('alamat_kantor'),
-            'pimpinan' => $this->input->post('pimpinan'),
-            'kabiro' => $this->input->post('kabiro'),
-            'surat_kabiro' => $this->input->post('surat_kabiro'),
-            'no_telp' => $this->input->post('no_telp'),
-            'wartawan' => $this->input->post('wartawan'),
-            'sertifikat_uji' => $this->input->post('sertifikat_uji'),
-            'verifikasi_pers' => $this->input->post('verifikasi_pers'),
-            'penawaran_kerja_sama' => $this->input->post('penawaran_kerjasama'),
-            'tipe_media_massa' => implode(", ",$this->input->post('tipe_media_massa')),
-        );
-        $this->db->update($this->table,$data,$id);
+        $this->db->where('id', $id);
+        $this->db->update('tmst_media_massa', $data);
     }
 
 }

@@ -150,7 +150,64 @@ class Profil extends CI_Controller
 
     public function updatedata()
     {
-        $this->medmas->updateProfil();    
+        $id = $this->input->post('id_media');
+        $data = array(
+            'nama' => $this->input->post('nama_media'),
+            'perusahaan' => $this->input->post('nama_perusahaan'),
+            'alamat' => $this->input->post('alamat_kantor'),
+            'npwp' => $this->input->post('npwp'),
+            'pimpinan' => $this->input->post('pimpinan'),
+            'kabiro' => $this->input->post('kabiro'),
+            'surat_kabiro' => $this->input->post('surat_kabiro'),
+            'no_telp' => $this->input->post('no_telp'),
+            'wartawan' => $this->input->post('wartawan'),
+            'sertifikat_uji' => $this->input->post('sertifikat_uji'),
+            'verifikasi_pers' => $this->input->post('verifikasi_pers'),
+            'penawaran_kerja_sama' => $this->input->post('penawaran_kerjasama'),
+            'tipe_media_massa' => implode(", ",$this->input->post('tipe_media_massa')),
+        );
+            
+            if(!empty($_FILES['file_npwp']['name'])){
+                if(!empty($this->input->post('old_file_npwp'))){
+                    unlink('upload/npwp/'.$this->input->post('old_file_npwp'));
+                }
+                $upload = $this->_do_upload_npwp();
+                $data['file_npwp'] = $upload;
+            }
+            
+            if(!empty($_FILES['file_rekening']['name'])){
+                if(!empty($this->input->post('old_file_rekening'))){
+                    unlink('upload/rekening/'.$this->input->post('old_file_rekening'));
+                }
+                $upload = $this->_do_upload_rekening();
+                $data['file_rekening'] = $upload;
+            }
+            
+            if(!empty($_FILES['file_sertifikat_uji']['name'])){
+                if(!empty($this->input->post('old_file_sertifikat_uji'))){
+                    unlink('upload/sertifikat_uji/'.$this->input->post('old_file_sertifikat_uji'));
+                }
+                $upload = $this->_do_upload_sertifikat_uji();
+                $data['file_sertifikat_uji'] = $upload;
+            }
+            
+            if(!empty($_FILES['file_verifikasi_pers']['name'])){
+                if(!empty($this->input->post('old_file_verifikasi_pers'))){
+                    unlink('upload/verifikasi_pers/'.$this->input->post('old_file_verifikasi_pers'));
+                }
+                $upload = $this->_do_upload_verifikasi_pers();
+                $data['file_verifikasi_pers'] = $upload;
+            }
+            
+            if(!empty($_FILES['file_penawaran_kerja_sama']['name'])){
+                if(!empty($this->input->post('old_file_penawaran_kerja_sama'))){
+                    unlink('upload/penawaran_kerja_sama/'.$this->input->post('old_file_penawaran_kerja_sama'));
+                }
+                $upload = $this->_do_upload_penawaran_kerja_sama();
+                $data['file_penawaran_kerja_sama'] = $upload; 
+            }
+          
+        $this->medmas->updateProfil($id, $data);    
         $this->aktivitas->log_ubahprofil();
         $sesi_selesai = array(
             'login_status' => 'login_status',
@@ -184,6 +241,125 @@ class Profil extends CI_Controller
         </div>');        
         redirect('auth');		
               
+    }
+
+    private function _do_upload_npwp()
+    {
+        if (!file_exists('upload/npwp')) {
+            mkdir('upload/npwp/', 0777, true);
+        }
+        $config['upload_path']          = 'upload/npwp/';
+        $config['allowed_types']        = 'jpg|jpeg|png';
+        $config['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+ 
+        $this->load->library('upload', $config);
+ 
+        if(!$this->upload->do_upload('file_npwp')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_npwp';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    private function _do_upload_rekening()
+    {
+        if (!file_exists('upload/rekening')) {
+            mkdir('upload/rekening/', 0777, true);
+        }
+        $config2['upload_path']          = 'upload/rekening/';
+        $config2['allowed_types']        = 'jpg|jpeg|png';
+        $config2['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config2['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+ 
+        $this->load->library('upload', $config2);
+        $this->upload->initialize($config2);
+ 
+        if(!$this->upload->do_upload('file_rekening')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_rekening';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    private function _do_upload_sertifikat_uji()
+    {
+        if (!file_exists('upload/sertifikat_uji')) {
+            mkdir('upload/sertifikat_uji/', 0777, true);
+        }
+        $config3['upload_path']          = 'upload/sertifikat_uji/';
+        $config3['allowed_types']        = 'pdf';
+        $config3['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config3['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+ 
+        $this->load->library('upload', $config3);
+        $this->upload->initialize($config3);
+ 
+        if(!$this->upload->do_upload('file_sertifikat_uji')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_sertifikat_uji';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    private function _do_upload_verifikasi_pers()
+    {
+        if (!file_exists('upload/verifikasi_pers')) {
+            mkdir('upload/verifikasi_pers/', 0777, true);
+        }
+        $config4['upload_path']          = 'upload/verifikasi_pers/';
+        $config4['allowed_types']        = 'pdf';
+        $config4['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config4['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+ 
+        $this->load->library('upload', $config4);
+        $this->upload->initialize($config4);
+ 
+        if(!$this->upload->do_upload('file_verifikasi_pers')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_verifikasi_pers';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    private function _do_upload_penawaran_kerja_sama()
+    {
+        if (!file_exists('upload/penawaran_kerja_sama')) {
+            mkdir('upload/penawaran_kerja_sama/', 0777, true);
+        }
+        $config5['upload_path']          = 'upload/penawaran_kerja_sama/';
+        $config5['allowed_types']        = 'pdf';
+        $config5['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config5['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+ 
+        $this->load->library('upload', $config5);
+        $this->upload->initialize($config5);
+ 
+        if(!$this->upload->do_upload('file_penawaran_kerja_sama')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_penawaran_kerja_sama';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
     }
 
 }

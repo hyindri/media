@@ -21,7 +21,8 @@
 					</h2>
 				</div>
 				<div class="body">
-					<form action="{{site_url('profil/updatedata')}}" method="POST">
+					<!-- <form action="{{site_url('profil/updatedata')}}" method="POST"> -->
+					<?php echo form_open_multipart(site_url('profil/updatedata'));?>
 						<input type="hidden" value="{{$data_profil->id}}" name="id_media">
 						<label for=" ">Nama Media</label>
 						<div class="form-group">
@@ -46,6 +47,23 @@
 									placeholder="Masukkan Alamat Kantor Media">{{$data_profil->alamat}}</textarea>
 							</div>
 						</div>
+						<label for=" ">NPWP</label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="text" id="npwp" class="form-control" placeholder="Masukkan NPWP"
+									name="npwp" value="{{$data_profil->npwp}}">
+							</div>
+						</div>
+						<label for=" ">Upload NPWP</label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="file" id="file_npwp" class="form-control"
+									placeholder="Upload NPWP" name="file_npwp">
+									<input type="text" id="old_file_npwp" class="form-control"
+									placeholder="Upload NPWP" name="old_file_npwp"
+									value="{{$data_profil->file_npwp}}">
+							</div>
+						</div>
 						<label for=" ">Pimpinan</label>
 						<div class="form-group">
 							<div class="form-line">
@@ -58,6 +76,17 @@
 							<div class="form-line">
 								<input type="text" id="no_rek" class="form-control" placeholder="Masukkan No. Rekening"
 									name="no_rek" value="{{$data_profil->rekening}}">
+							</div>
+						</div>
+						<label for=" ">Upload Rekening</label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="file" id="file_rekening" class="form-control"
+									placeholder="Masukkan Rekening" name="file_rekening">
+									<input type="text" id="old_file_rekening" class="form-control"
+									placeholder="Masukkan Rekening" name="old_file_rekening"
+									value="{{$data_profil->file_rekening}}">
+									
 							</div>
 						</div>
 						<label for=" ">Kabiro</label>
@@ -99,6 +128,16 @@
 									value="{{$data_profil->sertifikat_uji}}">
 							</div>
 						</div>
+						<label for=" ">Upload Sertifikat Uji</label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="file" id="file_sertifikat_uji" class="form-control"
+									placeholder="Upload Sertifikat Uji" name="file_sertifikat_uji">
+								<input type="text" id="old_file_sertifikat_uji" class="form-control"
+									placeholder="Upload Sertifikat Uji" name="old_file_sertifikat_uji"
+									value="{{$data_profil->file_sertifikat_uji}}">
+							</div>
+						</div>
 						<label for=" ">Verifikasi Pers</label>
 						<div class="form-group">
 							<div class="form-line">
@@ -107,12 +146,32 @@
 									value="{{$data_profil->verifikasi_pers}}">
 							</div>
 						</div>
+						<label for=" ">Upload Verifikasi Pers</label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="file" id="file_verifikasi_pers" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="file_verifikasi_pers">
+								<input type="text" id="old_file_verifikasi_pers" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="old_file_verifikasi_pers"
+									value="{{$data_profil->file_verifikasi_pers}}">
+							</div>
+						</div>
 						<label for=" ">Penawaran Kerja Sama</label>
 						<div class="form-group">
 							<div class="form-line">
 								<input type="text" id="penawaran_kerjasama" class="form-control"
 									placeholder="Masukkan Penawaran Kerja Sama" name="penawaran_kerjasama"
 									value="{{$data_profil->penawaran_kerja_sama}}">
+							</div>
+						</div>
+						<label for=" ">Upload Penawaran Kerja Sama</label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="file" id="file_penawaran_kerja_sama" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="file_penawaran_kerja_sama">
+								<input type="text" id="old_file_penawaran_kerja_sama" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="old_file_penawaran_kerja_sama"
+									value="{{$data_profil->file_penawaran_kerja_sama}}">
 							</div>
 						</div>
 
@@ -129,7 +188,7 @@
 							</div>
 						</div>
 						<button type="submit" class="btn btn-primary m-t-15 waves-effect">Simpan</button>
-					</form>
+					<?= form_close() ?>
 				</div>
 			</div>
 		</div>

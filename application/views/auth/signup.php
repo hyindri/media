@@ -45,17 +45,8 @@
                     <option value="cetak">Cetak</option>
                     <option value="online">Online</option>
                     <option value="radio">Radio</option>
+                    <option value="tv">TV</option>
                     </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-line">
-                    <input name="mulai_mou" class="form-control datepicker" placeholder="Please choose a date..." required autofocus>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-line">
-                    <input class="form-control datepicker" name="akhir_mou" placeholder="Please choose a date..." required autofocus>
                 </div>
             </div>
             <div class="form-group">

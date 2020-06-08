@@ -128,8 +128,6 @@ class Auth extends CI_Controller
                 'no_telp' => $this->input->post('no_telp'),
                 'tipe_publikasi' => $this->input->post('tipe_publikasi'),
                 'tipe_media_massa' => $mediamassa,
-                'mulai_mou' => $this->input->post('mulai_mou'),
-                'akhir_mou' => $this->input->post('akhir_mou'),
             );
             $this->db->insert('tmst_media_massa', $data_media_massa);
 
