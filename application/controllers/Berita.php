@@ -50,6 +50,7 @@ class Berita extends CI_Controller
 
     public function json()
     {
+		$folder = $this->session->userdata('username');
         $list = $this->berita->get_datatables();
         $data = array();
         $no = $_POST['start'];
@@ -92,7 +93,7 @@ class Berita extends CI_Controller
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>' . $q->judul_berita . '</a>';
 
                 if ($q->status_berita == 'valid') {
-                    $row[] = '<a href="' . site_url() . '/upload/berita/' . $q->file . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="' . site_url() . 'upload/berita/' . $q->file . '" width="200px" height="200px"></a>';
+                    $row[] = '<a href="' . site_url() . '/upload/berita/'.$folder.'/'.$q->id_berita.'/' . $q->file . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="' . site_url() . 'upload/berita/'.$folder.'/'.$q->id_berita.'/' . $q->file . '" width="200px" height="200px"></a>';
                     $row[] = '<span class="badge bg-green">Valid</span>';
                     $row[] = '      
                     <button title="Upload" type="button" data-id="' . $q->id_berita . '" class="ubah btn btn-warning btn-xs"><i class="material-icons">cloud_upload</i> </button>
@@ -103,7 +104,7 @@ class Berita extends CI_Controller
                     if ($q->file == '') {
                         $row[] = '<span class="badge bg-deep-purple">Silahkan upload data</span>';
                     } else {
-                        $row[] = '<a href="' . site_url() . '/upload/berita/' . $q->file . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="' . site_url() . 'upload/berita/' . $q->file . '" width="200px" height="200px"></a>';
+                        $row[] = '<a href="' . site_url() . '/upload/berita/'.$folder.'/'.$q->id_berita.'/' . $q->file . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="' . site_url() . 'upload/berita/'.$folder.'/'.$q->id_berita.'/' . $q->file . '" width="200px" height="200px"></a>';
                     }
                     $row[] = '<span class="badge bg-blue">Draft Valid</span>';
                     $row[] = '<div class="btn-group">
@@ -280,7 +281,9 @@ class Berita extends CI_Controller
 
     public function ubah()
     {
+
         $id = $this->input->post('edit_id_berita');
+		$folder = $this->session->userdata('username').'/'.$id;
         $cek = $this->berita->get_by_id($id)->row();
         // if ($cek->status_berita == 'oke') {
             $data = array(
@@ -291,9 +294,9 @@ class Berita extends CI_Controller
                 'dibuat_oleh' => $this->session->userdata('username'),
             );
             if (!empty($_FILES['file']['name'])) {
-                $upload = $this->_do_upload();
+                $upload = $this->_do_upload($id);
                 //delete file
-                unlink('upload/berita/' . $cek->file);
+                unlink('upload/berita/'.$folder.'/' . $cek->file);
 
                 $data['file'] = $upload;
                 $this->aktivitas->log_ubahberita();
@@ -386,14 +389,18 @@ class Berita extends CI_Controller
         }
     }
 
-    private function _do_upload()
+    private function _do_upload($id)
     {
-        $config['upload_path']          = 'upload/berita/';
+		$folder = $this->session->userdata('username').'/'.$id;
+        $config['upload_path']          = 'upload/berita/'.$folder;
         $config['allowed_types']        = 'jpg|jpeg|png';
         $config['max_size']             =  10000; //set max size allowed in Kilobyte
         $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
 
         $this->load->library('upload', $config);
+		if (!is_dir('upload/berita/' . $folder)) {
+			mkdir('upload/berita/' . $folder, 0777, true);
+		}
 
         if (!$this->upload->do_upload('file')) //upload and validate
         {
