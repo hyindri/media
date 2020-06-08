@@ -30,7 +30,7 @@
                         </li>
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                                <button type="button" class="btn bg-blue btn-block btn-xs waves-effect" title="Export" data-toggle="modal" data-target="#modal-export">
+                                <button type="button" class="btn bg-blue btn-block btn-xs waves-effect" title="Export PDF" data-toggle="modal" data-target="#modal-export">
                                     <i class="col-white material-icons">picture_as_pdf</i> 
                                 </button>
                             </div>
@@ -47,7 +47,7 @@
                         </li>
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
-                                <button title="Reset" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
+                                <button title="Refresh" id="btn-reset" type="button" class="btn bg-blue btn-block btn-xs waves-effect waves-light-blue">
                                     <i class="col-white material-icons">replay</i>
                                 </button>
                             </div>
@@ -215,7 +215,7 @@
                     $('#ubah_jumlah_view').val(data.jumlah_view);
                     $('#ubah_judul').val(data.judul_berita);
                     $('#ubah_narasi').val(data.narasi_berita);
-                    $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
+                    $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/'+"{{$this->session->userdata('username')}}"+'/'+id_berita+'/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/'+"{{$this->session->userdata('username')}}"+'/'+id_berita+'/' + data.file + '" width="200px" height="200px"></a>');
                     $('#file_lama').val(data.file);
                     $('#check_fb').val('Facebook').prop('checked', false);
                     $('#check_twitter').val('Twitter').prop('checked', false);
