@@ -24,7 +24,7 @@
                         <a id="btn-reset"><button type="button" class="btn btn-primary waves-effect waves-light-blue">
                                 <i class="material-icons">clear</i><span>Reset</span>
                             </button></a>
-                        <a onClick="window.open('<?php echo base_url('usermanagement/export') ?>');">
+                        <a id="export">
                             <button type="button" class="btn btn-primary waves-effect waves-light-blue">
                                 <i class="material-icons">import_export</i><span>Export</span>
                             </button></a>
@@ -60,6 +60,20 @@
 <script type="text/javascript">
     var table;
     $(document).ready(function() {
+        function getBase64FromImageUrl(url) {
+        var img = new Image();
+            img.crossOrigin = "anonymous";
+        img.onload = function () {
+            var canvas = document.createElement("canvas");
+            canvas.width =this.width;
+            canvas.height =this.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(this, 0, 0);
+            var dataURL = canvas.toDataURL("image/png");
+            return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+        };
+        img.src = url;
+        }
         table = $('#table').DataTable({
             "language": {
                 "lengthMenu": "Tampilkan _MENU_ data per halaman",
@@ -103,6 +117,25 @@
         $('#btn-reset').click(function() {
             $('#form-filter')[0].reset();
             table.ajax.reload();
+        });
+        $('#export').click(function() {
+            var nama = $('#filter_nama').val();
+            var status = $('#filter_status').val();
+            var publikasi = $('#filter_tipe_publikasi').val();
+            var tipemedia = $('#filter_tipe_media_massa').val();
+            if(nama == ''){
+                nama = 0;
+            }
+            if(status == ''){
+                status = 0;
+            }
+            if(publikasi == ''){
+                publikasi = 0;
+            }
+            if(tipemedia == ''){
+                tipemedia = 0;
+            }
+            window.open('<?php echo base_url('usermanagement/export') ?>/'+nama+'/'+status+'/'+publikasi+'/'+tipemedia);
         });
         $('#table').on('click', '.ubah', function() {
             $('#modal-ubah').modal('show');
