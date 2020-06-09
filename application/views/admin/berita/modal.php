@@ -41,7 +41,7 @@
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
                             <span id="narasi_berita"></span>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <span id="file"></span>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                             <textarea id="keterangan" name="keterangan" rows="5" class="form-control"></textarea>
                         </div>
                     </div>
-                    <!-- File -->
+                    <!-- Status Draft -->
                     <div class="row p-modal">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Status Draft Berita</span>
@@ -136,7 +136,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">TUTUP</button>
+                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
                 <button id="simpan_btn" type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
             </div>
             {{form_close()}}
