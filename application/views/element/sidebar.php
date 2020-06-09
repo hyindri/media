@@ -3,9 +3,16 @@
 	<aside id="leftsidebar" class="sidebar">
 		<!-- User Info -->
 		<div class="user-info">
+			
+			@if($this->session->userdata('level') == 'user')
 			<div class="image">
-				<img src="{{APP_ASSETS}}images/person.svg" width="48" height="48" alt="User" />
+			<img src="<?= base_url('upload/logo-media/'.$this->session->userdata('logo_media'));?>" alt="Gambar Profil"  width="48" height="48"/>			
 			</div>
+			@elseif($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'superadmin')
+			<div class="image">	
+				<img src="{{APP_ASSETS}}images/person.svg" width="48" height="48" alt="User" />			
+			</div>
+			@endif						
 			<div class="info-container">
 				<div class="email">Selamat Datang,</div>
 				<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

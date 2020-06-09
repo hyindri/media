@@ -208,6 +208,22 @@ class Users_model extends CI_Model
         return $this->db->get_where($this->table_media,['user_id' => $id])->row();
     }
 
+    public function _uploadLogo()
+    {
+        $file_lama = $this->input->post('logo_lama');
+        $config['upload_path'] = './upload/logo-media/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['file_name'] = 'logo-'.$this->session->userdata('id_media');
+        $config['max-size'] = 2048;
+        $this->load->library('upload',$config);
+        if($this->upload->do_upload('file_logo_media')){
+            unlink('./upload/logo-media/'.$file_lama);
+            return $this->upload->data('file_name');
+        }elseif($this->upload->do_upload('file_logo_media') == 0){
+            return $file_lama;
+        }
+    }
+
 
 
 }
