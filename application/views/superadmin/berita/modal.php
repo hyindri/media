@@ -101,7 +101,7 @@
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
                             <span id="file"></span>
                         </div>
                     </div>

@@ -159,7 +159,7 @@
                         $.each(data.sosmed, function(key, value) {
                             nama.push(value.nama);
                             logo.push(value.logo);
-                            $('#lihat_share').append('<div class="media-left"><a><img class="img-responsive" src="{{site_url()}}upload/logo/' + value.logo + '" width="20" height="20">' + value.nama + '</a></div>');
+                            $('#lihat_share').append('<div class=""><a class="deco-off"><img class="logo-sm m-logo" src="{{site_url()}}upload/logo/' + value.logo + '" ">' + value.nama + '</a></div>');
                         });
 
                         $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
