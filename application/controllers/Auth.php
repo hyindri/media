@@ -59,7 +59,7 @@ class Auth extends CI_Controller
                             'alamat_per' => $media['alamat'],
                             'rekening' => $media['rekening'],
                             'kabiro' => $media['kabiro'],
-                            'surat_kabiro' => $media['surat_kabiro'],
+                            'surat_kabiro' => $media['file_surat_kabiro'],
                             'telp' => $media['no_telp'],
                             'wartawan' => $media['wartawan'],
                             'sertifikat' => $media['sertifikat_uji'],

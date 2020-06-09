@@ -112,7 +112,7 @@
                                 Surat Kabiro
                             </div>
                             <div class="content">
-                                {{$surat_kabiro}}
+                                <a href="<?php echo base_url('upload/surat_kabiro/'.$this->session->userdata('surat_kabiro'));?>" class="btn bg-indigo" target="_blank">Lihat File</a>
                             </div>
                         </li>
                         <li>
