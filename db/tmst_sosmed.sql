@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2020 at 06:26 AM
+-- Generation Time: Jun 09, 2020 at 04:34 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -41,7 +41,7 @@ CREATE TABLE `tmst_sosmed` (
 --
 
 INSERT INTO `tmst_sosmed` (`id`, `nama`, `logo`, `dibuat_tanggal`, `dibuat_pukul`) VALUES
-(1, 'Facebook', '1591675999720.png', '2020-06-09', '11:13:19'),
+(1, 'Facebook', '1591609621892.png', '2020-06-08', '07:57:01'),
 (2, 'Whatsapp', '1591608358791.png', '2020-06-08', '04:25:58'),
 (3, 'Instagram', '1591608369602.png', '2020-06-08', '04:26:09'),
 (4, 'Twitter', '1591608383500.png', '2020-06-08', '04:26:23');

@@ -84,7 +84,13 @@ class Setting_model extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
-        $this->db->get($this->table)->row();
+        return $this->db->get($this->table);
+    }
+    
+    function get_by_id_in($id)
+    {
+        $this->db->where_in($this->id, $id);
+        return $this->db->get($this->table);
     }
     // update data
     function ubah($id, $data)
@@ -102,7 +108,7 @@ class Setting_model extends CI_Model
 
     function get_all()
     {
-        return $this->db->get($this->table_setting)->result();
+        return $this->db->get($this->table)->result();
     }
 
 

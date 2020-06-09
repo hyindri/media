@@ -9,14 +9,14 @@
                 <div class="form-group form-float">
                     <div class="form-line">
                         <textarea id="judul_berita" name="judul_berita" class="form-control" required></textarea>
-						<label class="form-label">Judul berita</label>
+                        <label class="form-label">Judul berita</label>
                     </div>
                 </div>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <textarea id="narasi_berita" name="narasi_berita" class="form-control" rows="17" required></textarea>
-						<label class="form-label">Narasi berita</label>
-					</div>
+                        <label class="form-label">Narasi berita</label>
+                    </div>
                 </div>
 
             </div>
@@ -40,20 +40,20 @@
                 <div class="form-group form-float">
                     <div class="form-line">
                         <input type="text" name="link_berita" id="link_berita" class="form-control" required>
-						<label class="form-label">Link Berita</label>
+                        <label class="form-label">Link Berita</label>
                     </div>
                 </div>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <input name="share" id="share" class="form-control" required>
-						<label class="form-label">Dibagikan ke platform apa saja..</label>
+                        <label class="form-label">Dibagikan ke platform apa saja..</label>
                     </div>
                 </div>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <input name="jumlah_view" id="jumlah_view" class="form-control" required>
-						<label class="form-label">Jumlah orang yang melihat berita anda..</label>
-					</div>
+                        <label class="form-label">Jumlah orang yang melihat berita anda..</label>
+                    </div>
                 </div>
                 <div class="form-group form-float">
                     <div class="form-line">
@@ -78,27 +78,27 @@
             </div>
             {{form_open('',['id'=>'form-ubah','role'=>'form', 'enctype'=>'multipart/form-data'])}}
             <div class="modal-body">
-				<input type="hidden" name="edit_id_berita" id="edit_id_berita" class="form-control" required>
-				<label for="ubah_link_berita">Link Berita</label>
+                <input type="hidden" name="edit_id_berita" id="edit_id_berita" class="form-control" required>
+                <label for="ubah_link_berita">Link Berita</label>
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" name="ubah_link_berita" id="ubah_link_berita" class="form-control" placeholder="Link Berita" required>
-					</div>
-                </div>
-				<label>Dibagikan -</label>
-                <div class="form-group">
-                    <div class="form-line">
-                        <input type="checkbox" name="check[]" id="check_fb" class="filled-in chk-col-indigo">
-                        <label for="check_fb">Facebook</label>
-                        <input type="checkbox" name="check[]" id="check_twitter" class="filled-in chk-col-light-blue">
-                        <label for="check_twitter">Twitter</label>
-                        <input type="checkbox" name="check[]" id="check_wa" class="filled-in chk-col-teal">
-                        <label for="check_wa">Whatsapp</label>
-                        <input type="checkbox" name="check[]" id="check_line" class="filled-in chk-col-light-green">
-                        <label for="check_line">Line</label>
+                        <textarea name="ubah_link_berita" id="ubah_link_berita" class="form-control" placeholder="Link Berita" required></textarea>
                     </div>
                 </div>
-				<label for="ubah_jumlah_view">Jumlah View</label>
+                <label>Dibagikan</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        @php
+                        $no = 0; 
+                        @endphp
+                        @foreach ($sosmed as $row)
+                        @php $no++ @endphp
+                        <input type="checkbox" name="check[]" id="check_{{$no}}" class="filled-in chk-col-indigo" value="{{$row->id}}">
+                        <label for="check_{{$no}}"><img src="{{site_url()}}/upload/logo/{{$row->logo}}" width="20" height="20"> {{$row->nama}}</label>
+                        @endforeach
+                    </div>
+                </div>
+                <label for="ubah_jumlah_view">Jumlah View</label>
                 <div class="form-group">
                     <div class="form-line">
                         <input name="ubah_jumlah_view" id="ubah_jumlah_view" class="form-control" placeholder="Jumlah orang yang melihat berita anda.." required>
@@ -131,14 +131,14 @@
             </div>
             {{form_open('',['id'=>'form-ubah-draft','role'=>'form'])}}
             <div class="modal-body">
-				<input type="hidden" name="edit_id_berita2" id="edit_id_berita2" class="form-control" required>
-				<label>Judul Berita</label>
+                <input type="hidden" name="edit_id_berita2" id="edit_id_berita2" class="form-control" required>
+                <label>Judul Berita</label>
                 <div class="form-group">
                     <div class="form-line">
                         <textarea id="ubah_judul" name="ubah_judul" class="form-control" placeholder="Judul berita" required></textarea>
                     </div>
                 </div>
-				<label>Narasi Berita</label>
+                <label>Narasi Berita</label>
                 <div class="form-group">
                     <div class="form-line">
                         <textarea id="ubah_narasi" name="ubah_narasi" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
@@ -220,7 +220,7 @@
                         </div>
                     </div>
                     <!-- Link Berita -->
-                    <div class="row p-modal link">
+                    <div class="row p-modal" id="link">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Link Berita</span>
                         </div>
@@ -232,19 +232,19 @@
                         </div>
                     </div>
                     <!-- Sharing Berita -->
-                    <div class="row p-modal share">
+                    <div class="row p-modal" id="sharing">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Sharing</span>
+                            <span>Dibagikan</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-                            <span id="lihat_share"></span>
+                            <div id="lihat_share"></div>
                         </div>
                     </div>
                     <!-- View Berita -->
-                    <div class="row p-modal view">
+                    <div class="row p-modal" id="view">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>View</span>
                         </div>
@@ -252,11 +252,11 @@
                             <span>:</span>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-                            <span id="lihat_share"></span>
+                            <span id="lihat_jumlah_view"></span>
                         </div>
                     </div>
                     <!-- File  -->
-                    <div class="row p-modal file">
+                    <div class="row p-modal" id="file-row">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>File</span>
                         </div>
@@ -264,7 +264,7 @@
                             <span>:</span>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-                            <span id="lihat_screenshoot"></span>
+                            <span id="lihat_file"></span>
                         </div>
                     </div>
                     <!-- Batas Biru  -->
@@ -354,7 +354,7 @@
             </div>
             <form id="form-filter">
                 <div class="modal-body">
-
+                    <label for="filter">Tanggal</label>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <div class="col-md-6">
@@ -365,6 +365,7 @@
                             </div>
                         </div>
                     </div>
+                    <label for="filter">Bulan</label>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_bulan" class="form-control">
@@ -384,6 +385,7 @@
                             </select>
                         </div>
                     </div>
+                    <label for="filter">Tahun</label>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_tahun" class="form-control">
@@ -393,6 +395,7 @@
                             </select>
                         </div>
                     </div>
+                    <label for="filter">Status</label>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <select id="filter_status_berita" class="form-control">
@@ -421,6 +424,18 @@
             </div>
             {{form_open('berita/export', ['id'=>'form-export'])}}
             <div class="modal-body">
+                <label for="filter">Tanggal</label>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <div class="col-md-6">
+                            <input type="text" id="export_tanggal_awal" name="export_tanggal_awal" class="form-control datepicker" placeholder="Tanggal Mulai">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="export_tanggal_akhir" name="export_tanggal_akhir" class="form-control datepicker" placeholder="Tanggal Akhir">
+                        </div>
+                    </div>
+                </div>
+                <label for="filter">Bulan</label>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <select id="export_bulan" name="export_bulan" class="form-control">
@@ -440,6 +455,7 @@
                         </select>
                     </div>
                 </div>
+                <label for="filter">Tahun</label>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <select id="export_tahun" name="export_tahun" class="form-control">
@@ -449,6 +465,7 @@
                         </select>
                     </div>
                 </div>
+                <label for="filter">Status Berita</label>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <select id="export_status" name="export_status" class="form-control">
@@ -459,16 +476,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group form-float">
-                    <div class="form-line">
-                        <div class="col-md-6">
-                            <input type="text" id="export_tanggal_awal" name="export_tanggal_awal" class="form-control datepicker" placeholder="Tanggal Mulai">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" id="export_tanggal_akhir" name="export_tanggal_akhir" class="form-control datepicker" placeholder="Tanggal Akhir">
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>

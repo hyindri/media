@@ -31,7 +31,7 @@
                         <li>
                             <div class="icon-button-demo align-right m-b--25">
                                 <button type="button" class="btn bg-blue btn-block btn-xs waves-effect" title="Export PDF" data-toggle="modal" data-target="#modal-export">
-                                    <i class="col-white material-icons">picture_as_pdf</i> 
+                                    <i class="col-white material-icons">picture_as_pdf</i>
                                 </button>
                             </div>
                             <!-- <a data-toggle="modal" data-target="#modal-draft" role="button" aria-haspopup="true" aria-expanded="false">
@@ -116,16 +116,11 @@
                     data.status_berita = $('#filter_status_berita').val();
                 }
             },
-
-
             "columnDefs": [{
-                    "targets": [0, 4, 5],
-                    "orderable": false,
-                    "class": "text-center"
-
-                },
-
-            ],
+                "targets": [0, 4, 5],
+                "orderable": false,
+                "class": "text-center"
+            }, ],
 
         });
 
@@ -152,8 +147,8 @@
                 },
                 dataType: "JSON",
                 success: function(data) {
+                    $('#lihat_share').empty();
                     $('#lihat_nama').html(data.nama);
-                    $('#lihat_share').html(data.share);
                     $('#lihat_judul_berita').html(data.judul_berita);
                     $('#lihat_narasi_berita').html(data.narasi_berita);
                     $('#lihat_jumlah_view').html(data.jumlah_view);
@@ -163,16 +158,32 @@
                     $('#lihat_pada').html(data.diperiksa_pada);
                     $('#lihat_keterangan').html(data.keterangan);
                     if (data.status_berita == 'valid') {
-                        $('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
+                        if (data.tipe_media_massa == 'radio') {
+                            $('#lihat_file').html('<audio controls target="_blank" class="thumbnail"><source src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
+                        } else {
+                            $('#lihat_file').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
+                        }
+                        var nama=[];
+                        var logo=[];
+                        $.each(data.sosmed, function(key, value) {
+                            nama.push(value.nama);
+                            logo.push(value.logo);
+                            $('#lihat_share').append('<div class="media-left"><a><img class="img-responsive" src="{{site_url()}}upload/logo/'+value.logo+'" width="20" height="20">'+value.nama+'</a></div>');
+                        });
+                        
                         $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                         $('#lihat_keterangan').html("-");
                         $('#lihat_status_berita').html('<span class="badge bg-green">Valid</span>');
                     } else if (data.status_berita == 'oke') {
                         $('#lihat_status_berita').html('<span class="badge bg-blue">Draft Disetujui</span>');
                         if (data.file == '') {
-                            $('#lihat_screenshoot').html('<span class="badge bg-red">Anda belum upload screenshot</span>');
+                            $('#lihat_file').html('<span class="badge bg-red">Anda belum upload screenshot</span>');
                         } else {
-                            $('#lihat_screenshoot').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
+                            if (data.tipe_media_massa == 'radio') {
+                                $('#lihat_file').html('<audio controls target="_blank" class="thumbnail"><source src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
+                            } else {
+                                $('#lihat_file').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
+                            }
                         }
                         if (data.link_berita == '') {
                             $('#lihat_link_berita').html('<span class="badge bg-red">Anda belum upload link</span>');
@@ -185,7 +196,7 @@
                         $('#link').hide();
                         $('#sharing').hide();
                         $('#view').hide();
-                        $('#screenshot').hide();
+                        $('#file-row').hide();
                     }
                 }
             });
@@ -211,29 +222,21 @@
                 },
                 dataType: "JSON",
                 success: function(data) {
+                    $("input[type=checkbox]").prop('checked', false);
                     $('#ubah_link_berita').val(data.link_berita);
                     $('#ubah_jumlah_view').val(data.jumlah_view);
                     $('#ubah_judul').val(data.judul_berita);
                     $('#ubah_narasi').val(data.narasi_berita);
-                    $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/'+"{{$this->session->userdata('username')}}"+'/'+id_berita+'/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/'+"{{$this->session->userdata('username')}}"+'/'+id_berita+'/' + data.file + '" width="200px" height="200px"></a>');
+                    if (data.tipe_media_massa == 'radio') {
+                        $('#file_lama_view').html('<audio controls target="_blank" class="thumbnail"><source src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
+                    } else {
+                        $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
+                    }
                     $('#file_lama').val(data.file);
-                    $('#check_fb').val('Facebook').prop('checked', false);
-                    $('#check_twitter').val('Twitter').prop('checked', false);
-                    $('#check_wa').val('Whatsapp').prop('checked', false);
-                    $('#check_line').val('Line').prop('checked', false);
                     var result = data.share.split(", ");
                     for (var i = 0; i < result.length; i++) {
-                        if (result[i] == "Facebook") {
-                            $('#check_fb').prop('checked', true);
-                        }
-                        if (result[i] == "Twitter") {
-                            $('#check_twitter').prop('checked', true);
-                        }
-                        if (result[i] == "Whatsapp") {
-                            $('#check_wa').prop('checked', true);
-                        }
-                        if (result[i] == "Line") {
-                            $('#check_line').prop('checked', true);
+                        if (result[i] == result[i]) {
+                            $('#check_' + result[i]).prop('checked', true);
                         }
                     }
 
@@ -310,11 +313,11 @@
                 async: false,
                 success: function(data) {
                     $('#modal-ubah').modal('hide');
-                    toastr.success('Laporan berita berhasil diubah!');
+                    toastr.success('Laporan berita berhasil dilengkapi!');
                     table.ajax.reload();
                 },
                 error: function(data) {
-                    toastr.warning('Laporan berita gagal diubah!');
+                    toastr.warning('Laporan berita gagal dilengkapi!');
                     table.ajax.reload();
                 }
             });
@@ -364,8 +367,6 @@
             });
             return false;
         });
-
-
 
         $('.datepicker').bootstrapMaterialDatePicker({
             time: false

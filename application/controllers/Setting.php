@@ -77,7 +77,7 @@ class Setting extends CI_Controller
     public function ubah()
     {
         $id = $this->input->post('edit_id');
-        $cek = $this->setting->get_by_id($id);
+        $cek = $this->setting->get_by_id($id)->row();
         $data = array(
             'nama' => $this->input->post('edit_nama'),
             'dibuat_tanggal' => date('y-m-d'),
