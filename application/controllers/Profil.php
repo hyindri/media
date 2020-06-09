@@ -8,11 +8,11 @@ class Profil extends CI_Controller
         if ($this->session->userdata('login_status') != TRUE) {
             $this->session->set_flashdata('msg', '<div class="alert alert-danger"><strong>Oops!</strong> Mohon Login Dahulu </div>');
             redirect(site_url(''));
-        }        
-        $this->load->model('Users_model','users');
+        }
+        $this->load->model('Users_model', 'users');
         $this->load->model('Medmas_model', 'medmas');
         $this->load->model('notifikasi_model', 'notifikasi');
-        $this->load->model('log_model','aktivitas');
+        $this->load->model('log_model', 'aktivitas');
     }
 
     public function index()
@@ -47,8 +47,14 @@ class Profil extends CI_Controller
                 'verifikasi' => $this->session->userdata('verifikasi'),
                 'penawaran_kerjasama' => $this->session->userdata('penawaran_kerjasama'),
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
-
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
+                'logo_media' => $this->session->userdata('logo_media'),
+                'file_rekening' => $this->session->userdata('file_rekening'),
+                'file_npwp' => $this->session->userdata('file_npwp'),
+                'file_mou' => $this->session->userdata('file_mou'),
+                'file_sertifikat_uji' => $this->session->userdata('file_sertifikat_uji'),
+                'file_penawaran_kerja_sama' => $this->session->userdata('file_penawaran_kerja_sama'),
+                'file_verifikasi_pers' => $this->session->userdata('file_verifikasi_pers')
             );
             view('profil.index', $data);
         }
@@ -78,7 +84,14 @@ class Profil extends CI_Controller
                 'verifikasi' => $row->verifikasi_pers,
                 'penawaran_kerjasama' => $row->penawaran_kerja_sama,
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
+                'logo_media' => $row->file_logo_media,
+                'file_rekening' => $row->file_rekening,
+                'file_npwp' =>  $row->file_npwp,
+                'file_mou' => $row->file_mou,
+                'file_sertifikat_uji' => $row->file_sertifikat_uji,
+                'file_penawaran_kerja_sama' => $row->file_penawaran_kerja_sama,
+                'file_verifikasi_pers' => $row->file_verifikasi_pers
             );
             view('profil.index', $data);
         } else {
@@ -103,7 +116,14 @@ class Profil extends CI_Controller
                 'verifikasi' => $row->verifikasi_pers,
                 'penawaran_kerjasama' => $row->penawaran_kerja_sama,
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
+                'logo_media' => $this->session->userdata('logo_media'),
+                'file_rekening' => $this->session->userdata('file_rekening'),
+                'file_npwp' => $this->session->userdata('file_npwp'),
+                'file_mou' => $this->session->userdata('file_mou'),
+                'file_sertifikat_uji' => $this->session->userdata('file_sertifikat_uji'),
+                'file_penawaran_kerja_sama' => $this->session->userdata('file_penawaran_kerja_sama'),
+                'file_verifikasi_pers' => $this->session->userdata('file_verifikasi_pers')
             );
             view('profil.index', $data);
         }
@@ -127,25 +147,25 @@ class Profil extends CI_Controller
 
     public function ubah($id = null)
     {
-       if(!isset($id)) redirect('profil');
-       if($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin'){
-           $data = array(
-               'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
-               'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
-           );
-       }else{
-           $data = array(
-               'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
-               'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
-           );
-       }
-       $data['data_profil'] = $this->users->getById($id);
-       $data_select_tipe = explode(", ",$data['data_profil']->tipe_media_massa);
-       $select_tipe = $data_select_tipe;                              
-       if (!$data['data_profil']) show_404(); 
-       $data['tipe_selected']  = $select_tipe;
-       //dd($data);
-       view('profil.edit',$data);
+        if (!isset($id)) redirect('profil');
+        if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin') {
+            $data = array(
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
+            );
+        } else {
+            $data = array(
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
+            );
+        }
+        $data['data_profil'] = $this->users->getById($id);
+        $data_select_tipe = explode(", ", $data['data_profil']->tipe_media_massa);
+        $select_tipe = $data_select_tipe;
+        if (!$data['data_profil']) show_404();
+        $data['tipe_selected']  = $select_tipe;
+        //dd($data);
+        view('profil.edit', $data);
     }
 
     public function updatedata()
@@ -167,60 +187,75 @@ class Profil extends CI_Controller
             'tipe_media_massa' => $this->input->post('tipe_media_massa'),
             'file_logo_media' => $this->users->_uploadLogo()
         );
-            
-            if(!empty($_FILES['file_npwp']['name'])){
-                if(!empty($this->input->post('old_file_npwp'))){
-                    unlink('upload/npwp/'.$this->input->post('old_file_npwp'));
-                }
-                $upload = $this->_do_upload_npwp();
-                $data['file_npwp'] = $upload;
+
+        if (!empty($_FILES['file_npwp']['name'])) {
+            if (!empty($this->input->post('old_file_npwp'))) {
+                unlink('upload/npwp/' . $this->input->post('old_file_npwp'));
             }
-            
-            if(!empty($_FILES['file_rekening']['name'])){
-                if(!empty($this->input->post('old_file_rekening'))){
-                    unlink('upload/rekening/'.$this->input->post('old_file_rekening'));
-                }
-                $upload = $this->_do_upload_rekening();
-                $data['file_rekening'] = $upload;
+            $upload = $this->_do_upload_npwp();
+            $data['file_npwp'] = $upload;
+        }
+
+        if (!empty($_FILES['file_rekening']['name'])) {
+            if (!empty($this->input->post('old_file_rekening'))) {
+                unlink('upload/rekening/' . $this->input->post('old_file_rekening'));
             }
-            
-            if(!empty($_FILES['file_sertifikat_uji']['name'])){
-                if(!empty($this->input->post('old_file_sertifikat_uji'))){
-                    unlink('upload/sertifikat_uji/'.$this->input->post('old_file_sertifikat_uji'));
-                }
-                $upload = $this->_do_upload_sertifikat_uji();
-                $data['file_sertifikat_uji'] = $upload;
+            $upload = $this->_do_upload_rekening();
+            $data['file_rekening'] = $upload;
+        }
+
+        if (!empty($_FILES['file_sertifikat_uji']['name'])) {
+            if (!empty($this->input->post('old_file_sertifikat_uji'))) {
+                unlink('upload/sertifikat_uji/' . $this->input->post('old_file_sertifikat_uji'));
             }
-            
-            if(!empty($_FILES['file_verifikasi_pers']['name'])){
-                if(!empty($this->input->post('old_file_verifikasi_pers'))){
-                    unlink('upload/verifikasi_pers/'.$this->input->post('old_file_verifikasi_pers'));
-                }
-                $upload = $this->_do_upload_verifikasi_pers();
-                $data['file_verifikasi_pers'] = $upload;
+            $upload = $this->_do_upload_sertifikat_uji();
+            $data['file_sertifikat_uji'] = $upload;
+        }
+
+        if (!empty($_FILES['file_verifikasi_pers']['name'])) {
+            if (!empty($this->input->post('old_file_verifikasi_pers'))) {
+                unlink('upload/verifikasi_pers/' . $this->input->post('old_file_verifikasi_pers'));
             }
-            
-            if(!empty($_FILES['file_penawaran_kerja_sama']['name'])){
-                if(!empty($this->input->post('old_file_penawaran_kerja_sama'))){
-                    unlink('upload/penawaran_kerja_sama/'.$this->input->post('old_file_penawaran_kerja_sama'));
-                }
-                $upload = $this->_do_upload_penawaran_kerja_sama();
-                $data['file_penawaran_kerja_sama'] = $upload; 
+            $upload = $this->_do_upload_verifikasi_pers();
+            $data['file_verifikasi_pers'] = $upload;
+        }
+
+        if (!empty($_FILES['file_penawaran_kerja_sama']['name'])) {
+            if (!empty($this->input->post('old_file_penawaran_kerja_sama'))) {
+                unlink('upload/penawaran_kerja_sama/' . $this->input->post('old_file_penawaran_kerja_sama'));
             }
-          
-        $this->medmas->updateProfil($id, $data);    
+            $upload = $this->_do_upload_penawaran_kerja_sama();
+            $data['file_penawaran_kerja_sama'] = $upload;
+        }
+        $this->db->where('level', 'admin');
+        $query = $this->db->get('tmst_user');
+        foreach ($query->result() as $baris) {
+            $notif = array(
+                'user_pengirim' => $this->session->userdata('id_user'),
+                'user_penerima' => $baris->id,
+                'judul' => $this->session->userdata('nama') . ' Merubah Biodata',
+                'pesan' => $this->session->userdata('nama') . ' merubah biodata, mohon segera diperiksa..',
+                'link' => $this->uri->segment(1) . '/detail/' . $this->session->userdata('id_media'),
+                'dibaca' => '1',
+                'dibuat_tanggal' => date('y-m-d'),
+                'dibuat_pukul' => date('h:i:s')
+            );
+            $this->notifikasi->simpan($notif);
+        }
+
+        $this->medmas->updateProfil($id, $data);
         $this->aktivitas->log_ubahprofil();
         $sesi_selesai = array(
             'login_status' => 'login_status',
             'id_media' => 'id_media',
-            'id_user' =>'id_user',
+            'id_user' => 'id_user',
             'username' => 'username',
             'level' => 'level',
             'status' => 'status',
             'nama' => 'nama',
             'tipe_publikasi' => 'tipe_publikasi',
             'tipe_mediamassa' => 'tipe_mediamassa',
-            'pimpinan' => 'pimpinan',                            
+            'pimpinan' => 'pimpinan',
             'npwp' => 'npwp',
             'mulai_mou' => 'mulai_mou',
             'akhir_mou' => 'akhir_mou',
@@ -233,15 +268,14 @@ class Profil extends CI_Controller
             'wartawan' => 'wartawan',
             'sertifikat' => 'sertifikat',
             'verifikasi' => 'verifikasi',
-            'penawaran_kerjasama' =>'penawaran_kerjasama' 
+            'penawaran_kerjasama' => 'penawaran_kerjasama'
         );
-        $this->session->unset_userdata($sesi_selesai);                        
-        $this->session->set_flashdata('message','<div class="alert bg-green alert-dismissible" role="alert">
+        $this->session->unset_userdata($sesi_selesai);
+        $this->session->set_flashdata('message', '<div class="alert bg-green alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         Data Profil Berhasil Diubah. Mohon Login Kembali.
-        </div>');        
-        redirect('auth');		
-              
+        </div>');
+        redirect('auth');
     }
 
     private function _do_upload_npwp()
@@ -253,13 +287,13 @@ class Profil extends CI_Controller
         $config['allowed_types']        = 'jpg|jpeg|png';
         $config['max_size']             = 2000; //set max size allowed in Kilobyte
         $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
- 
+
         $this->load->library('upload', $config);
- 
-        if(!$this->upload->do_upload('file_npwp')) //upload and validate
+
+        if (!$this->upload->do_upload('file_npwp')) //upload and validate
         {
             $data['inputerror'][] = 'file_npwp';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
             echo json_encode($data);
             exit();
@@ -276,14 +310,14 @@ class Profil extends CI_Controller
         $config2['allowed_types']        = 'jpg|jpeg|png';
         $config2['max_size']             = 2000; //set max size allowed in Kilobyte
         $config2['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
- 
+
         $this->load->library('upload', $config2);
         $this->upload->initialize($config2);
- 
-        if(!$this->upload->do_upload('file_rekening')) //upload and validate
+
+        if (!$this->upload->do_upload('file_rekening')) //upload and validate
         {
             $data['inputerror'][] = 'file_rekening';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
             echo json_encode($data);
             exit();
@@ -300,14 +334,14 @@ class Profil extends CI_Controller
         $config3['allowed_types']        = 'pdf';
         $config3['max_size']             = 2000; //set max size allowed in Kilobyte
         $config3['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
- 
+
         $this->load->library('upload', $config3);
         $this->upload->initialize($config3);
- 
-        if(!$this->upload->do_upload('file_sertifikat_uji')) //upload and validate
+
+        if (!$this->upload->do_upload('file_sertifikat_uji')) //upload and validate
         {
             $data['inputerror'][] = 'file_sertifikat_uji';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
             echo json_encode($data);
             exit();
@@ -324,14 +358,14 @@ class Profil extends CI_Controller
         $config4['allowed_types']        = 'pdf';
         $config4['max_size']             = 2000; //set max size allowed in Kilobyte
         $config4['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
- 
+
         $this->load->library('upload', $config4);
         $this->upload->initialize($config4);
- 
-        if(!$this->upload->do_upload('file_verifikasi_pers')) //upload and validate
+
+        if (!$this->upload->do_upload('file_verifikasi_pers')) //upload and validate
         {
             $data['inputerror'][] = 'file_verifikasi_pers';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
             echo json_encode($data);
             exit();
@@ -348,19 +382,18 @@ class Profil extends CI_Controller
         $config5['allowed_types']        = 'pdf';
         $config5['max_size']             = 2000; //set max size allowed in Kilobyte
         $config5['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
- 
+
         $this->load->library('upload', $config5);
         $this->upload->initialize($config5);
- 
-        if(!$this->upload->do_upload('file_penawaran_kerja_sama')) //upload and validate
+
+        if (!$this->upload->do_upload('file_penawaran_kerja_sama')) //upload and validate
         {
             $data['inputerror'][] = 'file_penawaran_kerja_sama';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
             echo json_encode($data);
             exit();
         }
         return $this->upload->data('file_name');
     }
-
 }

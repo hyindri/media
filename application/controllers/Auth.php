@@ -65,8 +65,13 @@ class Auth extends CI_Controller
                             'sertifikat' => $media['sertifikat_uji'],
                             'verifikasi' => $media['verifikasi_pers'],
                             'logo_media' => $media['file_logo_media'],
-                            'penawaran_kerjasama' => $media['penawaran_kerja_sama']                            
-
+                            'penawaran_kerjasama' => $media['penawaran_kerja_sama'] ,
+                            'file_npwp' => $media['file_npwp'],
+                            'file_rekening' => $media['file_rekening'],
+                            'file_mou' => $media['file_mou'],
+                            'file_sertifikat_uji' => $media['file_sertifikat_uji'],
+                            'file_penawaran_kerja_sama' => $media['file_penawaran_kerja_sama'],
+                            'file_verifikasi_pers' => $media['file_verifikasi_pers'],                           
                         ];
                     } else {
                         $data = [

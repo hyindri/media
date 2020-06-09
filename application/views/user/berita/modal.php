@@ -220,7 +220,7 @@
                         </div>
                     </div>
                     <!-- Link Berita -->
-                    <div class="row p-modal" id="link">
+                    <div class="row p-modal link">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Link Berita</span>
                         </div>
@@ -232,7 +232,7 @@
                         </div>
                     </div>
                     <!-- Sharing Berita -->
-                    <div class="row p-modal" id="sharing">
+                    <div class="row p-modal sharing">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Dibagikan</span>
                         </div>
@@ -244,7 +244,7 @@
                         </div>
                     </div>
                     <!-- View Berita -->
-                    <div class="row p-modal" id="view">
+                    <div class="row p-modal view">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>View</span>
                         </div>
@@ -256,7 +256,7 @@
                         </div>
                     </div>
                     <!-- File  -->
-                    <div class="row p-modal" id="file-row">
+                    <div class="row p-modal file">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>File</span>
                         </div>
@@ -326,7 +326,7 @@
                         </div>
                     </div>
                     <!-- Keterangan  -->
-                    <div class="row p-modal">
+                    <div class="row p-modal keterangan">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Keterangan</span>
                         </div>
