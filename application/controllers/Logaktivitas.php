@@ -35,23 +35,23 @@ class Logaktivitas extends CI_Controller
         $list = $this->aktivitas->get_datatables();
         $data = array();
         $no = $_POST['start'];
-        foreach($list as $a)
+        foreach($list as $field)
         {
             $no++;
             $row = array();
             $row[] = $no;            
-            $row[] = $a->oleh;
-            $row[] = $a->aktivitas;
-            $row[] = date('d/m/Y - H:i:s',strtotime($a->pada));
+            $row[] = $field->oleh;
+            $row[] = $field->aktivitas;
+            $row[] = date('d/m/Y - H:i:s',strtotime($field->pada));
 
             $data[] = $row;
         }        
 
         $output = array(
-            'draw' => $_POST['draw'],
-            'recordsTotal' => $this->aktivitas->count_all(),
-            'recordFiltered' => $this->aktivitas->count_filtered(),
-            'data' => $data,
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->aktivitas->count_all(),
+            "recordsFiltered" => $this->aktivitas->count_filtered(),
+            "data" => $data,
         );
 
         echo json_encode($output);

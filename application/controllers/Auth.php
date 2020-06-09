@@ -64,6 +64,7 @@ class Auth extends CI_Controller
                             'wartawan' => $media['wartawan'],
                             'sertifikat' => $media['sertifikat_uji'],
                             'verifikasi' => $media['verifikasi_pers'],
+                            'logo_media' => $media['file_logo_media'],
                             'penawaran_kerjasama' => $media['penawaran_kerja_sama']                            
 
                         ];

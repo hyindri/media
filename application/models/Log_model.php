@@ -9,7 +9,7 @@ class Log_model extends CI_Model
 
     public function _get_datatables_query()
     {
-        $this->db->from($this->table);
+        $this->db->from($this->table);        
         $i = 0;
 
         foreach ($this->column_search as $item) {
@@ -36,7 +36,6 @@ class Log_model extends CI_Model
             $order = $this->order;
             $this->db->order_by(key($order), $order[key($order)]);
         }
-
     }
 
     public function get_datatables()
@@ -68,6 +67,7 @@ class Log_model extends CI_Model
         $query = $this->db->get($this->table);
         return $query->result();
     }
+
 
     // Log Login
     public function log_login()

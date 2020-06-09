@@ -17,8 +17,8 @@
 		<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 ">
 			<div class="card">
 				<div class="header">
-					<h2>			
-                        Log Aktivitas Akun			
+					<h2>
+						Log Aktivitas Akun
 					</h2>
 					<ul class="header-dropdown m-r--5">
 						<li class="dropdown">
@@ -35,14 +35,13 @@
 				</div>
 				<div class="body">
 					<div class="table-responsive">
-						<table id="table" class="table table-bordered table-striped table-hover display wrap"
-							width="100%">
+						<table id="data-log" class="table table-bordered table-striped table-hover display nowrap">
 							<thead>
 								<tr>
 									<th style="width:10px;">No</th>
 									<th>Username</th>
 									<th>Aktivitas</th>
-									<th>Waktu</th>									
+									<th>Waktu</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -52,7 +51,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- End table  -->
 	</div>
 </div>
 
@@ -60,44 +58,43 @@
 
 @section('js')
 <script type="text/javascript">
-        $(document).ready(function() {
-            var table;
-            table = $('#table').DataTable({
-                "language": {
-                    "lengthMenu": "Tampilkan _MENU_ data per halaman",
-                    "infoEmpty": "Data dimana kamu",
-                    "zeroRecords": "Data tidak ada",
-                    "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
-                    "infoFiltered": "(difilter dari _MAX_ total data)",
-                    "paginate": {
-                        "first": "Pertama",
-                        "last": "Terakhir",
-                        "next": "Selanjutnya",
-                        "previous": "Sebelumnya"
-                    },
-                },
-                "processing": true,
-                "responsive": true,
-                "serverSide": true,
-                "searching": false,
-                "info": true,
-                "ordering": true,
-                "order": [],
+	$(document).ready(function () {
 
-                "ajax": {
-                    "url": "{{site_url('logaktivitas/json')}}",
-                    "type": "POST",                    
-                },
-                "columnDefs": [{
-                        "targets": [0, 2,3],
-                        "orderable": false,
-                    },
-                    {
-                        "targets": [0, 1,3],
-                        "class": "text-center",
-                    },
-                ],
-            });            
-        });
-    </script>
+		let table = $('#data-log').DataTable({
+			"processing": true,
+			"responsive": true,
+			"serverSide": true,
+			"searching": false,
+			"info": true,
+			"ordering": true,
+			"order": [],
+			"language": {
+				"lengthMenu": "Tampilkan _MENU_ data per halaman",
+				"infoEmpty": "Data dimana kamu",
+				"zeroRecords": "Data tidak ada",
+				"info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+				"infoFiltered": "(difilter dari _MAX_ total data)",
+				"paginate": {
+					"first": "Pertama",
+					"last": "Terakhir",
+					"next": "Selanjutnya",
+					"previous": "Sebelumnya"
+				},
+			},
+			"ajax": {
+				url: "{{base_url('logaktivitas/json')}}",
+				type: "POST"
+			},
+			"columnDefs": [{
+				'targets': [0, 2],
+				'orderable': false,
+			}, {
+				'targets': [3],
+				'className': 'text-center'
+			}],
+			"pageLength": 10,
+		});
+	});
+
+</script>
 @endsection
