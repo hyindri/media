@@ -140,7 +140,7 @@
                     $.each(data.sosmed, function(key, value) {
                         nama.push(value.nama);
                         logo.push(value.logo);
-                        $('#share').append('<div class="media-left"><a><img class="img-responsive" src="{{site_url()}}upload/logo/' + value.logo + '" width="20" height="20">' + value.nama + '</a></div>');
+                        $('#share').append('<div class="col-xs-12 col-sm-12 col-md-6 col-lg-3"><a class="deco-off"><img class="logo-sm m-logo" src="{{site_url()}}upload/logo/' + value.logo + '" ">' + value.nama + '</a></div>');
                     });
 
                     if (data.status_berita == 'valid') {

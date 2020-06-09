@@ -11296,4 +11296,14 @@ html.ie11 .bs-searchbox .form-control {
 
 .deco-off {
     text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.m-logo {
+    margin-right: 5px;
+}
+
+.logo-sm {
+    width: 20px !important;
+    height: 20px !important;
 }

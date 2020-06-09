@@ -239,8 +239,8 @@
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-                            <div id="lihat_share"></div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8 m-t-10">
+                            <div class="row" id="lihat_share"></div>
                         </div>
                     </div>
                     <!-- View Berita -->
