@@ -16,7 +16,7 @@
                 <div class="profile-header">&nbsp;</div>
                 <div class="profile-body">
                     <div class="image-area">
-                        <img src="{{APP_ASSETS}}images/person.svg" alt="Gambar Profil" width="50%"/>
+                        <img src="<?= base_url('upload/logo-media/'.$this->session->userdata('logo_media'));?>" alt="Gambar Profil" width="50%"/>
                     </div>
                     <div class="content-area">
                         <h3>{{$nama}}</h3>

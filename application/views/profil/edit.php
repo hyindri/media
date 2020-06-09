@@ -20,10 +20,19 @@
 						Ubah Informasi Profil
 					</h2>
 				</div>
-				<div class="body">
-					<!-- <form action="{{site_url('profil/updatedata')}}" method="POST"> -->
+				<div class="body">					
 					<?php echo form_open_multipart(site_url('profil/updatedata'));?>
 						<input type="hidden" value="{{$data_profil->id}}" name="id_media">
+						<input type="hidden" name="logo_lama" value="{{$data_profil->file_logo_media}}">
+						<label for=" ">Foto atau Logo Media</label>
+						<div style="margin-bottom: 2rem">
+								<img src="<?= base_url('upload/logo-media/'.$this->session->userdata('logo_media'));?>" alt="" width="20%">
+						</div>						
+						<div class="form-group">							
+							<div class="form-line">
+								<input type="file" class="form-control" name="file_logo_media">
+							</div>
+						</div>
 						<label for=" ">Nama Media</label>
 						<div class="form-group">
 							<div class="form-line">
