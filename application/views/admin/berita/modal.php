@@ -66,7 +66,7 @@
                             <span>:</span>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-                            <span id="share"></span>
+                            <div id="share"></div>
                         </div>
                     </div>
                     <!-- Jumlah View  -->
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <!-- Keterangan belum di verifikasi -->
-                    <div class="row p-modal">
+                    <div class="row p-modal keterangan">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Keterangan</span>
                         </div>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <!-- Status Draft -->
-                    <div class="row p-modal">
+                    <div class="row p-modal status_berita">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>Status Draft Berita</span>
                         </div>

@@ -114,8 +114,8 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-sparkline/jquery.sparkline.js"></script>
     <!-- Jquery DataTable Plugin Js -->
-    <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/jquery.dataTables.js"></script>    
+    <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
 
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>

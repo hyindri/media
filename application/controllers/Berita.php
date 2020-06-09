@@ -163,7 +163,7 @@ class Berita extends CI_Controller
             $output['diperiksa_oleh'] = $row->diperiksa_oleh;
             $output['diperiksa_pada'] = $row->diperiksa_pada;
             $output['diperiksa_pada'] = $row->diperiksa_pada;
-            $output['tipe_media_massa'] = $this->session->userdata('tipe_mediamassa');
+            $output['tipe_media_massa'] = $row->tipe_media_massa;
             $output['sosmed'] = $this->setting->get_by_id_in(explode(', ',$output['share']))->result();
         }      
         echo json_encode($output);
@@ -182,11 +182,15 @@ class Berita extends CI_Controller
                 'keterangan' => $this->input->post('keterangan')
             );
         } else {
+            $keterangan = $this->input->post('keterangan');
+            if($keterangan == ''){
+                $keterangan = 'Draft berita terdapat kesalahan, hubungi admin untuk informasi lebih lanjut';
+            }
             $data = array(
                 'status_berita' => 'belum',
                 'diperiksa_oleh' => $this->session->userdata('username'),
                 'diperiksa_pada' => date('Y-m-d h:i:s'),
-                'keterangan' => $this->input->post('keterangan')
+                'keterangan' => $keterangan
             );
         }
 

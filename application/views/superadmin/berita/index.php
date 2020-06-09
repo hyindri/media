@@ -134,26 +134,58 @@
                 },
                 dataType: "JSON",
                 success: function(data) {
-                    $('#nama').html(data.nama);
-                    $('#share').html(data.share);
-                    $('#jumlah_view').html(data.jumlah_view);
-                    $('#dibuat_tanggal').html(data.dibuat_tanggal);
-                    $('#dibuat_pukul').html(data.dibuat_pukul);
-                    $('#keterangan').val(data.keterangan);
-                    $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                    $('#file').html('<a href="{{site_url()}}upload/berita/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.file + '" width="200px" height="200px"></a>');
-                    if (data.status_berita == 'oke') {
-                        $('#keterangan').prop("disabled", true);
-                        $('#simpan_btn').prop("disabled", true);
-                        $('#verif_status').prop('checked', true);
-                        $('#verif_status').val('oke');
-                    } else if (data.status_berita == 'belum') {
-                        $('#keterangan').prop("disabled", false);
-                        $("#keterangan").prop('required', true);
-                        $('#simpan_btn').prop("disabled", false);
-                        $('#verif_status').prop('checked', false);
-                        $('#verif_status').val('belum');
+                    $('#share').empty();
+                    var nama = [];
+                    var logo = [];
+                    $.each(data.sosmed, function(key, value) {
+                        nama.push(value.nama);
+                        logo.push(value.logo);
+                        $('#share').append('<div class="media-left"><a><img class="img-responsive" src="{{site_url()}}upload/logo/' + value.logo + '" width="20" height="20">' + value.nama + '</a></div>');
+                    });
+
+                    if (data.status_berita == 'valid') {
+
+                        if (data.tipe_media_massa == 'radio') {
+                            $('#file').html('<audio controls target="_blank" class="thumbnail"><source src="{{site_url()}}upload/berita/' + data.dibuat_oleh + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
+                        } else {
+                            $('#file').html('<a href="{{site_url()}}upload/berita/' + data.dibuat_oleh + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.dibuat_oleh + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
+                        }
+                        $('.link').show();
+                        $('.share').show();
+                        $('.view').show();
+                        $('.screenshot').show();
+                        $('.keterangan').hide();
+                        $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
+                        $('#status_berita').html('<span class="badge bg-green">Valid</span>');
+                    } else if (data.status_berita == 'oke') {
+                        if (data.tipe_media_massa == 'radio') {
+                            $('#file').html('<audio controls target="_blank" class="thumbnail"><source src="{{site_url()}}upload/berita/' + data.dibuat_oleh + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
+                        } else {
+                            $('#file').html('<a href="{{site_url()}}upload/berita/' + data.dibuat_oleh + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.dibuat_oleh + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
+                        }
+                        $('.link').show();
+                        $('.share').show();
+                        $('.view').show();
+                        $('.screenshot').show();
+                        $('.keterangan').hide();
+                        $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
+                        $('#status_berita').html('<span class="badge bg-blue">Draft Valid</span>');
+                    } else {
+                        $('.link').hide();
+                        $('.share').hide();
+                        $('.view').hide();
+                        $('.screenshot').hide();
+                        $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
+                        $('#status_berita').html('<span class="badge bg-red">Belum valid</span>');
                     }
+                    $('#nama').html(data.nama);
+                    $('#jumlah_view').html(data.jumlah_view);
+                    $('#judul_berita').html(data.judul_berita);
+                    $('#narasi_berita').html(data.narasi_berita);
+                    $('#dibuat_tanggal').html(data.dibuat_tanggal+' : '+data.dibuat_pukul);
+                    $('#keterangan').html(data.keterangan);
+                    $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
+
                 },
             });
         });

@@ -106,7 +106,7 @@ class Berita_model extends CI_Model
     function get_by_id_joined($id)
     {
         $this->db->select('tb_berita.id, judul_berita, narasi_berita, tmst_media_massa.nama, tb_berita.link_berita, tb_berita.file, 
-                            tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul, tb_berita.diperiksa_oleh, tb_berita.diperiksa_pada');
+                            tb_berita.share, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul, tb_berita.diperiksa_oleh, tb_berita.diperiksa_pada, tmst_media_massa.tipe_media_massa');
         $this->db->join($this->table_media_massa, 'tb_berita.media_massa_id = tmst_media_massa.id');
         $this->db->where('tb_berita.id', $id);
         return $this->db->get($this->table);
