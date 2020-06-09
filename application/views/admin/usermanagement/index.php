@@ -26,7 +26,7 @@
                                 <i class="material-icons">picture_as_pdf</i><span>Export</span>
                             </button>
                         </a>
-                            <a id="btn-reset"><button type="button" title="Refresh" class="btn btn-primary waves-effect waves-light-blue">
+                        <a id="btn-reset"><button type="button" title="Refresh" class="btn btn-primary waves-effect waves-light-blue">
                                 <i class="material-icons">replay</i><span>Refresh</span>
                             </button>
                         </a>
@@ -63,18 +63,18 @@
     var table;
     $(document).ready(function() {
         function getBase64FromImageUrl(url) {
-        var img = new Image();
+            var img = new Image();
             img.crossOrigin = "anonymous";
-        img.onload = function () {
-            var canvas = document.createElement("canvas");
-            canvas.width =this.width;
-            canvas.height =this.height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(this, 0, 0);
-            var dataURL = canvas.toDataURL("image/png");
-            return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-        };
-        img.src = url;
+            img.onload = function() {
+                var canvas = document.createElement("canvas");
+                canvas.width = this.width;
+                canvas.height = this.height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(this, 0, 0);
+                var dataURL = canvas.toDataURL("image/png");
+                return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+            };
+            img.src = url;
         }
         table = $('#table').DataTable({
             "language": {
@@ -125,26 +125,31 @@
             var status = $('#filter_status').val();
             var publikasi = $('#filter_tipe_publikasi').val();
             var tipemedia = $('#filter_tipe_media_massa').val();
-            if(nama == ''){
+            if (nama == '') {
                 nama = 0;
             }
-            if(status == ''){
+            if (status == '') {
                 status = 0;
             }
-            if(publikasi == ''){
+            if (publikasi == '') {
                 publikasi = 0;
             }
-            if(tipemedia == ''){
+            if (tipemedia == '') {
                 tipemedia = 0;
             }
-            window.open('<?php echo base_url('usermanagement/export') ?>/'+nama+'/'+status+'/'+publikasi+'/'+tipemedia);
+            window.open('<?php echo base_url('usermanagement/export') ?>/' + nama + '/' + status + '/' + publikasi + '/' + tipemedia);
         });
         $('#table').on('click', '.ubah', function() {
             $('#modal-ubah').modal('show');
             $("#edit_id").val($(this).data('id'));
             $("#edit_status").val($(this).data('status'));
-            $("#edit_mulai_mou").val($(this).data('mulai_mou'));
-            $("#edit_akhir_mou").val($(this).data('akhir_mou'));
+            if ($(this).data('status') == 'registrasi') {
+                $("#edit_mulai_mou").val('');
+                $("#edit_akhir_mou").val('');
+            } else {
+                $("#edit_mulai_mou").val($(this).data('mulai_mou'));
+                $("#edit_akhir_mou").val($(this).data('akhir_mou'));
+            }
         });
         $('#ubah-user').submit('click', function() {
             $.ajax({

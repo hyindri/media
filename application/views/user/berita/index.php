@@ -163,8 +163,9 @@
                         });
 
                         $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-                        $('#lihat_keterangan').html("-");
                         $('#lihat_status_berita').html('<span class="badge bg-green">Valid</span>');
+                        $('.keterangan').hide();
+
                     } else if (data.status_berita == 'oke') {
                         if (data.file == '') {
                             $('#lihat_file').html('<span class="badge bg-red">Anda belum upload screenshot</span>');
@@ -179,14 +180,15 @@
                             $('#lihat_link_berita').html('<span class="badge bg-red">Anda belum upload link</span>');
                         } else {
                             $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
-
                         }
                         $('#lihat_status_berita').html('<span class="badge bg-blue">Draft Disetujui</span>');
+                        $('.keterangan').hide();
                     } else {
-                        $('#link').hide();
-                        $('#sharing').hide();
-                        $('#view').hide();
-                        $('#file-row').hide();
+                        $('.link').hide();
+                        $('.sharing').hide();
+                        $('.view').hide();
+                        $('.file').hide();
+                        $('.keterangan').show();
                         $('#lihat_status_berita').html('<span class="badge bg-red">Draft Belum Valid</span>');
                     }
                     $('#lihat_nama').html(data.nama);
@@ -229,8 +231,10 @@
                     $('#ubah_judul').val(data.judul_berita);
                     $('#ubah_narasi').val(data.narasi_berita);
                     if (data.tipe_media_massa == 'radio') {
-                        $('#file_lama_view').html('<audio controls target="_blank" class="thumbnail col-xs-12 col-sm-12 col-md-6 col-lg-8"><source src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
+                        $("#ubah_file").attr("accept","audio/*");                        
+                        $('#file_lama_view').html('<audio controls target="_blank" class="thumbnail"><source src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
                     } else {
+                        $("#ubah_file").attr("accept","image/*");                        
                         $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
                     }
                     $('#file_lama').val(data.file);

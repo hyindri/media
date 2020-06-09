@@ -16,7 +16,7 @@
                 <div class="profile-header">&nbsp;</div>
                 <div class="profile-body">
                     <div class="image-area">
-                        <img src="<?= base_url('upload/logo-media/'.$this->session->userdata('logo_media'));?>" alt="Gambar Profil" width="50%"/>
+                        <img src="<?= base_url('upload/logo-media/' . $logo_media); ?>" alt="Gambar Profil" width="50%" />
                     </div>
                     <div class="content-area">
                         <h3>{{$nama}}</h3>
@@ -54,7 +54,7 @@
                                 Password
                             </div>
                             <div class="pull-right btn bg-indigo">
-                                <a class="col-white deco-off"href="{{site_url('profil/ubahpassword')}}">Ubah Password</a>
+                                <a class="col-white deco-off" href="{{site_url('profil/ubahpassword')}}">Ubah Password</a>
                             </div>
                             <div class="content">
                                 ••••••••••••••
@@ -94,7 +94,7 @@
                                 Nomor Rekening
                             </div>
                             <div class="content">
-                                {{$rekening}}
+                                {{$rekening}} <a href="{{site_url()}}upload/rekening/{{$file_rekening}}" target="_blank">Lihat</a>
                             </div>
                         </li>
                         <li>
@@ -139,7 +139,7 @@
                                 Sertifikat Uji
                             </div>
                             <div class="content">
-                                {{$sertifikat}}
+                                {{$sertifikat}} <a href="{{site_url()}}upload/sertifikat_uji/{{$file_sertifikat_uji}}" target="_blank">Lihat</a>
                             </div>
                         </li>
                         <li>
@@ -148,7 +148,7 @@
                                 Verifikasi Pers
                             </div>
                             <div class="content">
-                                {{$verifikasi}}
+                                {{$verifikasi}} <a href="{{site_url()}}upload/verifikasi_pers/{{$file_verifikasi_pers}}" target="_blank">Lihat</a>
                             </div>
                         </li>
                         <li>
@@ -157,7 +157,7 @@
                                 Penawaran Kerja Sama
                             </div>
                             <div class="content">
-                                {{$penawaran_kerjasama}}
+                                {{$penawaran_kerjasama}} <a href="{{site_url()}}upload/penawaran_kerja_sama/{{$file_penawaran_kerja_sama}}" target="_blank">Lihat</a>
                             </div>
                         </li>
                         <li>
@@ -166,8 +166,16 @@
                                 NPWP
                             </div>
                             <div class="content">
-                                {{$npwp}}
+                                {{$npwp}} <a href="{{site_url()}}upload/npwp/{{$file_npwp}}" target="_blank">Lihat</a>
                             </div>
+                        </li>
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">calendar_today</i>
+                                File MOU
+                            </div>
+                            <div class="content">
+                                <a href="{{site_url()}}upload/mou/{{$file_mou}}" target="_blank">Lihat</a> </div>
                         </li>
                         <li>
                             <div class="title">
