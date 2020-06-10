@@ -74,7 +74,7 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <form id="" method="POST">
+                            <form id="wizard_with_validation" method="POST">
                                 <h3>Informasi Akun</h3>
                                 <fieldset>
                                     <div class="form-group form-float">
@@ -162,7 +162,7 @@
                                 <fieldset>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="email" required>
+                                            <input type="email" class="form-control" name="email" required>
                                             <label class="form-label">Email*</label>
                                         </div>
                                     </div>
@@ -178,7 +178,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="pengikut_fb" required>
+                                                    <input type="number" min="1" class="form-control" name="pengikut_fb" required>
                                                     <label class="form-label">Pengikut Facebook*</label>
                                                 </div>
                                             </div>
@@ -196,7 +196,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="pengikut_ig" required>
+                                                    <input type="number" min="1" class="form-control" name="pengikut_ig" required>
                                                     <label class="form-label">Pengikut Instagram*</label>
                                                 </div>
                                             </div>
@@ -214,7 +214,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="pengikut_twitter" required>
+                                                    <input type="number" min="1" class="form-control" name="pengikut_twitter" required>
                                                     <label class="form-label">Pengikut Twitter*</label>
                                                 </div>
                                             </div>
@@ -232,7 +232,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="subscriber_youtube" required>
+                                                    <input type="number" min="1" class="form-control" name="subscriber_youtube" required>
                                                     <label class="form-label">Subscriber Youtube*</label>
                                                 </div>
                                             </div>
@@ -386,32 +386,64 @@
 
                                 <h3>Personel</h3>
                                 <fieldset>
+                                    <div class="text-center">
+                                        <button type="button" id="btn-tambah-form" class="btn btn-success"><i class="material-icons">person_add</i>Tambah Form Personel</button>
+                                        <input type="text" id="jumlah-form" value="1" hidden>
+                                    </div>
+                                    <br>
+                                    
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                 <select class="form-control" name="jabatan_id" required>
                                                     <option value="">-- Pilih jabatan --</option>
-                                                    <option value="cetak">Cetak</option>
-                                                    <option value="online">Online</option>
-                                                    <option value="radio">Radio</option>
-                                                    <option value="tv">TV</option>
+                                                    <?php foreach ($jabatan as $row){ ?>
+                                                    <option value="<?=$row->id?>"><?=$row->nama_jabatan?></option>
+                                                    <?php } ?>
                                                 </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nama_tenaga" required>
                                                     <label class="form-label">Nama*</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-2">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="subscriber_youtube" required>
-                                                    <label class="form-label">Subscriber Youtube*</label>
+                                                    <input type="text" class="form-control" name="nik" required>
+                                                    <label class="form-label">NIK*</label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file" required>
+                                                    <label class="form-label">File KTP*</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="no_hp" required>
+                                                    <label class="form-label">No. Telp*</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            
+                                        </div>
                                     </div>
-                                    
-                                    
+
+                                    <div id="insert-form">
+                                    </div>
                                 </fieldset>
                             </form>
                         </div>
@@ -421,6 +453,8 @@
             <!-- #END# Advanced Form Example With Validation -->
         </div>
     </section>
+
+    
 
     <!-- Jquery Core Js -->
     <script src="{{APP_ASSETS}}plugins/jquery/jquery.min.js"></script>
@@ -449,5 +483,85 @@
     <!-- Custom Js -->
     <script src="{{APP_ASSETS}}js/admin.js"></script>
     <script src="{{APP_ASSETS}}js/pages/forms/form-wizard.js"></script>
+
+    <script>
+    $(document).ready(function(){ // Ketika halaman sudah diload dan siap
+        $("#btn-tambah-form").click(function(){ // Ketika tombol Tambah Data Form di klik
+        var jumlah = parseInt($("#jumlah-form").val()); // Ambil jumlah data form pada textbox jumlah-form
+        var nextform = jumlah + 1; // Tambah 1 untuk jumlah form nya  
+        if (jumlah <= 50) {
+        $("#insert-form").append(
+            `<div class="row">
+                <div class="col-md-2">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                        <select class="form-control" name="jabatan_id" required>
+                            <option value="">-- Pilih jabatan --</option>
+                            <?php foreach ($jabatan as $row){ ?>
+                            <option value="<?=$row->id?>"><?=$row->nama_jabatan?></option>
+                            <?php } ?>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="nama_tenaga" required>
+                            <label class="form-label">Nama*</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="nik" required>
+                            <label class="form-label">NIK*</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="file" class="form-control" name="file" required>
+                            <label class="form-label">File KTP*</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="no_hp" required>
+                            <label class="form-label">No. Telp*</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                <button type="button" id="remove" class="btn btn-danger"><i class="material-icons">delete_forever</i></button>
+                </div>
+            </div>`
+        );
+
+        $("#jumlah-form").val(nextform); // Ubah value textbox jumlah-form dengan variabel nextform
+        }
+        
+        
+        });
+        
+        // Buat fungsi untuk mereset form ke semula
+        $("#reset-form").click(function(){
+        $("#insert-form").html(""); // Kita kosongkan isi dari div insert-form
+        $("#jumlah-form").val("0"); // Ubah kembali value jumlah form menjadi 1
+        });
+    });
+
+    $(document).on('click', '#remove', function(){
+        var jumlah = parseInt($("#jumlah-form").val()); // Ambil jumlah data form pada textbox jumlah-form
+        var kurang = jumlah - 1;
+        $("#jumlah-form").val(kurang); // Ubah value textbox jumlah-form dengan variabel nextform
+        $(this).closest('.row').remove();
+
+    })
+</script>
 </body>
 </html>

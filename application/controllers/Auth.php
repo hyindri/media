@@ -7,6 +7,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('users_model', 'users');
+        $this->load->model('jabatan_model', 'jabatan');
         $this->load->model('notifikasi_model', 'notifikasi');
         $this->load->model('Log_model','aktivitas');
 
@@ -110,6 +111,7 @@ class Auth extends CI_Controller
     public function signup()
     {
         $data['title'] = 'Sign Up';
+        $data['jabatan'] = $this->jabatan->get_all();
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[tmst_user.username]', [
             'is_unique' => 'This username has already registered!']);
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
