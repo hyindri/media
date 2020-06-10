@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2020 at 08:00 AM
+-- Generation Time: Jun 10, 2020 at 08:19 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -99,6 +99,15 @@ CREATE TABLE `tb_log` (
   `pada` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tb_log`
+--
+
+INSERT INTO `tb_log` (`id`, `aktivitas`, `oleh`, `pada`) VALUES
+(1, 'Telah Login pada sistem', 'Admin', '2020-06-10 13:03:59'),
+(2, 'Telah Logout dari sistem', 'Admin', '2020-06-10 13:04:11'),
+(3, 'Telah Login pada sistem', 'Admin', '2020-06-10 13:18:21');
+
 -- --------------------------------------------------------
 
 --
@@ -148,6 +157,10 @@ CREATE TABLE `tmst_media_massa` (
   `username_ig` varchar(100) DEFAULT NULL,
   `username_twitter` varchar(100) DEFAULT NULL,
   `channel_youtube` varchar(255) DEFAULT NULL,
+  `pengikut_fb` int(11) DEFAULT NULL,
+  `pengikut_ig` int(11) DEFAULT NULL,
+  `pengikut_twitter` int(11) DEFAULT NULL,
+  `subscriber_youtube` int(11) DEFAULT NULL,
   `tipe_publikasi` enum('harian','mingguan','bulanan') NOT NULL,
   `tipe_media_massa` enum('cetak','online','radio','tv') NOT NULL,
   `jumlah_saham` int(11) DEFAULT NULL,
@@ -246,8 +259,7 @@ CREATE TABLE `tmst_user` (
 
 INSERT INTO `tmst_user` (`id`, `username`, `password`, `level`, `dibuat_pada`, `status`, `token`) VALUES
 (1, 'Admin', '$2y$10$Q8ub.ipbt9w0HSov64BrX.3pA8FzWFu7glSehtEhBTs7t7tHuOcCy', 'admin', '2020-06-10 11:07:59', 'aktif', NULL),
-(2, 'Bupati', '$2y$10$Q8ub.ipbt9w0HSov64BrX.3pA8FzWFu7glSehtEhBTs7t7tHuOcCy', 'superadmin', '2020-06-10 11:08:28', 'aktif', NULL),
-(3, 'Tenaga_ahli', '', NULL, NULL, NULL, NULL);
+(2, 'Bupati', '$2y$10$Q8ub.ipbt9w0HSov64BrX.3pA8FzWFu7glSehtEhBTs7t7tHuOcCy', 'superadmin', '2020-06-10 11:08:28', 'aktif', NULL);
 
 --
 -- Indexes for dumped tables
@@ -342,7 +354,7 @@ ALTER TABLE `tb_agenda`
 -- AUTO_INCREMENT for table `tb_log`
 --
 ALTER TABLE `tb_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_notifikasi`
