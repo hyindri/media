@@ -6,7 +6,7 @@
 			
 			@if($this->session->userdata('level') == 'user')
 			<div class="image">
-			<img src="<?= base_url('upload/logo-media/'.$this->session->userdata('logo_media'));?>" alt="Gambar Profil"  width="48" height="48"/>			
+			<img src="<?= base_url('upload/logo-media/'.$this->session->userdata('file_logo_media'));?>" alt="Gambar Profil"  width="48" height="48"/>			
 			</div>
 			@elseif($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'superadmin')
 			<div class="image">	

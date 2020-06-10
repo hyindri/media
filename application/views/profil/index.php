@@ -16,7 +16,9 @@
                 <div class="profile-header">&nbsp;</div>
                 <div class="profile-body">
                     <div class="image-area">
-                        <img src="<?= base_url('upload/logo-media/' . $logo_media); ?>" alt="Gambar Profil" width="50%" />
+                    
+                    <img src="{{site_url()}}upload/logo-media/{{$file_logo_media}}" alt="Gambar Profil" width="50%" />
+                                                                       
                     </div>
                     <div class="content-area">
                         <h3>{{$nama}}</h3>
@@ -94,7 +96,13 @@
                                 Nomor Rekening
                             </div>
                             <div class="content">
-                                {{$rekening}} <a href="{{site_url()}}upload/rekening/{{$file_rekening}}" target="_blank">Lihat</a>
+                                <b>No. Rekening : </b>{{$rekening}} 
+                                <br>                 
+                                @if($file_rekening > 0 )             
+                                <a href="{{site_url()}}upload/rekening/{{$file_rekening}}" target="_blank" class="btn bg-indigo">Lihat File</a>
+                                @elseif($file_rekening == 0)
+                                <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                                @endif
                             </div>
                         </li>
                         <li>
@@ -112,7 +120,11 @@
                                 Surat Kabiro
                             </div>
                             <div class="content">
-                                <a href="<?php echo base_url('upload/surat_kabiro/'.$this->session->userdata('surat_kabiro'));?>" class="btn bg-indigo" target="_blank">Lihat File</a>
+                            @if($file_surat_kabiro > 0 )
+                                <a href="{{site_url()}}upload/surat_kabiro/{{$file_surat_kabiro}}" class="btn bg-indigo" target="_blank">Lihat File</a>
+                            @elseif($file_surat_kabiro == 0)
+                            <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                            @endif
                             </div>
                         </li>
                         <li>
@@ -138,8 +150,12 @@
                                 <i class="material-icons">description</i>
                                 Sertifikat Uji
                             </div>
-                            <div class="content">
-                                {{$sertifikat}} <a href="{{site_url()}}upload/sertifikat_uji/{{$file_sertifikat_uji}}" target="_blank">Lihat</a>
+                            <div class="content">          
+                            @if($file_sertifikat_uji > 0)                      
+                                <a href="{{site_url()}}upload/sertifikat_uji/{{$file_sertifikat_uji}}" target="_blank" class="btn bg-indigo">Lihat File</a>
+                            @elseif($file_sertifikat_uji == 0)
+                            <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                            @endif
                             </div>
                         </li>
                         <li>
@@ -148,16 +164,24 @@
                                 Verifikasi Pers
                             </div>
                             <div class="content">
-                                {{$verifikasi}} <a href="{{site_url()}}upload/verifikasi_pers/{{$file_verifikasi_pers}}" target="_blank">Lihat</a>
+                            @if($file_verifikasi_pers > 0)
+                                <a href="{{site_url()}}upload/verifikasi_pers/{{$file_verifikasi_pers}}" target="_blank" class="btn bg-indigo">Lihat File</a>
+                            @elseif($file_verifikasi_pers == 0)
+                            <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                            @endif
                             </div>
                         </li>
                         <li>
                             <div class="title">
                                 <i class="material-icons">business_center</i>
-                                Penawaran Kerja Sama
+                                Penawaran Kerja Sama (MoU)
                             </div>
                             <div class="content">
-                                {{$penawaran_kerjasama}} <a href="{{site_url()}}upload/penawaran_kerja_sama/{{$file_penawaran_kerja_sama}}" target="_blank">Lihat</a>
+                            @if($file_penawaran_kerja_sama > 0)
+                                <a href="{{site_url()}}upload/penawaran_kerja_sama/{{$file_penawaran_kerja_sama}}" target="_blank" class="btn bg-indigo">Lihat File</a>
+                            @elseif($file_penawaran_kerja_sama == 0)
+                            <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                            @endif
                             </div>
                         </li>
                         <li>
@@ -166,21 +190,19 @@
                                 NPWP
                             </div>
                             <div class="content">
-                                {{$npwp}} <a href="{{site_url()}}upload/npwp/{{$file_npwp}}" target="_blank">Lihat</a>
+                                <b>No. NPWP : </b>{{$npwp}} 
+                                <br>
+                                @if($file_npwp > 0)
+                                <a href="{{site_url()}}upload/npwp/{{$file_npwp}}" target="_blank" class="btn bg-indigo">Lihat File</a>
+                                @elseif($file_npwp == 0)
+                                <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                                @endif
                             </div>
-                        </li>
+                        </li>                        
                         <li>
                             <div class="title">
                                 <i class="material-icons">calendar_today</i>
-                                File MOU
-                            </div>
-                            <div class="content">
-                                <a href="{{site_url()}}upload/mou/{{$file_mou}}" target="_blank">Lihat</a> </div>
-                        </li>
-                        <li>
-                            <div class="title">
-                                <i class="material-icons">calendar_today</i>
-                                Mulai MOU
+                                Mulai MoU
                             </div>
                             <div class="content">
                                 {{$mulai_mou}}
@@ -189,7 +211,7 @@
                         <li>
                             <div class="title">
                                 <i class="material-icons">calendar_today</i>
-                                Akhir MOU
+                                Akhir MoU
                             </div>
                             <div class="content">
                                 {{$akhir_mou}}
