@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2020 at 02:09 PM
+-- Generation Time: Jun 10, 2020 at 06:49 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,19 +24,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_notifikasi`
+-- Table structure for table `tmst_tenaga`
 --
 
-CREATE TABLE `tb_notifikasi` (
-  `id` int(12) NOT NULL,
-  `user_pengirim` int(12) DEFAULT NULL,
-  `user_penerima` int(12) DEFAULT NULL,
-  `judul` text DEFAULT NULL,
-  `pesan` text DEFAULT NULL,
-  `link` text DEFAULT NULL,
-  `dibaca` tinyint(1) DEFAULT NULL,
-  `dibuat_tanggal` date DEFAULT NULL,
-  `dibuat_pukul` time DEFAULT NULL
+CREATE TABLE `tmst_tenaga` (
+  `id_tenaga` int(11) NOT NULL,
+  `id_media` int(11) NOT NULL,
+  `nama_tenaga` varchar(255) NOT NULL,
+  `id_jabatan` int(2) NOT NULL,
+  `nik` char(16) NOT NULL,
+  `file` varchar(100) NOT NULL,
+  `no_hp` varchar(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -45,20 +42,21 @@ CREATE TABLE `tb_notifikasi` (
 --
 
 --
--- Indexes for table `tb_notifikasi`
+-- Indexes for table `tmst_tenaga`
 --
-ALTER TABLE `tb_notifikasi`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `tmst_tenaga`
+  ADD PRIMARY KEY (`id_tenaga`),
+  ADD KEY `id_media` (`id_media`,`id_jabatan`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `tb_notifikasi`
+-- AUTO_INCREMENT for table `tmst_tenaga`
 --
-ALTER TABLE `tb_notifikasi`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tmst_tenaga`
+  MODIFY `id_tenaga` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

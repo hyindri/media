@@ -18,6 +18,11 @@
                         <label class="form-label">Narasi berita</label>
                     </div>
                 </div>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                    <input type="file" name="file" id="file" class="form-control">
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -29,7 +34,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog">
+<!-- <div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-indigo">
@@ -68,7 +73,7 @@
             {{form_close()}}
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="modal fade" id="modal-ubah" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -108,7 +113,6 @@
                 <div class="form-group">
                     <div class="form-line">
                         <input type="file" name="file" id="ubah_file" class="form-control">
-                        File lama
                         <span id="file_lama_view"></span>
                         <input type="hidden" name="old_file" id="file_lama" class="form-control">
                     </div>
@@ -144,6 +148,12 @@
                         <textarea id="ubah_narasi" name="ubah_narasi" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="file" name="file" id="ubah_file" class="form-control">
+                        <input type="text" name="old_file" id="file_lama_draft" class="form-control">
+                    </div>
+            </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>

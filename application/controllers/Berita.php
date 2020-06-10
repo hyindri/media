@@ -121,7 +121,11 @@ class Berita extends CI_Controller
                     <button title="Upload" type="button" data-id="' . $q->id_berita . '" class="ubah btn btn-warning btn-xs"><i class="material-icons">cloud_upload</i> </button>
                     <button title="Hapus" type="button" data-id="' . $q->id_berita . '" class="hapus btn btn-danger btn-xs"><i class="material-icons">delete</i> </button></div>';
                 } else {
-                    $row[] = '-';
+                    if ($this->session->userdata('tipe_mediamassa') == 'radio') {
+                        $row[] = '<audio controls target="_blank" class="thumbnail"><source src="' . site_url() . 'upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" type="audio/mp3"></audio>';
+                    } else {
+                        $row[] = '<a href="' . site_url() . '/upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="' . site_url() . 'upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" width="200px" height="200px"></a>';
+                    }
                     $row[] = '<span class="badge bg-red">Draft Belum Valid</span>';
                     $row[] = '<div class="btn-group">
                     <button title="lihat" type="button" data-id="' . $q->id_berita . '" class="lihat btn btn-info btn-xs"><i class="material-icons">visibility</i> </button>
@@ -164,8 +168,8 @@ class Berita extends CI_Controller
             $output['diperiksa_pada'] = $row->diperiksa_pada;
             $output['diperiksa_pada'] = $row->diperiksa_pada;
             $output['tipe_media_massa'] = $row->tipe_media_massa;
-            $output['sosmed'] = $this->setting->get_by_id_in(explode(', ',$output['share']))->result();
-        }      
+            $output['sosmed'] = $this->setting->get_by_id_in(explode(', ', $output['share']))->result();
+        }
         echo json_encode($output);
     }
 
@@ -183,7 +187,7 @@ class Berita extends CI_Controller
             );
         } else {
             $keterangan = $this->input->post('keterangan');
-            if($keterangan == ''){
+            if ($keterangan == '') {
                 $keterangan = 'Draft berita terdapat kesalahan, hubungi admin untuk informasi lebih lanjut';
             }
             $data = array(
@@ -244,6 +248,11 @@ class Berita extends CI_Controller
                 'dibuat_tanggal' => date('Y-m-d'),
                 'dibuat_pukul' => date('h:i:s')
             );
+
+            if (!empty($_FILES['file']['name'])) {
+                $upload = $this->_do_upload($data['id']);
+                $data['file'] = $upload;
+            }
             $this->db->where('level', 'admin');
             $query = $this->db->get('tmst_user');
             foreach ($query->result() as $baris) {
@@ -290,7 +299,7 @@ class Berita extends CI_Controller
                     'user_pengirim' => $this->session->userdata('id_user'),
                     'user_penerima' => $baris->id,
                     'judul' => $this->session->userdata('nama') . ' Mengupload Berita',
-                    'pesan' => $this->session->userdata('nama') . ' mengupload file '.$cek->file. ' pada berita yang berjudul ' . $cek->judul_berita,
+                    'pesan' => $this->session->userdata('nama') . ' mengupload file ' . $cek->file . ' pada berita yang berjudul ' . $cek->judul_berita,
                     'link' => $this->uri->segment(1),
                     'dibaca' => '1',
                     'dibuat_tanggal' => date('y-m-d'),
@@ -328,6 +337,8 @@ class Berita extends CI_Controller
     function ubah_draft()
     {
         $id = $this->input->post('edit_id_berita2');
+        $folder = $this->session->userdata('username') . '/' . $id;
+
         $data = array(
             'judul_berita' => $this->input->post('ubah_judul'),
             'narasi_berita' => $this->input->post('ubah_narasi'),
@@ -335,6 +346,14 @@ class Berita extends CI_Controller
             'dibuat_tanggal' => date('Y-m-d'),
             'dibuat_pukul' => date('h:i:s'),
         );
+        if (!empty($_FILES['file']['name'])) {
+            $upload = $this->_do_upload($id);
+            unlink('upload/berita/' . $folder . '/' . $this->input->post('old_file'));
+
+            $data['file'] = $upload;
+        }else{
+        $data['file'] = $this->input->post('old_file');
+        }
         $this->aktivitas->log_ubahdraft();
         $data = $this->berita->ubah_draft($id, $data);
 
@@ -361,6 +380,7 @@ class Berita extends CI_Controller
     {
         $id = $this->input->post('hapus_id_berita');
         $cek = $this->berita->get_by_id($id)->row();
+        $folder = $this->session->userdata('username') . '/' . $id;
         if ($cek->status_berita != 'valid') {
             $this->db->where('level', 'admin');
             $query = $this->db->get('tmst_user');
@@ -377,6 +397,10 @@ class Berita extends CI_Controller
                 );
                 $this->notifikasi->simpan($notif);
             }
+            unlink('upload/berita/' . $folder . '/' . $cek->file);
+            rmdir('upload/berita/' . $folder);
+
+
             $this->aktivitas->log_hapusberita();
             $this->berita->hapus($id);
         } else {
@@ -423,6 +447,7 @@ class Berita extends CI_Controller
             $tanggal_awal = $this->input->post('export_tanggal_awal');
             $tanggal_akhir = $this->input->post('export_tanggal_akhir');
             $data['berita'] = $this->berita->export($nama, $bulan, $tahun, $status, $tanggal_awal, $tanggal_akhir);
+
             $this->load->view('user/berita/export', $data);
         } else {
             $nama = $this->input->post('export_nama');
@@ -432,6 +457,7 @@ class Berita extends CI_Controller
             $tanggal_awal = $this->input->post('export_tanggal_awal');
             $tanggal_akhir = $this->input->post('export_tanggal_akhir');
             $data['berita'] = $this->berita->export($nama, $bulan, $tahun, $status, $tanggal_awal, $tanggal_akhir);
+            
             $this->load->view('admin/berita/export', $data);
         }
         $html = $this->output->get_output();

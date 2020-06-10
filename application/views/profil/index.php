@@ -172,14 +172,6 @@
                         <li>
                             <div class="title">
                                 <i class="material-icons">calendar_today</i>
-                                File MOU
-                            </div>
-                            <div class="content">
-                                <a href="{{site_url()}}upload/mou/{{$file_mou}}" target="_blank">Lihat</a> </div>
-                        </li>
-                        <li>
-                            <div class="title">
-                                <i class="material-icons">calendar_today</i>
                                 Mulai MOU
                             </div>
                             <div class="content">

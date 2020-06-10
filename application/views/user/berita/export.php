@@ -63,24 +63,31 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </thead>
             <tbody>
                 <?php $no = 1; ?>
-                <?php if(!empty($berita)){ ?>
+                <?php if (!empty($berita)) { ?>
+                    <?php foreach ($berita as $media) { ?>
+                        <tr>
+                            <td style="text-align:center;padding:3;"><?= $no++; ?></td>
+                            <td style="text-align: justify;padding:3;word-wrap: break-word;"><?= $media->judul_berita ?></td>
+                            <td style="text-align: justify;padding:3;word-wrap: break-word;"><?= $media->narasi_berita ?></td>
+                            <td style="padding:3;word-wrap: break-word;"><?= $media->link_berita ?></td>
+                            <?php
+                            $this->db->where_in('id', explode(', ', $media->share));
+                            $data = $this->db->get('tmst_sosmed')->result();
+                            ?>
+                            <td style="padding:3;word-wrap: break-word;">
+                                <?php foreach ($data as $share) { ?>
+                                    <?= $share->nama ?>
+                                <?php } ?>
+                            </td>
+                            <td style="padding:3;word-wrap: break-word;"><?= $media->jumlah_view ?></td>
+                        </tr>
+                    <?php } ?>
 
-                <?php foreach ($berita as $media) { ?>
+                <?php } else { ?>
+
                     <tr>
-                        <td style="text-align:center;padding:3;"><?= $no++; ?></td>
-                        <td style="text-align: justify;padding:3;word-wrap: break-word;"><?= $media->judul_berita ?></td>
-                        <td style="text-align: justify;padding:3;word-wrap: break-word;"><?= $media->narasi_berita ?></td>
-                        <td style="padding:3;word-wrap: break-word;"><?= $media->link_berita ?></td>
-                        <td style="padding:3;word-wrap: break-word;"><?= $media->share ?></td>
-                        <td style="padding:3;word-wrap: break-word;"><?= $media->jumlah_view ?></td>
+                        <td style="text-align: center;" colspan="6">Data tidak ada</td>
                     </tr>
-                <?php } ?>
-
-                <?php }else{ ?>
-
-                <tr>
-                    <td style="text-align: center;" colspan="6">Data tidak ada</td>
-                </tr>
                 <?php } ?>
 
             </tbody>

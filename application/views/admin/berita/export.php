@@ -64,17 +64,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <tbody>
                 <?php $no = 1; ?>
                 <?php if (!empty($berita)) { ?>
-                    <tr>
-                        <td style="text-align: center;" colspan="6">Data tidak ada</td>
-                    </tr>
                     <?php foreach ($berita as $media) { ?>
                         <tr>
                             <td style="text-align:center;padding:3;"><?= $no++; ?></td>
                             <td style="text-align: justify;padding:3;word-wrap: break-word;"><?= $media->judul_berita ?></td>
                             <td style="text-align: justify;padding:3;word-wrap: break-word;"><?= $media->narasi_berita ?></td>
                             <td style="padding:3;word-wrap: break-word;"><?= $media->link_berita ?></td>
-                            <td style="padding:3;word-wrap: break-word;"><?= $media->share ?></td>
-                            <td style="padding:3;word-wrap: break-word;"><?= $media->jumlah_view ?></td>
+                            <?php
+                            $this->db->where_in('id', explode(', ', $media->share));
+                            $data = $this->db->get('tmst_sosmed')->result();
+                            ?>
+                            <td style="padding:3;word-wrap: break-word;">
+                                <?php foreach ($data as $share) { ?>
+                                    <?= $share->nama ?>
+                                <?php } ?>
+                            </td>
+                            <td style="padding:3;word-wrap: break-word;"><?= number_format($media->jumlah_view, 2, ",", "."); ?></td>
                         </tr>
                     <?php } ?>
                 <?php } else { ?>
