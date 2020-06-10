@@ -59,13 +59,10 @@ class Auth extends CI_Controller
                             'alamat_per' => $media['alamat'],
                             'rekening' => $media['rekening'],
                             'kabiro' => $media['kabiro'],
-                            'surat_kabiro' => $media['surat_kabiro'],
+                            'file_surat_kabiro' => $media['file_surat_kabiro'],
                             'telp' => $media['no_telp'],
-                            'wartawan' => $media['wartawan'],
-                            'sertifikat' => $media['sertifikat_uji'],
-                            'verifikasi' => $media['verifikasi_pers'],
-                            'logo_media' => $media['file_logo_media'],
-                            'penawaran_kerjasama' => $media['penawaran_kerja_sama'] ,
+                            'wartawan' => $media['wartawan'],                           
+                            'file_logo_media' => $media['file_logo_media'],                            
                             'file_npwp' => $media['file_npwp'],
                             'file_rekening' => $media['file_rekening'],
                             'file_mou' => $media['file_mou'],
@@ -180,12 +177,16 @@ class Auth extends CI_Controller
                 'alamat_per' => 'alamat_per',
                 'rekening' => 'rekening',
                 'kabiro' => 'kabiro',
-                'surat_kabiro' => 'surat_kabiro',
                 'telp' => 'telp',
                 'wartawan' => 'wartawan',
-                'sertifikat' => 'sertifikat',
-                'verifikasi' => 'verifikasi',
-                'penawaran_kerjasama' =>'penawaran_kerjasama' 
+                'file_logo_media' => 'file_logo_media',                            
+                'file_npwp' => 'file_rekening',
+                'file_rekening' => 'file_rekening',
+                'file_mou' => 'file_mou',
+                'file_sertifikat_uji' => 'file_sertifikat_uji',
+                'file_penawaran_kerja_sama' => 'file_penawaran_kerja_sama',
+                'file_verifikasi_pers' => 'file_verifikasi_pers',       
+    
             );
             $this->session->unset_userdata($sesi_selesai);    
 			$this->session->set_flashdata('message', '<div class="alert alert-success text-center" role="alert">Password berhasil diubah, silahkan login ulang!</div>');
@@ -216,12 +217,16 @@ class Auth extends CI_Controller
             'alamat_per' => 'alamat_per',
             'rekening' => 'rekening',
             'kabiro' => 'kabiro',
-            'surat_kabiro' => 'surat_kabiro',
             'telp' => 'telp',
             'wartawan' => 'wartawan',
-            'sertifikat' => 'sertifikat',
-            'verifikasi' => 'verifikasi',
-            'penawaran_kerjasama' =>'penawaran_kerjasama' 
+            'file_logo_media' => 'file_logo_media',                            
+            'file_npwp' => 'file_rekening',
+            'file_rekening' => 'file_rekening',
+            'file_mou' => 'file_mou',
+            'file_sertifikat_uji' => 'file_sertifikat_uji',
+            'file_penawaran_kerja_sama' => 'file_penawaran_kerja_sama',
+            'file_verifikasi_pers' => 'file_verifikasi_pers',
+            
         );
         $this->aktivitas->log_logout();
         $this->session->unset_userdata($sesi_selesai);

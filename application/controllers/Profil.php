@@ -39,19 +39,15 @@ class Profil extends CI_Controller
                 'perusahaan' => $this->session->userdata('perusahaan'),
                 'alamat_per' => $this->session->userdata('alamat_per'),
                 'rekening' => $this->session->userdata('rekening'),
-                'kabiro' => $this->session->userdata('kabiro'),
-                'surat_kabiro' => $this->session->userdata('surat_kabiro'),
+                'kabiro' => $this->session->userdata('kabiro'),       
+                'file_surat_kabiro' => $this->session->userdata('file_surat_kabiro'),
                 'telp' => $this->session->userdata('telp'),
-                'wartawan' => $this->session->userdata('wartawan'),
-                'sertifikat' => $this->session->userdata('sertifikat'),
-                'verifikasi' => $this->session->userdata('verifikasi'),
-                'penawaran_kerjasama' => $this->session->userdata('penawaran_kerjasama'),
+                'wartawan' => $this->session->userdata('wartawan'),                                
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
-                'logo_media' => $this->session->userdata('logo_media'),
+                'file_logo_media' => $this->session->userdata('file_logo_media'),
                 'file_rekening' => $this->session->userdata('file_rekening'),
-                'file_npwp' => $this->session->userdata('file_npwp'),
-                'file_mou' => $this->session->userdata('file_mou'),
+                'file_npwp' => $this->session->userdata('file_npwp'),                
                 'file_sertifikat_uji' => $this->session->userdata('file_sertifikat_uji'),
                 'file_penawaran_kerja_sama' => $this->session->userdata('file_penawaran_kerja_sama'),
                 'file_verifikasi_pers' => $this->session->userdata('file_verifikasi_pers')
@@ -76,19 +72,15 @@ class Profil extends CI_Controller
                 'perusahaan' => $row->perusahaan,
                 'alamat_per' => $row->alamat,
                 'rekening' => $row->rekening,
-                'kabiro' => $row->kabiro,
-                'surat_kabiro' => $row->surat_kabiro,
+                'kabiro' => $row->kabiro,    
+                'file_surat_kabiro' => $row->file_surat_kabiro,             
                 'telp' => $row->no_telp,
-                'wartawan' => $row->wartawan,
-                'sertifikat' => $row->sertifikat_uji,
-                'verifikasi' => $row->verifikasi_pers,
-                'penawaran_kerjasama' => $row->penawaran_kerja_sama,
+                'wartawan' => $row->wartawan,                                
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
-                'logo_media' => $row->file_logo_media,
+                'file_logo_media' => $row->file_logo_media,
                 'file_rekening' => $row->file_rekening,
-                'file_npwp' =>  $row->file_npwp,
-                'file_mou' => $row->file_mou,
+                'file_npwp' =>  $row->file_npwp,                
                 'file_sertifikat_uji' => $row->file_sertifikat_uji,
                 'file_penawaran_kerja_sama' => $row->file_penawaran_kerja_sama,
                 'file_verifikasi_pers' => $row->file_verifikasi_pers
@@ -107,20 +99,16 @@ class Profil extends CI_Controller
                 'akhir_mou' => date('d/m/Y', strtotime($row->akhir_mou)),
                 'perusahaan' => $row->perusahaan,
                 'alamat_per' => $row->alamat,
-                'rekening' => $row->rekening,
-                'kabiro' => $row->kabiro,
-                'surat_kabiro' => $row->surat_kabiro,
+                'rekening' => $row->rekening,                                         
+                'kabiro' => $row->kabiro,    
+                'file_surat_kabiro' => $row->file_surat_kabiro,                
                 'telp' => $row->no_telp,
-                'wartawan' => $row->wartawan,
-                'sertifikat' => $row->sertifikat_uji,
-                'verifikasi' => $row->verifikasi_pers,
-                'penawaran_kerjasama' => $row->penawaran_kerja_sama,
+                'wartawan' => $row->wartawan,                
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
-                'logo_media' => $this->session->userdata('logo_media'),
+                'file_logo_media' => $this->session->userdata('file_logo_media'),
                 'file_rekening' => $this->session->userdata('file_rekening'),
-                'file_npwp' => $this->session->userdata('file_npwp'),
-                'file_mou' => $this->session->userdata('file_mou'),
+                'file_npwp' => $this->session->userdata('file_npwp'),                
                 'file_sertifikat_uji' => $this->session->userdata('file_sertifikat_uji'),
                 'file_penawaran_kerja_sama' => $this->session->userdata('file_penawaran_kerja_sama'),
                 'file_verifikasi_pers' => $this->session->userdata('file_verifikasi_pers')
@@ -177,13 +165,9 @@ class Profil extends CI_Controller
             'alamat' => $this->input->post('alamat_kantor'),
             'npwp' => $this->input->post('npwp'),
             'pimpinan' => $this->input->post('pimpinan'),
-            'kabiro' => $this->input->post('kabiro'),
-            'surat_kabiro' => $this->input->post('surat_kabiro'),
+            'kabiro' => $this->input->post('kabiro'),                   
             'no_telp' => $this->input->post('no_telp'),
-            'wartawan' => $this->input->post('wartawan'),
-            'sertifikat_uji' => $this->input->post('sertifikat_uji'),
-            'verifikasi_pers' => $this->input->post('verifikasi_pers'),
-            'penawaran_kerja_sama' => $this->input->post('penawaran_kerjasama'),
+            'wartawan' => $this->input->post('wartawan'),            
             'tipe_media_massa' => $this->input->post('tipe_media_massa'),
             'file_logo_media' => $this->users->_uploadLogo()
         );
@@ -223,10 +207,20 @@ class Profil extends CI_Controller
         if (!empty($_FILES['file_penawaran_kerja_sama']['name'])) {
             if (!empty($this->input->post('old_file_penawaran_kerja_sama'))) {
                 unlink('upload/penawaran_kerja_sama/' . $this->input->post('old_file_penawaran_kerja_sama'));
-            }
+            }                          
             $upload = $this->_do_upload_penawaran_kerja_sama();
             $data['file_penawaran_kerja_sama'] = $upload;
         }
+
+        if(!empty($_FILES['file_surat_kabiro']['name'])){
+            if(!empty($this->input->post('old_file_surat_kabiro'))){
+                unlink('upload/surat_kabiro/'.$this->input->post('old_file_surat_kabiro'));
+            }
+            $upload = $this->_do_upload_surat_kabiro();
+            $data['file_surat_kabiro'] = $upload;
+        }
+
+        $this->medmas->updateProfil($id, $data);    
         $this->db->where('level', 'admin');
         $query = $this->db->get('tmst_user');
         foreach ($query->result() as $baris) {
@@ -262,13 +256,15 @@ class Profil extends CI_Controller
             'perusahaan' => 'perusahaan',
             'alamat_per' => 'alamat_per',
             'rekening' => 'rekening',
-            'kabiro' => 'kabiro',
-            'surat_kabiro' => 'surat_kabiro',
+            'kabiro' => 'kabiro',            
             'telp' => 'telp',
-            'wartawan' => 'wartawan',
-            'sertifikat' => 'sertifikat',
-            'verifikasi' => 'verifikasi',
-            'penawaran_kerjasama' => 'penawaran_kerjasama'
+            'wartawan' => 'wartawan',     
+            'file_logo_media' => 'file_rekening',                            
+            'file_npwp' => 'file_rekening',
+            'file_rekening' => 'file_rekening',            
+            'file_sertifikat_uji' => 'file_sertifikat_uji',
+            'file_penawaran_kerja_sama' => 'file_penawaran_kerja_sama',
+            'file_verifikasi_pers' => 'file_verifikasi_pers',       
         );
         $this->session->unset_userdata($sesi_selesai);
         $this->session->set_flashdata('message', '<div class="alert bg-green alert-dismissible" role="alert">
@@ -396,4 +392,31 @@ class Profil extends CI_Controller
         }
         return $this->upload->data('file_name');
     }
+
+
+    private function _do_upload_surat_kabiro()
+    {
+        if (!file_exists('upload/surat_kabiro')) {
+            mkdir('upload/surat_kabiro/', 0777, true);
+        }
+        $config6['upload_path']          = 'upload/surat_kabiro/';
+        $config6['allowed_types']        = 'pdf';
+        $config6['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config6['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+ 
+        $this->load->library('upload', $config6);
+        $this->upload->initialize($config6);
+ 
+        if(!$this->upload->do_upload('file_surat_kabiro')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_surat_kabiro';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+
 }
