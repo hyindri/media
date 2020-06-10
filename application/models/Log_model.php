@@ -209,6 +209,30 @@ class Log_model extends CI_Model
         return $this->db->insert($this->table,$data);
     }
 
+    // Log Jabatan
+
+    public function log_tambahjabatan()
+    {
+        $data = array(            
+            'aktivitas' => 'Telah menambahkan jabatan baru',
+            'oleh' => $this->session->userdata('username'),
+            'pada' => date('Y-m-d H:i:s')
+        );
+
+        return $this->db->insert($this->table,$data);
+    }
+
+    public function log_ubahjabatan()
+    {
+        $data = array(            
+            'aktivitas' => 'Telah mengubah data jabatan',
+            'oleh' => $this->session->userdata('username'),
+            'pada' => date('Y-m-d H:i:s')
+        );
+
+        return $this->db->insert($this->table,$data);
+    }
+
 
 
 }
