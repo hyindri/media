@@ -46,6 +46,11 @@ class Berita extends CI_Controller
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
             $data['id_berita'] = ['id' => 'id_berita', 'name' => 'id_berita', 'type' => 'hidden'];
+            if ($this->session->userdata('tipe_mediamassa') != 'radio') {
+                $data['file_berita'] = ['id' => 'file', 'name' => 'file', 'type' => 'file', 'accept' => 'images/*'];
+            }else{
+                $data['file_berita'] = ['id' => 'file', 'name' => 'file', 'type' => 'file', 'accept' => 'audio/*'];
+            }
             return view('user.berita.index', $data);
         }
     }
@@ -351,8 +356,8 @@ class Berita extends CI_Controller
             unlink('upload/berita/' . $folder . '/' . $this->input->post('old_file'));
 
             $data['file'] = $upload;
-        }else{
-        $data['file'] = $this->input->post('old_file');
+        } else {
+            $data['file'] = $this->input->post('old_file');
         }
         $this->aktivitas->log_ubahdraft();
         $data = $this->berita->ubah_draft($id, $data);
@@ -457,7 +462,7 @@ class Berita extends CI_Controller
             $tanggal_awal = $this->input->post('export_tanggal_awal');
             $tanggal_akhir = $this->input->post('export_tanggal_akhir');
             $data['berita'] = $this->berita->export($nama, $bulan, $tahun, $status, $tanggal_awal, $tanggal_akhir);
-            
+
             $this->load->view('admin/berita/export', $data);
         }
         $html = $this->output->get_output();

@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group form-float">
                     <div class="form-line">
-                    <input type="file" name="file" id="file" class="form-control">
+                        {{form_input($file_berita)}}
                     </div>
                 </div>
 
@@ -33,47 +33,6 @@
         </div>
     </div>
 </div>
-
-<!-- <div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-indigo">
-                <h4 class="modal-title">Tambah {{$title}}</h4>
-            </div>
-            {{form_open('',['id'=>'form-tambah','role'=>'form', 'enctype'=>'multipart/form-data'])}}
-            <div class="modal-body">
-                <div class="form-group form-float">
-                    <div class="form-line">
-                        <input type="text" name="link_berita" id="link_berita" class="form-control" required>
-                        <label class="form-label">Link Berita</label>
-                    </div>
-                </div>
-                <div class="form-group form-float">
-                    <div class="form-line">
-                        <input name="share" id="share" class="form-control" required>
-                        <label class="form-label">Dibagikan ke platform apa saja..</label>
-                    </div>
-                </div>
-                <div class="form-group form-float">
-                    <div class="form-line">
-                        <input name="jumlah_view" id="jumlah_view" class="form-control" required>
-                        <label class="form-label">Jumlah orang yang melihat berita anda..</label>
-                    </div>
-                </div>
-                <div class="form-group form-float">
-                    <div class="form-line">
-                        <input type="file" name="file" id="file" class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
-                <button id="simpan_btn" type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
-            </div>
-            {{form_close()}}
-        </div>
-    </div>
-</div> -->
 
 <div class="modal fade" id="modal-ubah" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
