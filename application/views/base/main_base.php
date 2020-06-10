@@ -97,6 +97,8 @@
     <script src="{{APP_ASSETS}}plugins/raphael/raphael.min.js"></script>
     <script src="{{APP_ASSETS}}plugins/morrisjs/morris.js"></script>
     <script src="{{APP_ASSETS}}plugins/toastr/toastr.min.js"></script>
+    <script src="{{APP_ASSETS}}plugins/tinymce/tinymce.js"></script>
+
 
     <!-- ChartJs -->
     <script src="{{APP_ASSETS}}plugins/chartjs/Chart.bundle.js"></script>
@@ -114,7 +116,7 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{APP_ASSETS}}plugins/jquery-sparkline/jquery.sparkline.js"></script>
     <!-- Jquery DataTable Plugin Js -->
-    <script src="{{APP_ASSETS}}plugins/jquery-datatable/jquery.dataTables.js"></script>    
+    <script src="{{APP_ASSETS}}plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
 
     <script src="{{APP_ASSETS}}plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
@@ -135,6 +137,7 @@
     <!-- <script src="{{APP_ASSETS}}js/pages/index.js"></script> -->
     <!-- <script src="{{APP_ASSETS}}js/pages/tables/jquery-datatable.js"></script> -->
     <script>
+
         $('.ubah_notif').on('click', function() {
             $.ajax({
                 type: "POST",

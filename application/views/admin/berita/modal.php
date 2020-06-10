@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-indigo">
-                <h4 class="modal-title">Detail {{$title}}</h4>
+                <h4 class="modal-title">Detail {{$title}} <span class="badge bg-green blinking" id="tipe_media_massa"></span></h4>
             </div>
             {{form_open('',['id'=>'form-verif','role'=>'form'])}}
             <div class="modal-body">
@@ -18,7 +18,7 @@
                             <span>:</span>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-                            <span id="nama"></span>
+                            <span id="nama"></span> 
                         </div>
                     </div>
                     <!-- Judul Berita  -->
@@ -42,7 +42,7 @@
                             <span>:</span>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
-                            <span id="narasi_berita"></span>
+                            <p class="text-justify" id="narasi_berita"></p>
                         </div>
                     </div>
                     <!-- Link Berita  -->
@@ -60,7 +60,7 @@
                     <!-- Share  -->
                     <div class="row p-modal share">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Share</span>
+                            <span>Dibagikan</span>
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <span>:</span>
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <!-- File -->
-                    <div class="row p-modal screenshot">
+                    <div class="row p-modal file">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                             <span>File</span>
                         </div>
