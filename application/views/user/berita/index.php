@@ -117,7 +117,7 @@
                 }
             },
             "columnDefs": [{
-                "targets": [0, 4, 5],
+                "targets": [0, 3,4, 5],
                 "orderable": false,
                 "class": "text-center"
             }, ],
@@ -197,11 +197,12 @@
                         $('.link').hide();
                         $('.sharing').hide();
                         $('.view').hide();
-                        $('.file').show();
                         $('.keterangan').show();
                         if (data.tipe_media_massa == 'radio') {
+                            $('.file').hide();
                             $('#lihat_file').html('<audio controls target="_blank" class="thumbnail col-xs-12 col-sm-12 col-md-6 col-lg-8"><source src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
                         } else {
+                            $('.file').show();
                             $('#lihat_file').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
                         }
                         $('#lihat_status_berita').html('<span class="badge bg-red">Draft Belum Valid</span>');
@@ -294,6 +295,29 @@
             var fileDraft = $('#file_draft');
             var maxSize = fileDraft.data('max-size');
 
+            if ($('#file_draft').val() == 'default') {
+                $.ajax({
+                    type: "POST",
+                    url: "{{base_url('berita/draft')}}",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        $('#judul_berita').val("");
+                        $('#narasi_berita').val("");
+                        $('#modal-draft').modal('hide');
+                        toastr.success('Draft berita berhasil ditambahkan!');
+                        table.ajax.reload();
+                    },
+                    error: function(data) {
+                        toastr.warning('Draft berita gagal ditambahkan!');
+                        table.ajax.reload();
+                    }
+                });
+                return false;
+            }
             if (fileDraft.get(0).files.length) {
                 var fileSize = fileDraft.get(0).files[0].size; // in bytes
                 if (fileSize > maxSize) {
@@ -389,6 +413,28 @@
             var fileLamaDraft = $('#file_lama_draft').val();
             var maxSize = ubahFileDraft.data('max-size');
 
+            if ($('#ubah_file_draft').val() == 'default') {
+                $.ajax({
+                    type: "POST",
+                    url: "{{base_url('berita/ubah_draft')}}",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        $('#modal-ubah-draft').modal('hide');
+                        toastr.success('Draft berita berhasil diubah!');
+                        table.ajax.reload();
+                    },
+                    error: function(data) {
+                        toastr.warning('Draft berita gagal diubah!');
+                        table.ajax.reload();
+                    }
+                });
+                return false;
+            }
+
             if (ubahFileDraft.get(0).files.length) {
                 var fileSize = ubahFileDraft.get(0).files[0].size; // in bytes
                 if (fileSize > maxSize) {
@@ -441,6 +487,7 @@
             }
         });
 
+
         $('#form-hapus').submit(function(e) {
             $.ajax({
                 type: "POST",
@@ -466,6 +513,11 @@
         //TinyMCE
         tinymce.init({
             selector: "#narasi_berita",
+            setup: function(editor) {
+                editor.on('change', function() {
+                    editor.save();
+                });
+            },
             theme: "modern",
             height: 300,
 

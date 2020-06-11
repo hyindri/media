@@ -124,18 +124,7 @@ class Berita_model extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
-    function simpan_draft($data)
-    {
-        $this->db->insert($this->table, $data);
-    }
-
     function ubah($id, $data)
-    {
-        $this->db->where('id', $id);
-        $this->db->update($this->table, $data);
-    }
-
-    function ubah_draft($id, $data)
     {
         $this->db->where('id', $id);
         $this->db->update($this->table, $data);

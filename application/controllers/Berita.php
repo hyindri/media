@@ -47,11 +47,11 @@ class Berita extends CI_Controller
             );
             $data['id_berita'] = ['id' => 'id_berita', 'name' => 'id_berita', 'type' => 'hidden'];
             if ($this->session->userdata('tipe_mediamassa') != 'radio') {
-                $data['file_berita'] = ['id' => 'file_draft', 'name' => 'file', 'type' => 'file', 'data-max-size'=>'5e+6', 'accept' => 'image/*'];
-                $data['ubah_file_berita'] = ['id' => 'ubah_file_draft', 'name' => 'file', 'type' => 'file', 'file', 'data-max-size'=>'5e+6',  'accept' => 'image/*'];
+                $data['file_berita'] = ['id' => 'file_draft', 'name' => 'file', 'type' => 'file', 'data-max-size' => '5e+6', 'accept' => 'image/*'];
+                $data['ubah_file_berita'] = ['id' => 'ubah_file_draft', 'name' => 'file', 'type' => 'file', 'file', 'data-max-size' => '5e+6',  'accept' => 'image/*'];
             } else {
-                $data['file_berita'] = ['type' => 'hidden'];
-                $data['ubah_file_berita'] = ['type' => 'hidden'];
+                $data['file_berita'] = ['id' => 'file_draft', 'name' => 'file', 'type' => 'hidden', 'value' => 'default'];
+                $data['ubah_file_berita'] = ['id' => 'ubah_file_draft', 'name' => 'file', 'type' => 'hidden', 'value' => 'default'];
             }
             return view('user.berita.index', $data);
         }
@@ -83,7 +83,7 @@ class Berita extends CI_Controller
                 $no++;
                 $row = array();
                 $row[] = $no;
-                $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal));
+                $row[] = tanggal($q->dibuat_tanggal);
                 $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama_media . '</a>';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>' . $q->judul_berita . '</a>';
                 if ($q->status_berita == 'valid') {
@@ -98,7 +98,7 @@ class Berita extends CI_Controller
                 $no++;
                 $row = array();
                 $row[] = $no;
-                $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal)) . ' (' . date('H:i:s', strtotime($q->dibuat_pukul)) . ')';
+                $row[] = tanggal($q->dibuat_tanggal) . ' (' . date('H:i:s', strtotime($q->dibuat_pukul)) . ')';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>' . $q->judul_berita . '</a>';
 
                 if ($q->status_berita == 'valid') {
@@ -123,10 +123,10 @@ class Berita extends CI_Controller
                         }
                     }
                     $row[] = '<span class="badge bg-blue">Draft Valid</span>';
-                    $row[] = '<div class="btn-group">
+                    $row[] = '
                     <button title="lihat" type="button" data-id="' . $q->id_berita . '" class="lihat btn btn-info btn-xs"><i class="material-icons">visibility</i> </button>
                     <button title="Upload" type="button" data-id="' . $q->id_berita . '" class="ubah btn btn-warning btn-xs"><i class="material-icons">cloud_upload</i> </button>
-                    <button title="Hapus" type="button" data-id="' . $q->id_berita . '" class="hapus btn btn-danger btn-xs"><i class="material-icons">delete</i> </button></div>';
+                    <button title="Hapus" type="button" data-id="' . $q->id_berita . '" class="hapus btn btn-danger btn-xs"><i class="material-icons">delete</i> </button>';
                 } else {
                     if ($this->session->userdata('tipe_mediamassa') == 'radio') {
                         if (empty($q->file)) {
@@ -142,10 +142,10 @@ class Berita extends CI_Controller
                         }
                     }
                     $row[] = '<span class="badge bg-red">Draft Belum Valid</span>';
-                    $row[] = '<div class="btn-group">
+                    $row[] = '
                     <button title="lihat" type="button" data-id="' . $q->id_berita . '" class="lihat btn btn-info btn-xs"><i class="material-icons">visibility</i> </button>
                     <button title="Ubah" type="button" data-id="' . $q->id_berita . '" data-status="' . $q->status_berita . '" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i> </button>
-                    <button title="Hapus" type="button" data-id="' . $q->id_berita . '" class="hapus btn btn-danger btn-xs"><i class="material-icons">delete</i> </button></div>';
+                    <button title="Hapus" type="button" data-id="' . $q->id_berita . '" class="hapus btn btn-danger btn-xs"><i class="material-icons">delete</i> </button>';
                 }
             }
             $data[] = $row;
@@ -177,11 +177,10 @@ class Berita extends CI_Controller
             $output['status_berita'] = $row->status_berita;
             $output['keterangan'] = $row->keterangan;
             $output['dibuat_oleh'] = $row->dibuat_oleh;
-            $output['dibuat_tanggal'] = date('d/m/Y', strtotime($row->dibuat_tanggal));
+            $output['dibuat_tanggal'] = tanggal($row->dibuat_tanggal);
             $output['dibuat_pukul'] = $row->dibuat_pukul;
             $output['diperiksa_oleh'] = $row->diperiksa_oleh;
-            $output['diperiksa_pada'] = $row->diperiksa_pada;
-            $output['diperiksa_pada'] = $row->diperiksa_pada;
+            $output['diperiksa_pada'] = date('d-m-Y (h:i:s)', strtotime($row->diperiksa_pada));
             $output['tipe_media_massa'] = $row->tipe_media_massa;
             $output['sosmed'] = $this->setting->get_by_id_in(explode(', ', $output['share']))->result();
         }
@@ -263,7 +262,7 @@ class Berita extends CI_Controller
                 $this->notifikasi->simpan($notif);
             }
             $this->aktivitas->log_tambahdraft();
-            return $this->berita->simpan_draft($data);
+            return $this->berita->simpan($data);
             echo json_encode($data);
         }
     }
@@ -288,7 +287,7 @@ class Berita extends CI_Controller
             $data['file'] = $this->input->post('old_file');
         }
         $this->aktivitas->log_ubahdraft();
-        $data = $this->berita->ubah_draft($id, $data);
+        $data = $this->berita->ubah($id, $data);
 
         $this->db->where('level', 'admin');
         $query = $this->db->get('tmst_user');
