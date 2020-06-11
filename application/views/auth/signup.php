@@ -35,7 +35,7 @@
     <link href="{{APP_ASSETS}}css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
-<body class="theme-red">
+<body class="">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -55,17 +55,11 @@
     <!-- #END# Page Loader -->
 
 
-    <section class="content">
+    <section class="">
         <div class="container-fluid">
-            <div class="block-header">
-                <h2>
-                    FORM WIZARD
-                    <small>Taken from <a href="https://github.com/rstaib/jquery-steps" target="_blank">github.com/rstaib/jquery-steps</a> & <a href="https://jqueryvalidation.org/" target="_blank">jqueryvalidation.org</a></small>
-                </h2>
-            </div>
             
             <!-- Advanced Form Example With Validation -->
-            <div class="row clearfix">
+            <div class="row" style="padding-top:30px;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -74,7 +68,7 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <form id="wizard_with_validation" method="POST">
+                            <?php echo form_open_multipart(site_url('auth/signup'), array('id' => 'wizard_with_validation', 'method' => 'POST'));?>
                                 <h3>Informasi Akun</h3>
                                 <fieldset>
                                     <div class="form-group form-float">
@@ -101,7 +95,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="nama_media" required>
+                                            <input type="text" class="form-control" name="nama_perusahaan" required>
                                             <label class="form-label">Nama Perusahaan*</label>
                                         </div>
                                     </div>
@@ -251,7 +245,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_akta_pendirian" required>
+                                                    <input type="file" class="form-control" name="file_akta_pendirian" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -265,7 +259,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_situ" required>
+                                                    <input type="file" class="form-control" name="file_situ" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -279,7 +273,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_siup" required>
+                                                    <input type="file" class="form-control" name="file_siup" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -293,7 +287,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_tdp" required>
+                                                    <input type="file" class="form-control" name="file_tdp" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -307,7 +301,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_tdp" required>
+                                                    <input type="file" class="form-control" name="file_npwp" required accept="image/*">
                                                 </div>
                                             </div>  
                                         </div>
@@ -321,7 +315,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_rekening" required>
+                                                    <input type="file" class="form-control" name="file_rekening" required accept="image/*">
                                                 </div>
                                             </div>  
                                         </div>
@@ -335,7 +329,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_mou" required>
+                                                    <input type="file" class="form-control" name="file_mou" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -349,7 +343,21 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_sertifikat_uji" required>
+                                                    <input type="file" class="form-control" name="file_sertifikat_uji" required accept="application/pdf">
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-line">
+                                                    <label class="form-label">Logo Media* <i>maks. 5MB</i></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_logo_media" required accept="image/*">
                                                 </div>
                                             </div>  
                                         </div>
@@ -363,7 +371,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_verifikasi_pers" required>
+                                                    <input type="file" class="form-control" name="file_verifikasi_pers" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -377,7 +385,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_laporan_pajak" required>
+                                                    <input type="file" class="form-control" name="file_laporan_pajak" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -396,11 +404,8 @@
                                         <div class="col-md-2">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                <select class="form-control" name="jabatan_id" required>
-                                                    <option value="">-- Pilih jabatan --</option>
-                                                    <?php foreach ($jabatan as $row){ ?>
-                                                    <option value="<?=$row->id?>"><?=$row->nama_jabatan?></option>
-                                                    <?php } ?>
+                                                <select class="form-control" name="jabatan_id[]" required>
+                                                    <option value="1">Direktur</option>
                                                 </select>
                                                 </div>
                                             </div>
@@ -408,7 +413,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="nama_tenaga" required>
+                                                    <input type="text" class="form-control" name="nama_tenaga[]" required>
                                                     <label class="form-label">Nama*</label>
                                                 </div>
                                             </div>
@@ -416,7 +421,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="nik" required>
+                                                    <input type="text" class="form-control" name="nik[]" required>
                                                     <label class="form-label">NIK*</label>
                                                 </div>
                                             </div>
@@ -424,7 +429,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file" required>
+                                                    <input type="file" class="form-control" name="file_ktp_direktur" required accept="image/*">
                                                     <label class="form-label">File KTP*</label>
                                                 </div>
                                             </div>
@@ -432,7 +437,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="no_hp" required>
+                                                    <input type="text" class="form-control" name="no_hp[]" required>
                                                     <label class="form-label">No. Telp*</label>
                                                 </div>
                                             </div>
@@ -445,7 +450,7 @@
                                     <div id="insert-form">
                                     </div>
                                 </fieldset>
-                            </form>
+                                <?= form_close() ?>
                         </div>
                     </div>
                 </div>
@@ -482,7 +487,49 @@
 
     <!-- Custom Js -->
     <script src="{{APP_ASSETS}}js/admin.js"></script>
-    <script src="{{APP_ASSETS}}js/pages/forms/form-wizard.js"></script>
+    <!-- <script src="{{APP_ASSETS}}js/pages/forms/form-wizard.js"></script> -->
+
+    <script>
+        //Advanced form with validation
+    var form = $('#wizard_with_validation').show();
+    form.steps({
+        headerTag: 'h3',
+        bodyTag: 'fieldset',
+        transitionEffect: 'slideLeft',
+        onInit: function (event, currentIndex) {
+            $.AdminBSB.input.activate();
+
+            //Set tab width
+            var $tab = $(event.currentTarget).find('ul[role="tablist"] li');
+            var tabCount = $tab.length;
+            $tab.css('width', (100 / tabCount) + '%');
+
+            //set button waves effect
+            setButtonWavesEffect(event);
+        },
+        onStepChanging: function (event, currentIndex, newIndex) {
+            if (currentIndex > newIndex) { return true; }
+
+            if (currentIndex < newIndex) {
+                form.find('.body:eq(' + newIndex + ') label.error').remove();
+                form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
+            }
+
+            form.validate().settings.ignore = ':disabled,:hidden';
+            return form.valid();
+        },
+        onStepChanged: function (event, currentIndex, priorIndex) {
+            setButtonWavesEffect(event);
+        },
+        onFinishing: function (event, currentIndex) {
+            form.validate().settings.ignore = ':disabled';
+            return form.valid();
+        },
+        onFinished: function (event, currentIndex) {
+           $('#wizard_with_validation').submit();
+        }
+    });
+    </script>
 
     <script>
     $(document).ready(function(){ // Ketika halaman sudah diload dan siap
@@ -495,7 +542,7 @@
                 <div class="col-md-2">
                     <div class="form-group form-float">
                         <div class="form-line">
-                        <select class="form-control" name="jabatan_id" required>
+                        <select class="form-control" name="jabatan_id[]" required>
                             <option value="">-- Pilih jabatan --</option>
                             <?php foreach ($jabatan as $row){ ?>
                             <option value="<?=$row->id?>"><?=$row->nama_jabatan?></option>
@@ -505,34 +552,34 @@
                     </div>
                 </div>
                 <div class="col-md-3">
+                    <label class="form-label">Nama*</label>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nama_tenaga" required>
-                            <label class="form-label">Nama*</label>
+                            <input type="text" class="form-control" name="nama_tenaga[]" required>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
+                    <label class="form-label">NIK*</label>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nik" required>
-                            <label class="form-label">NIK*</label>
+                            <input type="text" class="form-control" name="nik[]" required> 
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
+                    <label class="form-label">File KTP*</label>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="file" class="form-control" name="file" required>
-                            <label class="form-label">File KTP*</label>
+                            <input type="file" class="form-control" name="file[]" required accept="image/*">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
+                    <label class="form-label">No. Telp*</label>
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="no_hp" required>
-                            <label class="form-label">No. Telp*</label>
+                            <input type="text" class="form-control" name="no_hp[]" required> 
                         </div>
                     </div>
                 </div>
