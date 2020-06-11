@@ -93,6 +93,12 @@
 						<span>Manajemen Akun</span>
 					</a>
 				</li>
+				<li class="@if($this->uri->segment(1) == 'jabatan') active @endif">
+					<a href="{{site_url('jabatan')}}">
+						<i class="material-icons">account_box</i>
+						<span>Manajemen Jabatan</span>
+					</a>
+				</li>
 				<li class="@if($this->uri->segment(1) == 'logaktivitas') active @endif">
 					<a href="{{site_url('logaktivitas')}}">
 						<i class="material-icons">list</i>
