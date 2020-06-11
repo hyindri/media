@@ -429,7 +429,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_ktp_direktur" required accept="image/*">
+                                                    <input type="file" class="form-control" name="file[]" required accept="image/*">
                                                     <label class="form-label">File KTP*</label>
                                                 </div>
                                             </div>
