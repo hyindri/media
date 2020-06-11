@@ -6,18 +6,19 @@
             </div>
             {{form_open('',['id'=>'form-draft','role'=>'form'])}}
             <div class="modal-body">
+                <label class="form-label">Judul berita</label>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <textarea id="judul_berita" name="judul_berita" class="form-control" required></textarea>
-                        <label class="form-label">Judul berita</label>
                     </div>
                 </div>
+                <label class="form-label">Narasi berita</label>
                 <div class="form-group form-float">
                     <div class="form-line">
-                        <textarea id="narasi_berita" name="narasi_berita" class="form-control" rows="17" required></textarea>
-                        <label class="form-label">Narasi berita</label>
+                        <textarea id="narasi_berita" name="narasi_berita" class="form-control" rows="17"></textarea>
                     </div>
                 </div>
+                <label class="form-label">Upload File</label>
                 <div class="form-group form-float">
                     <div class="form-line">
                         {{form_input($file_berita)}}
@@ -33,6 +34,45 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal-ubah-draft" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-indigo">
+                <h4 class="modal-title">Ubah Draft</h4>
+            </div>
+            {{form_open('',['id'=>'form-ubah-draft','role'=>'form'])}}
+            <div class="modal-body">
+                <input type="hidden" name="edit_id_draft" id="edit_id_draft" class="form-control" required>
+                <label class="form-label">Judul berita</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        <textarea id="ubah_judul" name="ubah_judul" class="form-control" required></textarea>
+                    </div>
+                </div>
+                <label class="form-label">Narasi berita</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        <textarea id="ubah_narasi" name="ubah_narasi" class="form-control" rows="17"></textarea>
+                    </div>
+                </div>
+                <label class="form-label">Upload File</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        {{form_input($ubah_file_berita)}}
+                        <input type="hidden" name="old_file" id="file_lama_draft" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+                <button type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
+            </div>
+            {{form_close()}}
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade" id="modal-ubah" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -53,7 +93,7 @@
                 <div class="form-group">
                     <div class="form-line">
                         @php
-                        $no = 0; 
+                        $no = 0;
                         @endphp
                         @foreach ($sosmed as $row)
                         @php $no++ @endphp
@@ -71,7 +111,7 @@
                 <label for="ubah_file">File</label>
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="file" name="file" id="ubah_file" class="form-control">
+                        <input type="file" name="file" id="ubah_file"  data-max-size="5e+6" class="form-control">
                         <span id="file_lama_view"></span>
                         <input type="hidden" name="old_file" id="file_lama" class="form-control">
                     </div>
@@ -86,42 +126,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-ubah-draft" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-indigo">
-                <h4 class="modal-title">Ubah Draft</h4>
-            </div>
-            {{form_open('',['id'=>'form-ubah-draft','role'=>'form'])}}
-            <div class="modal-body">
-                <input type="hidden" name="edit_id_berita2" id="edit_id_berita2" class="form-control" required>
-                <label>Judul Berita</label>
-                <div class="form-group">
-                    <div class="form-line">
-                        <textarea id="ubah_judul" name="ubah_judul" class="form-control" placeholder="Judul berita" required></textarea>
-                    </div>
-                </div>
-                <label>Narasi Berita</label>
-                <div class="form-group">
-                    <div class="form-line">
-                        <textarea id="ubah_narasi" name="ubah_narasi" class="form-control" rows="17" placeholder="Narasi berita" required></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-line">
-                        <input type="file" name="file" id="ubah_file" class="form-control">
-                        <input type="text" name="old_file" id="file_lama_draft" class="form-control">
-                    </div>
-            </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
-                <button type="submit" class="btn bg-green col-white waves-effect">SIMPAN</button>
-            </div>
-            {{form_close()}}
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" id="modal-hapus" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

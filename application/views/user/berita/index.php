@@ -177,8 +177,10 @@
 
                     } else if (data.status_berita == 'oke') {
                         if (data.tipe_media_massa == 'radio') {
+                            $('.file').hide();
                             $('#lihat_file').html('<audio controls target="_blank" class="thumbnail col-xs-12 col-sm-12 col-md-6 col-lg-8"><source src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
                         } else {
+                            $('.file').show();
                             $('#lihat_file').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
                         }
                         if (data.link_berita == '') {
@@ -186,7 +188,7 @@
                         } else {
                             $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                         }
-                        $('#lihat_status_berita').html('<span class="badge bg-blue">Draft Disetujui</span>');
+                        $('#lihat_status_berita').html('<span class="badge bg-blue">Draft Valid</span>');
                         $('.link').hide();
                         $('.sharing').hide();
                         $('.view').hide();
@@ -214,8 +216,8 @@
             var id_berita;
             if ($(this).data('status') == 'belum') {
                 $('#modal-ubah-draft').modal('show');
-                $("#edit_id_berita2").val($(this).data('id'));
-                id_berita = $('#edit_id_berita2').val();
+                $("#edit_id_draft").val($(this).data('id'));
+                id_berita = $('#edit_id_draft').val();
             } else {
                 $('#modal-ubah').modal('show');
                 $("#edit_id_berita").val($(this).data('id'));
@@ -235,6 +237,23 @@
                     $('#ubah_jumlah_view').val(data.jumlah_view);
                     $('#ubah_judul').val(data.judul_berita);
                     $('#ubah_narasi').val(data.narasi_berita);
+
+                    tinymce.init({
+                        selector: "#ubah_narasi",
+                        setup: function(editor) {
+                            editor.on('change', function() {
+                                editor.save();
+                            });
+                        },
+                        theme: "modern",
+                        height: 300,
+                        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                        toolbar2: 'print preview media | forecolor backcolor emoticons',
+                        image_advtab: true
+                    });
+                    $('#file_lama').val(data.file);
+                    $('#file_lama_draft').val(data.file);
+
                     if (data.status_berita == 'valid') {
                         if (data.tipe_media_massa == 'radio') {
                             $("#ubah_file").attr("accept", "audio/*");
@@ -243,19 +262,23 @@
                             $("#ubah_file").attr("accept", "image/*");
                             $('#file_lama_view').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
                         }
-                    } else if (data.status_berita == 'oke') {
-                        $('#file_lama_view').html('Masukkan screenshoot');
-
-                    }
-                    $('#file_lama').val(data.file);
-                    $('#file_lama_draft').val(data.file);
-                    var result = data.share.split(", ");
-                    for (var i = 0; i < result.length; i++) {
-                        if (result[i] == result[i]) {
-                            $('#check_' + result[i]).prop('checked', true);
+                        var result = data.share.split(", ");
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i] == result[i]) {
+                                $('#check_' + result[i]).prop('checked', true);
+                            }
                         }
-                    }
+                    } else if (data.status_berita == 'oke') {
+                        if (data.tipe_media_massa == 'radio') {
+                            $("#ubah_file").attr("accept", "audio/*");
+                            $('#file_lama_view').html('');
 
+                        } else {
+                            $("#ubah_file").attr("accept", "image/*");
+                            $('#file_lama_view').html('');
+                        }
+
+                    }
 
                 }
             });
@@ -266,103 +289,159 @@
             $("#hapus_id_berita").val($(this).data('id'));
         });
 
-        $('#form-tambah').submit('click', function() {
-            $.ajax({
-                type: "POST",
-                url: "{{base_url('berita/tambah')}}",
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                cache: false,
-                async: false,
-                success: function(data) {
-                    $('#link_berita').val("");
-                    $('#share').val("");
-                    $('#jumlah_view').val("");
-                    $('#file').val("");
-                    $('#modal-tambah').modal('hide');
-                    toastr.success('Laporan berita berhasil ditambahkan!');
-                    table.ajax.reload();
-                },
-                error: function(data) {
-                    toastr.warning('Laporan berita gagal ditambahkan!');
-                    table.ajax.reload();
+
+        $('#form-draft').submit(function(e) {
+            var fileDraft = $('#file_draft');
+            var maxSize = fileDraft.data('max-size');
+
+            if (fileDraft.get(0).files.length) {
+                var fileSize = fileDraft.get(0).files[0].size; // in bytes
+                if (fileSize > maxSize) {
+                    toastr.error('File kebesaran, maksimal 5 MB');
+                    return false;
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{base_url('berita/draft')}}",
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        async: false,
+                        success: function(data) {
+                            $('#judul_berita').val("");
+                            $('#narasi_berita').val("");
+                            $('#modal-draft').modal('hide');
+                            toastr.success('Draft berita berhasil ditambahkan!');
+                            table.ajax.reload();
+                        },
+                        error: function(data) {
+                            toastr.warning('Draft berita gagal ditambahkan!');
+                            table.ajax.reload();
+                        }
+                    });
+                    return false;
                 }
-            });
-            return false;
+            } else {
+                toastr.error('Pilih file terlebih dahulu..');
+                return false;
+            }
         });
 
-
-        $('#form-draft').submit('click', function() {
-            $.ajax({
-                type: "POST",
-                url: "{{base_url('berita/draft')}}",
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                cache: false,
-                async: false,
-                success: function(data) {
-                    $('#judul_berita').val("");
-                    $('#narasi_berita').val("");
-                    $('#modal-draft').modal('hide');
-                    toastr.success('Draft berita berhasil ditambahkan!');
-                    table.ajax.reload();
-                },
-                error: function(data) {
-                    toastr.warning('Draft berita gagal ditambahkan!');
-                    table.ajax.reload();
+        $('#form-ubah').submit(function(e) {
+            var ubahFile = $('#ubah_file');
+            var fileLama = $('#file_lama').val();
+            var maxSize = ubahFile.data('max-size');
+            if (ubahFile.get(0).files.length) {
+                var fileSize = ubahFile.get(0).files[0].size; // in bytes
+                if (fileSize > maxSize) {
+                    toastr.error('File kebesaran, maksimal 5 MB');
+                    return false;
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{base_url('berita/ubah')}}",
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        async: false,
+                        success: function(data) {
+                            $('#modal-ubah').modal('hide');
+                            toastr.success('Laporan berita berhasil dilengkapi!');
+                            table.ajax.reload();
+                        },
+                        error: function(data) {
+                            toastr.warning('Laporan berita gagal dilengkapi!');
+                            table.ajax.reload();
+                        }
+                    });
+                    return false;
                 }
-            });
-            return false;
+            } else if (fileLama != 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{base_url('berita/ubah')}}",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        $('#modal-ubah').modal('hide');
+                        toastr.success('Laporan berita berhasil dilengkapi!');
+                        table.ajax.reload();
+                    },
+                    error: function(data) {
+                        toastr.warning('Laporan berita gagal dilengkapi!');
+                        table.ajax.reload();
+                    }
+                });
+                return false;
+            } else {
+                toastr.error('Pilih file terlebih dahulu..');
+                return false;
+            }
         });
 
+        $('#form-ubah-draft').submit(function(e) {
+            var ubahFileDraft = $('#ubah_file_draft');
+            var fileLamaDraft = $('#file_lama_draft').val();
+            var maxSize = ubahFileDraft.data('max-size');
 
-        $('#form-ubah').submit('click', function() {
-            $.ajax({
-                type: "POST",
-                url: "{{base_url('berita/ubah')}}",
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                cache: false,
-                async: false,
-                success: function(data) {
-                    $('#modal-ubah').modal('hide');
-                    toastr.success('Laporan berita berhasil dilengkapi!');
-                    table.ajax.reload();
-                },
-                error: function(data) {
-                    toastr.warning('Laporan berita gagal dilengkapi!');
-                    table.ajax.reload();
+            if (ubahFileDraft.get(0).files.length) {
+                var fileSize = ubahFileDraft.get(0).files[0].size; // in bytes
+                if (fileSize > maxSize) {
+                    toastr.error('File kebesaran, maksimal 5 MB');
+                    return false;
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{base_url('berita/ubah_draft')}}",
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        async: false,
+                        success: function(data) {
+                            $('#modal-ubah-draft').modal('hide');
+                            toastr.success('Draft berita berhasil diubah!');
+                            table.ajax.reload();
+                        },
+                        error: function(data) {
+                            toastr.warning('Draft berita gagal diubah!');
+                            table.ajax.reload();
+                        }
+                    });
+                    return false;
                 }
-            });
-            return false;
+            } else if (fileLamaDraft != '') {
+                $.ajax({
+                    type: "POST",
+                    url: "{{base_url('berita/ubah_draft')}}",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        $('#modal-ubah-draft').modal('hide');
+                        toastr.success('Draft berita berhasil diubah!');
+                        table.ajax.reload();
+                    },
+                    error: function(data) {
+                        toastr.warning('Draft berita gagal diubah!');
+                        table.ajax.reload();
+                    }
+                });
+                return false;
+            } else {
+                toastr.error('Pilih file terlebih dahulu..');
+                return false;
+            }
         });
 
-        $('#form-ubah-draft').submit('click', function() {
-            $.ajax({
-                type: "POST",
-                url: "{{base_url('berita/ubah_draft')}}",
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                cache: false,
-                async: false,
-                success: function(data) {
-                    $('#modal-ubah-draft').modal('hide');
-                    toastr.success('Draft berita berhasil diubah!');
-                    table.ajax.reload();
-                },
-                error: function(data) {
-                    toastr.warning('Draft berita gagal diubah!');
-                    table.ajax.reload();
-                }
-            });
-            return false;
-        });
-
-        $('#form-hapus').submit('click', function() {
+        $('#form-hapus').submit(function(e) {
             $.ajax({
                 type: "POST",
                 url: "{{base_url('berita/hapus')}}",
@@ -383,6 +462,21 @@
             });
             return false;
         });
+
+        //TinyMCE
+        tinymce.init({
+            selector: "#narasi_berita",
+            theme: "modern",
+            height: 300,
+
+            toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'print preview media | forecolor backcolor emoticons',
+            image_advtab: true
+        });
+
+
+        tinymce.suffix = ".min";
+        tinyMCE.baseURL = '{{APP_ASSETS}}plugins/tinymce';
 
         $('.datepicker').bootstrapMaterialDatePicker({
             time: false

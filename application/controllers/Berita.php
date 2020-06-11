@@ -47,9 +47,11 @@ class Berita extends CI_Controller
             );
             $data['id_berita'] = ['id' => 'id_berita', 'name' => 'id_berita', 'type' => 'hidden'];
             if ($this->session->userdata('tipe_mediamassa') != 'radio') {
-                $data['file_berita'] = ['id' => 'file', 'name' => 'file', 'type' => 'file', 'accept' => 'images/*'];
-            }else{
-                $data['file_berita'] = ['id' => 'file', 'name' => 'file', 'type' => 'file', 'accept' => 'audio/*'];
+                $data['file_berita'] = ['id' => 'file_draft', 'name' => 'file', 'type' => 'file', 'data-max-size'=>'5e+6', 'accept' => 'image/*'];
+                $data['ubah_file_berita'] = ['id' => 'ubah_file_draft', 'name' => 'file', 'type' => 'file', 'file', 'data-max-size'=>'5e+6',  'accept' => 'image/*'];
+            } else {
+                $data['file_berita'] = ['type' => 'hidden'];
+                $data['ubah_file_berita'] = ['type' => 'hidden'];
             }
             return view('user.berita.index', $data);
         }
@@ -67,7 +69,7 @@ class Berita extends CI_Controller
                 $row = array();
                 $row[] = $no;
                 $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal));
-                $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama . '</a>';
+                $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama_media . '</a>';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>' . $q->judul_berita . '</a>';
                 if ($q->status_berita == 'valid') {
                     $row[] = '<span class="badge bg-green">Valid</span>';
@@ -82,7 +84,7 @@ class Berita extends CI_Controller
                 $row = array();
                 $row[] = $no;
                 $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal));
-                $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama . '</a>';
+                $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama_media . '</a>';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>' . $q->judul_berita . '</a>';
                 if ($q->status_berita == 'valid') {
                     $row[] = '<span class="badge bg-green">Valid</span>';
@@ -127,9 +129,17 @@ class Berita extends CI_Controller
                     <button title="Hapus" type="button" data-id="' . $q->id_berita . '" class="hapus btn btn-danger btn-xs"><i class="material-icons">delete</i> </button></div>';
                 } else {
                     if ($this->session->userdata('tipe_mediamassa') == 'radio') {
-                        $row[] = '<audio controls target="_blank" class="thumbnail"><source src="' . site_url() . 'upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" type="audio/mp3"></audio>';
+                        if (empty($q->file)) {
+                            $row[] = '<span class="badge bg-orange">File belum ada</span>';
+                        } else {
+                            $row[] = '<audio controls target="_blank" class="thumbnail"><source src="' . site_url() . 'upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" type="audio/mp3"></audio>';
+                        }
                     } else {
-                        $row[] = '<a href="' . site_url() . '/upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="' . site_url() . 'upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" width="200px" height="200px"></a>';
+                        if (empty($q->file)) {
+                            $row[] = '<span class="badge bg-orange">File belum ada</span>';
+                        } else {
+                            $row[] = '<a href="' . site_url() . '/upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" target="_blank" class="thumbnail"> <img class="img-responsive" src="' . site_url() . 'upload/berita/' . $folder . '/' . $q->id_berita . '/' . $q->file . '" width="200px" height="200px"></a>';
+                        }
                     }
                     $row[] = '<span class="badge bg-red">Draft Belum Valid</span>';
                     $row[] = '<div class="btn-group">
@@ -157,12 +167,12 @@ class Berita extends CI_Controller
         $data = $this->berita->get_by_id_joined($id)->result();
         $output = array();
         foreach ($data as $row) {
-            $output['nama'] = $row->nama;
+            $output['nama'] = $row->nama_media;
             $output['judul_berita'] = $row->judul_berita;
             $output['narasi_berita'] = $row->narasi_berita;
             $output['link_berita'] = $row->link_berita;
             $output['file'] = $row->file;
-            $output['share'] = $row->share;
+            $output['share'] = $row->sosmed_id;
             $output['jumlah_view'] = $row->jumlah_view;
             $output['status_berita'] = $row->status_berita;
             $output['keterangan'] = $row->keterangan;
@@ -181,60 +191,40 @@ class Berita extends CI_Controller
     public function verif()
     {
         $id = $this->input->post('id_berita');
+        $keterangan = $this->input->post('keterangan');
+        $status_berita = $this->input->post('verif_status');
+        $username = $this->session->userdata('username');
         $cek = $this->berita->get_by_id($id)->row();
 
-        if ($this->input->post('verif_status') == 'oke') {
-            $data = array(
-                'status_berita' => $this->input->post('verif_status'),
-                'diperiksa_oleh' => $this->session->userdata('username'),
-                'diperiksa_pada' => date('Y-m-d h:i:s'),
-                'keterangan' => $this->input->post('keterangan')
-            );
+        if ($status_berita == 'oke') {
+            $status_berita = 'oke';
         } else {
-            $keterangan = $this->input->post('keterangan');
-            if ($keterangan == '') {
-                $keterangan = 'Draft berita terdapat kesalahan, hubungi admin untuk informasi lebih lanjut';
-            }
-            $data = array(
-                'status_berita' => 'belum',
-                'diperiksa_oleh' => $this->session->userdata('username'),
-                'diperiksa_pada' => date('Y-m-d h:i:s'),
-                'keterangan' => $keterangan
-            );
+            $status_berita = 'belum';
         }
 
-        if ($this->input->post('verif_status') == 'oke') {
-            $this->db->where('id', $cek->media_massa_id);
-            $query = $this->db->get('tmst_media_massa');
-            foreach ($query->result() as $baris) {
-                $notif = array(
-                    'user_pengirim' => $this->session->userdata('id_user'),
-                    'user_penerima' => $baris->user_id,
-                    'judul' => $this->session->userdata('username') . ' Memverifikasi Draft',
-                    'pesan' => $baris->nama . ' draft anda yang berjudul ' . $cek->judul_berita . ' telah diverifikasi',
-                    'link' => $this->uri->segment(1),
-                    'dibaca' => '1',
-                    'dibuat_tanggal' => date('y-m-d'),
-                    'dibuat_pukul' => date('h:i:s')
-                );
-                $this->notifikasi->simpan($notif);
+        $data = array(
+            'status_berita' => $status_berita,
+            'diperiksa_oleh' => $username,
+            'diperiksa_pada' => date('Y-m-d h:i:s'),
+            'keterangan' => $keterangan
+        );
+        $this->db->where('id', $cek->media_massa_id);
+        $query = $this->db->get('tmst_media_massa');
+        foreach ($query->result() as $baris) {
+            $notif['user_pengirim'] = $this->session->userdata('id_user');
+            $notif['user_penerima'] = $baris->user_id;
+            if ($status_berita == 'oke') {
+                $notif['judul'] = $this->session->userdata('username') . ' Memverifikasi Draft';
+                $notif['pesan'] = $baris->nama_media . ' draft yang berjudul ' . $cek->judul_berita . ' telah diverifikasi';
+            } else {
+                $notif['judul'] = $this->session->userdata('username') . ' Membatalkan Draft';
+                $notif['pesan'] =  $baris->nama_media . ' Ada draft berita yang harus diperbaiki, yang berjudul ' . $cek->judul_berita . ' dengan keterangan ' . $keterangan;
             }
-        } else {
-            $this->db->where('id', $cek->media_massa_id);
-            $query = $this->db->get('tmst_media_massa');
-            foreach ($query->result() as $baris) {
-                $notif = array(
-                    'user_pengirim' => $this->session->userdata('id_user'),
-                    'user_penerima' => $baris->user_id,
-                    'judul' => $this->session->userdata('username') . ' Membatalkan Draft',
-                    'pesan' =>  $baris->nama . ' Ada draft berita yang harus diperbaiki, yang berjudul ' . $cek->judul_berita,
-                    'link' => $this->uri->segment(1),
-                    'dibaca' => '1',
-                    'dibuat_tanggal' => date('y-m-d'),
-                    'dibuat_pukul' => date('h:i:s')
-                );
-                $this->notifikasi->simpan($notif);
-            }
+            $notif['link'] = $this->uri->segment(1);
+            $notif['dibaca'] = '1';
+            $notif['dibuat_tanggal'] = date('y-m-d');
+            $notif['dibuat_pukul'] = date('h:i:s');
+            $this->notifikasi->simpan($notif);
         }
         $this->aktivitas->log_verifdraft();
         $result = $this->berita->ubah($id, $data);
@@ -253,7 +243,6 @@ class Berita extends CI_Controller
                 'dibuat_tanggal' => date('Y-m-d'),
                 'dibuat_pukul' => date('h:i:s')
             );
-
             if (!empty($_FILES['file']['name'])) {
                 $upload = $this->_do_upload($data['id']);
                 $data['file'] = $upload;
@@ -265,7 +254,7 @@ class Berita extends CI_Controller
                     'user_pengirim' => $this->session->userdata('id_user'),
                     'user_penerima' => $baris->id,
                     'judul' => 'Ada draft berita baru',
-                    'pesan' => $this->session->userdata('nama') . ' menambahkan draft berjudul ' . $data['judul_berita'],
+                    'pesan' => $this->session->userdata('nama') . ' menambahkan draft berjudul ' . $this->input->post('judul_berita'),
                     'link' => $this->uri->segment(1),
                     'dibaca' => '1',
                     'dibuat_tanggal' => date('y-m-d'),
@@ -279,6 +268,77 @@ class Berita extends CI_Controller
         }
     }
 
+    function ubah_draft()
+    {
+        $id = $this->input->post('edit_id_draft');
+        $folder = $this->session->userdata('username') . '/' . $id;
+
+        $data = array(
+            'judul_berita' => $this->input->post('ubah_judul'),
+            'narasi_berita' => $this->input->post('ubah_narasi'),
+            'dibuat_oleh' => $this->session->userdata('username'),
+            'dibuat_tanggal' => date('Y-m-d'),
+            'dibuat_pukul' => date('h:i:s'),
+        );
+        if (!empty($_FILES['file']['name'])) {
+            $upload = $this->_do_upload($id);
+            unlink('upload/berita/' . $folder . '/' . $this->input->post('old_file'));
+            $data['file'] = $upload;
+        } else {
+            $data['file'] = $this->input->post('old_file');
+        }
+        $this->aktivitas->log_ubahdraft();
+        $data = $this->berita->ubah_draft($id, $data);
+
+        $this->db->where('level', 'admin');
+        $query = $this->db->get('tmst_user');
+        foreach ($query->result() as $baris) {
+            $notif = array(
+                'user_pengirim' => $this->session->userdata('id_user'),
+                'user_penerima' => $baris->id,
+                'judul' => $this->session->userdata('nama') . ' Mengubah Draft',
+                'pesan' =>  $this->session->userdata('nama') . ' mengubah draft berjudul ' . $this->input->post('ubah_judul'),
+                'link' => $this->uri->segment(1),
+                'dibaca' => '1',
+                'dibuat_tanggal' => date('y-m-d'),
+                'dibuat_pukul' => date('h:i:s')
+            );
+            $this->notifikasi->simpan($notif);
+        }
+
+        json_encode($data);
+    }
+
+    public function hapus()
+    {
+        $id = $this->input->post('hapus_id_berita');
+        $cek = $this->berita->get_by_id($id)->row();
+        $folder = $this->session->userdata('username') . '/' . $id;
+        if ($cek->status_berita != 'valid') {
+            $this->db->where('level', 'admin');
+            $query = $this->db->get('tmst_user');
+            foreach ($query->result() as $baris) {
+                $notif = array(
+                    'user_pengirim' => $this->session->userdata('id_user'),
+                    'user_penerima' => $baris->id,
+                    'judul' => $this->session->userdata('nama') . ' Menghapus Draft',
+                    'pesan' =>  $this->session->userdata('nama') . ' menghapus draft berjudul ' . $cek->judul_berita,
+                    'link' => $this->uri->segment(1),
+                    'dibaca' => '1',
+                    'dibuat_tanggal' => date('y-m-d'),
+                    'dibuat_pukul' => date('h:i:s')
+                );
+                $this->notifikasi->simpan($notif);
+            }
+            unlink('upload/berita/' . $folder . '/' . $cek->file);
+            rmdir('upload/berita/' . $folder);
+            $this->aktivitas->log_hapusberita();
+            $this->berita->hapus($id);
+        } else {
+            $this->db->insert('');
+        }
+    }
+
     public function ubah()
     {
         $id = $this->input->post('edit_id_berita');
@@ -286,7 +346,7 @@ class Berita extends CI_Controller
         $cek = $this->berita->get_by_id($id)->row();
         $data = array(
             'link_berita' => $this->input->post('ubah_link_berita'),
-            'share' => implode(", ", $this->input->post('check')),
+            'sosmed_id' => implode(", ", $this->input->post('check')),
             'jumlah_view' => $this->input->post('ubah_jumlah_view'),
             'status_berita' => 'valid',
             'dibuat_oleh' => $this->session->userdata('username'),
@@ -337,80 +397,6 @@ class Berita extends CI_Controller
 
         $this->aktivitas->log_ubahdraft();
         json_encode($data);
-    }
-
-    function ubah_draft()
-    {
-        $id = $this->input->post('edit_id_berita2');
-        $folder = $this->session->userdata('username') . '/' . $id;
-
-        $data = array(
-            'judul_berita' => $this->input->post('ubah_judul'),
-            'narasi_berita' => $this->input->post('ubah_narasi'),
-            'dibuat_oleh' => $this->session->userdata('username'),
-            'dibuat_tanggal' => date('Y-m-d'),
-            'dibuat_pukul' => date('h:i:s'),
-        );
-        if (!empty($_FILES['file']['name'])) {
-            $upload = $this->_do_upload($id);
-            unlink('upload/berita/' . $folder . '/' . $this->input->post('old_file'));
-
-            $data['file'] = $upload;
-        } else {
-            $data['file'] = $this->input->post('old_file');
-        }
-        $this->aktivitas->log_ubahdraft();
-        $data = $this->berita->ubah_draft($id, $data);
-
-        $this->db->where('level', 'admin');
-        $query = $this->db->get('tmst_user');
-        foreach ($query->result() as $baris) {
-            $notif = array(
-                'user_pengirim' => $this->session->userdata('id_user'),
-                'user_penerima' => $baris->id,
-                'judul' => $this->session->userdata('nama') . ' Mengubah Draft',
-                'pesan' =>  $this->session->userdata('nama') . ' mengubah draft berjudul ' . $this->input->post('ubah_judul'),
-                'link' => $this->uri->segment(1),
-                'dibaca' => '1',
-                'dibuat_tanggal' => date('y-m-d'),
-                'dibuat_pukul' => date('h:i:s')
-            );
-            $this->notifikasi->simpan($notif);
-        }
-
-        json_encode($data);
-    }
-
-    public function hapus()
-    {
-        $id = $this->input->post('hapus_id_berita');
-        $cek = $this->berita->get_by_id($id)->row();
-        $folder = $this->session->userdata('username') . '/' . $id;
-        if ($cek->status_berita != 'valid') {
-            $this->db->where('level', 'admin');
-            $query = $this->db->get('tmst_user');
-            foreach ($query->result() as $baris) {
-                $notif = array(
-                    'user_pengirim' => $this->session->userdata('id_user'),
-                    'user_penerima' => $baris->id,
-                    'judul' => $this->session->userdata('nama') . ' Menghapus Draft',
-                    'pesan' =>  $this->session->userdata('nama') . ' menghapus draft berjudul ' . $cek->judul_berita,
-                    'link' => $this->uri->segment(1),
-                    'dibaca' => '1',
-                    'dibuat_tanggal' => date('y-m-d'),
-                    'dibuat_pukul' => date('h:i:s')
-                );
-                $this->notifikasi->simpan($notif);
-            }
-            unlink('upload/berita/' . $folder . '/' . $cek->file);
-            rmdir('upload/berita/' . $folder);
-
-
-            $this->aktivitas->log_hapusberita();
-            $this->berita->hapus($id);
-        } else {
-            $this->db->insert('');
-        }
     }
 
     private function _do_upload($id)
