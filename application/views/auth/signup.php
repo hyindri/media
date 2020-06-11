@@ -35,7 +35,7 @@
     <link href="{{APP_ASSETS}}css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body class="bg-cyan">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -54,18 +54,25 @@
     </div>
     <!-- #END# Page Loader -->
 
-
+    <div class="text-center" style="padding-top:70px;">
+        <p style="font-size:35.5px;margin-bottom:0;"><b>Aplikasi Media</b></p>
+        <small>Kabupaten Bintan</small>
+    </div>
+    <?php if (!empty($message)){
+        echo $message;
+    } ?>
     <section class="">
         <div class="container-fluid">
             
             <!-- Advanced Form Example With Validation -->
-            <div class="row" style="padding-top:30px;">
+            <div class="row" style="padding-top:13px;padding-bottom:0;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>FORM REGISTRASI</h2>
+                            <h5 class="text-center">Registrasi</h5>
                             <ul class="header-dropdown m-r--5">
                             </ul>
+                            <p><?php echo $this->session->flashdata('message') ?></p>
                         </div>
                         <div class="body">
                             <?php echo form_open_multipart(site_url('auth/signup'), array('id' => 'wizard_with_validation', 'method' => 'POST'));?>
@@ -73,7 +80,7 @@
                                 <fieldset>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="username" required>
+                                            <input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" required>
                                             <label class="form-label">Username*</label>
                                         </div>
                                     </div>
@@ -89,64 +96,64 @@
                                 <fieldset>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="nama_media" required>
+                                            <input type="text" class="form-control" name="nama_media" value="<?php echo set_value('nama_media'); ?>" required>
                                             <label class="form-label">Nama Media*</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="nama_perusahaan" required>
+                                            <input type="text" class="form-control" name="nama_perusahaan" value="<?php echo set_value('nama_perusahaan'); ?>" required>
                                             <label class="form-label">Nama Perusahaan*</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="alamat_perusahaan" required>
+                                            <input type="text" class="form-control" name="alamat_perusahaan" value="<?php echo set_value('alamat_perusahaan'); ?>" required>
                                             <label class="form-label">Alamat Perusahaan*</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="npwp" required>
+                                            <input type="text" class="form-control" name="npwp" value="<?php echo set_value('npwp'); ?>" required>
                                             <label class="form-label">NPWP*</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="rekening" required>
+                                            <input type="text" class="form-control" name="rekening" value="<?php echo set_value('rekening'); ?>" required>
                                             <label class="form-label">Rekening*</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="no_telp" required>
+                                            <input type="text" class="form-control" name="no_telp" value="<?php echo set_value('no_telp'); ?>" required>
                                             <label class="form-label">No. Telp*</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control" name="tipe_publikasi" required>
+                                            <select class="form-control" name="tipe_publikasi" value="<?php echo set_value('tipe_publikasi'); ?>" required>
                                                 <option value="">-- Pilih tipe publikasi --</option>
-                                                <option value="harian">Harian</option>
-                                                <option value="mingguan">Mingguan</option>
-                                                <option value="bulanan">Bulanan</option>
+                                                <option value="harian" <?php if(set_value('tipe_publikasi') == "harian"){ ?> selected <?php } ?>>Harian</option>
+                                                <option value="mingguan" <?php if(set_value('tipe_publikasi') == "mingguan"){ ?> selected <?php } ?>>Mingguan</option>
+                                                <option value="bulanan" <?php if(set_value('tipe_publikasi') == "bulanan"){ ?> selected <?php } ?>>Bulanan</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control" name="tipe_media_massa" required>
+                                            <select class="form-control" name="tipe_media_massa" value="<?php echo set_value('tipe_media_massa'); ?>" required>
                                                 <option value="">-- Pilih tipe media massa --</option>
-                                                <option value="cetak">Cetak</option>
-                                                <option value="online">Online</option>
-                                                <option value="radio">Radio</option>
-                                                <option value="tv">TV</option>
+                                                <option value="cetak" <?php if(set_value('tipe_media_massa') == "cetak"){ ?> selected <?php } ?>>Cetak</option>
+                                                <option value="online" <?php if(set_value('tipe_publikasi') == "online"){ ?> selected <?php } ?>>Online</option>
+                                                <option value="radio" <?php if(set_value('tipe_publikasi') == "radio"){ ?> selected <?php } ?>>Radio</option>
+                                                <option value="tv" <?php if(set_value('tipe_publikasi') == "tv"){ ?> selected <?php } ?>>TV</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="jumlah_saham" required>
+                                            <input type="text" class="form-control" name="jumlah_saham" value="<?php echo set_value('jumlah_saham'); ?>" required>
                                             <label class="form-label">Jumlah Saham*</label>
                                         </div>
                                     </div>
@@ -156,7 +163,7 @@
                                 <fieldset>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="email" class="form-control" name="email" required>
+                                            <input type="email" class="form-control" name="email" value="<?php echo set_value('email'); ?>" required>
                                             <label class="form-label">Email*</label>
                                         </div>
                                     </div>
@@ -164,7 +171,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="username_fb" required>
+                                                    <input type="text" class="form-control" name="username_fb" value="<?php echo set_value('username_fb'); ?>" required>
                                                     <label class="form-label">Facebook*</label>
                                                 </div>
                                             </div>
@@ -172,7 +179,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="number" min="1" class="form-control" name="pengikut_fb" required>
+                                                    <input type="number" min="1" class="form-control" name="pengikut_fb" value="<?php echo set_value('pengikut_fb'); ?>" required>
                                                     <label class="form-label">Pengikut Facebook*</label>
                                                 </div>
                                             </div>
@@ -182,7 +189,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="username_ig" required>
+                                                    <input type="text" class="form-control" name="username_ig" value="<?php echo set_value('username_ig'); ?>" required>
                                                     <label class="form-label">Instagram*</label>
                                                 </div>
                                             </div>
@@ -190,7 +197,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="number" min="1" class="form-control" name="pengikut_ig" required>
+                                                    <input type="number" min="1" class="form-control" name="pengikut_ig" value="<?php echo set_value('pengikut_ig'); ?>" required>
                                                     <label class="form-label">Pengikut Instagram*</label>
                                                 </div>
                                             </div>
@@ -200,7 +207,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="username_twitter" required>
+                                                    <input type="text" class="form-control" name="username_twitter" value="<?php echo set_value('username_twitter'); ?>" required>
                                                     <label class="form-label">Twitter*</label>
                                                 </div>
                                             </div>
@@ -208,7 +215,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="number" min="1" class="form-control" name="pengikut_twitter" required>
+                                                    <input type="number" min="1" class="form-control" name="pengikut_twitter" value="<?php echo set_value('pengikut_twitter'); ?>" required>
                                                     <label class="form-label">Pengikut Twitter*</label>
                                                 </div>
                                             </div>
@@ -218,7 +225,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="channel_youtube" required>
+                                                    <input type="text" class="form-control" name="channel_youtube" value="<?php echo set_value('channel_youtube'); ?>" required>
                                                     <label class="form-label">Youtube*</label>
                                                 </div>
                                             </div>
@@ -226,7 +233,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="number" min="1" class="form-control" name="subscriber_youtube" required>
+                                                    <input type="number" min="1" class="form-control" name="subscriber_youtube" value="<?php echo set_value('subscriber_youtube'); ?>" required>
                                                     <label class="form-label">Subscriber Youtube*</label>
                                                 </div>
                                             </div>
@@ -240,7 +247,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Akta Pendirian dan Perubahan Terakhir* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Akta Pendirian dan Perubahan Terakhir* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -254,7 +261,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Surat Izin Tempat Usaha (SITU)* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Surat Izin Tempat Usaha (SITU)* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -268,7 +275,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Surat Izin Usaha Perdagangan (SIUP)* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Surat Izin Usaha Perdagangan (SIUP)* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -282,7 +289,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Tanda Daftar Perusahaan (TDP)* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Tanda Daftar Perusahaan (TDP)* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -296,7 +303,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Nomor Pokok Wajib Pajak (NPWP)* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Nomor Pokok Wajib Pajak (NPWP)* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -310,7 +317,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Rekening* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Rekening* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -324,7 +331,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">MOU* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">MOU* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -338,7 +345,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Sertifikat Uji* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Sertifikat Uji* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -352,7 +359,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Logo Media* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Logo Media* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -366,7 +373,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Verifikasi Pers* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Verifikasi Pers* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -380,7 +387,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="form-line">
-                                                    <label class="form-label">Laporan Pajak (3 bulan terakhir)* <i>maks. 5MB</i></label>
+                                                    <label class="form-label">Laporan Pajak (3 bulan terakhir)* <i>maks. 2MB</i></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
@@ -390,60 +397,393 @@
                                             </div>  
                                         </div>
                                     </div>
+                                    <div class="form-group form-float">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-line">
+                                                    <label class="form-label">Sertifikat* <i>maks. 2MB</i></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_sertifikat" required accept="application/pdf">
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </div>
                                 </fieldset>
 
                                 <h3>Personel</h3>
                                 <fieldset>
-                                    <div class="text-center">
-                                        <button type="button" id="btn-tambah-form" class="btn btn-success"><i class="material-icons">person_add</i>Tambah Form Personel</button>
-                                        <input type="text" id="jumlah-form" value="1" hidden>
-                                    </div>
-                                    <br>
-                                    
                                     <div class="row">
                                         <div class="col-md-2">
+                                            <label class="form-label">Jabatan*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                <select class="form-control" name="jabatan_id[]" required>
+                                                <select class="form-control" name="jabatan_id1" value="<?php echo set_value('jabatan_id1'); ?>" required>
                                                     <option value="1">Direktur</option>
                                                 </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Nama*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="nama_tenaga[]" required>
-                                                    <label class="form-label">Nama*</label>
+                                                    <input type="text" class="form-control" name="nama_tenaga1" value="<?php echo set_value('nama_tenaga1'); ?>" required>  
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
+                                            <label class="form-label">NIK*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="nik[]" required>
-                                                    <label class="form-label">NIK*</label>
+                                                    <input type="text" class="form-control" name="nik1" value="<?php echo set_value('nik1'); ?>" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
+                                            <label class="form-label">File KTP* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file[]" required accept="image/*">
-                                                    <label class="form-label">File KTP*</label>
+                                                    <input type="file" class="form-control" name="file1" required accept="image/*">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
+                                            <label class="form-label">No. Telp*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="no_hp[]" required>
-                                                    <label class="form-label">No. Telp*</label>
+                                                    <input type="text" class="form-control" name="no_hp1" value="<?php echo set_value('no_hp1'); ?>" required>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-1">
-                                            
+                                        <div class="col-md-2">
+                                            <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_sertifikat1" required accept="application/pdf">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Jabatan*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                <select class="form-control" name="jabatan_id2" value="<?php echo set_value('jabatan_id2'); ?>" required>
+                                                    <option value="2">Komanditer/Komisaris</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Nama*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nama_tenaga2" value="<?php echo set_value('nama_tenaga2'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">NIK*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nik2" value="<?php echo set_value('nik2'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File KTP* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file2" required accept="image/*">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">No. Telp*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="no_hp2" value="<?php echo set_value('no_hp2'); ?>" required>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_sertifikat2" required accept="application/pdf">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Jabatan*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                <select class="form-control" name="jabatan_id3" value="<?php echo set_value('jabatan_id3'); ?>" required>
+                                                    <option value="3">Pimpinan Redaksi</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Nama*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nama_tenaga3" value="<?php echo set_value('nama_tenaga3'); ?>" required>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">NIK*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nik3" value="<?php echo set_value('nik3'); ?>" required>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File KTP* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file3" required accept="image/*">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">No. Telp*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="no_hp3" value="<?php echo set_value('no_hp3'); ?>" required>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_sertifikat3" required accept="application/pdf">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Jabatan*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                <select class="form-control" name="jabatan_id4" value="<?php echo set_value('jabatan_id4'); ?>" required>
+                                                    <option value="4">Kabiro</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Nama*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nama_tenaga4" value="<?php echo set_value('nama_tenaga4'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">NIK*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nik4" value="<?php echo set_value('nik4'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File KTP* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file4" required accept="image/*">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">No. Telp*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="no_hp4" value="<?php echo set_value('no_hp4'); ?>" required>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_sertifikat4" required accept="application/pdf">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Jabatan*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                <select class="form-control" name="jabatan_id5" value="<?php echo set_value('no_hp4'); ?>" required>
+                                                    <option value="5">Wartawan/Reporter</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Nama*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nama_tenaga5" value="<?php echo set_value('nama_tenaga5'); ?>" required> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">NIK*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nik5" value="<?php echo set_value('nik5'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File KTP* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file5" required accept="image/*">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">No. Telp*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="no_hp5" value="<?php echo set_value('no_hp5'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_sertifikat5" required accept="application/pdf">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Jabatan*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                <select class="form-control" name="jabatan_id6" value="<?php echo set_value('jabatan_id6'); ?>" required>
+                                                    <option value="5">Wartawan/Reporter</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Nama*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nama_tenaga6" value="<?php echo set_value('nama_tenaga6'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">NIK*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nik6" value="<?php echo set_value('nik6'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File KTP* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file6" required accept="image/*">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">No. Telp*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="no_hp6" value="<?php echo set_value('no_hp6'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_sertifikat6" required accept="application/pdf">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Jabatan*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                <select class="form-control" name="jabatan_id7" value="<?php echo set_value('jabatan_id7'); ?>" required>
+                                                <option value="5">Wartawan/Reporter</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Nama*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nama_tenaga7" value="<?php echo set_value('nama_tenaga7'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">NIK*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="nik7" value="<?php echo set_value('nik7'); ?>" required> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File KTP* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file7" required accept="image/*">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">No. Telp*</label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="no_hp7" value="<?php echo set_value('no_hp7'); ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <input type="file" class="form-control" name="file_sertifikat7" required accept="application/pdf">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -530,85 +870,5 @@
         }
     });
     </script>
-
-    <script>
-    $(document).ready(function(){ // Ketika halaman sudah diload dan siap
-        $("#btn-tambah-form").click(function(){ // Ketika tombol Tambah Data Form di klik
-        var jumlah = parseInt($("#jumlah-form").val()); // Ambil jumlah data form pada textbox jumlah-form
-        var nextform = jumlah + 1; // Tambah 1 untuk jumlah form nya  
-        if (jumlah <= 50) {
-        $("#insert-form").append(
-            `<div class="row">
-                <div class="col-md-2">
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                        <select class="form-control" name="jabatan_id[]" required>
-                            <option value="">-- Pilih jabatan --</option>
-                            <?php foreach ($jabatan as $row){ ?>
-                            <option value="<?=$row->id?>"><?=$row->nama_jabatan?></option>
-                            <?php } ?>
-                        </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Nama*</label>
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="nama_tenaga[]" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label">NIK*</label>
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="nik[]" required> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label">File KTP*</label>
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="file" class="form-control" name="file[]" required accept="image/*">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label">No. Telp*</label>
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="no_hp[]" required> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                <button type="button" id="remove" class="btn btn-danger"><i class="material-icons">delete_forever</i></button>
-                </div>
-            </div>`
-        );
-
-        $("#jumlah-form").val(nextform); // Ubah value textbox jumlah-form dengan variabel nextform
-        }
-        
-        
-        });
-        
-        // Buat fungsi untuk mereset form ke semula
-        $("#reset-form").click(function(){
-        $("#insert-form").html(""); // Kita kosongkan isi dari div insert-form
-        $("#jumlah-form").val("0"); // Ubah kembali value jumlah form menjadi 1
-        });
-    });
-
-    $(document).on('click', '#remove', function(){
-        var jumlah = parseInt($("#jumlah-form").val()); // Ambil jumlah data form pada textbox jumlah-form
-        var kurang = jumlah - 1;
-        $("#jumlah-form").val(kurang); // Ubah value textbox jumlah-form dengan variabel nextform
-        $(this).closest('.row').remove();
-
-    })
-</script>
 </body>
 </html>
