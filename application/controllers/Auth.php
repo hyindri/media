@@ -183,9 +183,10 @@ class Auth extends CI_Controller
                                                     'dibuat_pada' => date('Y-m-d'),
                                                     'status' => 'registrasi',
                                                 );
-
+                                                
                                                 $this->db->insert('tmst_user', $data);
                                                 $ins_id = $this->db->insert_id();
+                                                $date = date('Y-m-d');
                                                 $data_media_massa = array(
                                                     'id' => uniqid(),
                                                     'user_id' => $ins_id,
@@ -198,7 +199,7 @@ class Auth extends CI_Controller
                                                     'tipe_publikasi' => $this->input->post('tipe_publikasi'),
                                                     'tipe_media_massa' => $this->input->post('tipe_media_massa'),
                                                     'jumlah_saham' => $this->input->post('jumlah_saham'),
-                                                    'batas_tanggal_post' => date("Y-m-d"),
+                                                    'batas_tanggal_post' => date('Y-m-d', strtotime($date. ' + 14 days')),
                                                     'email' => $this->input->post('email'),
                                                     'username_fb' => $this->input->post('username_fb'),
                                                     'pengikut_fb' => $this->input->post('pengikut_fb'),
