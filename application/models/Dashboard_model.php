@@ -96,8 +96,8 @@ class Dashboard_model extends CI_Model
 	function __get_berita_minggu($id)
 	{
 		$this->db->select('count(id) as total');
-		$this->db->where('dibuat_tanggal >=', 'date_add("2020-06-03", interval  -WEEKDAY("2020-06-03")-1 day)', FALSE);
-		$this->db->where('dibuat_tanggal <=', 'date_add(date_add("2020-06-03", interval  -WEEKDAY("2020-06-03")-1 day), interval 6 day)', FALSE);
+		$this->db->where('dibuat_tanggal >=', 'date_add("'.date('Y-m-d').'", interval  -WEEKDAY("'.date('Y-m-d').'")-1 day)', FALSE);
+		$this->db->where('dibuat_tanggal <=', 'date_add(date_add("'.date('Y-m-d').'", interval  -WEEKDAY("'.date('Y-m-d').'")-1 day), interval 6 day)', FALSE);
 		if (!empty($id))
 		{
 			$this->db->where('media_massa_id', $this->session->userdata('id_media'));
