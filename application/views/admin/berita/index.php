@@ -199,6 +199,18 @@
                                 $('.file').show();
                                 $('#file').html('<a href="{{site_url()}}upload/berita/' + data.dibuat_oleh + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + data.dibuat_oleh + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
                             }
+                            if ($('#verif_status').is(":checked")) {
+                                $('#verif_status').val("oke");
+                                $("#keterangan").prop('disabled', true);
+                                $("#keterangan").val('');
+                            } else {
+                                $('#verif_status').val("belum");
+                                $('#simpan_btn').prop('disabled', false);
+                                $("#keterangan").prop('disabled', false);
+                                $("#keterangan").prop('required', true);
+                                $("#keterangan").focus();
+                                toastr.warning('Mohon isi keterangan jika draft belum di validasi..');
+                            }
                             $('.link').hide();
                             $('.share').hide();
                             $('.view').hide();
@@ -208,6 +220,7 @@
                             $("#keterangan").prop('disabled', false);
                             $('#verif_status').prop('checked', false);
                             $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
+
                         }
 
                     },
@@ -223,8 +236,9 @@
                     $(this).val("belum");
                     $('#simpan_btn').prop('disabled', false);
                     $("#keterangan").prop('disabled', false);
+                    $("#keterangan").prop('required', true);
                     $("#keterangan").focus();
-                    toastr.error('Mohon isi keterangan..');
+                    toastr.warning('Mohon isi keterangan..');
                 }
             });
 
@@ -244,6 +258,10 @@
                             toastr.success('Draft berita berhasil diverifikasi!');
                             table.ajax.reload();
                         } else if ($("#verif_status").val() == 'belum') {
+                            $('#modal-lihat').modal('hide');
+                            toastr.error('Draft berita tidak diverifikasi!');
+                            table.ajax.reload();
+                        } else {
                             $('#modal-lihat').modal('hide');
                             toastr.error('Draft berita tidak diverifikasi!');
                             table.ajax.reload();

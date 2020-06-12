@@ -48,7 +48,7 @@ class Usermanagement extends CI_Controller
             $row[] = $q->username;
             $row[] = $q->dibuat_pada;
             $row[] = ucfirst($q->status);
-            $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->id . '" target="_blank">' . $q->nama . '</a>';
+            $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->id . '" target="_blank">' . $q->nama_media . '</a>';
             $row[] = $q->mulai_mou;
             $row[] = $q->akhir_mou;
             $row[] = '<div class="btn-group"><button type="button" name="ubah" data-id="' . $q->user_id . '" data-username="' . $q->username . '" data-dibuat_pada="' . $q->dibuat_pada . '" data-status="' . $q->status . '" data-mulai_mou="' . $q->mulai_mou . '" data-akhir_mou="' . $q->akhir_mou . '" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i></button>
@@ -79,7 +79,7 @@ class Usermanagement extends CI_Controller
             $row[] = $q->username;
             $row[] = $q->dibuat_pada;
             $row[] = $q->status;
-            $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->id . '" target="_blank">' . $q->nama . '</a>';
+            $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->id . '" target="_blank">' . $q->nama_media . '</a>';
             $row[] = $q->mulai_mou;
             $row[] = $q->akhir_mou;
             $data[] = $row;

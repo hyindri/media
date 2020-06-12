@@ -48,7 +48,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </table>
         <hr>
         <br>
-        <h4 style="text-align:center;">DAFTAR BERITA <br> PEMERINTAH KABUPATEN BINTAN</h4>
+        <h4 style="text-align:center; text-transform: uppercase;">DAFTAR BERITA <?= $this->session->userdata('nama') ?><br> PEMERINTAH KABUPATEN BINTAN</h4>
         <br>
         <table id="table" style="font-size:13px;border-collapse:collapse;width:100%;">
             <thead>
@@ -59,6 +59,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <th style="padding:3;">Link</th>
                     <th style="padding:3;">Dibagikan</th>
                     <th style="padding:3;">Jumlah view</th>
+                    <th style="padding:3;">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -71,22 +72,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <td style="text-align: justify;padding:3;word-wrap: break-word;"><?= $media->narasi_berita ?></td>
                             <td style="padding:3;word-wrap: break-word;"><?= $media->link_berita ?></td>
                             <?php
-                            $this->db->where_in('id', explode(', ', $media->share));
+                            $this->db->where_in('id', explode(', ', $media->sosmed_id));
                             $data = $this->db->get('tmst_sosmed')->result();
                             ?>
-                            <td style="padding:3;word-wrap: break-word;">
+                            <td>
                                 <?php foreach ($data as $share) { ?>
-                                    <?= $share->nama ?>
+                                    <ul>
+                                    <?= '<li>'. $share->nama .'</li>' ?>
+                                </ul>   
                                 <?php } ?>
                             </td>
-                            <td style="padding:3;word-wrap: break-word;"><?= number_format($media->jumlah_view, 2, ",", "."); ?></td>
+                            <td style="padding:3;word-wrap: break-word;"><?= $media->jumlah_view ?></td>
+                            <td><?= $media->status_berita ?></td>
                         </tr>
                     <?php } ?>
+
                 <?php } else { ?>
+
                     <tr>
                         <td style="text-align: center;" colspan="6">Data tidak ada</td>
                     </tr>
                 <?php } ?>
+
             </tbody>
         </table>
     </div>
@@ -124,5 +131,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
     }
     ?>
 </body>
-
 </html>

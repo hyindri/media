@@ -24,7 +24,7 @@ class Berita_model extends CI_Model
         tb_berita.sosmed_id, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul');
 
         if ($this->input->post('nama')) {
-            $this->db->like('nama', $this->input->post('nama'));
+            $this->db->like('nama_media', $this->input->post('nama'));
         }
         if ($this->input->post('awal') && $this->input->post('akhir')) {
             $this->db->where('dibuat_tanggal >=', $this->input->post('awal'));
@@ -142,7 +142,7 @@ class Berita_model extends CI_Model
         tb_berita.sosmed_id, tb_berita.jumlah_view, tb_berita.status_berita, tb_berita.keterangan, tb_berita.dibuat_oleh, tb_berita.dibuat_tanggal, tb_berita.dibuat_pukul, tb_berita.diperiksa_oleh, tb_berita.diperiksa_pada');
         $this->db->join($this->table_media_massa, 'tb_berita.media_massa_id = tmst_media_massa.id');
         if ($nama) {
-            $this->db->like('tmst_media_massa.nama_media', $nama);
+            $this->db->where('tmst_media_massa.nama_media', $nama);
         }
         if ($tanggal_awal && $tanggal_akhir) {
             $this->db->where('tb_berita.dibuat_tanggal >=', $tanggal_awal);

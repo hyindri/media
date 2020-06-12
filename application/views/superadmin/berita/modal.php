@@ -152,7 +152,7 @@
                             <select id="filter_nama" name="filter_nama" class="form-control show-tick">
                                 <option value=""> - Pilih Nama Media - </option>
                                 @foreach($media as $row)
-                                <option value="{{$row->nama}}">{{$row->nama}}</option>
+                                <option value="{{$row->nama_media}}">{{$row->nama_media}}</option>
                                 @endforeach
                             </select>
                         </div>

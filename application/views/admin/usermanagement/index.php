@@ -143,7 +143,7 @@
             $('#modal-ubah').modal('show');
             $("#edit_id").val($(this).data('id'));
             $("#edit_status").val($(this).data('status'));
-            if ($(this).data('status') == 'registrasi') {
+            if ($(this).data('status') == 'registrasi' || $(this).data('status') == 'suspend') {
                 $("#edit_mulai_mou").val('');
                 $("#edit_akhir_mou").val('');
             } else {
