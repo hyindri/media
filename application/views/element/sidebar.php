@@ -50,7 +50,7 @@
 				<li class="@if($this->uri->segment(1) == 'profil') active @endif">
 					<a href="{{site_url('profil')}}">
 						<i class="material-icons">person</i>
-						<span>Profil</span>
+						<span>Profil Media</span>
 					</a>
 				</li>
 				<li class="@if($this->uri->segment(1) == 'berita') active @endif">

@@ -36,19 +36,19 @@
 						<label for=" ">Nama Media</label>
 						<div class="form-group">
 							<div class="form-line">
-								<input type="text" id="nama_media" class="form-control" placeholder="Masukkan Nama Media" name="nama_media" value="{{$data_profil->nama}}" required>
+								<input type="text" id="nama_media" class="form-control" placeholder="Masukkan Nama Media" name="nama_media" value="{{$data_profil->nama_media}}" required>
 							</div>
 						</div>
 						<label for=" ">Nama Perusahaan</label>
 						<div class="form-group">
 							<div class="form-line">
-								<input type="text" id="nama_perusahaan" class="form-control" placeholder="Masukkan Nama Perusahaan" name="nama_perusahaan" value="{{$data_profil->perusahaan}}" required>
+								<input type="text" id="nama_perusahaan" class="form-control" placeholder="Masukkan Nama Perusahaan" name="nama_perusahaan" value="{{$data_profil->nama_perusahaan}}" required>
 							</div>
 						</div>
 						<label for=" ">Alamat</label>
 						<div class="form-group">
 							<div class="form-line">								
-								<textarea name="alamat_kantor" id="alamat_per" cols="30" rows="2" class="form-control" placeholder="Masukkan Alamat Kantor Media" required>{{$data_profil->alamat}}</textarea>
+								<textarea name="alamat_kantor" id="alamat_per" cols="30" rows="2" class="form-control" placeholder="Masukkan Alamat Kantor Media" required>{{$data_profil->alamat_perusahaan}}</textarea>
 							</div>
 						</div>
 						<label for=" ">NPWP</label>
@@ -64,12 +64,12 @@
 								name="npwp" value="{{$data_profil->npwp}}" required>
 							</div>
 						</div>						
-						<label for=" ">Pimpinan</label>
+						<!-- <label for=" ">Pimpinan</label>
 						<div class="form-group">
 							<div class="form-line">
 								<input type="text" id="pimpinan" class="form-control" placeholder="Masukkan Pimpinan" name="pimpinan" value="{{$data_profil->pimpinan}}" required>
 							</div>
-						</div>						
+						</div>						 -->
 						<label for=" ">Rekening</label>
 						<div class="form-group">
 							<div class="form-line">
@@ -81,13 +81,13 @@
 								<input type="text" id="no_rek" class="form-control" placeholder="Masukkan No. Rekening" name="no_rek" value="{{$data_profil->rekening}}" required>									
 							</div>
 						</div>
-						<label for=" ">Kabiro</label>
+						<!-- <label for=" ">Kabiro</label>
 						<div class="form-group">
 							<div class="form-line">
 								<input type="text" id="kabiro" class="form-control" placeholder="Masukkan Kabiro" name="kabiro" value="{{$data_profil->kabiro}}" required>
 							</div>
-						</div>						
-						<label for=" ">Surat Kabiro</label>
+						</div>						 -->
+						<!-- <label for=" ">Surat Kabiro</label>
 						<div class="form-group">
 							<div class="form-line">
 								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG dan Maks. 2MB</b></small>
@@ -136,7 +136,7 @@
 								<input type="hidden" id="old_file_penawaran_kerja_sama" name="old_file_penawaran_kerja_sama"
 									value="{{$data_profil->file_penawaran_kerja_sama}}">
 							</div>
-						</div>
+						</div> -->
 						<input type="hidden" name="tipe_media_massa" value="{{$data_profil->tipe_media_massa}}">
 						
 						<a class="deco-off btn bg-red col-white m-t-15 waves-effect" href="{{site_url('dashboard')}}">

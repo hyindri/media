@@ -6,7 +6,7 @@
     <div class="block-header">
         <ol class="breadcrumb">
             <li>HOME</li>
-            <li class="active">PROFIL</li>
+            <li class="active">PROFIL MEDIA</li>
         </ol>
     </div>
     <!-- end breadcrumb -->
