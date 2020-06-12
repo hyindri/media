@@ -75,7 +75,7 @@
                             <p><?php echo $this->session->flashdata('message') ?></p>
                         </div>
                         <div class="body">
-                            <?php echo form_open_multipart(site_url('auth/signup'), array('id' => 'wizard_with_validation', 'method' => 'POST'));?>
+                            <?php echo form_open_multipart(site_url('auth/signup'), array('id' => '', 'method' => 'POST'));?>
                                 <h3>Informasi Akun</h3>
                                 <fieldset>
                                     <div class="form-group form-float">
@@ -145,9 +145,9 @@
                                             <select class="form-control" name="tipe_media_massa" value="<?php echo set_value('tipe_media_massa'); ?>" required>
                                                 <option value="">-- Pilih tipe media massa --</option>
                                                 <option value="cetak" <?php if(set_value('tipe_media_massa') == "cetak"){ ?> selected <?php } ?>>Cetak</option>
-                                                <option value="online" <?php if(set_value('tipe_publikasi') == "online"){ ?> selected <?php } ?>>Online</option>
-                                                <option value="radio" <?php if(set_value('tipe_publikasi') == "radio"){ ?> selected <?php } ?>>Radio</option>
-                                                <option value="tv" <?php if(set_value('tipe_publikasi') == "tv"){ ?> selected <?php } ?>>TV</option>
+                                                <option value="online" <?php if(set_value('tipe_media_massa') == "online"){ ?> selected <?php } ?>>Online</option>
+                                                <option value="radio" <?php if(set_value('tipe_media_massa') == "radio"){ ?> selected <?php } ?>>Radio</option>
+                                                <option value="tv" <?php if(set_value('tipe_media_massa') == "tv"){ ?> selected <?php } ?>>TV</option>
                                             </select>
                                         </div>
                                     </div>
@@ -252,7 +252,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_akta_pendirian" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_1" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -266,7 +266,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_situ" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_2" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -280,7 +280,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_siup" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_3" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -294,7 +294,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_tdp" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_4" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -308,7 +308,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_npwp" required accept="image/*">
+                                                    <input type="file" class="form-control" name="berkas_5" required accept="image/*">
                                                 </div>
                                             </div>  
                                         </div>
@@ -322,7 +322,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_rekening" required accept="image/*">
+                                                    <input type="file" class="form-control" name="berkas_6" required accept="image/*">
                                                 </div>
                                             </div>  
                                         </div>
@@ -336,7 +336,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_mou" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_7" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -350,7 +350,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_sertifikat_uji" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_8" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -364,7 +364,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_logo_media" required accept="image/*">
+                                                    <input type="file" class="form-control" name="berkas_9" required accept="image/*">
                                                 </div>
                                             </div>  
                                         </div>
@@ -378,7 +378,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_verifikasi_pers" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_10" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -392,7 +392,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_laporan_pajak" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_11" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>
@@ -406,7 +406,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="form-line">
-                                                    <input type="file" class="form-control" name="file_sertifikat" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_12" required accept="application/pdf">
                                                 </div>
                                             </div>  
                                         </div>

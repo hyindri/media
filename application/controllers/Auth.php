@@ -112,7 +112,6 @@ class Auth extends CI_Controller
     public function signup()
     {   
         $data['title'] = 'Sign Up';
-        $data['jabatan'] = $this->jabatan->get_all();
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[tmst_user.username]', [
             'is_unique' => 'This username has already registered!']);
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -131,7 +130,7 @@ class Auth extends CI_Controller
             $nik6 = $this->input->post('nik6');
             $nik7 = $this->input->post('nik7');
 
-            $user = $this->db->get_where('tmst_user', ['username' => $username])->row_array();
+            $u = $this->db->get_where('tmst_user', ['username' => $username])->row_array();
             if($u){
                 $message = 'Username yang anda pilih sudah digunakan!';
                 redirect('auth/signup', $message);
@@ -199,6 +198,7 @@ class Auth extends CI_Controller
                                                     'tipe_publikasi' => $this->input->post('tipe_publikasi'),
                                                     'tipe_media_massa' => $this->input->post('tipe_media_massa'),
                                                     'jumlah_saham' => $this->input->post('jumlah_saham'),
+                                                    'batas_tanggal_post' => date("Y-m-d"),
                                                     'email' => $this->input->post('email'),
                                                     'username_fb' => $this->input->post('username_fb'),
                                                     'pengikut_fb' => $this->input->post('pengikut_fb'),
@@ -210,44 +210,11 @@ class Auth extends CI_Controller
                                                     'subscriber_youtube' => $this->input->post('subscriber_youtube'),
                                                 );
 
-                                                $upload = $this->_do_upload_akta_pendirian();
-                                                $data_media_massa['file_akta_pendirian'] = $upload;
-
-                                                $upload = $this->_do_upload_situ();
-                                                $data_media_massa['file_situ'] = $upload;
-
-                                                $upload = $this->_do_upload_siup();
-                                                $data_media_massa['file_siup'] = $upload;
-
-                                                $upload = $this->_do_upload_tdp();
-                                                $data_media_massa['file_tdp'] = $upload;
-
-                                                $upload = $this->_do_upload_npwp();
-                                                $data_media_massa['file_npwp'] = $upload;
-
-                                                $upload = $this->_do_upload_rekening();
-                                                $data_media_massa['file_rekening'] = $upload;
-
-                                                $upload = $this->_do_upload_mou();
-                                                $data_media_massa['file_mou'] = $upload;
-
-                                                $upload = $this->_do_upload_logo_media();
-                                                $data_media_massa['file_logo_media'] = $upload;
-
-                                                $upload = $this->_do_upload_sertifikat_uji();
-                                                $data_media_massa['file_sertifikat_uji'] = $upload;
-
-                                                $upload = $this->_do_upload_verifikasi_pers();
-                                                $data_media_massa['file_verifikasi_pers'] = $upload;
-
-                                                $upload = $this->_do_upload_laporan_pajak();
-                                                $data_media_massa['file_laporan_pajak'] = $upload;
-
-                                                $upload = $this->_do_upload_sertifikat();
-                                                $data_media_massa['file_sertifikat'] = $upload;
-
-                                                $this->medmas->simpan($data_media_massa);
-
+                                                
+                                                $data = $this->medmas->simpan($data_media_massa);
+                                                $get_id = $data_media_massa['id'];
+                                                $this->uploadFile($get_id);
+                                                
                                                 $data_tenaga1 = array(
                                                     'media_massa_id'	=>	$data_media_massa['id'],
                                                     'jabatan_id'		=>	$this->input->post('jabatan_id1'),
@@ -409,275 +376,61 @@ class Auth extends CI_Controller
 		}
     }
 
-    private function _do_upload_akta_pendirian()
-    {
-        if (!file_exists('upload/akta_pendirian')) {
-            mkdir('upload/akta_pendirian/', 0777, true);
-        }
-        $config['upload_path']          = 'upload/akta_pendirian/';
-        $config['allowed_types']        = 'pdf';
-        $config['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+    function uploadFile($get_id)
+	{
+		$album = $this->input->post('nama_media');
+		$config['upload_path']          = 'upload/media/'.$album;
+		$config['allowed_types']        = 'png||jpg||pdf';
+		$config['overwrite']			= false;
+        $config['max_size']             = 2000;
+        $config['file_name']            = round(microtime(true) * 1000);
+        // for ($i = 1; $i <= 12; $i++) {
+        // $config['file_name']            = $_POST['berkas_'.$i]['name'].round(microtime(true) * 1000);
+        // }
+        
+		$this->load->library('upload', $config);
 
-        $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('file_akta_pendirian')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_akta_pendirian';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
+		if (!is_dir('upload/media/' . $album)) {
+			mkdir('upload/media/' . $album, 0777, true);
+			for ($i = 1; $i <= 12; $i++) {
+				if (!empty($_FILES['berkas_'.$i]['name'])) {
+					if ($this->upload->do_upload('berkas_'.$i)) {
+						$fileData = $this->upload->data();
+						$uploadData[$i]['file_name'] = $fileData['file_name'];
+					} else {
+						view('auth/signup');
+					}
+				}
+			}
 
-    private function _do_upload_situ()
-    {
-        if (!file_exists('upload/situ')) {
-            mkdir('upload/situ/', 0777, true);
-        }
-        $config2['upload_path']          = 'upload/situ/';
-        $config2['allowed_types']        = 'pdf';
-        $config2['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config2['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+			$data = array(
+				'file_akta_pendirian' => $uploadData['1']['file_name'],
+				'file_situ' => $uploadData['2']['file_name'],
+				'file_siup' => $uploadData['3']['file_name'],
+				'file_tdp' => $uploadData['4']['file_name'],
+				'file_npwp' => $uploadData['5']['file_name'],
+				'file_rekening' => $uploadData['6']['file_name'],
+				'file_mou' => $uploadData['7']['file_name'],
+				'file_logo_media' => $uploadData['8']['file_name'],
+				'file_sertifikat_uji' => $uploadData['9']['file_name'],
+				'file_verifikasi_pers' => $uploadData['10']['file_name'],
+				'file_laporan_pajak' => $uploadData['11']['file_name'],
+				'file_sertifikat' => $uploadData['12']['file_name'],
+			);
 
-        $this->load->library('upload', $config2);
-        $this->upload->initialize($config2);
-
-        if (!$this->upload->do_upload('file_situ')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_situ';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_siup()
-    {
-        if (!file_exists('upload/siup')) {
-            mkdir('upload/siup/', 0777, true);
-        }
-        $config3['upload_path']          = 'upload/siup/';
-        $config3['allowed_types']        = 'pdf';
-        $config3['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config3['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config3);
-        $this->upload->initialize($config3);
-
-        if (!$this->upload->do_upload('file_siup')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_siup';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_tdp()
-    {
-        if (!file_exists('upload/tdp')) {
-            mkdir('upload/tdp/', 0777, true);
-        }
-        $config4['upload_path']          = 'upload/tdp/';
-        $config4['allowed_types']        = 'pdf';
-        $config4['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config4['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config4);
-        $this->upload->initialize($config4);
-
-        if (!$this->upload->do_upload('file_tdp')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_tdp';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_npwp()
-    {
-        if (!file_exists('upload/npwp')) {
-            mkdir('upload/npwp/', 0777, true);
-        }
-        $config5['upload_path']          = 'upload/npwp/';
-        $config5['allowed_types']        = 'jpg|jpeg|png';
-        $config5['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config5['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config5);
-        $this->upload->initialize($config5);
-
-        if (!$this->upload->do_upload('file_npwp')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_npwp';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_rekening()
-    {
-        if (!file_exists('upload/rekening')) {
-            mkdir('upload/rekening/', 0777, true);
-        }
-        $config6['upload_path']          = 'upload/rekening/';
-        $config6['allowed_types']        = 'jpg|jpeg|png';
-        $config6['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config6['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config6);
-        $this->upload->initialize($config6);
-
-        if (!$this->upload->do_upload('file_rekening')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_rekening';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_mou()
-    {
-        if (!file_exists('upload/mou')) {
-            mkdir('upload/mou/', 0777, true);
-        }
-        $config7['upload_path']          = 'upload/mou/';
-        $config7['allowed_types']        = 'pdf';
-        $config7['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config7['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
- 
-        $this->load->library('upload', $config7);
-        $this->upload->initialize($config7);
- 
-        if(!$this->upload->do_upload('file_mou')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_mou';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_logo_media()
-    {
-        if (!file_exists('upload/logo-media')) {
-            mkdir('upload/logo-media/', 0777, true);
-        }
-        $config8['upload_path']          = 'upload/logo-media/';
-        $config8['allowed_types']        = 'jpg|jpeg|png';
-        $config8['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config8['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
- 
-        $this->load->library('upload', $config8);
-        $this->upload->initialize($config8);
- 
-        if(!$this->upload->do_upload('file_logo_media')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_logo_media';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_sertifikat_uji()
-    {
-        if (!file_exists('upload/sertifikat_uji')) {
-            mkdir('upload/sertifikat_uji/', 0777, true);
-        }
-        $config9['upload_path']          = 'upload/sertifikat_uji/';
-        $config9['allowed_types']        = 'pdf';
-        $config9['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config9['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config9);
-        $this->upload->initialize($config9);
-
-        if (!$this->upload->do_upload('file_sertifikat_uji')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_sertifikat_uji';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_verifikasi_pers()
-    {
-        if (!file_exists('upload/verifikasi_pers')) {
-            mkdir('upload/verifikasi_pers/', 0777, true);
-        }
-        $config10['upload_path']          = 'upload/verifikasi_pers/';
-        $config10['allowed_types']        = 'pdf';
-        $config10['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config10['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config10);
-        $this->upload->initialize($config10);
-
-        if (!$this->upload->do_upload('file_verifikasi_pers')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_verifikasi_pers';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
-    private function _do_upload_laporan_pajak()
-    {
-        if (!file_exists('upload/laporan_pajak')) {
-            mkdir('upload/laporan_pajak/', 0777, true);
-        }
-        $config11['upload_path']          = 'upload/laporan_pajak/';
-        $config11['allowed_types']        = 'pdf';
-        $config11['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config11['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config11);
-        $this->upload->initialize($config11);
-
-        if (!$this->upload->do_upload('file_laporan_pajak')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_laporan_pajak';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
+			$result = $this->medmas->simpan_upload($get_id, $data);
+			echo json_decode($result);
+		}
+	}
     
     private function _do_upload_ktp1()
-    {
-        if (!file_exists('upload/ktp')) {
-            mkdir('upload/ktp/', 0777, true);
+    {   
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/ktp' )) {
+			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
-        $config12['upload_path']          = 'upload/ktp/';
+        $config12['upload_path']          = 'upload/media/'.$album.'/ktp/';
         $config12['allowed_types']        = 'jpg|jpeg|png';
         $config12['max_size']             = 2000; //set max size allowed in Kilobyte
         $config12['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -698,10 +451,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp2()
     {
-        if (!file_exists('upload/ktp')) {
-            mkdir('upload/ktp/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/ktp' )) {
+			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
-        $config13['upload_path']          = 'upload/ktp/';
+        $config13['upload_path']          = 'upload/media/'.$album.'/ktp/';
         $config13['allowed_types']        = 'jpg|jpeg|png';
         $config13['max_size']             = 2000; //set max size allowed in Kilobyte
         $config13['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -722,10 +476,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp3()
     {
-        if (!file_exists('upload/ktp')) {
-            mkdir('upload/ktp/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/ktp' )) {
+			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
-        $config14['upload_path']          = 'upload/ktp/';
+        $config14['upload_path']          = 'upload/media/'.$album.'/ktp/';
         $config14['allowed_types']        = 'jpg|jpeg|png';
         $config14['max_size']             = 2000; //set max size allowed in Kilobyte
         $config14['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -746,10 +501,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp4()
     {
-        if (!file_exists('upload/ktp')) {
-            mkdir('upload/ktp/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/ktp' )) {
+			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
-        $config15['upload_path']          = 'upload/ktp/';
+        $config15['upload_path']          = 'upload/media/'.$album.'/ktp/';
         $config15['allowed_types']        = 'jpg|jpeg|png';
         $config15['max_size']             = 2000; //set max size allowed in Kilobyte
         $config15['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -770,10 +526,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp5()
     {
-        if (!file_exists('upload/ktp')) {
-            mkdir('upload/ktp/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/ktp' )) {
+			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
-        $config16['upload_path']          = 'upload/ktp/';
+        $config16['upload_path']          = 'upload/media/'.$album.'/ktp/';
         $config16['allowed_types']        = 'jpg|jpeg|png';
         $config16['max_size']             = 2000; //set max size allowed in Kilobyte
         $config16['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -794,10 +551,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp6()
     {
-        if (!file_exists('upload/ktp')) {
-            mkdir('upload/ktp/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/ktp' )) {
+			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
-        $config17['upload_path']          = 'upload/ktp/';
+        $config17['upload_path']          = 'upload/media/'.$album.'/ktp/';
         $config17['allowed_types']        = 'jpg|jpeg|png';
         $config17['max_size']             = 2000; //set max size allowed in Kilobyte
         $config17['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -818,10 +576,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp7()
     {
-        if (!file_exists('upload/ktp')) {
-            mkdir('upload/ktp/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/ktp' )) {
+			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
-        $config18['upload_path']          = 'upload/ktp/';
+        $config18['upload_path']          = 'upload/media/'.$album.'/ktp/';
         $config18['allowed_types']        = 'jpg|jpeg|png';
         $config18['max_size']             = 2000; //set max size allowed in Kilobyte
         $config18['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -840,36 +599,13 @@ class Auth extends CI_Controller
         return $this->upload->data('file_name');
     }
 
-    private function _do_upload_sertifikat()
-    {
-        if (!file_exists('upload/sertifikat')) {
-            mkdir('upload/sertifikat/', 0777, true);
-        }
-        $config19['upload_path']          = 'upload/sertifikat/';
-        $config19['allowed_types']        = 'pdf';
-        $config19['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config19['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config19);
-        $this->upload->initialize($config19);
-
-        if (!$this->upload->do_upload('file_sertifikat')) //upload and validate
-        {
-            $data['inputerror'][] = 'file_sertifikat';
-            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
-
     private function _do_upload_sertifikat1()
     {
-        if (!file_exists('upload/sertifikat')) {
-            mkdir('upload/sertifikat/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
+			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
-        $config19['upload_path']          = 'upload/sertifikat/';
+        $config19['upload_path']          = 'upload/media/'.$album.'/sertifikat/';
         $config19['allowed_types']        = 'pdf';
         $config19['max_size']             = 2000; //set max size allowed in Kilobyte
         $config19['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -890,10 +626,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat2()
     {
-        if (!file_exists('upload/sertifikat')) {
-            mkdir('upload/sertifikat/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
+			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
-        $config20['upload_path']          = 'upload/sertifikat/';
+        $config20['upload_path']          = 'upload/media/'.$album.'/sertifikat/';
         $config20['allowed_types']        = 'pdf';
         $config20['max_size']             = 2000; //set max size allowed in Kilobyte
         $config20['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -914,10 +651,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat3()
     {
-        if (!file_exists('upload/sertifikat')) {
-            mkdir('upload/sertifikat/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
+			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
-        $config21['upload_path']          = 'upload/sertifikat/';
+        $config21['upload_path']          = 'upload/media/'.$album.'/sertifikat/';
         $config21['allowed_types']        = 'pdf';
         $config21['max_size']             = 2000; //set max size allowed in Kilobyte
         $config21['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -938,10 +676,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat4()
     {
-        if (!file_exists('upload/sertifikat')) {
-            mkdir('upload/sertifikat/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
+			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
-        $config22['upload_path']          = 'upload/sertifikat/';
+        $config22['upload_path']          = 'upload/media/'.$album.'/sertifikat/';
         $config22['allowed_types']        = 'pdf';
         $config22['max_size']             = 2000; //set max size allowed in Kilobyte
         $config22['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -962,10 +701,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat5()
     {
-        if (!file_exists('upload/sertifikat')) {
-            mkdir('upload/sertifikat/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
+			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
-        $config23['upload_path']          = 'upload/sertifikat/';
+        $config23['upload_path']          = 'upload/media/'.$album.'/sertifikat/';
         $config23['allowed_types']        = 'pdf';
         $config23['max_size']             = 2000; //set max size allowed in Kilobyte
         $config23['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -986,10 +726,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat6()
     {
-        if (!file_exists('upload/sertifikat')) {
-            mkdir('upload/sertifikat/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
+			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
-        $config24['upload_path']          = 'upload/sertifikat/';
+        $config24['upload_path']          = 'upload/media/'.$album.'/sertifikat/';
         $config24['allowed_types']        = 'pdf';
         $config24['max_size']             = 2000; //set max size allowed in Kilobyte
         $config24['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -1010,10 +751,11 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat7()
     {
-        if (!file_exists('upload/sertifikat')) {
-            mkdir('upload/sertifikat/', 0777, true);
+        $album = $this->input->post('nama_media');
+        if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
+			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
-        $config25['upload_path']          = 'upload/sertifikat/';
+        $config25['upload_path']          = 'upload/media/'.$album.'/sertifikat/';
         $config25['allowed_types']        = 'pdf';
         $config25['max_size']             = 2000; //set max size allowed in Kilobyte
         $config25['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name

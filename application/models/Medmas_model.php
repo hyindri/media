@@ -141,6 +141,13 @@ class Medmas_model extends CI_Model
         $this->db->insert('tmst_media_massa', $data_media_massa);
         return $this->db->insert_id();
     }
+
+    function simpan_upload($get_id, $data){
+
+        $this->db->where('id', $get_id);
+        $result= $this->db->update('tmst_media_massa',$data);
+		return $result;
+	}
     
 
     // update data
