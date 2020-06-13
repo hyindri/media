@@ -45,7 +45,7 @@
             </div>
             <div class="card card-about-me">
                 <div class="header">
-                    <h2>Tentang Media</h2>
+                    <h2>Kontak Media</h2>
                 </div>
                 <div class="body">
                     <ul>
@@ -136,12 +136,12 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-lg-9">
             <div class="card card-about-me">
-                <div class="header">
-                    @if($this->session->userdata('level') == 'user')
-                    <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="pull-right btn bg-indigo col-white">Ubah Informasi Profil</a>
-                    @endif
-                    <h4 class="font-20">Informasi Akun Media</h4>
+                @if($this->session->userdata('level') == 'user')
+                <div class="header">                    
+                    <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="pull-right btn bg-indigo col-white">Ubah Informasi Profil</a>                    
+                    <h4 class="font-20">Informasi Akun Media</h4>                    
                 </div>
+                @endif
                 <div class="body">
                     {{$this->session->flashdata('notif')}}
                     <ul>

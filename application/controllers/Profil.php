@@ -61,7 +61,8 @@ class Profil extends CI_Controller
                 'file_mou' => $this->session->userdata('file_mou'),
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
-            );            
+            );         
+            json_encode($data);
             view('profil.index', $data);
         }
     }
@@ -71,29 +72,40 @@ class Profil extends CI_Controller
         if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin') {
             $row = $this->medmas->get_by_id($id);
             $data = array(
-                'nama' => $row->nama,
+                'nama' => $row->nama_media,
+                'status' => $this->session->userdata('status'),
+                'perusahaan' => $row->nama_perusahaan,
+                'alamat' => $row->alamat_perusahaan,
+                'npwp' => $row->npwp,
+                'rekening' => $row->rekening,
+                'telp' => $row->no_telp,
+                'email' => $row->email,
+                'username_fb' => $row->username_fb,
+                'username_ig' => $row->username_ig,
+                'username_twitter' => $row->username_twitter,
+                'channel_yt' => $row->channel_youtube,
+                'pengikut_fb' => $row->pengikut_fb,
+                'pengikut_ig' => $row->pengikut_ig,
+                'pengikut_twitter' => $row->pengikut_twitter,
+                'subs_yt' => $row->subscriber_youtube,
                 'tipe_mediamassa' => $row->tipe_media_massa,
                 'tipe_publikasi' => $row->tipe_publikasi,
-                'status' => $this->session->userdata('status'),
-                'pimpinan' => $row->pimpinan,
-                'npwp' => $row->npwp,
+                'jumlah_saham' => $row->jumlah_saham,
                 'mulai_mou' => date('d/m/Y', strtotime($row->mulai_mou)),
                 'akhir_mou' => date('d/m/Y', strtotime($row->akhir_mou)),
-                'perusahaan' => $row->perusahaan,
-                'alamat_per' => $row->alamat,
-                'rekening' => $row->rekening,
-                'kabiro' => $row->kabiro,    
-                'file_surat_kabiro' => $row->file_surat_kabiro,             
-                'telp' => $row->no_telp,
-                'wartawan' => $row->wartawan,                                
-                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
                 'file_logo_media' => $row->file_logo_media,
+                'file_akta_pendirian' => $row->file_akta_pendirian,
+                'file_situ' => $row->file_situ,
+                'file_siup' => $row->file_siup,
+                'file_tdp' => $row->file_tdp,
+                'file_npwp' => $row->file_npwp,
                 'file_rekening' => $row->file_rekening,
-                'file_npwp' =>  $row->file_npwp,                
                 'file_sertifikat_uji' => $row->file_sertifikat_uji,
-                'file_penawaran_kerja_sama' => $row->file_penawaran_kerja_sama,
-                'file_verifikasi_pers' => $row->file_verifikasi_pers
+                'file_laporan_pajak' => $row->file_laporan_pajak,
+                'file_verifikasi_pers' => $row->file_verifikasi_pers,
+                'file_mou' => $row->file_mou,
+                'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
             view('profil.index', $data);
         } else {
