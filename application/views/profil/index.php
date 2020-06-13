@@ -64,7 +64,7 @@
                                 Alamat Perusahaan
                             </div>
                             <div class="content">
-                                {{$alamat_per}}
+                                {{$alamat}}
                             </div>
                         </li>       
                         <li>
@@ -82,7 +82,7 @@
                                 Email
                             </div>
                             <div class="content">
-
+                            {{$email}}
                             </div>
                         </li>                      
                     </ul>
@@ -99,8 +99,8 @@
                                 Facebook
                             </div>
                             <div class="content">
-                                <p>Username : </p>
-                                13123 Pengikut
+                                <p><b> Username :</b> {{$username_fb}}</p>
+                                <b>Jumlah Pengikut : </b>{{$pengikut_fb}}
                             </div>
                         </li>             
                         <li>
@@ -108,8 +108,8 @@
                                 Instagram
                             </div>
                             <div class="content">
-                                <p>Username : </p>
-                                13123 Pengikut
+                                <p><b> Username :</b> {{$username_ig}}</p>
+                                <b>Jumlah Pengikut : </b>{{$pengikut_ig}}
                             </div>
                         </li>                             
                         <li>
@@ -117,8 +117,8 @@
                                 Twitter
                             </div>
                             <div class="content">
-                                <p>Username : </p>
-                                13123 Pengikut
+                                <p><b> Username :</b> {{$username_twitter}}</p>
+                                <b>Jumlah Pengikut : </b>{{$pengikut_twitter}}
                             </div>
                         </li>  
                         <li>
@@ -126,19 +126,11 @@
                                 Youtube
                             </div>
                             <div class="content">
-                                <p>Username : </p>
-                                13123 Pelanggan
+                                <p><b> Channel :</b> {{$channel_yt}}</p>
+                                <b>Jumlah <i>Subscribers</i> : </b>{{$subs_yt}}
                             </div>
                         </li>  
-                    </ul>
-                    <ul>
-                        <li>
-                            <div class="title">
-                            </div>
-                            <div class="content">
-                            </div>
-                        </li>
-                    </ul>
+                    </ul>                    
                 </div>
             </div>        
         </div>
@@ -172,7 +164,7 @@
                                 <a class="col-white deco-off" href="{{site_url('profil/ubahpassword')}}">Ubah Password</a>
                             </div>
                             <div class="content">
-                                ••••••••••••••
+                                ••••••••••••••                                
                             </div>
                         </li>
                         @endif
@@ -189,9 +181,9 @@
                                 <br>                 
                                 @if($file_rekening > 0 )             
                                 <a href="{{site_url()}}upload/rekening/{{$file_rekening}}" target="_blank" class="btn bg-indigo">Lihat File</a>
-                                @elseif($file_rekening == 0 AND $this->session->userdata('level') != 'admin')
+                                @elseif($file_rekening == null AND $this->session->userdata('level') != 'admin')
                                 <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
-                                @elseif($this->session->userdata('level') == 'admin')
+                                @elseif($this->session->userdata('level') == 'admin' AND $file_rekening == null)
                                 <small class="text-danger">File Belum Diupload</small>
                                 @endif
                             </div>
@@ -209,7 +201,7 @@
                                 <a href="{{site_url()}}upload/npwp/{{$file_npwp}}" target="_blank" class="btn bg-indigo">Lihat File</a>
                                 @elseif($file_npwp == 0 AND $this->session->userdata('level') != 'admin')
                                 <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
-                                @elseif($this->session->userdata('level') == 'admin')
+                                @elseif($this->session->userdata('level') == 'admin' AND $file_rekening == null)
                                 <small class="text-danger">File Belum Diupload</small>
                                 @endif
                             </div>
@@ -238,7 +230,7 @@
                                 Jumlah Saham
                             </div>
                             <div class="content">
-                                
+                                {{$jumlah_saham}}
                             </div>
                         </li>
                         <br>
@@ -252,7 +244,7 @@
                             <div class="content">          
                             @if($file_sertifikat_uji > 0)                      
                                 <a href="{{site_url()}}upload/sertifikat_uji/{{$file_sertifikat_uji}}" target="_blank" class="btn bg-indigo">Lihat File</a>
-                            @elseif($file_sertifikat_uji == 0 AND $this->session->userdata('level') != 'admin')
+                            @elseif($file_sertifikat_uji == null AND $this->session->userdata('level') != 'admin')
                             <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
                             @elseif($this->session->userdata('level') == 'admin')
                                 <small class="text-danger">File Belum Diupload</small>
@@ -267,7 +259,7 @@
                             <div class="content">
                             @if($file_verifikasi_pers > 0)
                                 <a href="{{site_url()}}upload/verifikasi_pers/{{$file_verifikasi_pers}}" target="_blank" class="btn bg-indigo">Lihat File</a>
-                            @elseif($file_verifikasi_pers == 0 AND $this->session->userdata('level') != 'admin')
+                            @elseif($file_verifikasi_pers == null AND $this->session->userdata('level') != 'admin')
                             <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
                             @elseif($this->session->userdata('level') == 'admin')
                                 <small class="text-danger">File Belum Diupload</small>
@@ -280,9 +272,9 @@
                                 Penawaran Kerja Sama (MoU)
                             </div>
                             <div class="content">
-                            @if($file_penawaran_kerja_sama > 0)
-                                <a href="{{site_url()}}upload/penawaran_kerja_sama/{{$file_penawaran_kerja_sama}}" target="_blank" class="btn bg-indigo">Lihat File</a>
-                            @elseif($file_penawaran_kerja_sama == 0 AND $this->session->userdata('level') != 'admin')
+                            @if($file_mou > 0)
+                                <a href="{{site_url()}}upload/penawaran_kerja_sama/{{$file_mou}}" target="_blank" class="btn bg-indigo">Lihat File</a>
+                            @elseif($file_mou == null AND $this->session->userdata('level') != 'admin')
                             <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
                             @elseif($this->session->userdata('level') == 'admin')
                                 <small class="text-danger">File Belum Diupload</small>
@@ -294,7 +286,14 @@
                                 <i class="material-icons">description</i>
                                 Akta Pendirian
                             </div>
-                            <div class="content">
+                            <div class="content">                            
+                            @if($file_akta_pendirian > 0)
+                            <a href="#" target="_blank" class="btn bg-indigo">Lihat File</a>
+                            @elseif($file_akta_pendirian == null AND $this->session->userdata('level') != 'admin')
+                            <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                            @elseif($this->session->userdata('level') == 'admin')
+                                <small class="text-danger">File Belum Diupload</small>
+                            @endif
                             </div>
                         </li>
                         <li>
@@ -303,6 +302,13 @@
                                 SITU ( Surat Izin Tempat Usaha )
                             </div>
                             <div class="content">
+                                @if($file_situ > 0)
+                                <a href="#" target="_blank" class="btn bg-indigo">Lihat File</a>
+                                @elseif($file_situ == null AND $this->session->userdata('level') != 'admin')
+                                <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                                @elseif($this->session->userdata('level') == 'admin')
+                                <small class="text-danger">File Belum Diupload</small>
+                                @endif
                             </div>
                         </li>                    
                         <li>
@@ -311,6 +317,13 @@
                                 SIUP ( Surat Izin Usaha Perdagangan )
                             </div>
                             <div class="content">
+                                @if($file_siup > 0)
+                                <a href="#" target="_blank" class="btn bg-indigo">Lihat File</a>
+                                @elseif($file_siup == null AND $this->session->userdata('level') != 'admin')
+                                <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                                @elseif($this->session->userdata('level') == 'admin')
+                                <small class="text-danger">File Belum Diupload</small>
+                                @endif
                             </div>
                         </li>
                         <li>
@@ -319,6 +332,13 @@
                                 TDP ( Tanda Daftar Perusahaan )
                             </div>
                             <div class="content">
+                                @if($file_tdp > 0)
+                                <a href="#" target="_blank" class="btn bg-indigo">Lihat File</a>
+                                @elseif($file_tdp == null AND $this->session->userdata('level') != 'admin')
+                                <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                                @elseif($this->session->userdata('level') == 'admin')
+                                <small class="text-danger">File Belum Diupload</small>
+                                @endif
                             </div>
                         </li>
                         <li>
@@ -327,6 +347,13 @@
                                 Laporan Pajak
                             </div>
                             <div class="content">
+                                @if($file_laporan_pajak > 0 )
+                                <a href="#" target="_blank" class="btn bg-indigo">Lihat File</a>
+                                @elseif($file_laporan_pajak == null AND $this->session->userdata('level') != 'admin')
+                                <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                                @elseif($this->session->userdata('level') == 'admin')
+                                <small class="text-danger">File Belum Diupload</small>
+                                @endif
                             </div>
                         </li>
                     </ul>
