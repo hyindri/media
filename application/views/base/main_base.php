@@ -16,6 +16,8 @@
     <!-- Bootstrap Core Css -->
     <link href="{{APP_ASSETS}}plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{APP_ASSETS}}plugins/font-awesome/css/font-awesome.min.css">
 
     <!-- Waves Effect Css -->
     <link href="{{APP_ASSETS}}plugins/node-waves/waves.css" rel="stylesheet" />

@@ -26,13 +26,121 @@
                     </div>
                     @endif
                     <div class="content-area">
-                        <h3>{{$nama}}</h3>
-                        <p>Tipe Media Massa : {{$tipe_mediamassa}}</p>
-                        <p>Tipe Publikasi: {{$tipe_publikasi}}</p>
+                        <h3>{{$nama}}</h3>                        
                         <p>Status : {{$status}}</p>
+                    </div>
+                    <div class="profile-footer">
+                        <ul>
+                            <li>
+                                <span>Tipe Media Massa</span>
+                                <span>{{$tipe_mediamassa}}</span>
+                            </li>
+                            <li>
+                                <span>Tipe Publikasi</span>
+                                <span>{{$tipe_publikasi}}</span>
+                            </li>                            
+                        </ul>                            
                     </div>
                 </div>
             </div>
+            <div class="card card-about-me">
+                <div class="header">
+                    <h2>Tentang Media</h2>
+                </div>
+                <div class="body">
+                    <ul>
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">domain</i>
+                                Nama Perusahaan
+                            </div>
+                            <div class="content">
+                                {{$perusahaan}}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">location_on</i>
+                                Alamat Perusahaan
+                            </div>
+                            <div class="content">
+                                {{$alamat_per}}
+                            </div>
+                        </li>       
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">call</i>
+                                Nomor Telepon
+                            </div>
+                            <div class="content">
+                                {{$telp}}
+                            </div>
+                        </li>       
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">email</i>
+                                Email
+                            </div>
+                            <div class="content">
+
+                            </div>
+                        </li>                      
+                    </ul>
+                </div>
+            </div>     
+            <div class="card card-about-me">
+                <div class="header">
+                    <h2>Sosial Media</h2>
+                </div>
+                <div class="body">
+                    <ul>
+                        <li>
+                            <div class="title">                                
+                                Facebook
+                            </div>
+                            <div class="content">
+                                <p>Username : </p>
+                                13123 Pengikut
+                            </div>
+                        </li>             
+                        <li>
+                            <div class="title">                                
+                                Instagram
+                            </div>
+                            <div class="content">
+                                <p>Username : </p>
+                                13123 Pengikut
+                            </div>
+                        </li>                             
+                        <li>
+                            <div class="title">                                
+                                Twitter
+                            </div>
+                            <div class="content">
+                                <p>Username : </p>
+                                13123 Pengikut
+                            </div>
+                        </li>  
+                        <li>
+                            <div class="title">                                
+                                Youtube
+                            </div>
+                            <div class="content">
+                                <p>Username : </p>
+                                13123 Pelanggan
+                            </div>
+                        </li>  
+                    </ul>
+                    <ul>
+                        <li>
+                            <div class="title">
+                            </div>
+                            <div class="content">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>        
         </div>
         <div class="col-xs-12 col-sm-9 col-lg-9">
             <div class="card card-about-me">
@@ -40,7 +148,7 @@
                     @if($this->session->userdata('level') == 'user')
                     <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="pull-right btn bg-indigo col-white">Ubah Informasi Profil</a>
                     @endif
-                    <h2>Informasi Profil Media</h2>
+                    <h4 class="font-20">Informasi Akun Media</h4>
                 </div>
                 <div class="body">
                     {{$this->session->flashdata('notif')}}
@@ -68,33 +176,9 @@
                             </div>
                         </li>
                         @endif
-                        <li>
-                            <div class="title">
-                                <i class="material-icons">domain</i>
-                                Nama Perusahaan
-                            </div>
-                            <div class="content">
-                                {{$perusahaan}}
-                            </div>
-                        </li>
-                        <li>
-                            <div class="title">
-                                <i class="material-icons">location_on</i>
-                                Alamat
-                            </div>
-                            <div class="content">
-                                {{$alamat_per}}
-                            </div>
-                        </li>
-                        <li>
-                            <div class="title">
-                                <i class="material-icons">person</i>
-                                Pimpinan
-                            </div>
-                            <div class="content">
-                                {{$pimpinan}}
-                            </div>
-                        </li>
+                        <br>
+                        <h4 class="font-20">Informasi Profil Media</h4>
+                        <hr>                                              
                         <li>
                             <div class="title">
                                 <i class="material-icons">account_balance_wallet</i>
@@ -111,49 +195,55 @@
                                 <small class="text-danger">File Belum Diupload</small>
                                 @endif
                             </div>
-                        </li>
+                        </li>                                                
+                                                                     
                         <li>
                             <div class="title">
-                                <i class="material-icons">person</i>
-                                Kabiro
+                                <i class="material-icons">credit_card</i>
+                                NPWP
                             </div>
                             <div class="content">
-                                {{$kabiro}}
-                            </div>
-                        </li>
-                        <li>
-                            <div class="title">
-                                <i class="material-icons">email</i>
-                                Surat Kabiro
-                            </div>
-                            <div class="content">
-                            @if($file_surat_kabiro > 0 )
-                                <a href="{{site_url()}}upload/surat_kabiro/{{$file_surat_kabiro}}" class="btn bg-indigo" target="_blank">Lihat File</a>
-                            @elseif($file_surat_kabiro == 0 AND $this->session->userdata('level') != 'admin')
-                            <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
-                            @elseif($this->session->userdata('level') == 'admin')
+                                <b>No. NPWP : </b>{{$npwp}} 
+                                <br>
+                                @if($file_npwp > 0)
+                                <a href="{{site_url()}}upload/npwp/{{$file_npwp}}" target="_blank" class="btn bg-indigo">Lihat File</a>
+                                @elseif($file_npwp == 0 AND $this->session->userdata('level') != 'admin')
+                                <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
+                                @elseif($this->session->userdata('level') == 'admin')
                                 <small class="text-danger">File Belum Diupload</small>
-                            @endif
+                                @endif
+                            </div>
+                        </li>                        
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">calendar_today</i>
+                                Mulai MoU
+                            </div>
+                            <div class="content">
+                                {{$mulai_mou}}
                             </div>
                         </li>
                         <li>
                             <div class="title">
-                                <i class="material-icons">call</i>
-                                Nomor Telepon
+                                <i class="material-icons">calendar_today</i>
+                                Akhir MoU
                             </div>
                             <div class="content">
-                                {{$telp}}
+                                {{$akhir_mou}}
                             </div>
                         </li>
                         <li>
                             <div class="title">
-                                <i class="material-icons">camera_alt</i>
-                                Wartawan
+                                <i class="material-icons">attach_money</i>
+                                Jumlah Saham
                             </div>
                             <div class="content">
-                                {{$wartawan}}
+                                
                             </div>
                         </li>
+                        <br>
+                        <h4 class="font-20">Berkas Pendukung Media</h4>
+                        <hr>
                         <li>
                             <div class="title">
                                 <i class="material-icons">description</i>
@@ -201,37 +291,42 @@
                         </li>
                         <li>
                             <div class="title">
-                                <i class="material-icons">credit_card</i>
-                                NPWP
+                                <i class="material-icons">description</i>
+                                Akta Pendirian
                             </div>
                             <div class="content">
-                                <b>No. NPWP : </b>{{$npwp}} 
-                                <br>
-                                @if($file_npwp > 0)
-                                <a href="{{site_url()}}upload/npwp/{{$file_npwp}}" target="_blank" class="btn bg-indigo">Lihat File</a>
-                                @elseif($file_npwp == 0 AND $this->session->userdata('level') != 'admin')
-                                <a href="<?php echo site_url('profil/ubah/' . $this->session->userdata('id_user')); ?>" class="text-danger">File belum ada, silahkan upload file</a>
-                                @elseif($this->session->userdata('level') == 'admin')
-                                <small class="text-danger">File Belum Diupload</small>
-                                @endif
-                            </div>
-                        </li>                        
-                        <li>
-                            <div class="title">
-                                <i class="material-icons">calendar_today</i>
-                                Mulai MoU
-                            </div>
-                            <div class="content">
-                                {{$mulai_mou}}
                             </div>
                         </li>
                         <li>
                             <div class="title">
-                                <i class="material-icons">calendar_today</i>
-                                Akhir MoU
+                                <i class="material-icons">description</i>
+                                SITU ( Surat Izin Tempat Usaha )
                             </div>
                             <div class="content">
-                                {{$akhir_mou}}
+                            </div>
+                        </li>                    
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">description</i>
+                                SIUP ( Surat Izin Usaha Perdagangan )
+                            </div>
+                            <div class="content">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">description</i>
+                                TDP ( Tanda Daftar Perusahaan )
+                            </div>
+                            <div class="content">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">description</i>
+                                Laporan Pajak
+                            </div>
+                            <div class="content">
                             </div>
                         </li>
                     </ul>
@@ -239,5 +334,33 @@
             </div>
         </div>
     </div>
+    <div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						PERSONEL MEDIA
+					</h2>					
+				</div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>NIK</th>
+                                    <th>No. Handphone</th>
+                                    <th>File KTP</th>
+                                    <th>File Sertifikat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
