@@ -75,7 +75,7 @@
                             <p><?php echo $this->session->flashdata('message') ?></p>
                         </div>
                         <div class="body">
-                            <?php echo form_open_multipart(site_url('auth/signup'), array('id' => '', 'method' => 'POST'));?>
+                            <?php echo form_open_multipart(site_url('auth/signup'), array('id' => 'wizard_with_validation', 'method' => 'POST'));?>
                                 <h3>Informasi Akun</h3>
                                 <fieldset>
                                     <div class="form-group form-float">
