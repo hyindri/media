@@ -118,7 +118,7 @@
                                 Youtube
                             </div>
                             <div class="content">
-                                <p><b> Channel :</b> {{$channel_yt}}</p>
+                                <p><b> Channel :</b> <span class="w-break">{{$channel_yt}}</span></p>
                                 <b>Jumlah <i>Subscribers</i> : </b>{{$subs_yt}}
                             </div>
                         </li>  

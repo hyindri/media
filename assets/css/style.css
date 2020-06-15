@@ -1,4 +1,4 @@
-﻿    /* Navbar ====================================== */
+﻿/* Navbar ====================================== */
 
 @import url(materialize.css);
 .navbar {
@@ -11277,7 +11277,7 @@ html.ie11 .bs-searchbox .form-control {
 /* Custom  */
 
 .w-break {
-    word-wrap: break-word
+    word-wrap: break-word;
 }
 
 .p-modal {
@@ -11328,3 +11328,4 @@ html.ie11 .bs-searchbox .form-control {
     100% {
         color: #000;
     }
+}
