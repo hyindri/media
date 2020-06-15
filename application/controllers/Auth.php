@@ -804,7 +804,6 @@ class Auth extends CI_Controller
             'jumlah_saham' => 'jumlah_saham',
             'mulai_mou' => 'mulai_mou',
             'akhir_mou' => 'akhir_mou',
-
             'file_logo_media' => 'file_logo_media',                            
             'file_akta_pendirian' => 'file_akta_pendirian',                            
             'file_situ' => 'file_situ',

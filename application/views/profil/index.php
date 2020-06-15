@@ -27,6 +27,7 @@
                     @endif
                     <div class="content-area">
                         <h3>{{$nama}}</h3>                        
+                        {{$perusahaan}}
                         <p>Status : {{$status}}</p>
                     </div>
                     <div class="profile-footer">
@@ -48,16 +49,7 @@
                     <h2>Kontak Media</h2>
                 </div>
                 <div class="body">
-                    <ul>
-                        <li>
-                            <div class="title">
-                                <i class="material-icons">domain</i>
-                                Nama Perusahaan
-                            </div>
-                            <div class="content">
-                                {{$perusahaan}}
-                            </div>
-                        </li>
+                    <ul>                       
                         <li>
                             <div class="title">
                                 <i class="material-icons">location_on</i>
@@ -169,7 +161,7 @@
                         </li>
                         @endif
                         <br>
-                        <h4 class="font-20">Informasi Profil Media</h4>
+                        <h4 class="font-20">Informasi Media Lainnya</h4>
                         <hr>                                              
                         <li>
                             <div class="title">
@@ -371,14 +363,15 @@
 				</div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="data-tenaga">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Nama</th>
+                                    <th>Jabatan</th>
                                     <th>NIK</th>
                                     <th>No. Handphone</th>
-                                    <th>File KTP</th>
-                                    <th>File Sertifikat</th>
+                                    <th>File</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -390,4 +383,46 @@
 		</div>
 	</div>
 </div>
+@endsection
+@section('js')
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		let table = $('#data-tenaga').DataTable({
+			"processing": true,
+			"responsive": true,
+			"serverSide": true,
+			"searching": false,
+			"info": true,
+			"ordering": true,
+			"order": [],
+			"language": {
+				"lengthMenu": "Tampilkan _MENU_ data per halaman",
+				"infoEmpty": "Data dimana kamu",
+				"zeroRecords": "Data tidak ada",
+				"info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+				"infoFiltered": "(difilter dari _MAX_ total data)",
+				"paginate": {
+					"first": "Pertama",
+					"last": "Terakhir",
+					"next": "Selanjutnya",
+					"previous": "Sebelumnya"
+				},
+			},
+			"ajax": {
+				url: "{{base_url('profil/json')}}",
+				type: "POST"
+			},
+			"columnDefs": [{
+				'targets': [1, 3,4,5],
+				'orderable': false,
+			}, {
+				'targets': [0],
+				'className': 'text-center'
+			}],
+			"pageLength": 10,
+		});
+	});
+
+</script>
 @endsection

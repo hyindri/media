@@ -13,6 +13,7 @@ class Profil extends CI_Controller
         $this->load->model('Medmas_model', 'medmas');
         $this->load->model('notifikasi_model', 'notifikasi');
         $this->load->model('log_model', 'aktivitas');
+        $this->load->model('Tenaga_model','tenaga');
     }
 
     public function index()
@@ -67,6 +68,35 @@ class Profil extends CI_Controller
         }
     }
 
+    public function json()
+    {
+        $list = $this->tenaga->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->nama_tenaga;
+            $row[] = $field->nama_jabatan;
+            $row[] = $field->nik;
+            $row[] = $field->no_hp;
+            $row[] = $field->file;
+            // $row[] = $field->file_sertifikat;      
+            
+            $data[] = $row;
+        }
+
+        $output = array(
+            'draw' => $_POST['draw'],
+            'recordsTotal' => $this->tenaga->count_all(),
+            'recordsFiltered' => $this->tenaga->count_filtered(),
+            'data' => $data
+        );
+
+        echo json_encode($output);
+    }
+
     public function detail($id)
     {
         if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'admin') {
@@ -111,29 +141,40 @@ class Profil extends CI_Controller
         } else {
             $row = $this->medmas->get_by_id($id);
             $data = array(
-                'nama' => $row->nama,
+                'nama' => $row->nama_media,
+                'status' => $this->session->userdata('status'),
+                'perusahaan' => $row->nama_perusahaan,
+                'alamat' => $row->alamat_perusahaan,
+                'npwp' => $row->npwp,
+                'rekening' => $row->rekening,
+                'telp' => $row->no_telp,
+                'email' => $row->email,
+                'username_fb' => $row->username_fb,
+                'username_ig' => $row->username_ig,
+                'username_twitter' => $row->username_twitter,
+                'channel_yt' => $row->channel_youtube,
+                'pengikut_fb' => $row->pengikut_fb,
+                'pengikut_ig' => $row->pengikut_ig,
+                'pengikut_twitter' => $row->pengikut_twitter,
+                'subs_yt' => $row->subscriber_youtube,
                 'tipe_mediamassa' => $row->tipe_media_massa,
                 'tipe_publikasi' => $row->tipe_publikasi,
-                'status' => $this->session->userdata('status'),
-                'pimpinan' => $row->pimpinan,
-                'npwp' => $row->npwp,
+                'jumlah_saham' => $row->jumlah_saham,
                 'mulai_mou' => date('d/m/Y', strtotime($row->mulai_mou)),
                 'akhir_mou' => date('d/m/Y', strtotime($row->akhir_mou)),
-                'perusahaan' => $row->perusahaan,
-                'alamat_per' => $row->alamat,
-                'rekening' => $row->rekening,                                         
-                'kabiro' => $row->kabiro,    
-                'file_surat_kabiro' => $row->file_surat_kabiro,                
-                'telp' => $row->no_telp,
-                'wartawan' => $row->wartawan,                
+                'file_logo_media' => $row->file_logo_media,
+                'file_akta_pendirian' => $row->file_akta_pendirian,
+                'file_situ' => $row->file_situ,
+                'file_siup' => $row->file_siup,
+                'file_tdp' => $row->file_tdp,
+                'file_npwp' => $row->file_npwp,
+                'file_rekening' => $row->file_rekening,
+                'file_sertifikat_uji' => $row->file_sertifikat_uji,
+                'file_laporan_pajak' => $row->file_laporan_pajak,
+                'file_verifikasi_pers' => $row->file_verifikasi_pers,
+                'file_mou' => $row->file_mou,
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
-                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
-                'file_logo_media' => $this->session->userdata('file_logo_media'),
-                'file_rekening' => $this->session->userdata('file_rekening'),
-                'file_npwp' => $this->session->userdata('file_npwp'),                
-                'file_sertifikat_uji' => $this->session->userdata('file_sertifikat_uji'),
-                'file_penawaran_kerja_sama' => $this->session->userdata('file_penawaran_kerja_sama'),
-                'file_verifikasi_pers' => $this->session->userdata('file_verifikasi_pers')
+                'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
             view('profil.index', $data);
         }
@@ -269,24 +310,36 @@ class Profil extends CI_Controller
             'level' => 'level',
             'status' => 'status',
             'nama' => 'nama',
-            'tipe_publikasi' => 'tipe_publikasi',
-            'tipe_mediamassa' => 'tipe_mediamassa',
-            'pimpinan' => 'pimpinan',
-            'npwp' => 'npwp',
-            'mulai_mou' => 'mulai_mou',
-            'akhir_mou' => 'akhir_mou',
             'perusahaan' => 'perusahaan',
             'alamat_per' => 'alamat_per',
+            'npwp' => 'npwp',
             'rekening' => 'rekening',
-            'kabiro' => 'kabiro',            
             'telp' => 'telp',
-            'wartawan' => 'wartawan',     
-            'file_logo_media' => 'file_rekening',                            
-            'file_npwp' => 'file_rekening',
-            'file_rekening' => 'file_rekening',            
+            'email' => 'email',
+            'username_fb' => 'username_fb',
+            'username_ig' => 'username_ig',
+            'username_twitter' => 'username_twitter',
+            'channel_youtube' => 'channel_youtube',
+            'pengikut_fb' => 'pengikut_fb',
+            'pengikut_ig' => 'pengikut_ig',
+            'pengikut_twitter' => 'pengikut_twitter',
+            'subscriber_youtube' => 'subscriber_youtube',
+            'tipe_mediamassa' => 'tipe_mediamassa',
+            'tipe_publikasi' => 'tipe_publikasi',
+            'jumlah_saham' => 'jumlah_saham',
+            'mulai_mou' => 'mulai_mou',
+            'akhir_mou' => 'akhir_mou',
+            'file_logo_media' => 'file_logo_media',                            
+            'file_akta_pendirian' => 'file_akta_pendirian',                            
+            'file_situ' => 'file_situ',
+            'file_siup' => 'file_siup',
+            'file_tdp' => 'file_tdp',
+            'file_npwp' => 'file_npwp',
+            'file_rekening' => 'file_rekening',
+            'file_mou' => 'file_mou',
             'file_sertifikat_uji' => 'file_sertifikat_uji',
-            'file_penawaran_kerja_sama' => 'file_penawaran_kerja_sama',
-            'file_verifikasi_pers' => 'file_verifikasi_pers',       
+            'file_laporan_pajak' => 'file_laporan_pajak',
+            'file_verifikasi_pers' => 'file_verifikasi_pers',      
         );
         $this->session->unset_userdata($sesi_selesai);
         $this->session->set_flashdata('message', '<div class="alert bg-green alert-dismissible" role="alert">
