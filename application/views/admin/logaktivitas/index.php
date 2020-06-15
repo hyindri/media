@@ -7,6 +7,7 @@
 	<div class="block-header">
 		<ol class="breadcrumb">
 			<li>HOME</li>
+			<li>SETTING</li>
 			<li class="active">LOG AKTIVITAS AKUN</li>
 		</ol>
 	</div>
@@ -20,7 +21,7 @@
 					<h2>
 						Log Aktivitas Akun
 					</h2>
-					<ul class="header-dropdown m-r--5">
+					<!-- <ul class="header-dropdown m-r--5">
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								aria-expanded="false">
@@ -31,7 +32,7 @@
 								<li><a id="btn-reset">Reset</a></li>
 							</ul>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 				<div class="body">
 					<div class="table-responsive">

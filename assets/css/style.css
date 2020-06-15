@@ -1,4 +1,4 @@
-﻿/* Navbar ====================================== */
+﻿    /* Navbar ====================================== */
 
 @import url(materialize.css);
 .navbar {
@@ -11328,4 +11328,3 @@ html.ie11 .bs-searchbox .form-control {
     100% {
         color: #000;
     }
-}
