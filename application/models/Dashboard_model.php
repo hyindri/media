@@ -33,7 +33,7 @@ class Dashboard_model extends CI_Model
 			"harian" => $this->__get_chart_harian($id)
 		);
 		return json_encode($res);
-	}
+	} 
 
 
 	function __get_chart_media($type)
