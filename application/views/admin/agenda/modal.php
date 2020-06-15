@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="file" name="file" id="file" class="form-control">
+                        <input type="file" name="file" id="file" class="form-control" accept="application/pdf">
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="file" name="file" class="form-control">
+                        <input type="file" name="file" class="form-control" accept="application/pdf">
                     </div>
                 </div>
                 <div class="form-group">
