@@ -7,6 +7,7 @@
     <div class="block-header">
         <ol class="breadcrumb">
             <li>HOME</li>
+            <li>MANAJEMEN</li>
             <li class="active">DAFTAR JABATAN</li>
         </ol>
     </div>

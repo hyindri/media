@@ -238,6 +238,10 @@
 						yAxes: [{
 							ticks: {
 								beginAtZero: true
+							},
+							scaleLabel: {
+								display: true,
+								labelString: 'Jumlah Berita DIupload'
 							}
 						}]
 					}

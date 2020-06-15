@@ -17,12 +17,12 @@
                 <div class="profile-body">
                     @if($file_logo_media == TRUE)
                     <div class="image-area">                   
-                        <img src="{{site_url()}}upload/logo-media/{{$file_logo_media}}" alt="Gambar Profil" width="50%" />
+                        <img class="bg-white" src="{{site_url()}}upload/logo-media/{{$file_logo_media}}" alt="Gambar Profil" width="50%" />
                     
                     </div>
                     @elseif($file_logo_media == NULL)
                     <div class="image-area">
-                        <img src="{{site_url()}}assets/images/person.svg" alt="Gambar Profil" width="50%" />
+                        <img class="bg-white" src="{{site_url()}}assets/images/person.svg" alt="Gambar Profil" width="50%" />
                     </div>
                     @endif
                     <div class="content-area">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="card card-about-me">
-                <div class="header">
+                <div class="header bg-indigo">
                     <h2>Kontak Media</h2>
                 </div>
                 <div class="body">
@@ -89,7 +89,7 @@
                 </div>
             </div>     
             <div class="card card-about-me">
-                <div class="header">
+                <div class="header bg-indigo">
                     <h2>Sosial Media</h2>
                 </div>
                 <div class="body">
