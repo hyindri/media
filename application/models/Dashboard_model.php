@@ -38,7 +38,7 @@ class Dashboard_model extends CI_Model
 
 	function __get_chart_media($type)
 	{
-		$this->db->select('a.nama');
+		$this->db->select('a.nama_media');
 		$this->db->select('count(b.id) as berita');
 
 		if ($type==1)
@@ -61,7 +61,7 @@ class Dashboard_model extends CI_Model
 		$res = array();
 		foreach ( $query->result() as $item) {
 			$res[]=array(
-				"nama"=>$item->nama,
+				"nama"=>$item->nama_media,
 				"berita" => $item->berita
 			);
 		}
