@@ -243,180 +243,122 @@
 
                                 <h3>Berkas Pendukung</h3>
                                 <fieldset>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Akta Pendirian dan Perubahan Terakhir* <i>maks. 2MB</i></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Akta Pendirian dan Perubahan Terakhir* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_1" required accept="application/pdf">
                                                 </div>
-                                            </div>  
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Surat Izin Tempat Usaha (SITU)* <i>maks. 2MB</i></label>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Surat Izin Tempat Usaha (SITU)* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
+                                                <input type="file" class="form-control" name="berkas_2" required accept="application/pdf">
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
-                                                    <input type="file" class="form-control" name="berkas_2" required accept="application/pdf">
-                                                </div>
-                                            </div>  
                                         </div>
                                     </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Surat Izin Usaha Perdagangan (SIUP)* <i>maks. 2MB</i></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Surat Izin Usaha Perdagangan (SIUP)* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_3" required accept="application/pdf">
                                                 </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Tanda Daftar Perusahaan (TDP)* <i>maks. 2MB</i></label>
-                                                </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tanda Daftar Perusahaan (TDP)* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_4" required accept="application/pdf">
                                                 </div>
-                                            </div>  
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Nomor Pokok Wajib Pajak (NPWP)* <i>maks. 2MB</i></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Nomor Pokok Wajib Pajak (NPWP)* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_5" required accept="image/*">
                                                 </div>
-                                            </div>  
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Rekening* <i>maks. 2MB</i></label>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Rekening* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
+                                                <input type="file" class="form-control" name="berkas_6" required accept="image/*">
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
-                                                    <input type="file" class="form-control" name="berkas_6" required accept="image/*">
-                                                </div>
-                                            </div>  
                                         </div>
                                     </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">MOU* <i>maks. 2MB</i></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">MOU* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_7" required accept="application/pdf">
                                                 </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Sertifikat Uji* <i>maks. 2MB</i></label>
-                                                </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Sertifikat Uji* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_8" required accept="application/pdf">
                                                 </div>
-                                            </div>  
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Logo Media* <i>maks. 2MB</i></label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Logo Media* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
+                                                <input type="file" class="form-control" name="berkas_9" required accept="image/*">
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
-                                                    <input type="file" class="form-control" name="berkas_9" required accept="image/*">
-                                                </div>
-                                            </div>  
                                         </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Verifikasi Pers* <i>maks. 2MB</i></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Verifikasi Pers* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_10" required accept="application/pdf">
                                                 </div>
-                                            </div>  
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Laporan Pajak (3 bulan terakhir)* <i>maks. 2MB</i></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Laporan Pajak (3 bulan terakhir)* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_11" required accept="application/pdf">
                                                 </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-line">
-                                                    <label class="form-label">Sertifikat* <i>maks. 2MB</i></label>
-                                                </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <div class="form-line">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Sertifikat* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_12" required accept="application/pdf">
                                                 </div>
-                                            </div>  
+                                            </div>
                                         </div>
                                     </div>
                                 </fieldset>
 
                                 <h3>Personel</h3>
                                 <fieldset>
+                                    <h4>Direktur</h4>
+                                    <hr>
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Jabatan*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -426,7 +368,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Nama*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -434,7 +376,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">NIK*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -442,7 +386,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File KTP* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -450,7 +394,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">No. Telp*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -458,19 +404,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <input type="file" class="form-control" name="file_sertifikat1" required accept="application/pdf">
-                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <h4>Komanditer/Komisaris</h4>
+                                    <hr>
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Jabatan*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -480,7 +427,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Nama*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -488,7 +435,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">NIK*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -496,7 +445,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File KTP* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -504,7 +453,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">No. Telp*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -512,7 +463,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -522,8 +473,10 @@
                                         </div>
                                     </div>
 
+                                    <h4>Pimpinan Redaksi</h4>
+                                    <hr>
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Jabatan*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -533,7 +486,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Nama*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -541,7 +494,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">NIK*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -549,7 +504,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File KTP* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -557,7 +512,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">No. Telp*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -565,7 +522,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -575,8 +532,10 @@
                                         </div>
                                     </div>
 
+                                    <h4>Kepala Biro</h4>
+                                    <hr>
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Jabatan*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -586,7 +545,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Nama*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -594,7 +553,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">NIK*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -602,7 +563,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File KTP* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -610,7 +571,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">No. Telp*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -618,7 +581,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -627,8 +590,11 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <h4>Wartawan/Reporter</h4>
+                                    <hr>
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Jabatan*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -638,7 +604,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Nama*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -646,7 +612,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">NIK*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -654,7 +622,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File KTP* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -662,7 +630,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">No. Telp*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -670,19 +640,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <input type="file" class="form-control" name="file_sertifikat5" required accept="application/pdf">
-                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <h4>Wartawan/Reporter</h4>
+                                    <hr>
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Jabatan*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -692,7 +663,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Nama*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -700,7 +671,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">NIK*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -708,7 +679,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File KTP* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -716,7 +687,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">No. Telp*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -724,7 +695,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -734,8 +705,10 @@
                                         </div>
                                     </div>
 
+                                    <h4>Wartawan/Reporter</h4>
+                                    <hr>
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Jabatan*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -745,7 +718,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">Nama*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -753,7 +726,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">NIK*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -761,7 +736,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File KTP* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -769,7 +744,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <label class="form-label">No. Telp*</label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -777,7 +754,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             <label class="form-label">File Sertifikat* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -785,9 +762,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div id="insert-form">
                                     </div>
                                 </fieldset>
                                 <?= form_close() ?>
