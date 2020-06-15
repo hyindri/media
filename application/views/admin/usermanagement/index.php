@@ -6,7 +6,8 @@
     <div class="block-header">
         <ol class="breadcrumb">
             <li>HOME</li>
-            <li class="active">MANAGEMENT AKUN</li>
+            <li>MANAJEMEN</li>
+            <li class="active">MANAJEMEN AKUN</li>
         </ol>
     </div>
     <!-- end breadcrumb -->

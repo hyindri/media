@@ -2,14 +2,20 @@
   @section('content')
   @section('title','Setting')
 
+  <div class="block-header">
+      <ol class="breadcrumb">
+          <li>HOME</li>
+          <li>SETTING</li>
+          <li class="active">MEDIA SOSIAL</li>
+      </ol>
+  </div>
   <div class="row clearfix">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
               <div class="header">
                   <h2>
-                      SETTING WAKTU
+                      Pengaturan Waktu Pengingat
                   </h2>
-
               </div>
               <div class="body">
                   <form action="" id="ubah-jam">
@@ -29,7 +35,7 @@
                                   </div>
                               </div>
                               <div class="col-md-6">
-                                  {{form_submit('submit', 'Simpan', 'class="btn btn-primary btn-lg m-l-15 waves-effect"')}}
+                                  {{form_submit('submit', 'Simpan', 'class="btn bg-indigo btn-lg m-l-15 waves-effect"')}}
                               </div>
                           </div>
                       </div>
@@ -44,7 +50,7 @@
           <div class="card">
               <div class="header">
                   <h2>
-                      Tabel Sosial Media
+                      Media Sosial
                   </h2>
                   <ul class="header-dropdown m-r--5">
                       <li>
@@ -132,12 +138,12 @@
           });
 
           $('#table').on('click', '.ubah', function() {
-                $('#modal-ubah').modal('show');
-                $("#edit_id").val($(this).data('id'));
-                $("#edit_nama").val($(this).data('nama'));
-                var logo = $(this).data('logo');
-                $('#file_lama').html('<a href="{{site_url()}}upload/logo/' + logo + '"  class="thumbnail"> <embed class="img-responsive" src="{{site_url()}}upload/logo/' + logo + '" width="50" height="50"></a>');
-            });
+              $('#modal-ubah').modal('show');
+              $("#edit_id").val($(this).data('id'));
+              $("#edit_nama").val($(this).data('nama'));
+              var logo = $(this).data('logo');
+              $('#file_lama').html('<a href="{{site_url()}}upload/logo/' + logo + '"  class="thumbnail"> <embed class="img-responsive" src="{{site_url()}}upload/logo/' + logo + '" width="50" height="50"></a>');
+          });
 
 
           $('#tambah-sosmed').submit('click', function() {
@@ -167,27 +173,27 @@
           });
 
           $('#ubah-sosmed').submit('click', function() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{base_url('setting/ubah')}}",
-                    data: new FormData(this),
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    async: false,
-                    success: function(data) {
-                        $('#modal-ubah').modal('hide');
-                        toastr.success('Sosmed berhasil diubah!');
-                        table.ajax.reload();
-                    },
-                    error: function(data) {
-                        $('#modal-ubah').modal('hide');
-                        toastr.warning('Sosmed mengubah agenda!');
-                        table.ajax.reload();
-                    }
-                });
-                return false;
-            });
+              $.ajax({
+                  type: "POST",
+                  url: "{{base_url('setting/ubah')}}",
+                  data: new FormData(this),
+                  processData: false,
+                  contentType: false,
+                  cache: false,
+                  async: false,
+                  success: function(data) {
+                      $('#modal-ubah').modal('hide');
+                      toastr.success('Sosmed berhasil diubah!');
+                      table.ajax.reload();
+                  },
+                  error: function(data) {
+                      $('#modal-ubah').modal('hide');
+                      toastr.warning('Sosmed mengubah agenda!');
+                      table.ajax.reload();
+                  }
+              });
+              return false;
+          });
 
           $('#ubah-jam').submit('click', function() {
               $.ajax({
