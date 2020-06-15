@@ -24,16 +24,16 @@
 					<?php echo form_open_multipart(site_url('profil/updatedata'));?>
 						<input type="hidden" value="{{$data_profil->id}}" name="id_media">
 						<input type="hidden" name="logo_lama" value="{{$data_profil->file_logo_media}}">
-						<label for=" ">Foto atau Logo Media</label>
+						<label for=" ">Logo Media Massa</label>
 						<div style="margin-bottom: 2rem">
-								<img src="<?= base_url('upload/logo-media/'.$this->session->userdata('logo_media'));?>" alt="" width="20%">
+								<img src="<?= base_url('upload/logo-media/'.$this->session->userdata('file_logo_media'));?>" alt="" width="20%">
 						</div>						
 						<div class="form-group">							
 							<div class="form-line">
 								<input type="file" class="form-control" name="file_logo_media">
 							</div>
-						</div>
-						<label for=" ">Nama Media</label>
+						</div>		
+						<label for="">Nama Media Massa</label>
 						<div class="form-group">
 							<div class="form-line">
 								<input type="text" id="nama_media" class="form-control" placeholder="Masukkan Nama Media" name="nama_media" value="{{$data_profil->nama_media}}" required>
@@ -45,16 +45,34 @@
 								<input type="text" id="nama_perusahaan" class="form-control" placeholder="Masukkan Nama Perusahaan" name="nama_perusahaan" value="{{$data_profil->nama_perusahaan}}" required>
 							</div>
 						</div>
+						<br>				
+						<h4>Informasi Kontak Media</h4>
+						<hr>						
 						<label for=" ">Alamat</label>
 						<div class="form-group">
 							<div class="form-line">								
 								<textarea name="alamat_kantor" id="alamat_per" cols="30" rows="2" class="form-control" placeholder="Masukkan Alamat Kantor Media" required>{{$data_profil->alamat_perusahaan}}</textarea>
 							</div>
 						</div>
+						<label for="">Email</label>
+						<div class="form-group">
+							<div class="form-line">
+								<input type="email" name="email_media" id="email_media" class="form-control" placeholder="Masukkan Alamat Email" value="{{$data_profil->email}}">
+							</div>
+						</div>	
+						<label for="">Nomor Telepon</label>					
+						<div class="form-group">
+							<div class="form-line">
+								<input type="number" name="no_telp" id="no_telp" class="form-control" placeholder="Masukkan Nomor Telepon" value="{{$data_profil->no_telp}}">
+							</div>
+						</div>
+						<br>
+						<h4>Informasi Media Lainnya</h4>
+						<hr>
 						<label for=" ">NPWP</label>
 						<div class="form-group">
 							<div class="form-line">							
-								<small>File Scan NPWP <b class="text-danger">*File dengan format JPG/JPEG/PNG dan Maks. 2MB</b></small>
+								<small>File Scan NPWP <b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
 								<input type="file" id="file_npwp" class="form-control"
 									placeholder="Upload NPWP" name="file_npwp">
 								<input type="hidden" id="old_file_npwp" name="old_file_npwp"
@@ -63,54 +81,27 @@
 								<input type="text" id="npwp" class="form-control" placeholder="Masukkan Nomor NPWP"
 								name="npwp" value="{{$data_profil->npwp}}" required>
 							</div>
-						</div>						
-						<!-- <label for=" ">Pimpinan</label>
-						<div class="form-group">
-							<div class="form-line">
-								<input type="text" id="pimpinan" class="form-control" placeholder="Masukkan Pimpinan" name="pimpinan" value="{{$data_profil->pimpinan}}" required>
-							</div>
-						</div>						 -->
+						</div>															
 						<label for=" ">Rekening</label>
 						<div class="form-group">
 							<div class="form-line">
-								<small>File Scan Buku Rekening <b class="text-danger">*File dengan format JPG/JPEG/PNG dan Maks. 2MB</b></small>
+								<small>File Scan Buku Rekening <b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
 								<input type="file" id="file_rekening" class="form-control"
 									placeholder="Masukkan Rekening" name="file_rekening">
 								<input type="hidden" id="old_file_rekening" value="{{$data_profil->file_rekening}}">
 								<small>Nomor Rekening</small>
 								<input type="text" id="no_rek" class="form-control" placeholder="Masukkan No. Rekening" name="no_rek" value="{{$data_profil->rekening}}" required>									
 							</div>
-						</div>
-						<!-- <label for=" ">Kabiro</label>
-						<div class="form-group">
-							<div class="form-line">
-								<input type="text" id="kabiro" class="form-control" placeholder="Masukkan Kabiro" name="kabiro" value="{{$data_profil->kabiro}}" required>
-							</div>
-						</div>						 -->
-						<!-- <label for=" ">Surat Kabiro</label>
-						<div class="form-group">
-							<div class="form-line">
-								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG dan Maks. 2MB</b></small>
-								<input type="file" id="file_surat_kabiro" class="form-control" placeholder="Masukkan Surat Kabiro" name="file_surat_kabiro">
-								<input type="hidden" id="old_file_surat_kabiro" name="old_file_surat_kabiro" value="{{$data_profil->file_surat_kabiro}}" required>
-							</div>
-						</div>
-						<label for=" ">Nomor Telepon</label>
-						<div class="form-group">
-							<div class="form-line">
-								<input type="text" id="no_telp" class="form-control" placeholder="Masukkan Nomor Telepon" name="no_telp" value="{{$data_profil->no_telp}}" required>
-							</div>
-						</div>
-						<label for=" ">Wartawan</label>
-						<div class="form-group">
-							<div class="form-line">
-								<input type="text" id="wartawan" class="form-control" placeholder="Masukkan Wartawan" name="wartawan" value="{{$data_profil->wartawan}}" required>
-							</div>
-						</div>						
+						</div>	
+						<br>
+						<h4>Berkas Pendukung</h4>
+						<small class="text-danger">*Silahkan upload file jika anda ingin mengubahnya</small>
+						<hr>						
+																											
 						<label for=" ">Sertifikat Uji</label>
 						<div class="form-group">
 							<div class="form-line">
-								<small><b class="text-danger">*File dengan format PDF dan Maks. 2MB</b></small>
+								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
 								<input type="file" id="file_sertifikat_uji" class="form-control"
 									placeholder="Upload Sertifikat Uji" name="file_sertifikat_uji">
 								<input type="hidden" id="old_file_sertifikat_uji" name="old_file_sertifikat_uji"
@@ -120,7 +111,7 @@
 						<label for=" ">Verifikasi Pers</label>
 						<div class="form-group">
 							<div class="form-line">
-								<small><b class="text-danger">*File dengan format PDF dan Maks. 2MB</b></small>
+								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
 								<input type="file" id="file_verifikasi_pers" class="form-control"
 									placeholder="Masukkan Penawaran Kerja Sama" name="file_verifikasi_pers">
 								<input type="hidden" id="old_file_verifikasi_pers"
@@ -130,13 +121,63 @@
 						<label for=" ">Penawaran Kerja Sama (MoU)</label>
 						<div class="form-group">
 							<div class="form-line">
-								<small><b class="text-danger">*File dengan format PDF dan Maks. 2MB</b></small>
-								<input type="file" id="file_penawaran_kerja_sama" class="form-control"
-									placeholder="Masukkan Penawaran Kerja Sama" name="file_penawaran_kerja_sama">
-								<input type="hidden" id="old_file_penawaran_kerja_sama" name="old_file_penawaran_kerja_sama"
-									value="{{$data_profil->file_penawaran_kerja_sama}}">
+								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
+								<input type="file" id="file_mou" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="file_mou">
+								<input type="hidden" id="old_file_mou" name="old_file_mou"
+									value="{{$data_profil->file_mou}}">
 							</div>
-						</div> -->
+						</div>
+						<label for=" ">Akta Pendirian</label>
+						<div class="form-group">
+							<div class="form-line">
+								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
+								<input type="file" id="file_akta_pendirian" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="file_akta_pendirian">
+								<input type="hidden" id="old_file_akta_pendirian" name="old_file_akta_pendirian"
+									value="{{$data_profil->file_akta_pendirian}}">
+							</div>
+						</div>
+						<label for=" ">SITU ( Surat Izin Tempat Usaha )</label>
+						<div class="form-group">
+							<div class="form-line">
+								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
+								<input type="file" id="file_situ" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="file_situ">
+								<input type="hidden" id="old_file_situ" name="old_file_situ"
+									value="{{$data_profil->file_situ}}">
+							</div>
+						</div>
+						<label for=" ">SIUP ( Surat Izin Usaha Perdagangan )</label>
+						<div class="form-group">
+							<div class="form-line">
+								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
+								<input type="file" id="file_siup" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="file_siup">
+								<input type="hidden" id="old_file_siup" name="old_file_siup"
+									value="{{$data_profil->file_siup}}">
+							</div>
+						</div>
+						<label for=" ">TDP ( Tanda Daftar Perusahaan ) </label>
+						<div class="form-group">
+							<div class="form-line">
+								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
+								<input type="file" id="file_tdp" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="file_tdp">
+								<input type="hidden" id="old_file_tdp" name="old_file_tdp"
+									value="{{$data_profil->file_tdp}}">
+							</div>
+						</div>
+						<label for=" ">Laporan Pajak</label>
+						<div class="form-group">
+							<div class="form-line">
+								<small><b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
+								<input type="file" id="file_laporan_pajak" class="form-control"
+									placeholder="Masukkan Penawaran Kerja Sama" name="file_laporan_pajak">
+								<input type="hidden" id="old_file_laporan_pajak" name="old_file_laporan_pajak"
+									value="{{$data_profil->file_laporan_pajak}}">
+							</div>
+						</div>
 						<input type="hidden" name="tipe_media_massa" value="{{$data_profil->tipe_media_massa}}">
 						
 						<a class="deco-off btn bg-red col-white m-t-15 waves-effect" href="{{site_url('dashboard')}}">
