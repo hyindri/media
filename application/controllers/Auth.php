@@ -379,7 +379,7 @@ class Auth extends CI_Controller
 
     function uploadFile($get_id)
 	{
-		$album = $this->input->post('nama_media');
+		$album = $this->input->post('username');
 		$config['upload_path']          = 'upload/media/'.$album;
 		$config['allowed_types']        = 'png||jpg||pdf';
 		$config['overwrite']			= false;
@@ -427,7 +427,7 @@ class Auth extends CI_Controller
     
     private function _do_upload_ktp1()
     {   
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/ktp' )) {
 			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
@@ -452,7 +452,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp2()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/ktp' )) {
 			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
@@ -477,7 +477,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp3()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/ktp' )) {
 			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
@@ -502,7 +502,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp4()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/ktp' )) {
 			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
@@ -527,7 +527,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp5()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/ktp' )) {
 			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
@@ -552,7 +552,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp6()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/ktp' )) {
 			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
@@ -577,7 +577,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_ktp7()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/ktp' )) {
 			mkdir('upload/media/'.$album.'/ktp/', 0777, true);
         }
@@ -602,7 +602,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat1()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
 			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
@@ -627,7 +627,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat2()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
 			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
@@ -652,7 +652,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat3()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
 			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
@@ -677,7 +677,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat4()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
 			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
@@ -702,7 +702,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat5()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
 			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
@@ -727,7 +727,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat6()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
 			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }
@@ -752,7 +752,7 @@ class Auth extends CI_Controller
 
     private function _do_upload_sertifikat7()
     {
-        $album = $this->input->post('nama_media');
+        $album = $this->input->post('username');
         if (!is_dir('upload/media/'.$album.'/sertifikat' )) {
 			mkdir('upload/media/'.$album.'/sertifikat/', 0777, true);
         }

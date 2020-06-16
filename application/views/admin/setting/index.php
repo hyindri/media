@@ -14,7 +14,7 @@
           <div class="card">
               <div class="header">
                   <h2>
-                      Pengaturan Waktu Pengingat
+                      Pengaturan Waktu Pelaporan
                   </h2>
               </div>
               <div class="body">
