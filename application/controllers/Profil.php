@@ -73,6 +73,7 @@ class Profil extends CI_Controller
         $list = $this->tenaga->get_datatables();
         $data = array();
         $no = $_POST['start'];
+        $username = $this->session->userdata('username');
         foreach ($list as $field) {
             $no++;
             $row = array();
@@ -81,6 +82,7 @@ class Profil extends CI_Controller
             $row[] = $field->nama_jabatan;
             $row[] = $field->nik;     
             $row[] = $field->no_hp;
+            $row[] = '<a href="' . site_url() . 'upload/Media/' . $username .'/ktp/'.$field->file. '" class="btn bg-indigo">Lihat File</a>';
             $data[] = $row;
         }
 

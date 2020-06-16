@@ -370,7 +370,8 @@
                                     <th>Nama</th>
                                     <th>Jabatan</th>
                                     <th>NIK</th>
-                                    <th>No. Handphone</th>                                                               
+                                    <th>No. Handphone</th>   
+                                    <th>File</th>                                                            
                                 </tr>
                             </thead>
                             <tbody>
@@ -413,7 +414,7 @@
 				type: "POST"
 			},
 			"columnDefs": [{
-				'targets': [1,3,4],
+				'targets': [1,3,4,5],
 				'orderable': false,
 			}, {
 				'targets': [0],
