@@ -222,30 +222,51 @@ class Profil extends CI_Controller
     public function updatedata()
     {
         $id = $this->input->post('id_media');
+        $username = $this->input->post('username');
         $data = array(
-            'nama' => $this->input->post('nama_media'),
-            'perusahaan' => $this->input->post('nama_perusahaan'),
-            'alamat' => $this->input->post('alamat_kantor'),
-            'npwp' => $this->input->post('npwp'),
-            'pimpinan' => $this->input->post('pimpinan'),
-            'kabiro' => $this->input->post('kabiro'),                   
+            'nama_media' => $this->input->post('nama_media'),
+            'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+            'alamat_perusahaan' => $this->input->post('alamat_kantor'),
+            'email' => $this->input->post('email_media'),
             'no_telp' => $this->input->post('no_telp'),
-            'wartawan' => $this->input->post('wartawan'),            
-            'tipe_media_massa' => $this->input->post('tipe_media_massa'),
-            'file_logo_media' => $this->users->_uploadLogo()
+            'npwp' => $this->input->post('npwp'),      
+            'rekening' => $this->input->post('no_rek'),
+            'no_telp' => $this->input->post('no_telp'),              
+            'tipe_media_massa' => $this->input->post('tipe_media_massa'),            
+            // Sosial Media
+            'username_fb' => $this->input->post('username_fb'),
+            'username_twitter' => $this->input->post('username_twitter'),
+            'username_ig' => $this->input->post('username_ig'),
+            'channel_youtube' => $this->input->post('channel_youtube'),
+            'pengikut_fb' => $this->input->post('pengikut_fb'),
+            'pengikut_twitter' => $this->input->post('pengikut_twitter'),
+            'pengikut_ig' => $this->input->post('pengikut_ig'),
+            'subscriber_youtube' => $this->input->post('subscriber_youtube'),            
         );
 
+        
+        
+        if (!empty($_FILES['file_logo_media']['name'])) {
+            if (!empty($this->input->post('old_file_logo'))) {
+                unlink('upload/media/'.$username.'/logo_media/' . $this->input->post('old_file_logo'));
+            }
+            $upload = $this->_do_upload_logo();
+            $data['file_logo_media'] = $upload;
+        }
+
+        
         if (!empty($_FILES['file_npwp']['name'])) {
             if (!empty($this->input->post('old_file_npwp'))) {
-                unlink('upload/npwp/' . $this->input->post('old_file_npwp'));
+                unlink('upload/media/'.$username.'/npwp/' . $this->input->post('old_file_npwp'));
             }
             $upload = $this->_do_upload_npwp();
             $data['file_npwp'] = $upload;
         }
 
+
         if (!empty($_FILES['file_rekening']['name'])) {
             if (!empty($this->input->post('old_file_rekening'))) {
-                unlink('upload/rekening/' . $this->input->post('old_file_rekening'));
+                unlink('upload/media/'.$username.'/rekening/' . $this->input->post('old_file_rekening'));
             }
             $upload = $this->_do_upload_rekening();
             $data['file_rekening'] = $upload;
@@ -253,7 +274,7 @@ class Profil extends CI_Controller
 
         if (!empty($_FILES['file_sertifikat_uji']['name'])) {
             if (!empty($this->input->post('old_file_sertifikat_uji'))) {
-                unlink('upload/sertifikat_uji/' . $this->input->post('old_file_sertifikat_uji'));
+                unlink('upload/media/'.$username.'/sertifikat_uji/' . $this->input->post('old_file_sertifikat_uji'));
             }
             $upload = $this->_do_upload_sertifikat_uji();
             $data['file_sertifikat_uji'] = $upload;
@@ -261,26 +282,58 @@ class Profil extends CI_Controller
 
         if (!empty($_FILES['file_verifikasi_pers']['name'])) {
             if (!empty($this->input->post('old_file_verifikasi_pers'))) {
-                unlink('upload/verifikasi_pers/' . $this->input->post('old_file_verifikasi_pers'));
+                unlink('upload/media/'.$username.'/verifikasi_pers/'. $this->input->post('old_file_verifikasi_pers'));
             }
             $upload = $this->_do_upload_verifikasi_pers();
             $data['file_verifikasi_pers'] = $upload;
         }
 
-        if (!empty($_FILES['file_penawaran_kerja_sama']['name'])) {
-            if (!empty($this->input->post('old_file_penawaran_kerja_sama'))) {
-                unlink('upload/penawaran_kerja_sama/' . $this->input->post('old_file_penawaran_kerja_sama'));
+        if (!empty($_FILES['file_mou']['name'])) {
+            if (!empty($this->input->post('old_file_mou'))) {
+                unlink('upload/media/'.$username.'/mou/' . $this->input->post('old_file_mou'));
             }                          
-            $upload = $this->_do_upload_penawaran_kerja_sama();
-            $data['file_penawaran_kerja_sama'] = $upload;
+            $upload = $this->_do_upload_mou();
+            $data['file_mou'] = $upload;
         }
 
-        if(!empty($_FILES['file_surat_kabiro']['name'])){
-            if(!empty($this->input->post('old_file_surat_kabiro'))){
-                unlink('upload/surat_kabiro/'.$this->input->post('old_file_surat_kabiro'));
-            }
-            $upload = $this->_do_upload_surat_kabiro();
-            $data['file_surat_kabiro'] = $upload;
+        if (!empty($_FILES['file_akta_pendirian']['name'])) {
+            if (!empty($this->input->post('old_file_akta_pendirian'))) {
+                unlink('upload/media/'.$username.'/akta_pendirian/' . $this->input->post('old_file_akta_pendirian'));
+            }                          
+            $upload = $this->_do_upload_akta_pendirian();
+            $data['file_akta_pendirian'] = $upload;
+        }
+
+        if (!empty($_FILES['file_situ']['name'])) {
+            if (!empty($this->input->post('old_file_situ'))) {
+                unlink('upload/media/'.$username.'/situ/' . $this->input->post('old_file_situ'));
+            }                          
+            $upload = $this->_do_upload_situ();
+            $data['file_situ'] = $upload;
+        }
+
+        if (!empty($_FILES['file_siup']['name'])) {
+            if (!empty($this->input->post('old_file_siup'))) {
+                unlink('upload/media/'.$username.'/siup/' . $this->input->post('old_file_siup'));
+            }                          
+            $upload = $this->_do_upload_siup();
+            $data['file_siup'] = $upload;
+        }
+
+        if (!empty($_FILES['file_tdp']['name'])) {
+            if (!empty($this->input->post('old_file_tdp'))) {
+                unlink('upload/media/'.$username.'/tdp/' . $this->input->post('old_file_tdp'));
+            }                          
+            $upload = $this->_do_upload_tdp();
+            $data['file_tdp'] = $upload;
+        }
+
+        if (!empty($_FILES['file_laporan_pajak']['name'])) {
+            if (!empty($this->input->post('old_file_laporan_pajak'))) {
+                unlink('upload/media/'.$username.'/laporan_pajak/' . $this->input->post('old_file_laporan_pajak'));
+            }                          
+            $upload = $this->_do_upload_laporan_pajak();
+            $data['file_laporan_pajak'] = $upload;
         }
 
         $this->medmas->updateProfil($id, $data);    
@@ -349,17 +402,45 @@ class Profil extends CI_Controller
         redirect('auth');
     }
 
-    private function _do_upload_npwp()
+
+        
+    private function _do_upload_logo()
     {
-        if (!file_exists('upload/npwp')) {
-            mkdir('upload/npwp/', 0777, true);
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/logo_media/')) {
+            mkdir('upload/media/'.$username.'/logo_media/', 0777, true);
         }
-        $config['upload_path']          = 'upload/npwp/';
+        $config['upload_path']          = 'upload/media/'.$username.'/logo_media/';
         $config['allowed_types']        = 'jpg|jpeg|png';
         $config['max_size']             = 2000; //set max size allowed in Kilobyte
         $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
 
         $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file_logo_media')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_logo_media';
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+
+    private function _do_upload_npwp()
+    {
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/npwp/')) {
+            mkdir('upload/media/'.$username.'/npwp/', 0777, true);
+        }
+        $config1['upload_path']          = 'upload/media/'.$username.'/npwp/';
+        $config1['allowed_types']        = 'jpg|jpeg|png|pdf';
+        $config1['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config1['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config1);
 
         if (!$this->upload->do_upload('file_npwp')) //upload and validate
         {
@@ -374,11 +455,12 @@ class Profil extends CI_Controller
 
     private function _do_upload_rekening()
     {
-        if (!file_exists('upload/rekening')) {
-            mkdir('upload/rekening/', 0777, true);
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/rekening/')) {
+            mkdir('upload/media/'.$username.'/rekening/', 0777, true);
         }
-        $config2['upload_path']          = 'upload/rekening/';
-        $config2['allowed_types']        = 'jpg|jpeg|png';
+        $config2['upload_path']          = 'upload/media/'.$username.'/rekening/';
+        $config2['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config2['max_size']             = 2000; //set max size allowed in Kilobyte
         $config2['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
 
@@ -398,11 +480,12 @@ class Profil extends CI_Controller
 
     private function _do_upload_sertifikat_uji()
     {
-        if (!file_exists('upload/sertifikat_uji')) {
-            mkdir('upload/sertifikat_uji/', 0777, true);
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/sertifikat_uji/')) {
+            mkdir('upload/media/'.$username.'/sertifikat_uji/', 0777, true);
         }
-        $config3['upload_path']          = 'upload/sertifikat_uji/';
-        $config3['allowed_types']        = 'pdf';
+        $config3['upload_path']          = 'upload/media/'.$username.'/sertifikat_uji/';
+        $config3['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config3['max_size']             = 2000; //set max size allowed in Kilobyte
         $config3['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
 
@@ -420,13 +503,16 @@ class Profil extends CI_Controller
         return $this->upload->data('file_name');
     }
 
+
+    
     private function _do_upload_verifikasi_pers()
     {
-        if (!file_exists('upload/verifikasi_pers')) {
-            mkdir('upload/verifikasi_pers/', 0777, true);
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/verifikasi_pers/')) {
+            mkdir('upload/media/'.$username.'/verifikasi_pers/', 0777, true);
         }
-        $config4['upload_path']          = 'upload/verifikasi_pers/';
-        $config4['allowed_types']        = 'pdf';
+        $config4['upload_path']          = 'upload/media/'.$username.'/verifikasi_pers/';
+        $config4['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config4['max_size']             = 2000; //set max size allowed in Kilobyte
         $config4['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
 
@@ -444,22 +530,129 @@ class Profil extends CI_Controller
         return $this->upload->data('file_name');
     }
 
-    private function _do_upload_penawaran_kerja_sama()
+    private function _do_upload_mou()
     {
-        if (!file_exists('upload/penawaran_kerja_sama')) {
-            mkdir('upload/penawaran_kerja_sama/', 0777, true);
+
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/mou/')) {
+            mkdir('upload/media/'.$username.'/mou/', 0777, true);
         }
-        $config5['upload_path']          = 'upload/penawaran_kerja_sama/';
-        $config5['allowed_types']        = 'pdf';
+        $config5['upload_path']          = 'upload/media/'.$username.'/mou/';
+        $config5['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config5['max_size']             = 2000; //set max size allowed in Kilobyte
         $config5['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
 
         $this->load->library('upload', $config5);
         $this->upload->initialize($config5);
 
-        if (!$this->upload->do_upload('file_penawaran_kerja_sama')) //upload and validate
+        if (!$this->upload->do_upload('file_mou')) //upload and validate
         {
-            $data['inputerror'][] = 'file_penawaran_kerja_sama';
+            $data['inputerror'][] = 'file_mou';
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    private function _do_upload_akta_pendirian()
+    {
+
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/akta_pendirian/')) {
+            mkdir('upload/media/'.$username.'/akta_pendirian/', 0777, true);
+        }
+        $config6['upload_path']          = 'upload/media/'.$username.'/akta_pendirian/';
+        $config6['allowed_types']        = 'jpg|jpeg|png|pdf';
+        $config6['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config6['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config6);
+        $this->upload->initialize($config6);
+
+        if (!$this->upload->do_upload('file_akta_pendirian')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_akta_pendirian';
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    
+    private function _do_upload_situ()
+    {
+
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/situ/')) {
+            mkdir('upload/media/'.$username.'/situ/', 0777, true);
+        }
+        $config7['upload_path']          = 'upload/media/'.$username.'/situ/';
+        $config7['allowed_types']        = 'jpg|jpeg|png|pdf';
+        $config7['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config7['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config7);
+        $this->upload->initialize($config7);
+
+        if (!$this->upload->do_upload('file_situ')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_situ';
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    private function _do_upload_siup()
+    {
+
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/siup/')) {
+            mkdir('upload/media/'.$username.'/siup/', 0777, true);
+        }
+        $config8['upload_path']          = 'upload/media/'.$username.'/siup/';
+        $config8['allowed_types']        = 'jpg|jpeg|png|pdf';
+        $config8['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config8['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config8);
+        $this->upload->initialize($config8);
+
+        if (!$this->upload->do_upload('file_siup')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_siup';
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    private function _do_upload_tdp()
+    {
+
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/tdp/')) {
+            mkdir('upload/media/'.$username.'/tdp/', 0777, true);
+        }
+        $config9['upload_path']          = 'upload/media/'.$username.'/tdp/';
+        $config9['allowed_types']        = 'jpg|jpeg|png|pdf';
+        $config9['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config9['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config9);
+        $this->upload->initialize($config9);
+
+        if (!$this->upload->do_upload('file_tdp')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_tdp';
             $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
             echo json_encode($data);
@@ -469,29 +662,34 @@ class Profil extends CI_Controller
     }
 
 
-    private function _do_upload_surat_kabiro()
+    
+    private function _do_upload_laporan_pajak()
     {
-        if (!file_exists('upload/surat_kabiro')) {
-            mkdir('upload/surat_kabiro/', 0777, true);
+
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/laporan_pajak/')) {
+            mkdir('upload/media/'.$username.'/laporan_pajak/', 0777, true);
         }
-        $config6['upload_path']          = 'upload/surat_kabiro/';
-        $config6['allowed_types']        = 'pdf';
-        $config6['max_size']             = 2000; //set max size allowed in Kilobyte
-        $config6['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
- 
-        $this->load->library('upload', $config6);
-        $this->upload->initialize($config6);
- 
-        if(!$this->upload->do_upload('file_surat_kabiro')) //upload and validate
+        $config10['upload_path']          = 'upload/media/'.$username.'/laporan_pajak/';
+        $config10['allowed_types']        = 'jpg|jpeg|png|pdf';
+        $config10['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config10['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config10);
+        $this->upload->initialize($config10);
+
+        if (!$this->upload->do_upload('file_laporan_pajak')) //upload and validate
         {
-            $data['inputerror'][] = 'file_surat_kabiro';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['inputerror'][] = 'file_laporan_pajak';
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
             echo json_encode($data);
             exit();
         }
         return $this->upload->data('file_name');
     }
+
+
 
 
 }
