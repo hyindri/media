@@ -22,11 +22,11 @@
 				</div>
 				<div class="body">					
 					<?php echo form_open_multipart(site_url('profil/updatedata'));?>
-						<input type="hidden" value="{{$data_profil->id}}" name="id_media">
-						<input type="hidden" name="logo_lama" value="{{$data_profil->file_logo_media}}">
+						<input type="hidden" value="{{$data_profil->id}}" name="id_media">						
+						<input type="hidden" name="old_file_logo" value="{{$data_profil->file_logo_media}}">
 						<label for=" ">Logo Media Massa</label>
 						<div style="margin-bottom: 2rem">
-								<img src="<?= base_url('upload/logo-media/'.$this->session->userdata('file_logo_media'));?>" alt="" width="20%">
+								<img src="<?= base_url('upload/media/'.$this->session->userdata('username').'/logo_media/'.$this->session->userdata('file_logo_media'));?>" alt="" width="20%">
 						</div>						
 						<div class="form-group">							
 							<div class="form-line">
@@ -69,7 +69,7 @@
 						<br>
 						<h4>Informasi Media Lainnya</h4>
 						<hr>
-						<label for=" ">NPWP</label>
+						<label for="">NPWP</label>
 						<div class="form-group">
 							<div class="form-line">							
 								<small>File Scan NPWP <b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
@@ -88,11 +88,12 @@
 								<small>File Scan Buku Rekening <b class="text-danger">*File dengan format JPG/JPEG/PNG/PDF dan Maks. 2MB</b></small>
 								<input type="file" id="file_rekening" class="form-control"
 									placeholder="Masukkan Rekening" name="file_rekening">
-								<input type="hidden" id="old_file_rekening" value="{{$data_profil->file_rekening}}">
+								<input type="hidden" id="old_file_rekening" value="{{$data_profil->file_rekening}}" name="old_file_rekening">
 								<small>Nomor Rekening</small>
 								<input type="text" id="no_rek" class="form-control" placeholder="Masukkan No. Rekening" name="no_rek" value="{{$data_profil->rekening}}" required>									
 							</div>
 						</div>	
+						
 						<br>
 						<h4>Berkas Pendukung</h4>
 						<small class="text-danger">*Silahkan upload file jika anda ingin mengubahnya</small>
@@ -178,6 +179,70 @@
 									value="{{$data_profil->file_laporan_pajak}}">
 							</div>
 						</div>
+						<br>
+						<h4>Sosial Media </h4>
+						<hr>
+						<label for="">Facebook</label>
+						<div class="form-group">
+							<div class="col-lg-6">
+								<label for="" style="font-weight: 400">Username</label>
+								<div class="form-line">
+									<input type="text" class='form-control' name="username_fb" value="{{$data_profil->username_fb}}">
+								</div>
+							</div>							
+							<div class="col-lg-6">
+								<label for="" style="font-weight: 400">Pengikut</label>
+								<div class="form-line">	
+									<input type="number" class='form-control' name="pengikut_fb" value="{{$data_profil->pengikut_fb}}">
+								</div>
+							</div>
+						</div>
+						<label for="">Twitter</label>
+						<div class="form-group">
+							<div class="col-lg-6">
+								<label for="" style="font-weight: 400">Username</label>
+								<div class="form-line">
+									<input type="text" class='form-control' name="username_twitter" value="{{$data_profil->username_twitter}}">
+								</div>
+							</div>							
+							<div class="col-lg-6">
+								<label for="" style="font-weight: 400">Pengikut</label>
+								<div class="form-line">	
+									<input type="number" class='form-control' name="pengikut_twitter" value="{{$data_profil->pengikut_twitter}}">
+								</div>
+							</div>
+						</div>
+						<label for="">Instagram</label>
+						<div class="form-group">
+							<div class="col-lg-6">
+								<label for="" style="font-weight: 400">Username</label>
+								<div class="form-line">
+									<input type="text" class='form-control' name="username_ig" value="{{$data_profil->username_ig}}">
+								</div>
+							</div>							
+							<div class="col-lg-6">
+								<label for="" style="font-weight: 400">Pengikut</label>
+								<div class="form-line">	
+									<input type="number" class='form-control' name="pengikut_ig" value="{{$data_profil->pengikut_ig}}">
+								</div>
+							</div>
+						</div>
+						<label for="">Saluran Youtube</label>
+						<div class="form-group">
+							<div class="col-lg-6">
+								<label for="" style="font-weight: 400">Link Youtube</label>
+								<div class="form-line">
+									<input type="text" class='form-control' name="channel_youtube" value="{{$data_profil->channel_youtube}}">
+								</div>
+							</div>							
+							<div class="col-lg-6">
+								<label for="" style="font-weight: 400">Pengikut</label>
+								<div class="form-line">	
+									<input type="number" class='form-control' name="subsriber_youtube" value="{{$data_profil->subscriber_youtube}}">
+								</div>
+							</div>
+						</div>						
+
 						<input type="hidden" name="tipe_media_massa" value="{{$data_profil->tipe_media_massa}}">
 						
 						<a class="deco-off btn bg-red col-white m-t-15 waves-effect" href="{{site_url('dashboard')}}">

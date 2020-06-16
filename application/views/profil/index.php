@@ -17,7 +17,7 @@
                 <div class="profile-body">
                     @if($file_logo_media == TRUE)
                     <div class="image-area">                   
-                        <img class="bg-white" src="{{site_url()}}upload/logo-media/{{$file_logo_media}}" alt="Gambar Profil" width="50%" />
+                        <img class="bg-white" src="<?= base_url('upload/media/'.$this->session->userdata('username').'/logo_media/'.$this->session->userdata('file_logo_media'));?>" alt="Gambar Profil" width="50%" />
                     
                     </div>
                     @elseif($file_logo_media == NULL)

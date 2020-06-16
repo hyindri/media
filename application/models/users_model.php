@@ -208,21 +208,60 @@ class Users_model extends CI_Model
         return $this->db->get_where($this->table_media,['user_id' => $id])->row();
     }
 
-    public function _uploadLogo()
-    {
-        $file_lama = $this->input->post('logo_lama');
-        $config['upload_path'] = './upload/logo-media/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['file_name'] = 'logo-'.$this->session->userdata('id_media');
-        $config['max-size'] = 2048;
-        $this->load->library('upload',$config);
-        if($this->upload->do_upload('file_logo_media')){
-            unlink('./upload/logo-media/'.$file_lama);
-            return $this->upload->data('file_name');
-        }elseif($this->upload->do_upload('file_logo_media') == 0){
-            return $file_lama;
-        }
-    }
+    // public function _upload_logo()
+    // {
+    //     $file_lama = $this->input->post('logo_lama');
+    //     if (!file_exists('./upload/logo-media/')) {
+    //         mkdir('./upload/logo-media/', 0777, true);
+    //     }
+    //     $config['upload_path'] = './upload/logo-media/';
+    //     $config['allowed_types'] = 'gif|jpg|png|jpeg';
+    //     $config['file_name'] = 'logo-'.$this->session->userdata('id_media');
+    //     $config['max-size'] = 2048;
+    //     $this->load->library('upload',$config);
+    //     if($this->upload->do_upload('file_logo_media')){
+    //         unlink('./upload/logo-media/'.$file_lama);
+    //         return $this->upload->data('file_name');
+    //     }elseif($this->upload->do_upload('file_logo_media') == 0){
+    //         return $file_lama;
+    //     }
+    // }
+
+    // public function _upload_npwp()
+    // {
+    //     $file_lama = $this->input->post('old_file_npwp');
+    //     // $album = $this->input->post('username');
+    //     if (!file_exists('./upload/npwp/')) {
+    //         mkdir('./upload/npwp/', 0777, true);
+    //     }
+    //     $config2['upload_path']          = './upload/npwp/';
+    //     $config2['allowed_types']        = 'gif|jpg|png|jpeg';
+    //     $config2['max_size']             = 2000; //set max size allowed in Kilobyte
+    //     // $config2['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+    //     $config2['file_name'] = 'npwp-'.$this->session->userdata('id_media');
+
+    //     $this->load->library('upload', $config2);
+    //     if($this->upload->do_upload('file_npwp')){
+    //         unlink('./upload/npwp/'.$file_lama);
+    //         return $this->upload->data('file_name');
+    //     }elseif($this->upload->do_upload('file_npwp') == 0){
+    //         return $file_lama;
+    //     }
+
+    //     // if (!$this->upload->do_upload('file_npwp')) //upload and validate
+    //     // {
+    //     //     $data['inputerror'][] = 'file_npwp';
+    //     //     $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
+    //     //     $data['status'] = FALSE;
+    //     //     echo json_encode($data);
+    //     //     exit();
+    //     // }
+    //     // return $this->upload->data('file_name');
+    // }
+
+
+
+
 
 
 
