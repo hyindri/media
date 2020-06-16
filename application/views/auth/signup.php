@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Form Wizard | Bootstrap Based Admin Template - Material Design</title>
+    <title>Pendaftaran Akun Baru</title>
     <!-- Favicon-->
     <link rel="icon" href="{{APP_ASSETS}}favicon.ico" type="image/x-icon">
 
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <p>Please wait...</p>
+            <p>Mohon Tunggu Sebentar...</p>
         </div>
     </div>
     <!-- #END# Page Loader -->
@@ -65,13 +65,11 @@
         <div class="container-fluid">
             
             <!-- Advanced Form Example With Validation -->
-            <div class="row" style="padding-top:13px;padding-bottom:0;">
+            <div class="row p-t-10">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h5 class="text-center">Registrasi</h5>
-                            <ul class="header-dropdown m-r--5">
-                            </ul>
                             <p><?php echo $this->session->flashdata('message') ?></p>
                         </div>
                         <div class="body">

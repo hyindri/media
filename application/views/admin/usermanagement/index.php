@@ -121,6 +121,7 @@
             $('#form-filter')[0].reset();
             table.ajax.reload();
         });
+
         $('#export').click(function() {
             var nama = $('#filter_nama').val();
             var status = $('#filter_status').val();
@@ -170,6 +171,35 @@
                 error: function(data) {
                     $('#modal-ubah').modal('hide');
                     toastr.warning('Gagal mengubah user!');
+                    table.ajax.reload();
+                }
+            });
+            return false;
+        });
+
+        $('#table').on('click', '.reset', function() {
+            $('#modal-reset').modal('show');
+            $("#reset_id").val($(this).data('id'));
+            $("#reset_username").val($(this).data('username'));
+        });
+        $('#reset-user').submit('click', function() {
+            $.ajax({
+                type: "POST",
+                url: "{{base_url('usermanagement/reset')}}",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+                success: function(data) {
+                    $('#modal-reset').modal('hide');
+                    // $('#ubah-agenda')[0].reset();
+                    toastr.success('Password user berhasil di reset!');
+                    table.ajax.reload();
+                },
+                error: function(data) {
+                    $('#modal-reset').modal('hide');
+                    toastr.warning('Gagal reset password!');
                     table.ajax.reload();
                 }
             });

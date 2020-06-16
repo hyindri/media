@@ -52,6 +52,7 @@ class Usermanagement extends CI_Controller
             $row[] = $q->mulai_mou;
             $row[] = $q->akhir_mou;
             $row[] = '<div class="btn-group"><button type="button" name="ubah" data-id="' . $q->user_id . '" data-username="' . $q->username . '" data-dibuat_pada="' . $q->dibuat_pada . '" data-status="' . $q->status . '" data-mulai_mou="' . $q->mulai_mou . '" data-akhir_mou="' . $q->akhir_mou . '" class="ubah btn btn-primary btn-xs"><i class="material-icons">edit</i></button>
+            <button type="button" name="reset" data-id="' . $q->user_id . '" data-username="' . $q->username . '" class="reset btn btn-danger btn-xs"><i class="material-icons">history</i></button>
             <div class="btn-group">';
             $data[] = $row;
 
@@ -108,6 +109,18 @@ class Usermanagement extends CI_Controller
         $data = $this->users->update($id, $data_user);
         $data = $this->medmas->ubah($id, $data_media);
         $this->aktivitas->log_ubahakun();
+        json_encode($data);
+    }
+
+    public function reset()
+    {
+        $id = $this->input->post('reset_id');
+        $def = 12345;
+        $password = password_hash($def, PASSWORD_DEFAULT);
+        $data_user = array(
+            'password' => $password,
+        );
+        $data = $this->users->update($id, $data_user);
         json_encode($data);
     }
 

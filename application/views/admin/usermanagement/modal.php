@@ -98,3 +98,27 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal-reset" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                <h4 class="modal-title">Reset Password</h4>
+            </div>
+            {{form_open('',['id' => 'reset-user','role'=>'form'])}}
+                <div class="modal-body">
+                    <div hidden><input type="text" name="reset_id" id="reset_id" class="form-control">
+                    </div>
+                    <div class="text-center">
+                    Reset Password  <input type="text" style="text-align:center;" name="reset_username" id="reset_username" readonly> ?
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-red col-white waves-effect" data-dismiss="modal">BATAL</button>
+                    <button type="submit" class="btn bg-green col-white waves-effect">RESET</button>
+                </div>
+            {{form_close()}}
+        </div>
+    </div>
+</div>
