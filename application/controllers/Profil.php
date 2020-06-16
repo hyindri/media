@@ -79,11 +79,8 @@ class Profil extends CI_Controller
             $row[] = $no;
             $row[] = $field->nama_tenaga;
             $row[] = $field->nama_jabatan;
-            $row[] = $field->nik;
+            $row[] = $field->nik;     
             $row[] = $field->no_hp;
-            $row[] = $field->file;
-            // $row[] = $field->file_sertifikat;      
-            
             $data[] = $row;
         }
 
