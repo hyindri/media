@@ -47,8 +47,8 @@ class Profil extends CI_Controller
                 'tipe_mediamassa' => $this->session->userdata('tipe_mediamassa'),
                 'tipe_publikasi' => $this->session->userdata('tipe_publikasi'),
                 'jumlah_saham' => $this->session->userdata('jumlah_saham'),
-                'mulai_mou' => $this->session->userdata('mulai_mou'),
-                'akhir_mou' => $this->session->userdata('akhir_mou'),
+                'mulai_mou' => date('d/m/Y', strtotime($this->session->userdata('mulai_mou'))),
+                'akhir_mou' => date('d/m/Y', strtotime($this->session->userdata('akhir_mou'))),
                 'file_logo_media' => $this->session->userdata('file_logo_media'),
                 'file_akta_pendirian' => $this->session->userdata('file_akta_pendirian'),
                 'file_situ' => $this->session->userdata('file_situ'),
@@ -73,17 +73,16 @@ class Profil extends CI_Controller
         $list = $this->tenaga->get_datatables();
         $data = array();
         $no = $_POST['start'];
+        $username = $this->session->userdata('username');
         foreach ($list as $field) {
             $no++;
             $row = array();
             $row[] = $no;
             $row[] = $field->nama_tenaga;
             $row[] = $field->nama_jabatan;
-            $row[] = $field->nik;
+            $row[] = $field->nik;     
             $row[] = $field->no_hp;
-            $row[] = $field->file;
-            // $row[] = $field->file_sertifikat;      
-            
+            $row[] = '<a href="' . site_url() . 'upload/Media/' . $username .'/ktp/'.$field->file. '" class="btn bg-indigo">Lihat File</a>';
             $data[] = $row;
         }
 

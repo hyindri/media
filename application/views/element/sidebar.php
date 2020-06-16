@@ -4,15 +4,15 @@
 		<!-- User Info -->
 		<div class="user-info">
 
-			@if($this->session->userdata('status') == 'aktif' AND $this->session->userdata('level') != 'admin')
+			@if($this->session->userdata('file_logo_media') > 1 AND $this->session->userdata('level') != 'admin')
 			<div class="image">
 				<img class="bg-white" src="<?= base_url('upload/media/'.$this->session->userdata('username').'/logo_media/'.$this->session->userdata('file_logo_media'));?>" alt="Gambar Profil" width="48" height="48" />
 			</div>
-			@elseif($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'superadmin')
+			@elseif($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'superadmin' || $this->session->userdata('file_logo_media') == null)
 			<div class="image">
 				<img class="bg-white" src="{{APP_ASSETS}}images/person.svg" width="48" height="48" alt="User" />
 			</div>
-			@elseif($this->session->userdata('status') == 'registrasi')
+			@elseif($this->session->userdata('status'))
 			<div class="image">
 				<img class="bg-white"src="{{APP_ASSETS}}images/person.svg" width="48" height="48" alt="User" />
 			</div>
