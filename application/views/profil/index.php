@@ -413,7 +413,7 @@
 				type: "POST"
 			},
 			"columnDefs": [{
-				'targets': [1],
+				'targets': [1,3,4],
 				'orderable': false,
 			}, {
 				'targets': [0],
