@@ -276,7 +276,7 @@
                         <li>
                             <div class="title">
                                 <i class="material-icons">description</i>
-                                Akta Pendirian
+                                Akta Pendirian dan Perubahan Terakhir
                             </div>
                             <div class="content">                            
                             @if($file_akta_pendirian > 0)
@@ -336,7 +336,7 @@
                         <li>
                             <div class="title">
                                 <i class="material-icons">description</i>
-                                Laporan Pajak
+                                Laporan Pajak ( 3 Bulan Terakhir )
                             </div>
                             <div class="content">
                                 @if($file_laporan_pajak > 0 )
