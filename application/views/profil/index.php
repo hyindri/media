@@ -367,11 +367,12 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama</th>
+                                    <th width="25%">Nama</th>
                                     <th>Jabatan</th>
-                                    <th>NIK</th>
+                                    <th width="15%">NIK</th>
                                     <th>No. Handphone</th>   
-                                    <th>File</th>                                                            
+                                    <th width="10%">File KTP</th>                                                            
+                                    <th width="10%">File Sertifikat</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -414,10 +415,10 @@
 				type: "POST"
 			},
 			"columnDefs": [{
-				'targets': [1,3,4,5],
+				'targets': [1,3,4,5,6],
 				'orderable': false,
 			}, {
-				'targets': [0],
+				'targets': [0,5,6],
 				'className': 'text-center'
 			}],
 			"pageLength": 10,

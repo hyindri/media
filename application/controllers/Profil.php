@@ -83,6 +83,7 @@ class Profil extends CI_Controller
             $row[] = $field->nik;     
             $row[] = $field->no_hp;
             $row[] = '<a href="' . site_url() . 'upload/Media/' . $username .'/ktp/'.$field->file. '" class="btn bg-indigo">Lihat File</a>';
+            $row[] = '<a href="' . site_url() . 'upload/Media/' . $username .'/sertifikat/'.$field->file. '" class="btn bg-indigo">Lihat File</a>';
             $data[] = $row;
         }
 
