@@ -115,7 +115,7 @@ class Usermanagement extends CI_Controller
     public function reset()
     {
         $id = $this->input->post('reset_id');
-        $def = 12345;
+        $def = 123;
         $password = password_hash($def, PASSWORD_DEFAULT);
         $data_user = array(
             'password' => $password,
