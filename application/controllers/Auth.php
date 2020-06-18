@@ -394,7 +394,7 @@ class Auth extends CI_Controller
 
 		if (!is_dir('upload/media/' . $album)) {
 			mkdir('upload/media/' . $album, 0777, true);
-			for ($i = 1; $i <= 12; $i++) {
+			for ($i = 1; $i <= 11; $i++) {
 				if (!empty($_FILES['berkas_'.$i]['name'])) {
 					if ($this->upload->do_upload('berkas_'.$i)) {
 						$fileData = $this->upload->data();
@@ -412,12 +412,11 @@ class Auth extends CI_Controller
 				'file_tdp' => $uploadData['4']['file_name'],
 				'file_npwp' => $uploadData['5']['file_name'],
 				'file_rekening' => $uploadData['6']['file_name'],
-				'file_mou' => $uploadData['7']['file_name'],
-				'file_logo_media' => $uploadData['8']['file_name'],
-				'file_sertifikat_uji' => $uploadData['9']['file_name'],
-				'file_verifikasi_pers' => $uploadData['10']['file_name'],
-				'file_laporan_pajak' => $uploadData['11']['file_name'],
-				'file_sertifikat' => $uploadData['12']['file_name'],
+				'file_logo_media' => $uploadData['7']['file_name'],
+				'file_sertifikat_uji' => $uploadData['8']['file_name'],
+				'file_verifikasi_pers' => $uploadData['9']['file_name'],
+				'file_laporan_pajak' => $uploadData['10']['file_name'],
+				'file_sertifikat' => $uploadData['11']['file_name'],
 			);
 
 			$result = $this->medmas->simpan_upload($get_id, $data);

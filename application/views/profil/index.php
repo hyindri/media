@@ -381,7 +381,7 @@
 			<div class="card">
 				<div class="header">
 					<h2>
-						PERSONEL MEDIA
+						Personel Media
 					</h2>
 				</div>
 				<div class="body">
