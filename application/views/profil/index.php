@@ -211,7 +211,11 @@
 								Mulai MoU
 							</div>
 							<div class="content">
+								@if($this->session->userdata('mulai_mou') == '0000-00-00')
+								<small class="text-danger">MoU Belum ada</small>
+								@else
 								{{$mulai_mou}}
+								@endif
 							</div>
 						</li>
 						<li>
@@ -220,7 +224,11 @@
 								Akhir MoU
 							</div>
 							<div class="content">
+								@if($this->session->userdata('akhir_mou') == '0000-00-00')
+								<small class="text-danger">MoU Belum ada</small>
+								@else
 								{{$akhir_mou}}
+								@endif
 							</div>
 						</li>
 						<li>
