@@ -73,7 +73,7 @@ class Profil extends CI_Controller
         $list = $this->tenaga->get_datatables();
         $data = array();
         $no = $_POST['start'];
-        $username = $this->session->userdata('username');
+        $username = $this->session->userdata('username');                
         foreach ($list as $field) {
             $no++;
             $row = array();
@@ -83,7 +83,8 @@ class Profil extends CI_Controller
             $row[] = $field->nik;     
             $row[] = $field->no_hp;
             $row[] = '<a href="' . site_url() . 'upload/Media/' . $username .'/ktp/'.$field->file. '" class="btn bg-indigo">Lihat File</a>';
-            $row[] = '<a href="' . site_url() . 'upload/Media/' . $username .'/sertifikat/'.$field->file. '" class="btn bg-indigo">Lihat File</a>';
+            $row[] = '<a href="' . site_url() . 'upload/Media/' . $username .'/sertifikat/'.$field->file_sertifikat. '" class="btn bg-indigo">Lihat File</a>';
+            $row[] = '<button class="btn btn-info btn-sm edit-tenaga" data-id="' . $field->id_tenaga . '" >Edit</button>';
             $data[] = $row;
         }
 
@@ -96,6 +97,7 @@ class Profil extends CI_Controller
 
         echo json_encode($output);
     }
+
 
     public function detail($id)
     {
@@ -681,6 +683,106 @@ class Profil extends CI_Controller
         if (!$this->upload->do_upload('file_laporan_pajak')) //upload and validate
         {
             $data['inputerror'][] = 'file_laporan_pajak';
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+    public function get_detail_tenaga()
+    {
+        $id = $this->input->post('id_tenaga');
+        $data = $this->tenaga->getById($id);
+        $output = array();
+        foreach ($data as $row) {
+            $output['id_tenaga'] = $row->id_tenaga;    
+            $output['id_jabatan'] = $row->jabatan_id;
+            $output['nama_tenaga']  = $row->nama_tenaga; 
+            $output['jabatan_tenaga'] = $row->nama_jabatan;            
+            $output['no_handphone'] = $row->no_hp;
+            $output['file_ktp'] = $row->file;
+            $output['file_sertifikat'] = $row->file_sertifikat;
+        }
+       echo json_encode($output);    
+    
+    }
+
+    public function ubah_personel()
+    {
+        $id = $this->input->post('edit_id');
+        $data = array(
+            'nama_tenaga' => $this->input->post('nama_tenaga'),
+            'jabatan_id' => $this->input->post('jabatan_idnya'),
+            'no_hp' => $this->input->post('no_hp'),            
+        );  
+
+        if (!empty($_FILES['file_ktp']['name'])) {
+            if (!empty($this->input->post('file_ktp_old'))) {
+                unlink('upload/media/'.$username.'/ktp/' . $this->input->post('file_ktp_old'));
+            }                          
+            $upload = $this->_do_upload_ubah_ktp();
+            $data['file'] = $upload;
+        }
+
+        if (!empty($_FILES['file_sertifikat']['name'])) {
+            if (!empty($this->input->post('file_sertifikat_old'))) {
+                unlink('upload/media/'.$username.'/sertifikat/' . $this->input->post('file_sertifikat_old'));
+            }                          
+            $upload = $this->_do_upload_ubah_sertifikat();
+            $data['file_sertifikat'] = $upload;
+        }
+
+        $result = $this->tenaga->updatePersonel($id, $data);        
+        echo json_encode($result);                
+    }
+
+    private function _do_upload_ubah_ktp()
+    {
+
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/ktp/')) {
+            mkdir('upload/media/'.$username.'/ktp/', 0777, true);
+        }
+        $config8['upload_path']          = 'upload/media/'.$username.'/ktp/';
+        $config8['allowed_types']        = 'jpg|jpeg|png|pdf';
+        $config8['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config8['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config8);
+        $this->upload->initialize($config8);
+
+        if (!$this->upload->do_upload('file_ktp')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_ktp';
+            $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
+
+    private function _do_upload_ubah_sertifikat()
+    {
+
+        $username = $this->session->userdata('username');
+        if (!file_exists('upload/media/'.$username.'/sertifikat/')) {
+            mkdir('upload/media/'.$username.'/sertifikat/', 0777, true);
+        }
+        $config8['upload_path']          = 'upload/media/'.$username.'/sertifikat/';
+        $config8['allowed_types']        = 'jpg|jpeg|png|pdf';
+        $config8['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config8['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config8);
+        $this->upload->initialize($config8);
+
+        if (!$this->upload->do_upload('file_sertifikat')) //upload and validate
+        {
+            $data['inputerror'][] = 'file_sertifikat';
             $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
             echo json_encode($data);
