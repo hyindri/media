@@ -2,17 +2,22 @@
 
 class Tenaga_model extends CI_Model
 {
-    public $table = 'tmst_tenaga';
-    public $column_order = array(null,'tmst_tenaga.id','tmst_media_massa.media_massa_id','tmst_jabatan.jabatan_id','nama_tenaga','tmst_tenaga.nik','tmst_tenaga.file_ktp','tmst_tenaga.file_sertifikat','tmst_tenaga.no_hp');
-    public $column_search = array('tmst_tenaga.id','tmst_media_massa.media_massa_id','tmst_jabatan.jabatan_id','tmst_tenaga.nama_tenaga','tmst_tenaga.nik','tmst_tenaga.file_ktp','tmst_tenaga.file_sertifikat','tmst_tenaga.no_hp');
-    public $order = array('tmst_tenaga.id' => 'desc');
+    public $table = 'tmst_tenaga';    
+
+    public $select_column = ('a.id as id_tenaga , a.media_massa_id, b.nama_media , a.jabatan_id, c.nama_jabatan , a.nama_tenaga , a.nik , a.file , a.no_hp , a.file_sertifikat');
+    
+    public $column_order = array(null,'a.id as id_tenaga','a.media_massa_id','a.jabatan_id','a.nama_tenaga','a.nik','a.file','a.no_hp','a.file_sertifikat');
+
+    public $column_search = array('a.id as id_tenaga','a.media_massa_id','a.jabatan_id','a.nama_tenaga','a.nik','a.file','a.no_hp','a.file_sertifikat');
+    public $order = array('a.id' => 'desc');
 
     public function _get_datatables_query()
     {
-        $this->db->from($this->table);
-        $this->db->join('tmst_media_massa','tmst_media_massa.id = tmst_tenaga.media_massa_id','left');
-        $this->db->join('tmst_jabatan','tmst_jabatan.id = tmst_tenaga.jabatan_id','left');
-        $this->db->where('tmst_tenaga.media_massa_id',$this->session->userdata('id_media'));
+        $this->db->select($this->select_column);
+        $this->db->from("$this->table as a");
+        $this->db->join('tmst_media_massa as b','a.media_massa_id = b.id');
+        $this->db->join('tmst_jabatan as c','a.jabatan_id = c.id');
+        $this->db->where('a.media_massa_id',$this->session->userdata('id_media'));
 
         $i = 0;
 
@@ -71,6 +76,23 @@ class Tenaga_model extends CI_Model
         $query = $this->db->get($this->table);
         return $query->result();
     }
+
+    public function getById($id)
+    {                        
+        $this->db->select($this->select_column);        
+        $this->db->from("$this->table as a");
+        $this->db->join('tmst_media_massa as b','a.media_massa_id = b.id');
+        $this->db->join('tmst_jabatan as c','a.jabatan_id = c.id');
+        $this->db->where('a.id', $id);        
+        return $this->db->get()->result();
+    }
+
+    public function updatePersonel($id,$data)
+    {
+        $this->db->where('a.id',$id);
+        $this->db->update('tmst_tenaga as a', $data);
+    }
+
 }
 
 
