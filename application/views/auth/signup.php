@@ -296,8 +296,16 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <label class="form-label">MOU* <i>maks. 2MB</i></label>
+                                            <div class="form-group form-float">
+                                                <div class="form-line"> 
+                                                    <input type="file" class="form-control" name="berkas_7" required accept="application/pdf">
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Sertifikat Uji* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_7" required accept="application/pdf">
@@ -305,25 +313,25 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Sertifikat Uji* <i>maks. 2MB</i></label>
+                                            <label class="form-label">Logo Media* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line"> 
-                                                    <input type="file" class="form-control" name="berkas_8" required accept="application/pdf">
+                                                <input type="file" class="form-control" name="berkas_8" required accept="image/*">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="form-label">Logo Media* <i>maks. 2MB</i></label>
+                                            <label class="form-label">Verifikasi Pers* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line"> 
-                                                <input type="file" class="form-control" name="berkas_9" required accept="image/*">
+                                                    <input type="file" class="form-control" name="berkas_9" required accept="application/pdf">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Verifikasi Pers* <i>maks. 2MB</i></label>
+                                            <label class="form-label">Laporan Pajak (3 bulan terakhir)* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line"> 
                                                     <input type="file" class="form-control" name="berkas_10" required accept="application/pdf">
@@ -333,18 +341,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="form-label">Laporan Pajak (3 bulan terakhir)* <i>maks. 2MB</i></label>
-                                            <div class="form-group form-float">
-                                                <div class="form-line"> 
-                                                    <input type="file" class="form-control" name="berkas_11" required accept="application/pdf">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <label class="form-label">Sertifikat* <i>maks. 2MB</i></label>
                                             <div class="form-group form-float">
                                                 <div class="form-line"> 
-                                                    <input type="file" class="form-control" name="berkas_12" required accept="application/pdf">
+                                                    <input type="file" class="form-control" name="berkas_11" required accept="application/pdf">
                                                 </div>
                                             </div>
                                         </div>
