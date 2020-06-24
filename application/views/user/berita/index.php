@@ -117,7 +117,7 @@
                 }
             },
             "columnDefs": [{
-                "targets": [0, 3,4, 5],
+                "targets": [0, 3, 4, 5],
                 "orderable": false,
                 "class": "text-center"
             }, ],
@@ -154,9 +154,9 @@
                     $('#lihat_jumlah_view').html(data.jumlah_view);
                     $('#lihat_dibuat_tanggal').html(data.dibuat_tanggal);
                     $('#lihat_dibuat_pukul').html(data.dibuat_pukul);
-                    $('#lihat_oleh').html(data.diperiksa_oleh);
-                    $('#lihat_pada').html(data.diperiksa_pada);
-                    $('#lihat_keterangan').html(data.keterangan);
+                    $('#lihat_oleh').html('-');
+                    $('#lihat_pada').html('-');
+                    $('#lihat_keterangan').html('-');
                     if (data.status_berita == 'valid') {
                         if (data.tipe_media_massa == 'radio') {
                             $('#lihat_file').html('<audio controls target="_blank" class="thumbnail col-xs-12 col-sm-12 col-md-6 col-lg-8"><source src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" type="audio/mp3"></audio>');
@@ -170,7 +170,8 @@
                             logo.push(value.logo);
                             $('#lihat_share').append('<div class="col-xs-12 col-sm-12 col-md-6 col-lg-3"><a class="deco-off"><img class="logo-sm m-logo" src="{{site_url()}}upload/logo/' + value.logo + '" ">' + value.nama + '</a></div>');
                         });
-
+                        $('#lihat_oleh').html(data.diperiksa_oleh);
+                        $('#lihat_pada').html(data.diperiksa_pada);
                         $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                         $('#lihat_status_berita').html('<span class="badge bg-green">Valid</span>');
                         $('.keterangan').hide();
@@ -188,6 +189,8 @@
                         } else {
                             $('#lihat_link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                         }
+                        $('#lihat_oleh').html(data.diperiksa_oleh);
+                        $('#lihat_pada').html(data.diperiksa_pada);
                         $('#lihat_status_berita').html('<span class="badge bg-blue">Draft Valid</span>');
                         $('.link').hide();
                         $('.sharing').hide();
@@ -205,6 +208,9 @@
                             $('.file').show();
                             $('#lihat_file').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
                         }
+                        $('#lihat_oleh').html(data.diperiksa_oleh);
+                        $('#lihat_pada').html(data.diperiksa_pada);
+                        $('#lihat_keterangan').html(data.keterangan);
                         $('#lihat_status_berita').html('<span class="badge bg-red">Draft Belum Valid</span>');
                     }
 

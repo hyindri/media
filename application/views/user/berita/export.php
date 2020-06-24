@@ -82,8 +82,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </ul>   
                                 <?php } ?>
                             </td>
-                            <td style="padding:3;word-wrap: break-word;"><?= $media->jumlah_view ?></td>
-                            <td><?= $media->status_berita ?></td>
+                            <td style="padding:3;word-wrap: break-word;"><?= number_format($media->jumlah_view,0,'.','.') ?></td>
+                            <?php if($media->status_berita = 'valid') {
+                                echo "<td style='text-align:center;'>Valid</td>";
+                            }else if($media->status_berita = 'oke'){
+                                echo "<td style='text-align:center;'>Draft valid</td>";
+                            }else{
+                                echo "<td style='text-align:center;'>Belum valid</td>";
+                            } 
+                            ?>
+                           
                         </tr>
                     <?php } ?>
 

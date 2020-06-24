@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 define("APP_ASSETS", base_url('assets/'));
 define('APP_NAME', " ");
@@ -7,7 +7,8 @@ define('APP_NAME', " ");
 date_default_timezone_set("Asia/Bangkok");
 
 if (!function_exists('bulan')) {
-    function bulan(){
+    function bulan()
+    {
         $bulan = Date('m');
         switch ($bulan) {
             case 1:
@@ -61,8 +62,28 @@ if (!function_exists('bulan')) {
  * @return string format tanggal sekarang (contoh: 22 Desember 2016)
  */
 if (!function_exists('tanggal')) {
-    function tanggal() {
-        $tanggal = Date('d') . " " .bulan(). " ".Date('Y');
+    function tanggal()
+    {
+        $tanggal = Date('d') . " " . bulan() . " " . Date('Y');
         return $tanggal;
     }
+}
+
+function tanggal_indo($tanggal)
+{
+	$bulan = array (1 =>   'Januari',
+				'Februari',
+				'Maret',
+				'April',
+				'Mei',
+				'Juni',
+				'Juli',
+				'Agustus',
+				'September',
+				'Oktober',
+				'November',
+				'Desember'
+			);
+	$split = explode('-', $tanggal);
+	return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
 }

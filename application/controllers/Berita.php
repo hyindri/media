@@ -68,7 +68,7 @@ class Berita extends CI_Controller
                 $no++;
                 $row = array();
                 $row[] = $no;
-                $row[] = date('d/m/Y', strtotime($q->dibuat_tanggal));
+                $row[] = tanggal_indo($q->dibuat_tanggal) . ' (' . date('H:i:s', strtotime($q->dibuat_pukul)) . ')';
                 $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama_media . '</a>';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>' . $q->judul_berita . '</a>';
                 if ($q->status_berita == 'valid') {
@@ -83,7 +83,7 @@ class Berita extends CI_Controller
                 $no++;
                 $row = array();
                 $row[] = $no;
-                $row[] = tanggal($q->dibuat_tanggal);
+                $row[] = tanggal_indo($q->dibuat_tanggal) . ' (' . date('H:i:s', strtotime($q->dibuat_pukul)) . ')';
                 $row[] = '<a href="' . site_url() . 'profil/detail/' . $q->media_massa_id . '" target="_blank">' . $q->nama_media . '</a>';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>' . $q->judul_berita . '</a>';
                 if ($q->status_berita == 'valid') {
@@ -98,7 +98,7 @@ class Berita extends CI_Controller
                 $no++;
                 $row = array();
                 $row[] = $no;
-                $row[] = tanggal($q->dibuat_tanggal) . ' (' . date('H:i:s', strtotime($q->dibuat_pukul)) . ')';
+                $row[] = tanggal_indo($q->dibuat_tanggal) . ' (' . date('H:i:s', strtotime($q->dibuat_pukul)) . ')';
                 $row[] = '<a href="' . $q->link_berita . '" target="_blank" title=' . $q->link_berita . '>' . $q->judul_berita . '</a>';
 
                 if ($q->status_berita == 'valid') {
@@ -173,11 +173,11 @@ class Berita extends CI_Controller
             $output['link_berita'] = $row->link_berita;
             $output['file'] = $row->file;
             $output['share'] = $row->sosmed_id;
-            $output['jumlah_view'] = $row->jumlah_view;
+            $output['jumlah_view'] = number_format($row->jumlah_view,0,'.','.');
             $output['status_berita'] = $row->status_berita;
             $output['keterangan'] = $row->keterangan;
             $output['dibuat_oleh'] = $row->dibuat_oleh;
-            $output['dibuat_tanggal'] = tanggal($row->dibuat_tanggal);
+            $output['dibuat_tanggal'] = tanggal_indo($row->dibuat_tanggal);
             $output['dibuat_pukul'] = $row->dibuat_pukul;
             $output['diperiksa_oleh'] = $row->diperiksa_oleh;
             $output['diperiksa_pada'] = date('d-m-Y (h:i:s)', strtotime($row->diperiksa_pada));

@@ -187,7 +187,7 @@
                     $('#jumlah_view').html(data.jumlah_view);
                     $('#judul_berita').html(data.judul_berita);
                     $('#narasi_berita').html(data.narasi_berita);
-                    $('#dibuat_tanggal').html(data.dibuat_tanggal + ' : ' + data.dibuat_pukul);
+                    $('#dibuat_tanggal').html(data.dibuat_tanggal + ' ('+ data.dibuat_pukul +')');
                     $('#keterangan').html(data.keterangan);
                     $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
 

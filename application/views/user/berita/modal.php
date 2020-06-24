@@ -111,7 +111,7 @@
                 <label for="ubah_file">File</label>
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="file" name="file" id="ubah_file"  data-max-size="5e+6" class="form-control">
+                        <input type="file" name="file" id="ubah_file" data-max-size="5e+6" class="form-control">
                         <span id="file_lama_view"></span>
                         <input type="hidden" name="old_file" id="file_lama" class="form-control">
                     </div>
@@ -255,8 +255,7 @@
                             <span>:</span>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                            <span id="lihat_dibuat_tanggal"></span>
-                            <span id="lihat_dibuat_pukul"></span>
+                            <span id="lihat_dibuat_tanggal"></span> (<span id="lihat_dibuat_pukul"></span>)
                         </div>
                     </div>
                     <!-- Batas Biru  -->
@@ -286,18 +285,6 @@
                             <span id="lihat_pada"> - </span>
                         </div>
                     </div>
-                    <!-- Status Berita  -->
-                    <div class="row p-modal">
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                            <span>Status Berita</span>
-                        </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                            <span>:</span>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
-                            <span id="lihat_status_berita"></span>
-                        </div>
-                    </div>
                     <!-- Keterangan  -->
                     <div class="row p-modal keterangan">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
@@ -308,6 +295,18 @@
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
                             <span id="lihat_keterangan"> - </span>
+                        </div>
+                    </div>
+                    <!-- Status Berita  -->
+                    <div class="row p-modal">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+                            <span>Status Berita</span>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <span>:</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">
+                            <span id="lihat_status_berita"></span>
                         </div>
                     </div>
                 </div>
