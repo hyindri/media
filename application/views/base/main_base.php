@@ -139,7 +139,18 @@
     <!-- <script src="{{APP_ASSETS}}js/pages/index.js"></script> -->
     <!-- <script src="{{APP_ASSETS}}js/pages/tables/jquery-datatable.js"></script> -->
     <script>
-
+        function addCommas(nStr) {
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + '.' + '$2');
+            }
+            return x1 + x2;
+        }
+        
         $('.ubah_notif').on('click', function() {
             $.ajax({
                 type: "POST",
@@ -151,13 +162,13 @@
         });
 
         $('.navbar-right .dropdown-menu .body .menu').slimscroll({
-        height: '500px',
-        color: 'rgba(0,0,0,0.5)',
-        size: '4px',
-        alwaysVisible: false,
-        borderRadius: '0',
-        railBorderRadius: '0'
-    });
+            height: '500px',
+            color: 'rgba(0,0,0,0.5)',
+            size: '4px',
+            alwaysVisible: false,
+            borderRadius: '0',
+            railBorderRadius: '0'
+        });
     </script>
 
     <!-- Demo Js -->

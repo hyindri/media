@@ -105,7 +105,7 @@
                 <label for="ubah_jumlah_view">Jumlah View</label>
                 <div class="form-group">
                     <div class="form-line">
-                        <input name="ubah_jumlah_view" id="ubah_jumlah_view" class="form-control" placeholder="Jumlah orang yang melihat berita anda.." required>
+                        <input type="number" name="ubah_jumlah_view" id="ubah_jumlah_view" class="form-control" placeholder="Jumlah orang yang melihat berita anda.." required title="Lütfen isaretli yerleri doldurunuz">
                     </div>
                 </div>
                 <label for="ubah_file">File</label>

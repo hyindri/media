@@ -184,7 +184,7 @@
                         }
                     }
                     $('#nama').html(data.nama);
-                    $('#jumlah_view').html(data.jumlah_view);
+                    $('#jumlah_view').html(addCommas(data.jumlah_view));
                     $('#judul_berita').html(data.judul_berita);
                     $('#narasi_berita').html(data.narasi_berita);
                     $('#dibuat_tanggal').html(data.dibuat_tanggal + ' ('+ data.dibuat_pukul +')');

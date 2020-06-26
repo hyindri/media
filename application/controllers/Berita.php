@@ -173,7 +173,7 @@ class Berita extends CI_Controller
             $output['link_berita'] = $row->link_berita;
             $output['file'] = $row->file;
             $output['share'] = $row->sosmed_id;
-            $output['jumlah_view'] = number_format($row->jumlah_view,0,'.','.');
+            $output['jumlah_view'] = $row->jumlah_view;
             $output['status_berita'] = $row->status_berita;
             $output['keterangan'] = $row->keterangan;
             $output['dibuat_oleh'] = $row->dibuat_oleh;

@@ -133,6 +133,7 @@
             table.ajax.reload();
         });
 
+
         $('#table').on('click', '.lihat', function() {
             $('#modal-lihat').modal('show');
 
@@ -151,7 +152,7 @@
                     $('#lihat_nama').html(data.nama);
                     $('#lihat_judul_berita').html(data.judul_berita);
                     $('#lihat_narasi_berita').html(data.narasi_berita);
-                    $('#lihat_jumlah_view').html(data.jumlah_view);
+                    $('#lihat_jumlah_view').html(addCommas(data.jumlah_view));
                     $('#lihat_dibuat_tanggal').html(data.dibuat_tanggal);
                     $('#lihat_dibuat_pukul').html(data.dibuat_pukul);
                     $('#lihat_oleh').html('-');
@@ -208,9 +209,23 @@
                             $('.file').show();
                             $('#lihat_file').html('<a href="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" target="_blank" class="thumbnail"> <img class="img-responsive" src="{{site_url()}}upload/berita/' + "{{$this->session->userdata('username')}}" + '/' + id_berita + '/' + data.file + '" width="200px" height="200px"></a>');
                         }
-                        $('#lihat_oleh').html(data.diperiksa_oleh);
-                        $('#lihat_pada').html(data.diperiksa_pada);
-                        $('#lihat_keterangan').html(data.keterangan);
+                        if (data.diperiksa_oleh == null) {
+                            $('#lihat_oleh').html('-');
+                        } else {
+                            $('#lihat_oleh').html(data.diperiksa_oleh);
+                        }
+
+                        if (data.diperiksa_pada == '01-01-1970 (07:00:00)') {
+                            $('#lihat_pada').html('-');
+                        } else {
+                            $('#lihat_pada').html(data.diperiksa_pada);
+                        }
+
+                        if (data.keterangan == null) {
+                            $('#lihat_keterangan').html('-');
+                        } else {
+                            $('#lihat_keterangan').html(data.diperiksa_pada);
+                        }
                         $('#lihat_status_berita').html('<span class="badge bg-red">Draft Belum Valid</span>');
                     }
 

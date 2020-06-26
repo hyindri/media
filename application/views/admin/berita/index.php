@@ -142,11 +142,11 @@
                     success: function(data) {
                         $('#share').empty();
                         $('#nama').html(data.nama);
-                        $('#jumlah_view').html(data.jumlah_view);
+                        $('#jumlah_view').html(addCommas(data.jumlah_view));
                         $('#judul_berita').html(data.judul_berita);
                         $('#narasi_berita').html(data.narasi_berita);
                         $('#tipe_media_massa').html(data.tipe_media_massa);
-                        $('#dibuat_tanggal').html(data.dibuat_tanggal + ' (' + data.dibuat_pukul +')');
+                        $('#dibuat_tanggal').html(data.dibuat_tanggal + ' (' + data.dibuat_pukul + ')');
                         $('#keterangan').val(data.keterangan);
                         $('#link_berita').html('<a href="' + data.link_berita + '" target="_blank">' + data.link_berita + '</a>');
                         var nama = [];
@@ -271,6 +271,7 @@
                 });
                 return false;
             });
+
 
             $('.datepicker').bootstrapMaterialDatePicker({
                 time: false
