@@ -105,8 +105,9 @@ class Medmas_model extends CI_Model
     // get data by id
     function get_by_id($id)
     {
-        $this->db->where($this->id, $id);
-        return $this->db->get($this->table)->row();
+        $this->db->where('a.id', $id);
+        $this->db->join('tmst_user as b', 'b.id = a.user_id', 'left');
+        return $this->db->get($this->table. ' as a')->row();
     }
     
     // get total rows

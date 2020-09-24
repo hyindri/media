@@ -79,6 +79,7 @@ class Auth extends CI_Controller
                             'file_npwp' => $media['file_npwp'],
                             'file_rekening' => $media['file_rekening'],
                             'file_mou' => $media['file_mou'],
+                            'file_sertifikat' => $media['file_sertifikat'],
                             'file_sertifikat_uji' => $media['file_sertifikat_uji'],
                             'file_laporan_pajak' => $media['file_laporan_pajak'],
                             'file_verifikasi_pers' => $media['file_verifikasi_pers'],                           
@@ -211,7 +212,7 @@ class Auth extends CI_Controller
                                                     'subscriber_youtube' => $this->input->post('subscriber_youtube'),
                                                 );
 
-                                                
+                                
                                                 $data = $this->medmas->simpan($data_media_massa);
                                                 $get_id = $data_media_massa['id'];
                                                 $this->uploadFile($get_id);
@@ -223,6 +224,7 @@ class Auth extends CI_Controller
                                                     'nik'		        =>	$this->input->post('nik1'),
                                                     'no_hp'	            =>	$this->input->post('no_hp1')
                                                 );
+
                                                 $upload1 = $this->_do_upload_ktp1();
                                                 $data_tenaga1['file'] = $upload1;
                                                 $up1 = $this->_do_upload_sertifikat1();

@@ -28,11 +28,12 @@
                 </div>
             </div>
             <div class="row m-t-15 m-b--20">
-                <div class="col-xs-6">
-                    <a href="<?= site_url('auth/signup') ?>">Daftar Akun Baru</a>
+                <div class="col-xs-12">
+                    <a class="text-center" href="<?= site_url('auth/signup') ?>">Daftar Akun Baru</a>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
 @endsection

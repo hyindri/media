@@ -60,6 +60,7 @@ class Profil extends CI_Controller
                 'file_laporan_pajak' => $this->session->userdata('file_laporan_pajak'),
                 'file_verifikasi_pers' => $this->session->userdata('file_verifikasi_pers'),
                 'file_mou' => $this->session->userdata('file_mou'),
+                'file_sertifikat' => $this->session->userdata('file_sertifikat'),
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user')),
             );         
@@ -107,6 +108,7 @@ class Profil extends CI_Controller
                 'nama' => $row->nama_media,
                 'status' => $this->session->userdata('status'),
                 'perusahaan' => $row->nama_perusahaan,
+                'username' => $row->username,
                 'alamat' => $row->alamat_perusahaan,
                 'npwp' => $row->npwp,
                 'rekening' => $row->rekening,
@@ -136,6 +138,7 @@ class Profil extends CI_Controller
                 'file_laporan_pajak' => $row->file_laporan_pajak,
                 'file_verifikasi_pers' => $row->file_verifikasi_pers,
                 'file_mou' => $row->file_mou,
+                'file_sertifikat' => $row->file_sertifikat,
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
@@ -151,6 +154,7 @@ class Profil extends CI_Controller
                 'rekening' => $row->rekening,
                 'telp' => $row->no_telp,
                 'email' => $row->email,
+                'username'=> $row->username,
                 'username_fb' => $row->username_fb,
                 'username_ig' => $row->username_ig,
                 'username_twitter' => $row->username_twitter,
@@ -175,6 +179,7 @@ class Profil extends CI_Controller
                 'file_laporan_pajak' => $row->file_laporan_pajak,
                 'file_verifikasi_pers' => $row->file_verifikasi_pers,
                 'file_mou' => $row->file_mou,
+                'file_sertifikat' => $row->file_sertifikat,
                 'notif' => $this->notifikasi->get_by_id($this->session->userdata('id_user')),
                 'jumlah_notif' => $this->notifikasi->get_by_jumlah($this->session->userdata('id_user'))
             );
@@ -217,7 +222,6 @@ class Profil extends CI_Controller
         $select_tipe = $data_select_tipe;
         if (!$data['data_profil']) show_404();
         $data['tipe_selected']  = $select_tipe;
-        //dd($data);
         view('profil.edit', $data);
     }
 
@@ -712,6 +716,7 @@ class Profil extends CI_Controller
     public function ubah_personel()
     {
         $id = $this->input->post('edit_id');
+        $username  = $this->session->userdata('username');
         $data = array(
             'nama_tenaga' => $this->input->post('nama_tenaga'),
             'jabatan_id' => $this->input->post('jabatan_idnya'),

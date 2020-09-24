@@ -55,8 +55,8 @@
     <!-- #END# Page Loader -->
 
     <div class="text-center" style="padding-top:70px;">
-        <p style="font-size:35.5px;margin-bottom:0;"><b>Aplikasi Media</b></p>
-        <small>Kabupaten Bintan</small>
+        <p style="font-size:35.5px;margin-bottom:0;"><b>SIMADU</b></p>
+        <small>Sistem Informasi Terpadu</small>
     </div>
     <?php if (!empty($message)){
         echo $message;

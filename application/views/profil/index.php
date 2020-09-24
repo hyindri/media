@@ -18,9 +18,8 @@
 					@if($file_logo_media > 1)
 					<div class="image-area">
 						<img class="bg-white"
-							src="<?= base_url('upload/media/'.$this->session->userdata('username').'/logo_media/'.$this->session->userdata('file_logo_media'));?>"
+							src="<?= base_url('upload/media/'.$username.'/logo_media/'.$file_logo_media);?>"
 							alt="Gambar Profil" width="50%" />
-
 					</div>
 					@elseif($file_logo_media == NULL)
 					<div class="image-area">
@@ -365,6 +364,22 @@
 								<a href="{{site_url()}}upload/media/{{$username}}/laporan_pajak/{{$file_laporan_pajak}}"
 									target="_blank" class="btn bg-indigo">Lihat File</a>
 								@elseif($file_laporan_pajak == null AND $this->session->userdata('level') != 'admin')
+								<small class="text-danger">File belum ada, silahkan upload file</small>
+								@elseif($this->session->userdata('level') == 'admin')
+								<small class="text-danger">File Belum Diupload</small>
+								@endif
+							</div>
+						</li>
+						<li>
+							<div class="title">
+								<i class="material-icons">description</i>
+								Sertifikat
+							</div>
+							<div class="content">
+								@if($file_sertifikat > 0 )
+								<a href="{{site_url()}}upload/media/{{$username}}/sertifikat/{{$file_sertifikat}}"
+									target="_blank" class="btn bg-indigo">Lihat File</a>
+								@elseif($file_sertifikat == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
 								@elseif($this->session->userdata('level') == 'admin')
 								<small class="text-danger">File Belum Diupload</small>

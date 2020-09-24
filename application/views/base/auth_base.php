@@ -34,10 +34,12 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <p><b>Aplikasi Media</b></p>
-            <small>Kabupaten Bintan</small>
+            <p><b>SIMADU</b></p>
+            <small>Sistem Informasi Terpadu</small>
         </div>
         @yield('content')
+        <p class="text-center">Kabupaten Bintan</p>
+
     </div>
 
     <!-- Jquery Core Js -->
