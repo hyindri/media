@@ -6,7 +6,7 @@
 
 			@if($this->session->userdata('file_logo_media') > 1 AND $this->session->userdata('level') != 'admin')
 			<div class="image">
-				<img class="bg-white" src="<?= base_url('upload/media/'.$this->session->userdata('username').'/logo_media/'.$this->session->userdata('file_logo_media'));?>" alt="Gambar Profil" width="48" height="48" />
+				<img class="bg-white" src="<?= base_url('upload/media/'.$this->session->userdata('username').'/'.$this->session->userdata('file_logo_media'));?>" alt="Gambar Profil" width="48" height="48" />
 			</div>
 			@elseif($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'superadmin' || $this->session->userdata('file_logo_media') == null)
 			<div class="image">
@@ -50,7 +50,7 @@
 				<li class="@if($this->uri->segment(1) == 'profil') active @endif">
 					<a href="{{site_url('profil')}}">
 						<i class="material-icons">person</i>
-						<span>Profil Media</span>
+						<span>Profil</span>
 					</a>
 				</li>
 				<li class="@if($this->uri->segment(1) == 'berita') active @endif">

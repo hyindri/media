@@ -18,7 +18,7 @@
 					@if($file_logo_media > 1)
 					<div class="image-area">
 						<img class="bg-white"
-							src="<?= base_url('upload/media/'.$username.'/logo_media/'.$file_logo_media);?>"
+							src="<?= base_url('upload/media/'.$username.'/'.$file_logo_media);?>"
 							alt="Gambar Profil" width="50%" />
 					</div>
 					@elseif($file_logo_media == NULL)
@@ -176,7 +176,7 @@
 								<b>No. Rekening : </b>{{$rekening}}
 								<br>
 								@if($file_rekening > 0 )
-								<a href="{{site_url()}}upload/media/{{$username}}/rekening/{{$file_rekening}}"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_rekening}}"
 									target="_blank" class="btn bg-indigo">Lihat File</a>
 								@elseif($file_rekening == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -195,7 +195,7 @@
 								<b>No. NPWP : </b>{{$npwp}}
 								<br>
 								@if($file_npwp > 0)
-								<a href="{{site_url()}}upload/media/{{$username}}/npwp/{{$file_npwp}}" target="_blank"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_npwp}}" target="_blank"
 									class="btn bg-indigo">Lihat File</a>
 								@elseif($file_npwp == 0 AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -249,7 +249,7 @@
 							</div>
 							<div class="content">
 								@if($file_sertifikat_uji > 0)
-								<a href="{{site_url()}}upload/media/{{$username}}/sertifikat_uji/{{$file_sertifikat_uji}}"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_sertifikat_uji}}"
 									target="_blank" class="btn bg-indigo">Lihat File</a>
 								@elseif($file_sertifikat_uji == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -265,7 +265,7 @@
 							</div>
 							<div class="content">
 								@if($file_verifikasi_pers > 0)
-								<a href="{{site_url()}}upload/media/{{$username}}/verifikasi_pers/{{$file_verifikasi_pers}}"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_verifikasi_pers}}"
 									target="_blank" class="btn bg-indigo">Lihat File</a>
 								@elseif($file_verifikasi_pers == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -281,7 +281,7 @@
 							</div>
 							<div class="content">
 								@if($file_mou > 0)
-								<a href="{{site_url()}}upload/media/{{$username}}/mou/{{$file_mou}}" target="_blank"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_mou}}" target="_blank"
 									class="btn bg-indigo">Lihat File</a>
 								@elseif($file_mou == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -297,7 +297,7 @@
 							</div>
 							<div class="content">
 								@if($file_akta_pendirian > 0)
-								<a href="{{site_url()}}upload/media/{{$username}}/akta_pendirian/{{$file_akta_pendirian}}"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_akta_pendirian}}"
 									target="_blank" class="btn bg-indigo">Lihat File</a>
 								@elseif($file_akta_pendirian == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -313,7 +313,7 @@
 							</div>
 							<div class="content">
 								@if($file_situ > 0)
-								<a href="{{site_url()}}upload/media/{{$username}}/situ/{{$file_situ}}" target="_blank"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_situ}}" target="_blank"
 									class="btn bg-indigo">Lihat File</a>
 								@elseif($file_situ == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -329,7 +329,7 @@
 							</div>
 							<div class="content">
 								@if($file_siup > 0)
-								<a href="{{site_url()}}upload/media/{{$username}}/siup/{{$file_siup}}" target="_blank"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_siup}}" target="_blank"
 									class="btn bg-indigo">Lihat File</a>
 								@elseif($file_siup == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -345,7 +345,7 @@
 							</div>
 							<div class="content">
 								@if($file_tdp > 0)
-								<a href="{{site_url()}}upload/media/{{$username}}/tdp/{{$file_tdp}}" target="_blank"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_tdp}}" target="_blank"
 									class="btn bg-indigo">Lihat File</a>
 								@elseif($file_tdp == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -361,7 +361,7 @@
 							</div>
 							<div class="content">
 								@if($file_laporan_pajak > 0 )
-								<a href="{{site_url()}}upload/media/{{$username}}/laporan_pajak/{{$file_laporan_pajak}}"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_laporan_pajak}}"
 									target="_blank" class="btn bg-indigo">Lihat File</a>
 								@elseif($file_laporan_pajak == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>
@@ -377,7 +377,7 @@
 							</div>
 							<div class="content">
 								@if($file_sertifikat > 0 )
-								<a href="{{site_url()}}upload/media/{{$username}}/sertifikat/{{$file_sertifikat}}"
+								<a href="{{site_url()}}upload/media/{{$username}}/{{$file_sertifikat}}"
 									target="_blank" class="btn bg-indigo">Lihat File</a>
 								@elseif($file_sertifikat == null AND $this->session->userdata('level') != 'admin')
 								<small class="text-danger">File belum ada, silahkan upload file</small>

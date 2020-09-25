@@ -106,7 +106,7 @@ class Profil extends CI_Controller
             $row = $this->medmas->get_by_id($id);
             $data = array(
                 'nama' => $row->nama_media,
-                'status' => $this->session->userdata('status'),
+                'status' => $row->status,
                 'perusahaan' => $row->nama_perusahaan,
                 'username' => $row->username,
                 'alamat' => $row->alamat_perusahaan,
@@ -413,10 +413,10 @@ class Profil extends CI_Controller
     private function _do_upload_logo()
     {
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/logo_media/')) {
-            mkdir('upload/media/'.$username.'/logo_media/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config['upload_path']          = 'upload/media/'.$username.'/logo_media/';
+        $config['upload_path']          = 'upload/media/'.$username;
         $config['allowed_types']        = 'jpg|jpeg|png';
         $config['max_size']             = 2000; //set max size allowed in Kilobyte
         $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -438,10 +438,10 @@ class Profil extends CI_Controller
     private function _do_upload_npwp()
     {
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/npwp/')) {
-            mkdir('upload/media/'.$username.'/npwp/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config1['upload_path']          = 'upload/media/'.$username.'/npwp/';
+        $config1['upload_path']          = 'upload/media/'.$username;
         $config1['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config1['max_size']             = 2000; //set max size allowed in Kilobyte
         $config1['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -462,10 +462,10 @@ class Profil extends CI_Controller
     private function _do_upload_rekening()
     {
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/rekening/')) {
-            mkdir('upload/media/'.$username.'/rekening/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config2['upload_path']          = 'upload/media/'.$username.'/rekening/';
+        $config2['upload_path']          = 'upload/media/'.$username;
         $config2['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config2['max_size']             = 2000; //set max size allowed in Kilobyte
         $config2['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -487,10 +487,10 @@ class Profil extends CI_Controller
     private function _do_upload_sertifikat_uji()
     {
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/sertifikat_uji/')) {
-            mkdir('upload/media/'.$username.'/sertifikat_uji/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config3['upload_path']          = 'upload/media/'.$username.'/sertifikat_uji/';
+        $config3['upload_path']          = 'upload/media/'.$username;
         $config3['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config3['max_size']             = 2000; //set max size allowed in Kilobyte
         $config3['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -514,10 +514,10 @@ class Profil extends CI_Controller
     private function _do_upload_verifikasi_pers()
     {
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/verifikasi_pers/')) {
-            mkdir('upload/media/'.$username.'/verifikasi_pers/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config4['upload_path']          = 'upload/media/'.$username.'/verifikasi_pers/';
+        $config4['upload_path']          = 'upload/media/'.$username;
         $config4['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config4['max_size']             = 2000; //set max size allowed in Kilobyte
         $config4['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -540,10 +540,10 @@ class Profil extends CI_Controller
     {
 
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/mou/')) {
-            mkdir('upload/media/'.$username.'/mou/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config5['upload_path']          = 'upload/media/'.$username.'/mou/';
+        $config5['upload_path']          = 'upload/media/'.$username;
         $config5['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config5['max_size']             = 2000; //set max size allowed in Kilobyte
         $config5['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -566,10 +566,10 @@ class Profil extends CI_Controller
     {
 
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/akta_pendirian/')) {
-            mkdir('upload/media/'.$username.'/akta_pendirian/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config6['upload_path']          = 'upload/media/'.$username.'/akta_pendirian/';
+        $config6['upload_path']          = 'upload/media/'.$username;
         $config6['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config6['max_size']             = 2000; //set max size allowed in Kilobyte
         $config6['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -593,10 +593,10 @@ class Profil extends CI_Controller
     {
 
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/situ/')) {
-            mkdir('upload/media/'.$username.'/situ/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config7['upload_path']          = 'upload/media/'.$username.'/situ/';
+        $config7['upload_path']          = 'upload/media/'.$username;
         $config7['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config7['max_size']             = 2000; //set max size allowed in Kilobyte
         $config7['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -619,10 +619,10 @@ class Profil extends CI_Controller
     {
 
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/siup/')) {
-            mkdir('upload/media/'.$username.'/siup/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config8['upload_path']          = 'upload/media/'.$username.'/siup/';
+        $config8['upload_path']          = 'upload/media/'.$username;
         $config8['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config8['max_size']             = 2000; //set max size allowed in Kilobyte
         $config8['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -645,10 +645,10 @@ class Profil extends CI_Controller
     {
 
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/tdp/')) {
-            mkdir('upload/media/'.$username.'/tdp/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config9['upload_path']          = 'upload/media/'.$username.'/tdp/';
+        $config9['upload_path']          = 'upload/media/'.$username;
         $config9['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config9['max_size']             = 2000; //set max size allowed in Kilobyte
         $config9['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
@@ -673,10 +673,10 @@ class Profil extends CI_Controller
     {
 
         $username = $this->session->userdata('username');
-        if (!file_exists('upload/media/'.$username.'/laporan_pajak/')) {
-            mkdir('upload/media/'.$username.'/laporan_pajak/', 0777, true);
+        if (!file_exists('upload/media/'.$username)) {
+            mkdir('upload/media/'.$username, 0777, true);
         }
-        $config10['upload_path']          = 'upload/media/'.$username.'/laporan_pajak/';
+        $config10['upload_path']          = 'upload/media/'.$username;
         $config10['allowed_types']        = 'jpg|jpeg|png|pdf';
         $config10['max_size']             = 2000; //set max size allowed in Kilobyte
         $config10['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
