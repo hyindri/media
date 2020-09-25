@@ -342,7 +342,7 @@
             if (fileDraft.get(0).files.length) {
                 var fileSize = fileDraft.get(0).files[0].size; // in bytes
                 if (fileSize > maxSize) {
-                    toastr.error('File kebesaran, maksimal 5 MB');
+                    toastr.error('Ukuran file terlalu besar, maksimal 5 MB');
                     return false;
                 } else {
                     $.ajax({
@@ -380,7 +380,7 @@
             if (ubahFile.get(0).files.length) {
                 var fileSize = ubahFile.get(0).files[0].size; // in bytes
                 if (fileSize > maxSize) {
-                    toastr.error('File kebesaran, maksimal 5 MB');
+                    toastr.error('Ukuran File Terlalu Besar, maksimal 5 MB');
                     return false;
                 } else {
                     $.ajax({
@@ -459,7 +459,7 @@
             if (ubahFileDraft.get(0).files.length) {
                 var fileSize = ubahFileDraft.get(0).files[0].size; // in bytes
                 if (fileSize > maxSize) {
-                    toastr.error('File kebesaran, maksimal 5 MB');
+                    toastr.error('Ukuran File Terlalu Besar, maksimal 5 MB');
                     return false;
                 } else {
                     $.ajax({

@@ -281,7 +281,7 @@ class Berita extends CI_Controller
         );
         if (!empty($_FILES['file']['name'])) {
             $upload = $this->_do_upload($id);
-            unlink('upload/berita/' . $folder . '/' . $this->input->post('old_file'));
+            // unlink('upload/berita/' . $folder . '/' . $this->input->post('old_file'));
             $data['file'] = $upload;
         } else {
             $data['file'] = $this->input->post('old_file');
@@ -329,7 +329,7 @@ class Berita extends CI_Controller
                 );
                 $this->notifikasi->simpan($notif);
             }
-            unlink('upload/berita/' . $folder . '/' . $cek->file);
+            // unlink('upload/berita/' . $folder . '/' . $cek->file);
             rmdir('upload/berita/' . $folder);
             $this->aktivitas->log_hapusberita();
             $this->berita->hapus($id);
@@ -352,7 +352,7 @@ class Berita extends CI_Controller
         );
         if (!empty($_FILES['file']['name'])) {
             $upload = $this->_do_upload($id);
-            unlink('upload/berita/' . $folder . '/' . $cek->file);
+            // unlink('upload/berita/' . $folder . '/' . $cek->file);
 
             $data['file'] = $upload;
 

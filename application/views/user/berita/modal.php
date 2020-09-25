@@ -6,19 +6,19 @@
             </div>
             {{form_open('',['id'=>'form-draft','role'=>'form'])}}
             <div class="modal-body">
-                <label class="form-label">Judul berita</label>
+                <label class="form-label">Judul berita*</label>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <textarea id="judul_berita" name="judul_berita" class="form-control" required></textarea>
                     </div>
                 </div>
-                <label class="form-label">Narasi berita</label>
+                <label class="form-label">Narasi berita*</label>
                 <div class="form-group form-float">
                     <div class="form-line">
                         <textarea id="narasi_berita" name="narasi_berita" class="form-control" rows="17"></textarea>
                     </div>
                 </div>
-                <label class="form-label">Upload File</label>
+                <label class="form-label">Upload File Pendukung* (.jpg/.jpeg/.png) Max. 5 mb</label>
                 <div class="form-group form-float">
                     <div class="form-line">
                         {{form_input($file_berita)}}
@@ -44,19 +44,19 @@
             {{form_open('',['id'=>'form-ubah-draft','role'=>'form'])}}
             <div class="modal-body">
                 <input type="hidden" name="edit_id_draft" id="edit_id_draft" class="form-control" required>
-                <label class="form-label">Judul berita</label>
+                <label class="form-label">Judul berita*</label>
                 <div class="form-group">
                     <div class="form-line">
                         <textarea id="ubah_judul" name="ubah_judul" class="form-control" required></textarea>
                     </div>
                 </div>
-                <label class="form-label">Narasi berita</label>
+                <label class="form-label">Narasi berita*</label>
                 <div class="form-group">
                     <div class="form-line">
                         <textarea id="ubah_narasi" name="ubah_narasi" class="form-control" rows="17"></textarea>
                     </div>
                 </div>
-                <label class="form-label">Upload File</label>
+                <label class="form-label">Upload File Pendukung* (.jpg/.jpeg/.png) Max. 5 mb</label>
                 <div class="form-group">
                     <div class="form-line">
                         {{form_input($ubah_file_berita)}}
@@ -86,7 +86,7 @@
                 <label for="ubah_link_berita">Link Berita</label>
                 <div class="form-group">
                     <div class="form-line">
-                        <textarea name="ubah_link_berita" id="ubah_link_berita" class="form-control" placeholder="Link Berita" required></textarea>
+                        <textarea name="ubah_link_berita" id="ubah_link_berita" class="form-control" placeholder="Contoh https://berita.com/" required></textarea>
                     </div>
                 </div>
                 <label>Dibagikan</label>
@@ -108,7 +108,7 @@
                         <input type="number" name="ubah_jumlah_view" id="ubah_jumlah_view" class="form-control" placeholder="Jumlah orang yang melihat berita anda.." required title="Lütfen isaretli yerleri doldurunuz">
                     </div>
                 </div>
-                <label for="ubah_file">File</label>
+                <label for="ubah_file">Screenshoot Berita</label>
                 <div class="form-group">
                     <div class="form-line">
                         <input type="file" name="file" id="ubah_file" data-max-size="5e+6" class="form-control">
